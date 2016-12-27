@@ -5,4 +5,8 @@ This is the GitHub code repository for leanux. End-user documentation and instal
 
 | tool | purpose |
 |------|---------|
-| lmon | performance viewer, both real-time and browsing historic data from the lard daemon|
+| lard | daemon that logs performance and base configuration data to a SQLite database file |
+| lmon | ncurses (tty) based performance viewer, both real-time and browsing historic data from the lard daemon, with colors, dynamic screen resizing |
+| lrep | generates html reports on lard data |
+| lsys | easy command-line tool to retrieve sysfs info for administrative use |
+| lblk | easy command-line tool to retrieve block device and filesystem info for administrative use |

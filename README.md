@@ -1,5 +1,7 @@
 # leanux
-tools and C++ API to Linux performance and configuration data
+tools and C++ API to Linux performance and configuration data.
+
+This is the GitHub code repository for leanux. End-user documentation and installable packages for various GNU/Linux distributions are available on the [project main site](https://www.o-rho.com/leanux).
 
 | tool | purpose |
 |------|---------|

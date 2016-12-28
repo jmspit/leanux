@@ -1,11 +1,8 @@
-C++ API to linux system performance and configuration data.
 
-Includes tools build against leanux:
+See @LEANUX_WEBSITE@
 
-- lmon : terminal based linux performance monitor.
-- lblk : command line block device information tool.
+@LEANUX_COPYRIGHT@
 
-Generate API documentation from source (see INSTALL) or
-visit http://www.o-rho.com/leanux.
+report bugs and feature requests at @LEANUX_BUG_URL@
 
-copyleft GPL v3, Jan-Marten Spit 2015.
+included libtermkey is Copyright (c) 2007-2011 Paul Evans <leonerd@leonerd.org.uk>

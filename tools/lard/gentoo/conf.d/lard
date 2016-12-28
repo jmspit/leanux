@@ -1,0 +1,12 @@
+# /etc/conf.d/lard: config file for /etc/init.d/lard
+
+# user to own the lard daemon
+LARD_USER="leanux"
+
+# location of sqlite database file
+LARD_DATABASE="/var/lib/lard/lard.db"
+
+# location of configuration file
+LARD_CONF_FILE="/etc/lard/lard.conf"
+
+

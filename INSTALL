@@ -1,0 +1,62 @@
+Building from source
+--------------------
+
+requirements:
+
+- c++ compiler
+- cmake >= 2.8.12
+- zlib libraries and headers
+- ncurses libraries and headers
+
+$ tar zxvf leanux-x.x.x.tar.gz
+$ cd leanux-x.x.x
+$ mkdir release
+$ cd release
+$ cmake -DCMAKE_BUILD_TYPE=Release ..
+$ make
+
+this produces a shared library and a few tools requiring it.
+
+$ make test
+runs some basic tests.
+
+$ make doc
+generates html documentation, but requires doxygen and dot tool.
+
+$ make package
+creates installable package for the build platform.
+
+Installation
+------------
+
+Allthough a 'make install' is provided (and likely to require superuser
+privileges), you should do a 'make package' and install the .rpm or .deb,
+which takes care of the actual binary, library and manual page install,
+conforming to target paltform standards.
+
+For common GNU/Linux distributions, one may find packages ready for install
+at http://www.o-rho.com/leanux.
+
+For gentoo, an ebuild is produced by cmake, or it can be downloaded at
+http://www.o-rho.com/leanux. As leanux in not in the
+portage tree (yet:), use the instructions at
+https://wiki.gentoo.org/wiki/Overlay/Local_overlay
+to emerge the leanux-x.x.x.ebuild.
+
+For Arch, a PKGBUILD is produced by cmake, but you must run cmake again 
+-after- make package_source for the sha512sum to be set correctly in the 
+PKGBUILD - or do it yourself by hand.
+
+leanux is tested against and packaging-aware of:
+
+- gentoo (rules)
+- arch
+- opensuse 13
+- centos 7
+- debian 8
+- fedora 22
+- ubuntu 14,15
+- redhat enterprise linux 6, 7
+- suse linux enterprise server 11.2, 11.3
+
+

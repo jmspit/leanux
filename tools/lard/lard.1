@@ -1,0 +1,112 @@
+.TH LARD 1
+.SH NAME
+lard \- daemon that logs performance data to a sqlite database
+.SH SYNOPSIS
+\fBlard\fR -f \fIdatabase\fR -c \fIconfigfile\fR
+
+.SH DESCRIPTION
+The \fBlard\fR daemon logs performance data to a sqlite (>=3.7)
+\fIdatabase\fR (file), which is created if it does not exist. \fBlard\fR
+does (on typical GNU/Linux configurations) not depend on elevated
+privileges to read performance data from sources like /proc and /sys.
+
+.PP
+On packaging-supported systems, lard is installed as a runable service
+(say /etc/init.d/lard) that operates on the /etc/lard/lard.conf, and
+stores the database in /var/lib/lard/lard.db. A user leanux is created
+to run the daemon, users requiring access to the lard database need to be in
+the leanux group (or be root).
+
+.PP
+Note that lard stores command arguments of top process, which may
+contain sensitive data.
+
+.PP
+The daemon operates according to a number of options (NAME=VALUE pairs) as
+specified in the \fIconfigfile\fR:
+
+.TP
+DATABASE_PAGE_SIZE
+@LARD_CONF_DATABASE_PAGE_SIZE_DESCR@.
+@LARD_CONF_DATABASE_PAGE_SIZE_COMMENT@.
+Default is DATABASE_PAGE_SIZE=@LARD_CONF_DATABASE_PAGE_SIZE_DEFAULT@.
+
+.TP
+LOG_LEVEL
+@LARD_CONF_LOG_LEVEL_DESCR@.
+@LARD_CONF_LOG_LEVEL_COMMENT@.
+Default is LOG_LEVEL=@LARD_CONF_LOG_LEVEL_DEFAULT@.
+
+.TP
+MAINTENANCE_INTERVAL
+@LARD_CONF_MAINTENANCE_INTERVAL_DESCR@.
+@LARD_CONF_MAINTENANCE_INTERVAL_COMMENT@.
+Default is MAINTENANCE_INTERVAL=@LARD_CONF_MAINTENANCE_INTERVAL_DEFAULT@.
+
+.TP
+MAX_DB_SIZE
+@LARD_CONF_MAX_DB_SIZE_DESCR@.
+@LARD_CONF_MAX_DB_SIZE_COMMENT@.
+Default is MAX_DB_SIZE=@LARD_CONF_MAX_DB_SIZE_DEFAULT@.
+
+.TP
+MAX_DISKS
+@LARD_CONF_MAX_DISKS_DESCR@.
+@LARD_CONF_MAX_DISKS_COMMENT@.
+Default is MAX_DISKS=@LARD_CONF_MAX_DISKS_DEFAULT@.
+
+.TP
+MAX_MOUNTS
+@LARD_CONF_MAX_MOUNTS_DESCR@.
+@LARD_CONF_MAX_MOUNTS_COMMENT@.
+Default is MAX_MOUNTS=@LARD_CONF_MAX_MOUNTS_DEFAULT@.
+
+.TP
+MAX_PROCESSES
+@LARD_CONF_MAX_PROCESSES_DESCR@.
+@LARD_CONF_MAX_PROCESSES_COMMENT@.
+Default is MAX_PROCESSES=@LARD_CONF_MAX_PROCESSES_DEFAULT@.
+
+.TP
+RETAIN_DAYS
+@LARD_CONF_RETAIN_DAYS_DESCR@.
+@LARD_CONF_RETAIN_DAYS_COMMENT@.
+Default is RETAIN_DAYS=@LARD_CONF_RETAIN_DAYS_DEFAULT@.
+
+.TP
+SNAPSHOT_CHECKPOINT
+@LARD_CONF_SNAPSHOT_CHECKPOINT_DESCR@.
+@LARD_CONF_SNAPSHOT_CHECKPOINT_COMMENT@.
+Default is SNAPSHOT_CHECKPOINT=@LARD_CONF_SNAPSHOT_CHECKPOINT_DEFAULT@.
+
+.TP
+SNAPSHOT_INTERVAL
+@LARD_CONF_SNAPSHOT_INTERVAL_DESCR@.
+@LARD_CONF_SNAPSHOT_INTERVAL_COMMENT@.
+Default is SNAPSHOT_INTERVAL=@LARD_CONF_SNAPSHOT_INTERVAL_DEFAULT@.
+
+.PP
+The \fBlmon\fR tool can be used to replay and visualize individual
+snapshots from a lard database.
+
+.PP
+The \fBlrep\fR tool produces HTML reports from a lard database.
+
+.PP
+The database schema, including table definitions and comments, can be
+displayed with the '.schema' or '.schema tablename' command in sqlite.
+
+.SH BUGS
+Report bugs, documentation errors and suggestions at @LEANUX_BUG_URL@.
+.SH AUTHOR
+@LEANUX_MAINTAINER_NAME@ <@LEANUX_MAINTAINER_EMAIL@>
+.SH COPYRIGHT
+Copyright \(co 2015-2016 Jan-Marten Spit @LEANUX_WEBSITE@
+.PP
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH "SEE ALSO"
+.B lblk(1), lmon(1), lrep(1), lsys(1)
+

@@ -1,0 +1,92 @@
+/**
+ *
+ * @mainpage
+ * @section intro_section Introduction
+ * @LEANUX_SHORT_DESC@.
+ *
+ * leanux is strictly read-only - there is no functionality that would change the system configuration.
+ *
+ * Most functionality can be invoked without root privileges, but the few exceptions are @link root_access listed here @endlink.
+ *
+ * @section Tools
+ * A few tools build against leanux are included in the source
+ * - lmon : ncurses and terminal based linux performance monitoring tool
+ * - lblk : command line block device information
+ * - lard : @LARD_DESCR@
+ * - lrep : @LREP_DESCR@
+ *
+ * @section using_section Using leanux
+ *
+ * The first function invoked from leanux <strong>must</strong> be leanux::init(). This function checks if
+ * it supports the current platform, most importantly the kernel version number (leanux::kernel_required),
+ *
+ * leanux sticks to using a single unit for all time values, and so does implicit conversion to seconds in a long double format.
+ *
+ * @section system_section System namespace
+ *
+ * The leanux::system namespace provides basic system and kernel configuration,
+ * such as leanux::system::getChassisType, leanux::system::getKernelVersion and so on.
+ *
+ * @section cpu_section CPU namespace
+ * The leanux::cpu namespace contains CPU related functions and datastructures.
+ *
+ * - CPU topology, the number of physcial CPUs, CPU cores and logical CPUs (leanux::cpu::CPUTopology).
+ * - CPU model, operating frequency, bogomips (leanux::cpu::CPUInfo).
+ * - CPU usage statistics (leanux::cpu::getCPUStats).
+ * - number of running and blocked processes, total number of context switches and forks (leanux::cpu::getSchedInfo).
+ *
+ * @section block_section Block namespace
+ *
+ * The leanux::block namespace provides configuration and performance data on various types of block devices and filesystems.
+ *
+ * @section net_section Net namespace
+ * The leanux::net namespace retrieves network configuration and statistics.
+ * @section process_section Process namespace
+ *
+ * The leanux::process namespace provides information on processes,
+ *
+ * - get statistics on a process with leanux::process::getProcPidStat
+ * - get statistics on all processes with leanux::process::getAllProcPidStat
+ *
+ * @section build_section Building from source
+ *
+ * Requirements:
+ * - cmake >= 2.8
+ * - ncurses development headers >= 5
+ * - sqlite development headers >= 3.7
+ * - zlib development headers
+ *
+ *
+ *@code
+ * $ tar zxcf leanux-x.x.x.tar.gz
+ * $ cd leanux-x.x.x
+ * $ mkdir -p build/release
+ * $ cd build/release
+ * $ cmake -DCMAKE_BUILD_TYPE=Release ../..
+ * $ make
+ * $ make test
+ * $ make doc
+ * $ make package
+ * $ make package_source
+ *@endcode
+ *
+ * make test runs some basic tests, make doc generates html docs (but requires doxygen),
+ * make package creates an instalable package (rpm,deb) if applicable for the build platform,
+ * make package_source generates a source tarbal.
+ *
+ * @section more_info_section More info
+ * See @LEANUX_WEBSITE@ for more information or @LEANUX_BUG_URL@ to report bugs.
+ *
+ * @author @LEANUX_MAINTAINER_NAME@ &lt;@LEANUX_MAINTAINER_EMAIL@&gt;
+ *
+ * @file lib/gzstream.h
+ * gz stream classes header by Deepak Bandyopadhyay, Lutz Kettner GPL 2.1
+ *
+ * @file lib/gzstream.cpp
+ * gz stream classes source by Deepak Bandyopadhyay, Lutz Kettner GPL 2.1
+ *
+ * @namespace leanux::tools
+ * tools build on leanux.
+ *
+ * @todo many CPU systems prevent chart character chart to claim too many columns.
+ */

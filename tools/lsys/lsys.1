@@ -1,0 +1,226 @@
+.TH LSYS 1
+.SH NAME
+lsys \- list system devices and attributes
+.SH SYNOPSIS
+device tree for a single device:
+
+.RS
+.B lsys
+\fB\fIdevice\fR
+.BR
+.RE
+
+list and optionally filter devices:
+
+.RS
+.B lsys\fR [-t \fB\fIdevicetype\fR] [-f \fB\fIfields\fR]
+.RE
+
+show help:
+
+.RS
+.B lsys\fR -h
+.RE
+
+.SH OPTIONS
+.TP
+.BR \-t
+limit the type of device listed by specifying a \fIdevicetype\fR
+.TP
+.BR \-f
+specify \fIfields\fR. each field may be followed by either a '=' and a regular expression to select,
+or a '-' and regular expression to filter out.
+.TP
+.BR \-v
+show lsys version.
+.PP
+.SS "Exit status:"
+.TP
+0
+if OK,
+.TP
+1
+error.
+.TP
+2
+more serious error.
+.SH DESCRIPTION
+
+\fBlsys\fR either shows the device tree for a single device, or lists devices
+based on a \fIdevicetype\fR or a variety of filters through \fIfields\fR.
+.PP
+In single device mode, when the \fIdevice\fR is not a full sysfs (/sys) path, lsys tries to find \fIdevice\fR in these locations:
+.PP
+/sys/devices
+.PP
+/sys/class/block
+.PP
+/sys/class/net
+.PP
+/sys/bus/pci/devices
+.PP
+/sys/bus/usb/devices
+
+so \fBlsys\fR would understand objects such as 'sda', 'sda1', 'eth0', 'usb1' and so on.
+.PP
+In list mode, either all \fIdevicetype\fR device types are listed, or limited to a specific \fIdevicetype\fR through -t. The \fIfields\fR
+allow selection of which fields to display, what data to select or negate, for example
+
+lsys -t pci -f driver-^$
+
+would show all pci devices, including their driver, but skipping (-) pci devices without a driver (regexp ^$).
+
+.SS devicetype
+.TP
+ata
+ATA devices with fields speed, sysfs.
+.TP
+bcache
+bcache devices with field sysfs.
+.TP
+block
+all block devices, including specific block devices such as scsi or mapper, with fields dev_t, driver, model, read, sched, size, svctm, sysfs, written.
+.TP
+iscsi
+iSCSI block devices with fields dev_t, driver, iqn, model, read, sched, size, svctm, sysfs, target, written, wwn.
+.TP
+mapper
+devicemapper block devices with fields dev_t, read, size, svctm, sysfs, uuid, written.
+.TP
+metadisk
+MetaDisk (software RAID) block devices with fields dev_t, read, size, sysfs, written.
+.TP
+mmc
+MMC block devices with fields dev_t, driver, model, read, sched, size, svctm, sysfs, written.
+.TP
+net
+network interface devices with fields ip4, ip6, read, speed, sysfs, written.
+.TP
+nvme
+NVMe block devices with fields dev_t, driver, model, read, sched, size, svctm, sysfs, written.
+.TP
+part
+partition block devices with fields dev_t, read, size, svctm, sysfs, written.
+.TP
+pci
+PCI devices with fields class, driver, irq, model, sysfs, vendor.
+.TP
+pcibus
+PCI bus devices with fields driver, irq.
+.TP
+rport
+SCSI remote ports with field sysfs.
+.TP
+scsi
+SCSI block devices with fields dev_t, driver, model, read, sched, size, svctm, sysfs, written, wwn.
+.TP
+usb
+USB devices with fields class, driver, model, sysfs, vendor.
+.TP
+usbbus
+USB bus devices with fields class, sysfs.
+.TP
+usbiface
+USB interface devices with fields class, sysfs.
+.TP
+virtioblk
+virtio block devices with fields dev_t, driver, model, read, sched, size, svctm, sysfs, written.
+.TP
+virtionet
+virtio network devices with fields driver, model, read, sched, size, sysfs, written.
+.TP
+vport
+SCSI vport devices with field sysfs.
+
+
+.SS fields
+.TP
+class
+the class for devicetype  pci, usbbus, usbiface, usb.
+.TP
+dev_t
+the major:minor pair for devicetype block, iscsi, mapper, mmc, nvme, part, pci, scsi, virtioblk, virtionet.
+.TP
+driver
+the driver for devicetype block, iscsi, mmc, nvme, pcibus, pci, scsi, usb, virtioblk, virtionet.
+.TP
+ip4
+the ip4 addresses assigned for devicetype net.
+.TP
+ip6
+the ip6 addresses assigned for devicetype net.
+.TP
+iqn
+the iqn of a iSCSI, devicetype iscsi.
+.TP
+irq
+the irq assigned to devicetype pcibus, pci.
+.TP
+model
+the device model for devicetype block, iscsi, mmc, nvme, pci, scsi, usb, virtioblk, virtionet.
+.TP
+read
+total number of bytes read for devicetype block, iscsi, mapper, metadisk, mmc, net, nvme, part, pci, scsi, virtioblk, virtionet.
+.TP
+sched
+the IO scheduler used for the devicetype
+block, iscsi, mmc, nvme, pci, scsi, virtioblk, virtionet.
+.TP
+size
+the size of the block devicetype
+block, iscsi, mapper, metadisk, mmc, nvme, part, pci, scsi, virtioblk, virtionet.
+.TP
+speed
+the speed in MiB/s for devicetype
+ata, net.
+.TP
+svctm
+the service time in ms for devicetype
+block, iscsi, mapper, mmc, nvme, part, pci, scsi, virtioblk, virtionet.
+.TP
+sysfs
+the sysfs path for any devicetype.
+.TP
+target
+the iSCSI target for devicetype iscsi.
+.TP
+uuid
+the UUID for devicetype mapper.
+.TP
+vendor
+the vendor devicetype pci, usb.
+.TP
+written
+total number of bytes written for devicetype block, iscsi, mapper, metadisk, mmc, net, nvme, part, pci, scsi, virtioblk, virtionet.
+.TP
+wwn
+the world wide name for devicetype iscsi, scsi.
+
+.SH EXAMPLES
+.TP
+list all network devices.
+lsys -t net -f ip4,speed,read,written
+
+.TP
+list all pci devices with a driver.
+lsys -t pci -f driver-^$,vendor,model
+
+
+
+.SH MORE INFORMATION
+For more information and examples, see @LEANUX_WEBSITE@.
+
+.SH BUGS
+Report bugs, documentation errors and suggestions at @LEANUX_BUG_URL@.
+.SH AUTHOR
+@LEANUX_MAINTAINER_NAME@ <@LEANUX_MAINTAINER_EMAIL@>
+.SH COPYRIGHT
+Copyright \(co 2015-2016 Jan-Marten Spit @LEANUX_WEBSITE@
+.PP
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH "SEE ALSO"
+.B lard(1), lblk(1), lmon(1), lrep(1)
+

@@ -1,0 +1,35 @@
+#!/sbin/runscript
+
+# lard init script for Gentoo
+# configure with /etc/conf.d/lard
+# lard is a performance logging daemon part of the sys-apps/leanux toolkit
+
+# do not modify 
+LARD_PIDDIR="/var/run/lard"
+LARD_PIDFILE="${LARD_PIDDIR}/lard.pid"
+
+depend() {
+  need localmount logger
+  after bootmisc
+}
+
+start() {
+  ebegin "Starting lard"
+  mkdir -p "$(dirname "${LARD_DATABASE}")"
+  mkdir -p "${LARD_PIDDIR}"
+  touch "${LARD_DATABASE}"
+  chmod 660 "${LARD_DATABASE}"
+  chmod 770 "$(dirname "${LARD_DATABASE}")"
+  chown -R "${LARD_USER}":"${LARD_USER}" "$(dirname "${LARD_DATABASE}")"
+  chown -R "${LARD_USER}":"${LARD_USER}" "${LARD_PIDDIR}"
+  start-stop-daemon --background --start --exec  /usr/bin/lard  \
+  -u "${LARD_USER}" --make-pidfile --pidfile "${LARD_PIDFILE}" \
+  -- -f "${LARD_DATABASE}" -c "${LARD_CONF_FILE}"
+  eend $?
+}
+
+stop() {
+  ebegin "Stopping lard"
+  start-stop-daemon --stop --exec /usr/bin/lard --pidfile "${LARD_PIDFILE}"
+  eend $?
+}

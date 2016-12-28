@@ -1,0 +1,52 @@
+.TH LBLK 1
+.SH NAME
+.B lblk
+\- show block device details.
+.SH SYNOPSIS
+.B lblk
+
+.B lblk <block device>
+
+.B lblk
+[\fB\fIOPTION\fR]
+
+.B lblk -t <block device>
+
+.SH OPTIONS
+.TP
+.BR \-h
+basic help.
+.TP
+.BR \-v
+show lblk version.
+.TP
+.BR \-d
+list only whole disks
+.TP
+.BR \-l
+list only LVM logical volumes
+.TP
+.BR \-m
+list only MetaDisks (Linux software raid)
+.TP
+.BR \-t
+<block device>
+list slave and holder trees for the named device.
+.SH DESCRIPTION
+.B lblk
+shows block device details.
+.SH BUGS
+Report bugs, documentation errors and suggestions at
+
+@LEANUX_BUG_URL@
+.SH AUTHOR
+@LEANUX_MAINTAINER_NAME@ <@LEANUX_MAINTAINER_EMAIL@>
+.SH COPYRIGHT
+Copyright \(co 2015-2016 Jan-Marten Spit @LEANUX_WEBSITE@
+.PP
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH "SEE ALSO"
+.B lard(1), lmon(1), lrep(1), lsys(1)

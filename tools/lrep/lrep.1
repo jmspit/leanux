@@ -1,0 +1,68 @@
+.TH LREP 1
+.SH NAME
+lrep \- @LREP_DESCR@
+.SH SYNOPSIS
+.B lrep
+(-m \fIminutes\fR | -b \fIbegin\fR -e \fIend\fR) [-n] [-o \fIhtmlfile\fR ]-f \fIdatabase\fR
+.SH OPTIONS
+.TP
+.BR \-f
+the location of the lard \fIdatabase\fR file.
+.TP
+.BR \-o
+the location of the HTML output file (\fIhtmlfile\fR).
+.TP
+.BR \-m
+generate a report over the last \fIminutes\fR minutes.
+.TP
+.BR \-b
+report \fIbegin\fR time ('YYYY-MM-DD HH24:MI:SS')
+.TP
+.BR \-e
+report \fIend\fR time ('YYYY-MM-DD HH24:MI:SS')
+.TP
+.BR \-n
+flag to suppress dns resolving lookups.
+.TP
+.BR \-v
+show lrep version.
+.TP
+.BR \-h
+show help.
+
+.SS "Exit status:"
+.TP
+0
+if OK,
+.TP
+1
+error.
+.TP
+2
+more serious error.
+.SH DESCRIPTION
+.B lrep
+generates reports from a lard sqlite \fIdatabase\fR (file). the report
+range can be specified as either a trail of the last \fIminutes\fR minutes,
+or by specifying a full time range with \fIbegin\fR and \fIend\fR.
+.PP
+The lard daemon creates ad samples to a lard database file, which is a SQLite3
+database, so it can be queried with sqlite3 as well.
+.PP
+Note that to create the report, the euid must have write access to the 
+directory where the database file resides. If not already present, a
+SQLite3 journal and shared memory file will be created.
+.SH BUGS
+Report bugs, documentation errors and suggestions at @LEANUX_BUG_URL@.
+.SH AUTHOR
+@LEANUX_MAINTAINER_NAME@ <@LEANUX_MAINTAINER_EMAIL@>
+.SH COPYRIGHT
+Copyright \(co 2015-2016 Jan-Marten Spit @LEANUX_WEBSITE@
+.PP
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+.SH "SEE ALSO"
+.B lard(1), lblk(1), lmon(1), lsys(1)
+

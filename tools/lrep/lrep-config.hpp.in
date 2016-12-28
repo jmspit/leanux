@@ -1,0 +1,8 @@
+#ifndef LREP_CONFIG_HPP
+#define LREP_CONFIG_HPP
+
+// configured by cmake from lrep.cmake
+
+#define LREP_DESCR "@LREP_DESCR@"
+
+#endif

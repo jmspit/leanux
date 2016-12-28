@@ -1,0 +1,80 @@
+#!/bin/bash
+#
+# lard      @LARD_DESCR@
+# Copyright @LEANUX_MAINTAINER_NAME@
+# Contact   @LEANUX_MAINTAINER_EMAIL@
+# Bugs      @LEANUX_BUG_URL@
+#
+### BEGIN INIT INFO
+# Provides:          lard
+# Required-Start:
+# Should-Start:
+# Required-Stop:
+# Should-Stop:
+# Default-Start:     3 4 5
+# Default-Stop:
+# Short-Description: @LARD_DESCR@
+# Description:       @LEANUX_SHORT_DESC@
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.status
+rc_reset
+
+PROG=lard
+PROGRAM=/usr/bin/lard
+DB_DIR=/var/lib/lard
+DB_FILE=${DB_DIR}/lard.db
+CONF_FILE=/etc/lard/lard.conf
+
+test -x $PROGRAM || { echo "$PROGRAM not found"; exit 1; }
+
+start() {
+  echo -n "Starting ${PROG}: "
+  mkdir -p ${DB_DIR} || { echo "failed to create directory ${DB_DIR}"; exit 1; }
+  touch ${DB_FILE} || { echo "failed to create database ${DB_FILE}"; exit 1; }
+  chown -R leanux:leanux ${DB_DIR} || { echo "failed to set ownership on directory ${DB_DIR}"; exit 1; }
+  chmod 770 ${DB_DIR} || { echo "failed to set access mode on directory ${DB_DIR}"; exit 1; }
+  chmod 660 ${DB_FILE} || { echo "failed to set ownership on database ${DB_FILE}"; exit 1; }
+  startproc -u leanux -g leanux -f ${PROGRAM} -c ${CONF_FILE} -f ${DB_FILE}
+  ERR=$?
+  return $ERR
+}
+
+stop() {
+  echo -n "Shutting down ${RPOG}: "
+  killproc ${PROGRAM}
+  ERR=$?
+  return $ERR
+}
+
+case "$1" in
+  start)
+    start
+    rc_status -v
+    ;;
+  stop)
+    stop
+    rc_status -v
+    ;;
+  status)
+    checkproc ${PROGRAM}
+    ;;
+  restart)
+    stop
+    start
+    rc_status -v
+    ;;
+  reload)
+    stop
+    start
+    rc_status -v
+    ;;
+  condrestart)
+    ;;
+  *)
+    echo "Usage: ${PROG} {start|stop|restart}"
+    exit 1
+    ;;
+esac
+exit $?

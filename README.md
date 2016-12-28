@@ -10,4 +10,4 @@ This is the Git code repository for leanux. End-user documentation, installable 
 | [lrep](https://www.o-rho.com/lrep) | generates html reports on lard data |
 | [lsys](https://www.o-rho.com/lsys) | easy command-line tool to retrieve sysfs info for administrative use |
 | [lblk](https://www.o-rho.com/lblk) | easy command-line tool to retrieve block device and filesystem info for administrative use |
-| [labbix](https://www.o-rho.com/lblk) | Zabbix disk discovery and disk performance statistics for GNU?Linux |
+| [labbix](https://www.o-rho.com/lblk) | Zabbix disk discovery and disk performance statistics for GNU/Linux |

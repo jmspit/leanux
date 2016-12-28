@@ -3,7 +3,7 @@ project( leanux )
 
 set( leanux_VERSION_MAJOR "0" )
 set( leanux_VERSION_MINOR "0" )
-set( leanux_VERSION_PATCH "8" )
+set( leanux_VERSION_PATCH "9" )
 
 if ( ${CMAKE_SIZEOF_VOID_P} STREQUAL "8" )
 execute_process(

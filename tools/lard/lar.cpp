@@ -346,6 +346,8 @@ bool parseArgs( int argc, char* argv[] ) {
 int main( int argc, char* argv[] ) {
   if ( parseArgs( argc, argv ) ) {
 
+    daemon(1,1);
+
     signal(SIGINT, interrupt_handler);
     signal(SIGQUIT, interrupt_handler);
     signal(SIGTERM, interrupt_handler);

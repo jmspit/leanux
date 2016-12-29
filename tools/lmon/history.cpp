@@ -568,6 +568,7 @@ namespace leanux {
         qcpustat.bind( 1, (long)snap_start_ );
         qcpustat.bind( 2, (long)snap_end_ );
         while ( qcpustat.step() ) {
+          if ( sysview.sample_count < 2 ) sysview.sample_count = 2;
           sysview.cpu_delta[qcpustat.getLong(0)].user = qcpustat.getDouble(1);
           sysview.cpu_delta[qcpustat.getLong(0)].system = qcpustat.getDouble(2);
           sysview.cpu_delta[qcpustat.getLong(0)].iowait = qcpustat.getDouble(3);

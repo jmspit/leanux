@@ -71,7 +71,7 @@ void printHelp() {
   std::cout << "  -g      : (re)write the configuration file with default values" << std::endl;
   std::cout << "  -h      : show this help" << std::endl;
   std::cout << "  -v      : show version" << std::endl;
-  std::cout << std::endl;  
+  std::cout << std::endl;
 }
 
 /**
@@ -122,9 +122,14 @@ int main( int argc, char* argv[] ) {
         leanux::util::ConfigFile::getConfig()->write(true);
       } else if ( strncmp( argv[1], "-f", 2 ) == 0 ) {
         if ( argc > 2 ) {
-          screen = new tools::lmon::Screen();
-          screen->runHistory( argv[2] );
-          delete screen;          
+          if ( !util::fileReadAccess( argv[2] ) ) {
+            std::cerr << "database file '" << argv[2] << "' cannot be read" << std::endl;
+            return 1;
+          } else {
+            screen = new tools::lmon::Screen();
+            screen->runHistory( argv[2] );
+            delete screen;
+          }
         } else printHelp();
       } else printHelp();
     } else {
@@ -140,7 +145,7 @@ int main( int argc, char* argv[] ) {
         screen->Stop();
         delete screen;
         std::cerr << "Oops:" << oops.getMessage() << std::endl;
-        std::flush( std::cerr );        
+        std::flush( std::cerr );
         screen = 0;
       }
     }

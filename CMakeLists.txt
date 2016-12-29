@@ -22,6 +22,15 @@ message( STATUS "CMAKE_SYSTEM_NAME      : ${CMAKE_SYSTEM_NAME}")
 message( STATUS "CMAKE_SYSTEM_PROCESSOR : ${CMAKE_SYSTEM_PROCESSOR}")
 message( STATUS "CMAKE_CXX_COMPILER     : ${CMAKE_CXX_COMPILER}")
 message( STATUS "CMAKE_HOST_SYSTEM      : ${CMAKE_HOST_SYSTEM}")
+message( STATUS "CMAKE_VERSION          : ${CMAKE_VERSION}")
+
+# for reuse
+if ( ${CMAKE_VERSION} STRLESS "3.3.2" )
+  set(LEANUX_DEB_MONOINSTALL "1")
+else()
+  set(LEANUX_DEB_MONOINSTALL "0")
+endif()
+message( STATUS "LEANUX_DEB_MONOINSTALL : ${LEANUX_DEB_MONOINSTALL}")
 
 set(leanux_VERSION_STR "${leanux_VERSION_MAJOR}.${leanux_VERSION_MINOR}.${leanux_VERSION_PATCH}")
 message( STATUS "LEANUX BUILD VERSION   : ${leanux_VERSION_STR}")
@@ -41,9 +50,12 @@ set( LEANUX_SRC_URI "${LEANUX_SRC_URI_BASE}/leanux-${leanux_VERSION_STR}.tar.gz"
 # configure README
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README @ONLY)
 
-# detect distros and set distro specifics
+# include per tool constants
 include( tools/lard/lard.cmake )
+
+# detect distros and set distro specifics
 include(FindLinuxDistro.cmake)
+
 # detect sqlite
 set( SQLITE3_FIND_QUIETLY 1 )
 include(FindSqlite3.cmake)
@@ -203,23 +215,44 @@ if (CURSES_FOUND)
 endif (CURSES_FOUND)
 
 # install binaries
-install(TARGETS lmon DESTINATION ${INSTALL_BIN_PATH} COMPONENT lmon)
-install(TARGETS lblk DESTINATION ${INSTALL_BIN_PATH} COMPONENT lblk)
-install(TARGETS lsys DESTINATION ${INSTALL_BIN_PATH} COMPONENT lsys)
-install(TARGETS lard DESTINATION ${INSTALL_BIN_PATH} COMPONENT lard)
-install(TARGETS lrep DESTINATION ${INSTALL_BIN_PATH} COMPONENT lrep)
-install(TARGETS labbix DESTINATION ${INSTALL_BIN_PATH} COMPONENT labbix)
-install(TARGETS ${leanux_LIB_NAME} DESTINATION ${INSTALL_LIB_PATH} COMPONENT libleanux)
+if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
+  install(TARGETS lmon DESTINATION ${INSTALL_BIN_PATH})
+  install(TARGETS lblk DESTINATION ${INSTALL_BIN_PATH})
+  install(TARGETS lsys DESTINATION ${INSTALL_BIN_PATH})
+  install(TARGETS lard DESTINATION ${INSTALL_BIN_PATH})
+  install(TARGETS lrep DESTINATION ${INSTALL_BIN_PATH})
+  install(TARGETS labbix DESTINATION ${INSTALL_BIN_PATH})
+  install(TARGETS ${leanux_LIB_NAME} DESTINATION ${INSTALL_LIB_PATH})
+else()
+  install(TARGETS lmon DESTINATION ${INSTALL_BIN_PATH} COMPONENT lmon)
+  install(TARGETS lblk DESTINATION ${INSTALL_BIN_PATH} COMPONENT lblk)
+  install(TARGETS lsys DESTINATION ${INSTALL_BIN_PATH} COMPONENT lsys)
+  install(TARGETS lard DESTINATION ${INSTALL_BIN_PATH} COMPONENT lard)
+  install(TARGETS lrep DESTINATION ${INSTALL_BIN_PATH} COMPONENT lrep)
+  install(TARGETS labbix DESTINATION ${INSTALL_BIN_PATH} COMPONENT labbix)
+  install(TARGETS ${leanux_LIB_NAME} DESTINATION ${INSTALL_LIB_PATH} COMPONENT libleanux)
+endif()
 
-# will be part of a separate devl package
-install(FILES lib/block.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/cpu.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/net.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/oops.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/pci.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/process.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/system.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
-install(FILES lib/util.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+# development headers
+if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
+  install(FILES lib/block.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/cpu.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/net.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/oops.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/pci.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/process.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/system.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+  install(FILES lib/util.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux)
+else()
+  install(FILES lib/block.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/cpu.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/net.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/oops.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/pci.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/process.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/system.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+  install(FILES lib/util.hpp DESTINATION ${INSTALL_INCLUDE_PATH}/leanux COMPONENT libleanux-devel)
+endif()
 
 # lard.conf
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/etc/lard.conf ${CMAKE_CURRENT_BINARY_DIR}/lard.conf @ONLY)
@@ -261,11 +294,19 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/lrep.1.gz
                    COMMENT "preparing man page for lrep"
                    VERBATIM )
 add_custom_target(man ALL DEPENDS ${CMAKE_BINARY_DIR}/lmon.1.gz ${CMAKE_BINARY_DIR}/lblk.1.gz ${CMAKE_BINARY_DIR}/lsys.1.gz ${CMAKE_BINARY_DIR}/lard.1.gz ${CMAKE_BINARY_DIR}/lrep.1.gz)
-install(FILES ${CMAKE_BINARY_DIR}/lmon.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lmon)
-install(FILES ${CMAKE_BINARY_DIR}/lblk.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lblk)
-install(FILES ${CMAKE_BINARY_DIR}/lsys.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lsys)
-install(FILES ${CMAKE_BINARY_DIR}/lard.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lard)
-install(FILES ${CMAKE_BINARY_DIR}/lrep.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lrep)
+if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
+  install(FILES ${CMAKE_BINARY_DIR}/lmon.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
+  install(FILES ${CMAKE_BINARY_DIR}/lblk.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
+  install(FILES ${CMAKE_BINARY_DIR}/lsys.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
+  install(FILES ${CMAKE_BINARY_DIR}/lard.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
+  install(FILES ${CMAKE_BINARY_DIR}/lrep.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
+else()
+  install(FILES ${CMAKE_BINARY_DIR}/lmon.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lmon)
+  install(FILES ${CMAKE_BINARY_DIR}/lblk.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lblk)
+  install(FILES ${CMAKE_BINARY_DIR}/lsys.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lsys)
+  install(FILES ${CMAKE_BINARY_DIR}/lard.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lard)
+  install(FILES ${CMAKE_BINARY_DIR}/lrep.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lrep)
+endif()
 
 #set(CPACK_PACKAGE_VERSION ${leanux_VERSION_STR})
 set(CPACK_PACKAGE_VERSION_MAJOR ${leanux_VERSION_MAJOR})
@@ -286,6 +327,13 @@ set(CPACK_COMPONENTS_ALL libleanux libleanux-devel lmon lblk lsys lard lrep labb
 set(CPACK_COMPONENT_INSTALL ON)
 set(CPACK_RPM_COMPONENT_INSTALL ON)
 set(CPACK_ARCHIVE_COMPONENT_INSTALL ON)
+
+# DEB support in cmake < 3.3.2 lacks per-component postinst en prerm actions
+if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
+  set(CPACK_DEB_COMPONENT_INSTALL OFF)
+else()
+  set(CPACK_DEB_COMPONENT_INSTALL ON)
+endif()
 include(CPack)
 
 

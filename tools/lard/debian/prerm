@@ -1,0 +1,4 @@
+# stop service before removing binaries
+test -f /etc/init.d/lard && /usr/sbin/service lard stop > /dev/null 2>&1
+
+exit 0

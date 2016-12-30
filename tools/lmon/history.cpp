@@ -345,6 +345,7 @@ namespace leanux {
 
           procview.delta.push_back(stat);
         }
+        procview.sample_count = 2;
       }
 
       void LardHistory::fetchXNetView( XNetView &netview ) {

@@ -43,6 +43,7 @@
 #include "lmon_curses.hpp"
 #include "leanux-config.hpp"
 #include "configfile.hpp"
+#include "lard-config.hpp"
 
 #include <signal.h>
 #include <sys/time.h>
@@ -67,6 +68,7 @@ void  sig_handler(int sig) {
 void printHelp() {
   std::cout << "lmon - Linux performance viewer." << std::endl;
   std::cout << "usage: lmon [OPTIONS]" << std::endl;
+  std::cout << "  -b      : browse historic data from system lard database " << LARD_SYSDB_FILE << " (if present)" << std::endl;
   std::cout << "  -f file : browse historic data from a lard database file" << std::endl;
   std::cout << "  -g      : (re)write the configuration file with default values" << std::endl;
   std::cout << "  -h      : show this help" << std::endl;
@@ -131,6 +133,15 @@ int main( int argc, char* argv[] ) {
             delete screen;
           }
         } else printHelp();
+      } else if ( strncmp( argv[1], "-b", 2 ) == 0 ) {
+        if ( !util::fileReadAccess( LARD_SYSDB_FILE ) ) {
+          std::cerr << "database file '" << LARD_SYSDB_FILE << "' cannot be read" << std::endl;
+          return 1;
+        } else {
+          screen = new tools::lmon::Screen();
+          screen->runHistory( LARD_SYSDB_FILE );
+          delete screen;
+        }
       } else printHelp();
     } else {
 

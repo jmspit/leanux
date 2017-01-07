@@ -14,41 +14,41 @@ SLOT="0"
 KEYWORDS="~arm ~mips ~sparc ~x86"
 
 DEPEND="sys-libs/ncurses
-	>=dev-util/cmake-2.8.12
-	sys-libs/zlib
-	sys-apps/hwids
-	>=dev-db/sqlite-3.7.0"
+  >=dev-util/cmake-2.8.12
+  sys-libs/zlib
+  sys-apps/hwids
+  >=dev-db/sqlite-3.7.0"
 
 src_prepare() {
-	append-cflags -std=c99
-	append-cxxflags -std=c++11
+  append-cflags -std=c99
+  append-cxxflags -std=c++11
 }
 
 src_configure() {
-	cmake-utils_src_configure
+  cmake-utils_src_configure
 }
 
 src_install() {
-	cmake-utils_src_install
-	insinto /etc/lard
-	newins "${WORKDIR}"/"${P}"/tools/lard/etc/lard.conf lard.conf
-	newinitd "${WORKDIR}"/"${P}"/tools/lard/gentoo/init.d/lard lard
-	newconfd "${WORKDIR}"/"${P}"/tools/lard/gentoo/conf.d/lard lard
+  cmake-utils_src_install
+  insinto @LARD_SYSCONF_DIR@
+  newins "${WORKDIR}"/"${P}"/tools/lard/etc/lard.conf lard.conf
+  newinitd "${WORKDIR}"/"${P}"/tools/lard/gentoo/init.d/lard lard
+  newconfd "${WORKDIR}"/"${P}"/tools/lard/gentoo/conf.d/lard lard
 }
 
 pkg_postinst() {
-	enewgroup leanux
-	enewuser leanux -1 -1 -1 leanux
-	chown -R leanux:leanux /etc/lard
-	chmod 775 /etc/lard
-	chmod 644 /etc/lard/lard.conf
+  enewgroup @LARD_USER@
+  enewuser @LARD_USER@ -1 -1 -1 @LARD_USER@
+  chown -R @LARD_USER@:@LARD_USER@ @LARD_SYSCONF_DIR@
+  chmod 775 @LARD_SYSCONF_DIR@
+  chmod 644 @LARD_SYSCONF_FILE@
 }
 
 pkg_postrm() {
-	rm -rf /var/run/lard  
-	rm -rf /var/lib/lard
-	rm -rf /etc/lard
-	rm /etc/init.d/lard
-	userdel leanux
-  groupdel leanux
+  rm -rf /var/run/lard
+  rm -rf @LARD_SYSDB_PATH@
+  rm -rf @LARD_SYSCONF_DIR@
+  rm @LARD_SYSVINIT_FILE@
+  userdel @LARD_USER@
+  groupdel @LARD_USER@
 }

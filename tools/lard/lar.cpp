@@ -346,13 +346,14 @@ bool parseArgs( int argc, char* argv[] ) {
 int main( int argc, char* argv[] ) {
   if ( parseArgs( argc, argv ) ) {
 
-    daemon(1,1);
-
-    signal(SIGINT, interrupt_handler);
-    signal(SIGQUIT, interrupt_handler);
-    signal(SIGTERM, interrupt_handler);
-
     try {
+      signal(SIGINT, interrupt_handler);
+      signal(SIGQUIT, interrupt_handler);
+      signal(SIGTERM, interrupt_handler);
+      if ( daemon(1,1) ) {
+        sysLog( LOG_ERR, 0, "daemon call failed" );
+        return 2;
+      }
       leanux::init();
 
       util::ConfigFile::setDefault( "DATABASE_PAGE_SIZE", LARD_CONF_DATABASE_PAGE_SIZE_DEFAULT, LARD_CONF_DATABASE_PAGE_SIZE_DESCR, LARD_CONF_DATABASE_PAGE_SIZE_COMMENT );

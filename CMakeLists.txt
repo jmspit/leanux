@@ -24,14 +24,6 @@ message( STATUS "CMAKE_CXX_COMPILER     : ${CMAKE_CXX_COMPILER}")
 message( STATUS "CMAKE_HOST_SYSTEM      : ${CMAKE_HOST_SYSTEM}")
 message( STATUS "CMAKE_VERSION          : ${CMAKE_VERSION}")
 
-# for reuse
-if ( ${CMAKE_VERSION} STRLESS "3.3.2" )
-  set(LEANUX_DEB_MONOINSTALL "1")
-else()
-  set(LEANUX_DEB_MONOINSTALL "0")
-endif()
-message( STATUS "LEANUX_DEB_MONOINSTALL : ${LEANUX_DEB_MONOINSTALL}")
-
 set(leanux_VERSION_STR "${leanux_VERSION_MAJOR}.${leanux_VERSION_MINOR}.${leanux_VERSION_PATCH}")
 message( STATUS "LEANUX BUILD VERSION   : ${leanux_VERSION_STR}")
 set(leanux_LIB_NAME "leanux-${leanux_VERSION_STR}")
@@ -55,6 +47,14 @@ include( tools/lard/lard.cmake )
 
 # detect distros and set distro specifics
 include(FindLinuxDistro.cmake)
+
+# for reuse
+if ( ${CMAKE_VERSION} STRLESS "3.3.2" AND ${CPACK_GENERATOR} STREQUAL "DEB" )
+  set(LEANUX_DEB_MONOINSTALL "1")
+else()
+  set(LEANUX_DEB_MONOINSTALL "0")
+endif()
+message( STATUS "LEANUX_DEB_MONOINSTALL : ${LEANUX_DEB_MONOINSTALL}")
 
 # detect sqlite
 set( SQLITE3_FIND_QUIETLY 1 )
@@ -294,6 +294,7 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/lrep.1.gz
                    COMMENT "preparing man page for lrep"
                    VERBATIM )
 add_custom_target(man ALL DEPENDS ${CMAKE_BINARY_DIR}/lmon.1.gz ${CMAKE_BINARY_DIR}/lblk.1.gz ${CMAKE_BINARY_DIR}/lsys.1.gz ${CMAKE_BINARY_DIR}/lard.1.gz ${CMAKE_BINARY_DIR}/lrep.1.gz)
+
 if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
   install(FILES ${CMAKE_BINARY_DIR}/lmon.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
   install(FILES ${CMAKE_BINARY_DIR}/lblk.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)

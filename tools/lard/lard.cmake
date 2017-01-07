@@ -38,6 +38,14 @@ set( LARD_CONF_MAINTENANCE_INTERVAL_DEFAULT "120" )
 set( LARD_CONF_MAINTENANCE_INTERVAL_DESCR "maintenance (purge) interval in minutes" )
 set( LARD_CONF_MAINTENANCE_INTERVAL_COMMENT "each maintenance interval snapshots that exceed either MAX_DB_SIZE or RETAIN_DAYS are removed, and the database is vacuumed and analyzed" )
 
+set( LARD_SYSDB_PATH "/var/lib/lard" )
+set( LARD_SYSDB_FILE "${LARD_SYSDB_PATH}/lard.db" )
+set( LARD_SYSCONF_DIR "/etc/lard" )
+set( LARD_SYSCONF_FILE "${LARD_SYSCONF_DIR}/lard.conf" )
+set( LARD_SYSVINIT_FILE "/etc/init.d/lard" )
+set( LARD_USER "leanux" )
+
+
 # generate configure header
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/lard-config.hpp.in ${CMAKE_CURRENT_BINARY_DIR}/lard-config.hpp @ONLY)
 

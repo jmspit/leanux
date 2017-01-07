@@ -1,15 +1,15 @@
 # create user and group leanux:
-/usr/bin/getent group leanux > /dev/null || /usr/sbin/groupadd -r leanux
-/usr/bin/getent passwd leanux > /dev/null || /usr/sbin/useradd -r -d /bin/lard -s /sbin/nologin -g leanux leanux
+/usr/bin/getent group @LARD_USER@ > /dev/null || /usr/sbin/groupadd -r @LARD_USER@
+/usr/bin/getent passwd @LARD_USER@ > /dev/null || /usr/sbin/useradd -r -d /bin/lard -s /sbin/nologin -g @LARD_USER@ @LARD_USER@
 
 # set permission on lard init script
-/usr/bin/chmod 700 /etc/init.d/lard
+/usr/bin/chmod 700 @LARD_SYSVINIT_FILE@
 
 # set permission on lard config file
-/usr/bin/chmod 660 /etc/lard/lard.conf
+/usr/bin/chmod 660 @LARD_SYSCONF_FILE@
 
 # set ownership on lard config dir
-/usr/bin/chown -R root:leanux /etc/lard
+/usr/bin/chown -R root:@LARD_USER@ @LARD_SYSCONF_DIR@
 
 # register the daemon
 /usr/bin/systemctl daemon-reload

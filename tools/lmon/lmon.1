@@ -3,22 +3,18 @@
 lmon \- ncurses based linux performance viewer
 .SH SYNOPSIS
 .TP
-realtime mode
-.TP
 .B lmon
 [\fB\fIOPTION\fR]
-.TP
-browse mode
-.TP
-.B lmon
--f \fIdatabase\fR
 .SH OPTIONS
+.TP
+.BR \-b
+browse the history in the system lard database @LARD_SYSDB_FILE@ (if present)
 .TP
 .BR \-f
 browse the history in the lard \fIdatabase\fR
 .TP
 .BR \-g
-regenerate the configuration file with defaults.
+regenerate the configuration file with defaults
 .TP
 .BR \-h
 basic help.
@@ -43,6 +39,10 @@ more serious error.
 .B lmon
 shows kernel, CPU, memory, disk, filesystem, network and process activity
 drawn from the /proc and /sys pseudo filesystems as well as udev.
+.PP
+.B lmon
+either operates in realtime mode, taking snapshots from the live system,
+or in browse mode (-f, -b), displaying snapshots stored in a lard database.
 .PP
 .B lmon
 recognizes these key commands in realtime mode:
@@ -102,7 +102,7 @@ end key - end of history
 .SH VIEWS
 Some views are only visible, or partly visible, when the terminal screen is large enough.
 .PP
-Sizes expressed in bytes are given in base 1024, '1.0G' is a space-saving
+Sizes expressed in bytes are given in base 1024, '1.0G' is a screen-space saving
 abbreviation for 1.0GiB, one Gibibyte.
 .SS "CPU"
 CPU and schedulling details over the last sample interval, title shows

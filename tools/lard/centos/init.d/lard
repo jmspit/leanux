@@ -12,18 +12,18 @@
 PROG=lard
 PROGRAM=/usr/bin/lard
 LOCKFILE=/var/lock/subsys/${PROG}
-DB_DIR=/var/lib/lard
-DB_FILE=${DB_DIR}/lard.db
-CONF_FILE=/etc/lard/lard.conf
+DB_DIR=@LARD_SYSDB_PATH@
+DB_FILE=@LARD_SYSDB_FILE@
+CONF_FILE=@LARD_SYSCONF_FILE@
 
 start() {
   echo -n "Starting ${PROG}: "
   mkdir -p ${DB_DIR}
   touch ${DB_FILE}
-  chown -R leanux:leanux ${DB_DIR}
+  chown -R @LARD_USER@:@LARD_USER@ ${DB_DIR}
   chmod 770 ${DB_DIR}
   chmod 660 ${DB_FILE}
-  daemon --check ${PROG} --user leanux ${PROGRAM} -c ${CONF_FILE} -f ${DB_FILE} &
+  daemon --check ${PROG} --user @LARD_USER@ ${PROGRAM} -c ${CONF_FILE} -f ${DB_FILE} &
   ERR=$?
   test $ERR -eq 0 && touch ${LOCKFILE}
   return $ERR

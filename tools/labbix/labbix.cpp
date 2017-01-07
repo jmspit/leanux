@@ -159,14 +159,29 @@ void getWritems( const string& zabid, ostream &output ) {
 }
 
 int printHelp(int r) {
+  cout << "GNU/Linux disk monitoring extension for Zabbix." << endl << endl;
   cout << "usage:" << endl << endl;
   cout << "labbix discovery" << endl;
-  cout << "  outputs disk discovery information in json format for zabbix" << endl;
-  cout << "  the diskid for other commands is returned in the field {#DISK}" << endl << endl;
+  cout << "  disk discovery in json format" << endl;
+  cout << "  the disk identifiers for the value retrieval commands below are" << endl <<
+          "  returned in the field {#DISK}. The disk sector size is returned" << endl <<
+          "  in the field #SECTOR." << endl << endl;
   cout << "labbix diskid reads" << endl;
-  cout << "  outputs total disk reads for the device" << endl << endl;
+  cout << "  total diskid reads" << endl << endl;
   cout << "labbix diskid writes" << endl;
-  cout << "  outputs total disk writes for the device" << endl << endl;  
+  cout <<"  total diskid writes" << endl << endl;
+  cout << "labbix diskid read_sectors" << endl;
+  cout << "  total diskid read sectors" << endl << endl;
+  cout << "labbix diskid write_sectors" << endl;
+  cout << "  total diskid write sectors" << endl << endl;
+  cout << "labbix diskid io_ms" << endl;
+  cout << "  total diskid time performing io (milliseconds)" << endl << endl;
+  cout << "labbix diskid ios" << endl;
+  cout << "  total diskid io's (reads+writes)" << endl << endl;
+  cout << "labbix diskid read_ms" << endl;
+  cout << "  total diskid times performing read io (milliseconds)" << endl << endl;
+  cout << "labbix diskid write_ms" << endl;
+  cout << "  total diskid time performing write io (milliseconds)" << endl << endl;
   return r;
 }
 
@@ -194,7 +209,7 @@ int main( int argc, char* argv[] ) {
           getReadms( argv[1], cout );
         } else if ( strcmp( argv[2], "write_ms" ) == 0 ) {
           getWritems( argv[1], cout );
-        } else printHelp(1);                 
+        } else printHelp(1);
       } else return printHelp(1);
     }
   } else printHelp(1);

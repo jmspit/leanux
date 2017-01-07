@@ -1,0 +1,96 @@
+.TH LABBIX 1
+.SH NAME
+\fBlabbix\fR \- whole disk performance monitoring UserParameter extension for Zabbix GNU/Linux monitoring agents
+.SH SYNOPSIS
+.TP
+.B zabbix
+discovery
+.TP
+.B zabbix
+\fI#DISK\fR [\fB\fIOPTION\fR]
+.SH OPTIONS
+.TP
+.BR discovery
+discovery of whole disks, outputs in Zabbix-discovery compatible JSON, identified
+by the best \fI#DISK\fR id available (WWN, serial#, scsi hctl, kernel device name)
+.TP
+.BR reads
+total read IO's from the \fI#DISK\fR
+.TP
+.BR writes
+total write IO's to the \fI#DISK\fR
+.TP
+.BR read_sectors
+total sectors read from the \fI#DISK\fR
+.TP
+.BR write_sectors
+total sectors written to the \fI#DISK\fR
+.TP
+.BR io_ms
+total milliseconds performing IO for the \fI#DISK\fR
+.TP
+.BR ios
+total IO's read and written for the \fI#DISK\fR. Equals reads+writes.
+.TP
+.BR read_ms
+total milliseconds spent reading from the \fI#DISK\fR.
+.TP
+.BR write_ms
+total milliseconds spent writing to the \fI#DISK\fR.
+.SH DISCOVERY
+Discovery enumerates disks in JSON format, with fields
+.TP
+.BR \fB#DISK\fR
+the diskid, best effort. First among WWN, SERIAL#, SCSI HCTL or kernel device name.
+The diskid serves as a key to the Zabix monitoring items for a specific disk.
+.TP
+.BR #KNAME
+the disk kernel name.
+.TP
+.BR #UNAME
+the udev disk device path (which may differ from /dev/#KNAME).
+.TP
+.BR #MAJMIN
+the disk majorminor.
+.TP
+.BR #HCTL
+the SCSI HCTL, unset if not a SCSI disk device.
+.TP
+.BR #CLASS
+a best effort description of the block device type.
+.TP
+.BR #MODEL
+the disk device model.
+.TP
+.BR #SECTOR
+the disk sector size.
+.TP
+.BR #GIBIBYTES
+the disk capacity in Gibibytes.
+
+.SH EXAMPLE
+In zabbix_agentd.conf, add (custom.disk is an arbitrary choice)
+.PP
+UserParameter=custom.disk.discovery,labbix discovery
+
+UserParameter=custom.disk.reads[*],labbix "$1" reads
+
+UserParameter=custom.disk.writes[*],labbix "$1" writes
+
+and so on. Discovery is used by Zabbix to enumerate disks (#DISK)
+that are passed to other items as argument $1. Note that values
+returned are totals, so configure the Zabbix items to be delta's of the
+values. The #SECTOR disk attribute can be used to calculate bandwidth from
+read_sectors and write_sectors.
+
+.SH BUGS
+Report bugs, documentation errors and suggestions at @LEANUX_BUG_URL@.
+.SH AUTHOR
+@LEANUX_MAINTAINER_NAME@ \<@LEANUX_MAINTAINER_EMAIL@\>
+.SH COPYRIGHT
+Copyright \(co 2015-2016 Jan-Marten Spit @LEANUX_WEBSITE@
+.PP
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+.br
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.

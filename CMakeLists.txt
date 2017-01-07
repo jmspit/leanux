@@ -263,6 +263,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lblk/lblk.1 ${CMAKE_CURRENT_BIN
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lsys/lsys.1 ${CMAKE_CURRENT_BINARY_DIR}/lsys.1 @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/lard.1 ${CMAKE_CURRENT_BINARY_DIR}/lard.1 @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lrep/lrep.1 ${CMAKE_CURRENT_BINARY_DIR}/lrep.1 @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/labbix/labbix.1 ${CMAKE_CURRENT_BINARY_DIR}/labbix.1 @ONLY)
 add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/lmon.1.gz
                    COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lmon.1 | gzip > ${CMAKE_BINARY_DIR}/lmon.1.gz
                    DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tools/lmon/lmon.1 ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
@@ -293,7 +294,18 @@ add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/lrep.1.gz
                    WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
                    COMMENT "preparing man page for lrep"
                    VERBATIM )
-add_custom_target(man ALL DEPENDS ${CMAKE_BINARY_DIR}/lmon.1.gz ${CMAKE_BINARY_DIR}/lblk.1.gz ${CMAKE_BINARY_DIR}/lsys.1.gz ${CMAKE_BINARY_DIR}/lard.1.gz ${CMAKE_BINARY_DIR}/lrep.1.gz)
+add_custom_command(OUTPUT ${CMAKE_BINARY_DIR}/labbix.1.gz
+                   COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/labbix.1 | gzip > ${CMAKE_BINARY_DIR}/labbix.1.gz
+                   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/tools/labbix/labbix.1 ${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt
+                   WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+                   COMMENT "preparing man page for labbix"
+                   VERBATIM )
+add_custom_target(man ALL DEPENDS ${CMAKE_BINARY_DIR}/lmon.1.gz
+                                  ${CMAKE_BINARY_DIR}/lblk.1.gz
+                                  ${CMAKE_BINARY_DIR}/lsys.1.gz
+                                  ${CMAKE_BINARY_DIR}/lard.1.gz
+                                  ${CMAKE_BINARY_DIR}/lrep.1.gz
+                                  ${CMAKE_BINARY_DIR}/labbix.1.gz)
 
 if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
   install(FILES ${CMAKE_BINARY_DIR}/lmon.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
@@ -301,12 +313,14 @@ if ( ${LEANUX_DEB_MONOINSTALL} STREQUAL "1" )
   install(FILES ${CMAKE_BINARY_DIR}/lsys.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
   install(FILES ${CMAKE_BINARY_DIR}/lard.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
   install(FILES ${CMAKE_BINARY_DIR}/lrep.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
+  install(FILES ${CMAKE_BINARY_DIR}/labbix.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1)
 else()
   install(FILES ${CMAKE_BINARY_DIR}/lmon.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lmon)
   install(FILES ${CMAKE_BINARY_DIR}/lblk.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lblk)
   install(FILES ${CMAKE_BINARY_DIR}/lsys.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lsys)
   install(FILES ${CMAKE_BINARY_DIR}/lard.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lard)
   install(FILES ${CMAKE_BINARY_DIR}/lrep.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT lrep)
+  install(FILES ${CMAKE_BINARY_DIR}/labbix.1.gz DESTINATION ${MAN_INSTALL_DIR}/man1 COMPONENT labbix)
 endif()
 
 #set(CPACK_PACKAGE_VERSION ${leanux_VERSION_STR})

@@ -164,41 +164,47 @@ bool getOptions( int argc, char* argv[] ) {
 
   // the user specified display field must exist
   if ( options.opt_f != "" ) {
-    std::set<std::string> empty;
-    DisplayFields temp_fields;
-    util::tokenize( options.opt_f, temp_fields, ',', empty );
-    for ( DisplayFields::const_iterator dc = temp_fields.begin(); dc != temp_fields.end(); dc++ ) {
-      std::string field = "";
-      bool hidden = false;
-      Filter temp_filter;
-      size_t p = (*dc).find_first_not_of("abcdefghijklmnopqrstuvwxyz_0123456789*");
-      if ( p != std::string::npos ) {
-        if ( (*dc)[p] != '=' && (*dc)[p] != '-' ) {
-          std::cerr << "invalid field specification '" << *dc << "'" << std::endl;
+    // but -f requires -t
+    if ( options.opt_t != "" ) {
+      std::set<std::string> empty;
+      DisplayFields temp_fields;
+      util::tokenize( options.opt_f, temp_fields, ',', empty );
+      for ( DisplayFields::const_iterator dc = temp_fields.begin(); dc != temp_fields.end(); dc++ ) {
+        std::string field = "";
+        bool hidden = false;
+        Filter temp_filter;
+        size_t p = (*dc).find_first_not_of("abcdefghijklmnopqrstuvwxyz_0123456789*");
+        if ( p != std::string::npos ) {
+          if ( (*dc)[p] != '=' && (*dc)[p] != '-' ) {
+            std::cerr << "invalid field specification '" << *dc << "'" << std::endl;
+            return false;
+          }
+          temp_filter.negate = (*dc)[p] == '-';
+          temp_filter.filter = (*dc).substr(p+1);
+          field = (*dc).substr(0,p);
+        } else {
+          field = *dc;
+          temp_filter.filter = "";
+          temp_filter.negate = false;
+        }
+        if ( field.length()> 0 && field[0] == '*' ) {
+          hidden = true;
+          field = field.substr(1);
+        }
+        TypeFields::const_iterator found = type_fields.find(field);
+        if ( found != type_fields.end() ) {
+          if (!hidden ) display_fields.push_back(field);
+          if ( temp_filter.filter != "" ) {
+            filter_map[field] = temp_filter;
+          }
+        } else {
+          std::cerr << "invalid field '" << field << "'" << std::endl;
           return false;
         }
-        temp_filter.negate = (*dc)[p] == '-';
-        temp_filter.filter = (*dc).substr(p+1);
-        field = (*dc).substr(0,p);
-      } else {
-        field = *dc;
-        temp_filter.filter = "";
-        temp_filter.negate = false;
       }
-      if ( field.length()> 0 && field[0] == '*' ) {
-        hidden = true;
-        field = field.substr(1);
-      }
-      TypeFields::const_iterator found = type_fields.find(field);
-      if ( found != type_fields.end() ) {
-        if (!hidden ) display_fields.push_back(field);
-        if ( temp_filter.filter != "" ) {
-          filter_map[field] = temp_filter;
-        }
-      } else {
-        std::cerr << "invalid field '" << field << "'" << std::endl;
-        return false;
-      }
+    } else {
+      std::cerr << "-f requires -t" << std::endl;
+      return false;
     }
   }
 

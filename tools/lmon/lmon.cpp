@@ -39,6 +39,7 @@
 #include <sstream>
 
 #include "system.hpp"
+#include "persist.hpp"
 #include "util.hpp"
 #include "lmon_curses.hpp"
 #include "leanux-config.hpp"
@@ -74,6 +75,28 @@ void printHelp() {
   std::cout << "  -h      : show this help" << std::endl;
   std::cout << "  -v      : show version" << std::endl;
   std::cout << std::endl;
+}
+
+bool verifyDatabase( persist::Database &db ) {
+  try {
+    persist::Query qempty(db);
+    qempty.prepare( "SELECT count(id) FROM snapshot" );
+    if ( qempty.step() ) {
+      long numsnaps = qempty.getLong(0);
+      if ( numsnaps < 1 ) {
+        std::cerr << "database stores 0 snapshots (lard running?)" << std::endl;
+        return false;
+      }
+    } else {
+      std::cerr << "invalid database" << std::endl;
+      return false;
+    }
+  }
+  catch ( const Oops& oops ) {
+    std::cerr << "invalid database" << std::endl;
+    return false;
+  }
+  return true;
 }
 
 /**
@@ -128,8 +151,10 @@ int main( int argc, char* argv[] ) {
             std::cerr << "database file '" << argv[2] << "' cannot be read" << std::endl;
             return 1;
           } else {
+            persist::Database db( argv[2] );
+            if ( !verifyDatabase(db) ) return 1;
             screen = new tools::lmon::Screen();
-            screen->runHistory( argv[2] );
+            screen->runHistory( &db );
             delete screen;
           }
         } else printHelp();
@@ -138,13 +163,14 @@ int main( int argc, char* argv[] ) {
           std::cerr << "database file '" << LARD_SYSDB_FILE << "' cannot be read" << std::endl;
           return 1;
         } else {
+          persist::Database db( LARD_SYSDB_FILE );
+          if ( !verifyDatabase(db) ) return 1;
           screen = new tools::lmon::Screen();
-          screen->runHistory( LARD_SYSDB_FILE );
+          screen->runHistory( &db );
           delete screen;
         }
       } else printHelp();
     } else {
-
       screen = new tools::lmon::Screen();
       screen->runRealtime();
       delete screen;

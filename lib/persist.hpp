@@ -160,6 +160,8 @@ namespace leanux {
           return sqlite3_soft_heap_limit64( limit );
         }
 
+        std::string fileName() const { return sqlite3_db_filename( database_, "main" ); };
+
       protected:
         /** Database handle. */
         sqlite3 *database_;

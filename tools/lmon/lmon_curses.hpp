@@ -42,6 +42,7 @@
 #include "net.hpp"
 #include "process.hpp"
 #include "vmem.hpp"
+#include "persist.hpp"
 #include "realtime.hpp"
 
 #include <ncurses.h>
@@ -791,7 +792,7 @@ namespace leanux {
           /**
            * Run the Screen in history mode.
            */
-          void runHistory( const std::string &file );
+          void runHistory( persist::Database *db );
 
           /**
            * Report a message.

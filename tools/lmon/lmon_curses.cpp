@@ -352,7 +352,7 @@ namespace leanux {
         echo();
       }
 
-      void Screen::runHistory( const std::string &file ) {
+      void Screen::runHistory( persist::Database *db ) {
         reportMessage( HLP_QUIT, 0, "press q or ^C to quit" );
         reportMessage( HLP_BROWSE_ARROW, 0, "move back/forward leftarrow/rightarrow or ,/. " );
         reportMessage( HLP_BROWSE_HOUR, 0, "move back/forward one hour h/H" );
@@ -360,10 +360,10 @@ namespace leanux {
         reportMessage( HLP_BROWSE_WEEK, 0, "move back/forward one week w/W" );
         reportMessage( HLP_BROWSE_HOMEND, 0, "move to front/end of history HOME/END" );
         sleep_duration_ms_ = 20;
-        persist::Database db( file );
+
         time_t cur_zoom = 300;
 
-        LardHistory history( &db, cur_zoom );
+        LardHistory history( db, cur_zoom );
         XSysView sysview;
         XIOView ioview;
         XNetView netview;
@@ -480,7 +480,7 @@ namespace leanux {
                  //<< " = "
                  << util::localStrISODateTime( history.getStartTime() )
                  << " - " << util::localStrISOTime( history.getEndTime() );
-              ((Header*)vheader_)->xrefresh( "browse " + file, ss.str() );
+              ((Header*)vheader_)->xrefresh( "browse " + db->fileName(), ss.str() );
               ((SysView*)vsys_)->xrefresh( sysview, true );
               ((IOView*)vio_)->xrefresh( ioview );
               ((NetView*)vnetwork_)->xrefresh( netview );

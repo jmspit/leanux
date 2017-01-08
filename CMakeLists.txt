@@ -30,7 +30,7 @@ message( STATUS "CMAKE_HOST_SYSTEM      : ${CMAKE_HOST_SYSTEM}")
 message( STATUS "CMAKE_VERSION          : ${CMAKE_VERSION}")
 
 set(${PROJECT}_VERSION_STR "${${PROJECT}_VERSION_MAJOR}.${${PROJECT}_VERSION_MINOR}.${${PROJECT}_VERSION_PATCH}")
-message( STATUS " ${PROJECTUC} BUILD VERSION   : ${${PROJECT}_VERSION_STR}")
+message( STATUS "${PROJECTUC} BUILD VERSION   : ${${PROJECT}_VERSION_STR}")
 set(${PROJECT}_LIB_NAME "${PROJECT}-${${PROJECT}_VERSION_STR}")
 
 #global constants
@@ -50,15 +50,19 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/RE
 # include per tool constants
 include( tools/lard/lard.cmake )
 
+# for reuse
+function(deb_monoinstall)
+  if ( ${CMAKE_VERSION} STRLESS "3.3.2" AND ${CPACK_GENERATOR} STREQUAL "DEB" )
+    set( ${PROJECTUC}_DEB_MONOINSTALL "1" PARENT_SCOPE)
+  else()
+    set( ${PROJECTUC}_DEB_MONOINSTALL "0" PARENT_SCOPE)
+  endif()
+endfunction(deb_monoinstall)
+
 # detect distros and set distro specifics
 include(FindLinuxDistro.cmake)
+deb_monoinstall()
 
-# for reuse
-if ( ${CMAKE_VERSION} STRLESS "3.3.2" AND ${CPACK_GENERATOR} STREQUAL "DEB" )
-  set( ${PROJECTUC}_DEB_MONOINSTALL "1")
-else()
-  set( ${PROJECTUC}_DEB_MONOINSTALL "0")
-endif()
 message( STATUS "${PROJECTUC}_DEB_MONOINSTALL : ${${PROJECTUC}_DEB_MONOINSTALL}")
 
 # detect sqlite

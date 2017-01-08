@@ -10,7 +10,7 @@ lmon \- ncurses based linux performance viewer
 .BR \-b
 browse the history in the system lard database @LARD_SYSDB_FILE@ (if present)
 .TP
-.BR \-f
+.BR \-f " " \fIdatabase\fR
 browse the history in the lard \fIdatabase\fR
 .TP
 .BR \-g
@@ -22,9 +22,11 @@ basic help.
 .BR \-v
 show lmon version.
 .PP
+without arguments, lmon operates as a realtime performance viewer.
+.PP
 .B lmon
-likes terminals with 256 colors such as TERM=xterm-256color and
-will adapt the screen layout to terminal screen resizes.
+likes terminals with 256 colors (such as TERM=xterm-256color) and
+will adapt the screen layout to terminal resizing.
 .SS "Exit status:"
 .TP
 0
@@ -426,7 +428,7 @@ Report bugs, documentation errors and suggestions at @LEANUX_BUG_URL@.
 .SH AUTHOR
 @LEANUX_MAINTAINER_NAME@ \<@LEANUX_MAINTAINER_EMAIL@\>
 .SH COPYRIGHT
-Copyright \(co 2015-2016 Jan-Marten Spit @LEANUX_WEBSITE@
+@LEANUX_COPYRIGHT@ @LEANUX_WEBSITE@
 .PP
 License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
 .br

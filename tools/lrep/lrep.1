@@ -6,19 +6,19 @@ lrep \- @LREP_DESCR@
 (-m \fIminutes\fR | -b \fIbegin\fR -e \fIend\fR) [-n] [-o \fIhtmlfile\fR ]-f \fIdatabase\fR
 .SH OPTIONS
 .TP
-.BR \-f
+.BR \-f " " \fIdatabase\fR
 the location of the lard \fIdatabase\fR file.
 .TP
-.BR \-o
+.BR \-o " " \fIhtmlfile\fR
 the location of the HTML output file (\fIhtmlfile\fR).
 .TP
-.BR \-m
+.BR \-m " " \fIminutes\fR
 generate a report over the last \fIminutes\fR minutes.
 .TP
-.BR \-b
+.BR \-b " " \fIbegin\fR
 report \fIbegin\fR time ('YYYY-MM-DD HH24:MI:SS')
 .TP
-.BR \-e
+.BR \-e " " \fIend\fR
 report \fIend\fR time ('YYYY-MM-DD HH24:MI:SS')
 .TP
 .BR \-n
@@ -50,8 +50,9 @@ The lard daemon creates ad samples to a lard database file, which is a SQLite3
 database, so it can be queried with sqlite3 as well.
 .PP
 Note that to create the report, the euid must have write access to the
-directory where the database file resides. If not already present, a
-SQLite3 journal and shared memory file will be created.
+directory where the database file resides (be member of the leanux group).
+If not already present, a
+SQLite3 journal and shared memory file will be created there.
 .SH BUGS
 Report bugs, documentation errors and suggestions at @LEANUX_BUG_URL@.
 .SH AUTHOR

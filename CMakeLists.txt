@@ -8,7 +8,7 @@ project( ${PROJECT} )
 
 set( ${PROJECT}_VERSION_MAJOR "0" )
 set( ${PROJECT}_VERSION_MINOR "0" )
-set( ${PROJECT}_VERSION_PATCH "9" )
+set( ${PROJECT}_VERSION_PATCH "10" )
 
 if ( ${CMAKE_SIZEOF_VOID_P} STREQUAL "8" )
 execute_process(

@@ -215,12 +215,12 @@ void printHolderTree( const block::MajorMinor &mm, Tabular& tab, unsigned int le
   ss.str("");
   ss << mm;
   tab.appendString( "dev", ss.str() );
-  tab.appendString( "class", getClassStr( mm ) );
-  tab.appendString( "size", util::ByteStr( getSize( mm ), 3 ) );
+  tab.appendString( "class", mm.getClassStr() );
+  tab.appendString( "size", util::ByteStr( mm.getSize(), 3 ) );
 
   block::DeviceStats stats;
-  if ( block::getStats( mm, stats ) ) {
-    tab.appendString( "util", util::NumStr( (stats.io_ms/10) / block::getUptime(mm) ) );
+  if ( mm.getStats( stats ) ) {
+    tab.appendString( "util", util::NumStr( (stats.io_ms/10) / mm.getUptime() ) );
     if ( stats.reads+stats.writes > 0 ) {
       tab.appendString( "svct", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
       tab.appendString( "r/(r+w)", util::NumStr( (double)stats.reads/(double)(stats.reads+stats.writes) ) );
@@ -236,8 +236,8 @@ void printHolderTree( const block::MajorMinor &mm, Tabular& tab, unsigned int le
 
   tab.appendString( "description", block::MajorMinor::getDescription( mm ) );
 
-  block::getPartitions( mm, parts );
-  block::getHolders( mm, holders );
+  mm.getPartitions( parts );
+  mm.getHolders( holders );
   for ( std::list<std::string>::const_iterator d = holders.begin(); d != holders.end(); d++ ) {
     printHolderTree( block::MajorMinor::getMajorMinorByName( (*d) ), tab, level+1 );
   }
@@ -272,12 +272,12 @@ void printSlaveTree( const block::MajorMinor &mm, Tabular& tab, unsigned int lev
   ss.str("");
   ss << mm;
   tab.appendString( "dev", ss.str() );
-  tab.appendString( "class", block::getClassStr( mm ) );
-  tab.appendString( "size", util::ByteStr( block::getSize( mm ), 3 ) );
+  tab.appendString( "class", mm.getClassStr() );
+  tab.appendString( "size", util::ByteStr( mm.getSize(), 3 ) );
 
   block::DeviceStats stats;
-  if ( block::getStats( mm, stats ) ) {
-    tab.appendString( "util", util::NumStr( (stats.io_ms/10) / leanux::block::getUptime(mm) ) );
+  if ( mm.getStats( stats ) ) {
+    tab.appendString( "util", util::NumStr( (stats.io_ms/10) / mm.getUptime() ) );
     if ( stats.reads+stats.writes > 0 ) {
       tab.appendString( "svct", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
       tab.appendString( "r/(r+w)", util::NumStr( (double)stats.reads/(double)(stats.reads+stats.writes) ) );
@@ -293,7 +293,7 @@ void printSlaveTree( const block::MajorMinor &mm, Tabular& tab, unsigned int lev
 
   tab.appendString( "description", block::MajorMinor::getDescription( mm ) );
 
-  block::getSlaves( mm, slaves );
+  mm.getSlaves( slaves );
   for ( std::list<std::string>::const_iterator d = slaves.begin(); d != slaves.end(); d++ ) {
     printSlaveTree( block::MajorMinor::getMajorMinorByName( (*d) ), tab, level+1 );
   }
@@ -366,8 +366,8 @@ void listAllDevices( std::ostream& os  ) {
     std::stringstream ss;
     ss << (*i);
     table.appendString( "dev", ss.str() );
-    table.appendString( "class", getClassStr( *i ) );
-    table.appendString( "size", util::ByteStr( getSize( *i ), 3 ) );
+    table.appendString( "class", (*i).getClassStr() );
+    table.appendString( "size", util::ByteStr( (*i).getSize(), 3 ) );
     table.appendString( "description", block::MajorMinor::getDescription( *i ) );
   }
   table.dump( std::cout );
@@ -396,30 +396,30 @@ void listAllDisks( std::ostream& os  ) {
   table.addColumn( "svct" );
   table.addColumn( "r/(r+w)" );
   for ( std::list<block::MajorMinor>::const_iterator i = devices.begin(); i != devices.end(); i++ ) {
-    if ( getSize( *i ) > 0 ) {
-      if ( options.opt_w.length() == 0  || (options.opt_w.length() > 0 && getWWN( *i ).find( options.opt_w ) != std::string::npos) ) {
+    if ( (*i).getSize() > 0 ) {
+      if ( options.opt_w.length() == 0  || (options.opt_w.length() > 0 && (*i).getWWN().find( options.opt_w ) != std::string::npos) ) {
         table.appendString( "disk", (*i).getName() );
         std::stringstream ss;
         ss << (*i);
         table.appendString( "dev", ss.str() );
         table.appendString( "devicefile", (*i).getDeviceFile() );
-        table.appendString( "class", getClassStr( *i ) );
-        table.appendString( "address", getSCSIHCTL( *i ) );
-        table.appendString( "model", getModel( *i ) );
-        table.appendString( "size", util::ByteStr( getSize( *i ), 3 ) );
-        if ( getRotational( *i ) ) {
+        table.appendString( "class", (*i).getClassStr() );
+        table.appendString( "address", (*i).getSCSIHCTL() );
+        table.appendString( "model", (*i).getModel() );
+        table.appendString( "size", util::ByteStr( (*i).getSize(), 3 ) );
+        if ( (*i).getRotational() ) {
           ss.str("");
-          ss << getRPM( *i ) << "RPM";
+          ss << (*i).getRPM() << "RPM";
           table.appendString( "type", ss.str() );
         } else table.appendString( "type", "SSD" );
-        table.appendString( "sect", util::ByteStr( getSectorSize( *i ), 3 ) );
-        table.appendString( "wwn", getWWN( *i ) );
+        table.appendString( "sect", util::ByteStr( (*i).getSectorSize(), 3 ) );
+        table.appendString( "wwn", (*i).getWWN() );
 
         //table.appendString( "kmod", getKernelModule( *i ) );
         block::DeviceStats stats;
-        if ( block::getStats( *i, stats ) ) {
+        if ( (*i).getStats( stats ) ) {
           if ( stats.reads+stats.writes > 0 ) {
-            table.appendString( "util", util::NumStr( (stats.io_ms/10) / leanux::block::getUptime(*i) ) );
+            table.appendString( "util", util::NumStr( (stats.io_ms/10) / (*i).getUptime() ) );
             table.appendString( "svct", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
             table.appendString( "r/(r+w)", util::NumStr( (double)stats.reads/(double)(stats.reads+stats.writes) ) );
           } else {
@@ -461,26 +461,26 @@ void listAllMetaDisks( std::ostream& os  ) {
       std::stringstream ss;
       ss << (*i);
       table.appendString( "dev", ss.str() );
-      table.appendString( "name", block::getMDName( *i ) );
-      table.appendString( "size", util::ByteStr( getSize( *i ), 3 ) );
-      table.appendString( "level", block::getMDLevel( *i ) );
+      table.appendString( "name", (*i).getMDName() );
+      table.appendString( "size", util::ByteStr( (*i).getSize(), 3 ) );
+      table.appendString( "level", (*i).getMDLevel() );
       ss.str("");
-      ss << block::getMDDevices( *i );
+      ss << (*i).getMDDevices();
       table.appendString( "disks", ss.str() );
-      table.appendString( "chunk", util::ByteStr( block::getMDChunkSize( *i ), 3) );
-      table.appendString( "metadata", block::getMDMetaDataVersion( *i ) );
+      table.appendString( "chunk", util::ByteStr( (*i).getMDChunkSize(), 3) );
+      table.appendString( "metadata", (*i).getMDMetaDataVersion() );
       ss.str("");
-      ss << block::getMDArrayState( *i );
+      ss << (*i).getMDArrayState();
       table.appendString( "array", ss.str() );
       std::vector<block::MajorMinor> disks;
-      block::getMDRaidDisks( *i, disks );
+      (*i).getMDRaidDisks( disks );
       ss.str("");
       for ( std::vector<block::MajorMinor>::const_iterator d = disks.begin(); d != disks.end(); d++ ) {
         if ( d != disks.begin() ) ss << "," << (*d).getName() ; else ss << (*d).getName();
       }
 
       table.appendString( "devices", ss.str() );
-      table.appendString( "state", block::getMDRaidDiskStates( *i ) );
+      table.appendString( "state", (*i).getMDRaidDiskStates() );
     }
   }
   if ( count ) table.dump( std::cout ); else std::cout << "no metadisks found." << std::endl;
@@ -502,43 +502,43 @@ void detailDisk( const block::MajorMinor &mm, std::ostream &os ) {
 
   tab.appendString( "property", "devicename" );
   tab.appendString( "value", mm.getName() );
-  
+
   tab.appendString( "property", "devicefile" );
-  tab.appendString( "value", mm.getDeviceFile() );  
+  tab.appendString( "value", mm.getDeviceFile() );
 
   tab.appendString( "property", "sysfs path" );
-  tab.appendString( "value", block::getSysPath( mm ) );
+  tab.appendString( "value", mm.getSysPath() );
 
   tab.appendString( "property", "class" );
-  tab.appendString( "value", block::getClassStr( mm ) );
+  tab.appendString( "value", mm.getClassStr() );
 
   tab.appendString( "property", "size" );
-  tab.appendString( "value", util::ByteStr( getSize( mm ), 3 ) );
+  tab.appendString( "value", util::ByteStr( mm.getSize(), 3 ) );
 
   tab.appendString( "property", "sector size" );
-  tab.appendString( "value", util::ByteStr( getSectorSize( mm ), 3 ) );
+  tab.appendString( "value", util::ByteStr( mm.getSectorSize(), 3 ) );
 
   tab.appendString( "property", "model" );
-  tab.appendString( "value", block::getModel( mm ) );
+  tab.appendString( "value", mm.getModel() );
 
   if ( !mm.isPartition() ) {
     tab.appendString( "property", "revision" );
-    tab.appendString( "value", block::getRevision( mm ) );
+    tab.appendString( "value", mm.getRevision() );
 
     tab.appendString( "property", "serial" );
-    tab.appendString( "value", block::getSerial( mm ) );
+    tab.appendString( "value", mm.getSerial() );
 
     tab.appendString( "property", "WWN" );
-    tab.appendString( "value", block::getWWN( mm ) );
+    tab.appendString( "value", mm.getWWN() );
 
     tab.appendString( "property", "diskid (internal)" );
-    tab.appendString( "value", block::getDiskId( mm ) );
+    tab.appendString( "value", mm.getDiskId() );
 
     tab.appendString( "property", "type" );
     ss.str("");
-    if ( getRotational( mm ) ) {
-      if ( block::getRPM( mm ) > 0 )
-        ss << "spindle (" << block::getRPM( mm ) << "RPM)";
+    if ( mm.getRotational() ) {
+      if ( mm.getRPM() > 0 )
+        ss << "spindle (" << mm.getRPM() << "RPM)";
       else
         ss << "virtual";
       tab.appendString( "value", ss.str() );
@@ -547,57 +547,57 @@ void detailDisk( const block::MajorMinor &mm, std::ostream &os ) {
     }
 
     tab.appendString( "property", "module" );
-    tab.appendString( "value", block::getKernelModule( mm ) );
+    tab.appendString( "value", mm.getKernelModule() );
 
-    std::string hctl = block::getSCSIHCTL( mm );
+    std::string hctl = mm.getSCSIHCTL();
     if ( hctl != "" ) {
       tab.appendString( "property", "SCSI address" );
       tab.appendString( "value", hctl );
     }
-    std::string cache_type = block::getCacheMode( mm );
+    std::string cache_type = mm.getCacheMode();
     if ( cache_type != "" ) {
       tab.appendString( "property", "cache type" );
       tab.appendString( "value", cache_type );
     }
 
     tab.appendString( "property", "IO scheduler" );
-    tab.appendString( "value", block::getIOScheduler( mm ) );
+    tab.appendString( "value", mm.getIOScheduler() );
 
     tab.appendString( "property", "hw max IO size" );
-    tab.appendString( "value", util::ByteStr( block::getMaxHWIOSize( mm ), 3 ) );
+    tab.appendString( "value", util::ByteStr( mm.getMaxHWIOSize(), 3 ) );
 
     tab.appendString( "property", "max IO size" );
-    tab.appendString( "value", util::ByteStr( block::getMaxIOSize( mm ), 3 ) );
+    tab.appendString( "value", util::ByteStr( mm.getMaxIOSize(), 3 ) );
 
     tab.appendString( "property", "min IO size" );
-    tab.appendString( "value", util::ByteStr( block::getMinIOSize( mm ), 3 ) );
+    tab.appendString( "value", util::ByteStr( mm.getMinIOSize(), 3 ) );
 
     tab.appendString( "property", "read ahead" );
-    tab.appendString( "value", util::ByteStr( block::getReadAhead( mm ), 3 ) );
+    tab.appendString( "value", util::ByteStr( mm.getReadAhead(), 3 ) );
 
   }
 
   tab.appendString( "property", "fs type" );
-  tab.appendString( "value", block::getFSType( mm ) );
+  tab.appendString( "value", mm.getFSType() );
 
   tab.appendString( "property", "fs use" );
-  tab.appendString( "value", block::getFSUsage( mm ) );
+  tab.appendString( "value", mm.getFSUsage() );
 
   tab.appendString( "property", "device uptime" );
-  tab.appendString( "value", util::TimeStrSec( block::getUptime( mm ) ) );
+  tab.appendString( "value", util::TimeStrSec( mm.getUptime() ) );
 
   std::list<std::string> aliases;
-  block::getAliases( mm, aliases );
+  mm.getAliases( aliases );
   for ( std::list<std::string>::const_iterator alias = aliases.begin(); alias != aliases.end(); alias++ ) {
     tab.appendString( "property", "alias" );
     tab.appendString( "value", *alias );
   }
 
   block::DeviceStats stats;
-  if ( block::getStats( mm, stats ) ) {
+  if ( mm.getStats( stats ) ) {
     if ( stats.reads+stats.writes > 0 ) {
       tab.appendString( "property", "%util" );
-      tab.appendString( "value", util::NumStr( (stats.io_ms/10.0) / leanux::block::getUptime(mm), 3 ) );
+      tab.appendString( "value", util::NumStr( (stats.io_ms/10.0) / mm.getUptime(), 3 ) );
       tab.appendString( "property", "service time" );
       tab.appendString( "value", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
       tab.appendString( "property", "r/(r+w) ratio" );
@@ -614,7 +614,7 @@ void detailDisk( const block::MajorMinor &mm, std::ostream &os ) {
   size_t path_indent = 0;
   block::MajorMinor wholedisk = mm;
   if ( mm.isPartition() ) wholedisk = block::MajorMinor::deriveWholeDisk( mm );
-  if ( leanux::sysdevice::treeDetect( getSysPath(wholedisk), devices ) ) {
+  if ( leanux::sysdevice::treeDetect( wholedisk.getSysPath(), devices ) ) {
     tab.addColumn( "sysfs device", false );
     tab.addColumn( "type", false );
     tab.addColumn( "driver", false );
@@ -644,28 +644,28 @@ void detailMetaDisk( const block::MajorMinor &mm, std::ostream &os ) {
   unsigned int wc = 15;
   os << std::setw(wc) << "dev: " << mm << std::endl;
   os << std::setw(wc) << "device: " << mm.getName() << std::endl;
-  os << std::setw(wc) << "devicepath: " << block::getSysPath(mm) << std::endl;
+  os << std::setw(wc) << "devicepath: " << mm.getSysPath() << std::endl;
   os << std::setw(wc) << "description: " << block::MajorMinor::getDescription(mm) << std::endl;
-  os << std::setw(wc) << "class: " << block::getClassStr( mm ) << std::endl;
-  os << std::setw(wc) << "name: " << block::getMDName( mm ) << std::endl;
-  os << std::setw(wc) << "size: " << util::ByteStr( block::getSize( mm ), 3 ) << std::endl;
-  os << std::setw(wc) << "metadata: " << block::getMDMetaDataVersion( mm ) << std::endl;
-  os << std::setw(wc) << "level: " << block::getMDLevel( mm ) << std::endl;
-  os << std::setw(wc) << "chunk: " << util::ByteStr( block::getMDChunkSize( mm ), 3 ) << " (" << block::getMDChunkSize( mm ) << ")" << std::endl;
-  os << std::setw(wc) << "disks: " << block::getMDDevices( mm ) << std::endl;
-  os << std::setw(wc) << "array: " << block::getMDArrayState( mm ) << std::endl;
-  os << std::setw(wc) << "state: " << block::getMDRaidDiskStates( mm ) << std::endl;
+  os << std::setw(wc) << "class: " << mm.getClassStr() << std::endl;
+  os << std::setw(wc) << "name: " << mm.getMDName() << std::endl;
+  os << std::setw(wc) << "size: " << util::ByteStr( mm.getSize(), 3 ) << std::endl;
+  os << std::setw(wc) << "metadata: " << mm.getMDMetaDataVersion() << std::endl;
+  os << std::setw(wc) << "level: " << mm.getMDLevel() << std::endl;
+  os << std::setw(wc) << "chunk: " << util::ByteStr( mm.getMDChunkSize(), 3 ) << " (" << mm.getMDChunkSize() << ")" << std::endl;
+  os << std::setw(wc) << "disks: " << mm.getMDDevices() << std::endl;
+  os << std::setw(wc) << "array: " << mm.getMDArrayState() << std::endl;
+  os << std::setw(wc) << "state: " << mm.getMDRaidDiskStates() << std::endl;
   os << std::setw(wc) << "raid devices: ";
 
   std::vector<block::MajorMinor> disks;
-  getMDRaidDisks( mm, disks );
+  mm.getMDRaidDisks( disks );
   for ( std::vector<block::MajorMinor>::const_iterator d = disks.begin(); d != disks.end(); d++ ) {
     if ( d != disks.begin() ) os << "," << (*d).getName() ; else os << (*d).getName();
   }
   os << std::endl;
 
   std::list<std::string> aliases;
-  getAliases( mm, aliases );
+  mm.getAliases( aliases );
   for ( std::list<std::string>::const_iterator alias = aliases.begin(); alias != aliases.end(); alias++ ) {
     os << std::setw(wc) << "alias: " << *alias << std::endl;
   }
@@ -680,7 +680,7 @@ void detailGenericBlockDevice( const block::MajorMinor &mm, std::ostream &os ) {
   unsigned int wc = 15;
   os << std::setw(wc) << "dev: " << mm << std::endl;
   os << std::setw(wc) << "device: " << mm.getName() << std::endl;
-  os << std::setw(wc) << "class: " << getClassStr( mm ) << std::endl;
+  os << std::setw(wc) << "class: " << mm.getClassStr() << std::endl;
 }
 
 /**
@@ -692,7 +692,7 @@ void detailDeviceMapper( const block::MajorMinor &mm, std::ostream &os ) {
   unsigned int wc = 15;
   os << std::setw(wc) << "dev: " << mm << std::endl;
   os << std::setw(wc) << "device: " << mm.getName() << std::endl;
-  os << std::setw(wc) << "class: " << block::getClassStr( mm ) << std::endl;
+  os << std::setw(wc) << "class: " << mm.getClassStr() << std::endl;
 }
 
 /**
@@ -705,23 +705,23 @@ void detailLVM( const block::MajorMinor &mm, std::ostream &os ) {
   os << std::setw(wc) << "dev: " << mm << std::endl;
   os << std::setw(wc) << "devicename: " << mm.getName() << std::endl;
   os << std::setw(wc) << "devicefile: " << mm.getDeviceFile() << std::endl;
-  os << std::setw(wc) << "devicepath: " << block::getSysPath(mm) << std::endl;
-  os << std::setw(wc) << "class: " << getClassStr( mm ) << std::endl;
-  os << std::setw(wc) << "disk id: " << getDiskId( mm ) << std::endl;
-  os << std::setw(wc) << "name: " << getDMName( mm ) << std::endl;
-  os << std::setw(wc) << "VG: " << getVGName( mm ) << std::endl;
-  os << std::setw(wc) << "LV: " << getLVName( mm ) << std::endl;
-  os << std::setw(wc) << "size: " << util::ByteStr( getSize( mm ), 3 ) << std::endl;
+  os << std::setw(wc) << "devicepath: " << mm.getSysPath() << std::endl;
+  os << std::setw(wc) << "class: " << mm.getClassStr() << std::endl;
+  os << std::setw(wc) << "disk id: " << mm.getDiskId() << std::endl;
+  os << std::setw(wc) << "name: " << mm.getDMName() << std::endl;
+  os << std::setw(wc) << "VG: " << mm.getVGName() << std::endl;
+  os << std::setw(wc) << "LV: " << mm.getLVName() << std::endl;
+  os << std::setw(wc) << "size: " << util::ByteStr( mm.getSize(), 3 ) << std::endl;
 
-  os << std::setw(wc) << "IO scheduler: " << block::getIOScheduler( mm ) << std::endl;
-  os << std::setw(wc) << "sector: " << util::ByteStr( block::getSectorSize( mm ), 3 ) << std::endl;
-  os << std::setw(wc) << "max hw IO size: " << util::ByteStr( block::getMaxHWIOSize( mm ), 3 ) << std::endl;
-  os << std::setw(wc) << "max IO size: " << util::ByteStr( block::getMaxIOSize( mm ), 3 ) << std::endl;
-  os << std::setw(wc) << "min IO size: " << util::ByteStr( block::getMinIOSize( mm ), 3 ) << std::endl;
-  os << std::setw(wc) << "read-ahead: " << util::ByteStr( block::getReadAhead( mm ), 3 ) << std::endl;
+  os << std::setw(wc) << "IO scheduler: " << mm.getIOScheduler() << std::endl;
+  os << std::setw(wc) << "sector: " << util::ByteStr( mm.getSectorSize(), 3 ) << std::endl;
+  os << std::setw(wc) << "max hw IO size: " << util::ByteStr( mm.getMaxHWIOSize(), 3 ) << std::endl;
+  os << std::setw(wc) << "max IO size: " << util::ByteStr( mm.getMaxIOSize(), 3 ) << std::endl;
+  os << std::setw(wc) << "min IO size: " << util::ByteStr( mm.getMinIOSize(), 3 ) << std::endl;
+  os << std::setw(wc) << "read-ahead: " << util::ByteStr( mm.getReadAhead(), 3 ) << std::endl;
 
   std::list<std::string> aliases;
-  getAliases( mm, aliases );
+  mm.getAliases( aliases );
   for ( std::list<std::string>::const_iterator alias = aliases.begin(); alias != aliases.end(); alias++ ) {
     os << std::setw(wc) << "alias: " << *alias << std::endl;
   }
@@ -795,9 +795,9 @@ void runOptions() {
                 detailDisk( mm, std::cout );
               } else if ( block::MajorMinor::isMetaDisk( mm.getMajor() ) ) {
                 detailMetaDisk( mm, std::cout );
-              } else if ( block::getClass( mm ) == block::DeviceMapper ) {
+              } else if ( mm.getClass() == block::DeviceMapper ) {
                 detailDeviceMapper( mm, std::cout );
-              } else if ( block::getClass( mm ) == block::LVM ) {
+              } else if ( mm.getClass() == block::LVM ) {
                 detailLVM( mm, std::cout );
               } else {
                 detailGenericBlockDevice( mm, std::cout );

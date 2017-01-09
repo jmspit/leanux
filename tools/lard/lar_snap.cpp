@@ -100,8 +100,8 @@ long IOSnap::storeSnap( const persist::Database &db, long snapid, double seconds
   sort( vec.begin(), vec.end(), sorter );
   for ( block::MajorMinorVector::const_iterator d = vec.begin(); d != vec.end(); d++ ) {
     if ( (*d).isWholeDisk() && (delta[*d].reads + delta[*d].writes) > 0 ) {
-      std::string sdiskid = block::getDiskId( *d );
-      std::string ssyspath = block::getSysPath(*d);
+      std::string sdiskid = (*d).getDiskId();
+      std::string ssyspath = (*d).getSysPath();
       size_t p = ssyspath.rfind("/");
       ssyspath  = ssyspath.substr(0,p);
       long diskid = 0;
@@ -121,7 +121,7 @@ long IOSnap::storeSnap( const persist::Database &db, long snapid, double seconds
         dml.bind( 1, (*d).getName() );
         dml.bind( 2, ssyspath );
         dml.bind( 3, sdiskid );
-        dml.bind( 4, block::getModel(*d) );
+        dml.bind( 4, (*d).getModel() );
         dml.execute();
         diskid = db.lastInsertRowid();
       }
@@ -145,8 +145,8 @@ long IOSnap::storeSnap( const persist::Database &db, long snapid, double seconds
       if ( delta[*d].reads + delta[*d].writes > 0 ) dml.bind( 4, delta[*d].io_ms/1000.0/(delta[*d].reads + delta[*d].writes)  ); else dml.bind(4, 0 );
       dml.bind( 5, delta[*d].reads/seconds );
       dml.bind( 6, delta[*d].writes/seconds );
-      dml.bind( 7, delta[*d].read_sectors*block::getSectorSize(*d)/seconds );
-      dml.bind( 8, delta[*d].write_sectors*block::getSectorSize(*d)/seconds );
+      dml.bind( 7, delta[*d].read_sectors*(*d).getSectorSize()/seconds );
+      dml.bind( 8, delta[*d].write_sectors*(*d).getSectorSize()/seconds );
       if ( delta[*d].reads > 0 ) dml.bind( 9, delta[*d].read_ms/1000.0/delta[*d].reads ); else dml.bind( 9, 0 );
       if ( delta[*d].writes > 0 ) dml.bind( 10, delta[*d].write_ms/1000.0/delta[*d].writes ); else dml.bind( 10, 0 );
       dml.bind( 11, (double)delta[*d].io_in_progress );
@@ -599,8 +599,8 @@ long MountSnap::storeSnap( const persist::Database &db, long snapid, double seco
         dml.bind( 4, 0.0  );
       dml.bind( 5, delta[*d].reads/seconds  );
       dml.bind( 6, delta[*d].writes/seconds  );
-      dml.bind( 7, delta[*d].read_sectors*block::getSectorSize(*d)/seconds );
-      dml.bind( 8, delta[*d].write_sectors*block::getSectorSize(*d)/seconds );
+      dml.bind( 7, delta[*d].read_sectors*(*d).getSectorSize()/seconds );
+      dml.bind( 8, delta[*d].write_sectors*(*d).getSectorSize()/seconds );
       if ( delta[*d].reads > 0 )
         dml.bind( 9, delta[*d].read_ms/1000.0/delta[*d].reads );
       else

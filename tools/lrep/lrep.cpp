@@ -346,13 +346,13 @@ void htmlDiskHolderTreeLine( const persist::Database &db,
   ss.str("");
   ss << mm;
   html << "<td>" << ss.str() << "</td>" << endl;
-  html << "<td>" << getClassStr( mm ) << "</td>" << endl;
-  html << "<td>" << util::ByteStr( getSize( mm ), 3 ) << "</td>" << endl;
+  html << "<td>" << mm.getClassStr() << "</td>" << endl;
+  html << "<td>" << util::ByteStr( mm.getSize(), 3 ) << "</td>" << endl;
   html << "<td>" << block::MajorMinor::getDescription( mm ) << "</td></tr>" << endl;
 
 
-  block::getPartitions( mm, parts );
-  block::getHolders( mm, holders );
+  mm.getPartitions( parts );
+  mm.getHolders( holders );
   for ( std::list<std::string>::const_iterator d = holders.begin(); d != holders.end(); d++ ) {
     htmlDiskHolderTreeLine( db, block::MajorMinor::getMajorMinorByName( (*d) ), level+1 );
   }
@@ -417,7 +417,7 @@ void htmlDiskDetails( const persist::Database &db ) {
   std::multimap<std::string,block::MajorMinor> diskmap;
   block::enumWholeDisks( disks );
   for ( std::list<block::MajorMinor>::const_iterator d = disks.begin(); d != disks.end(); d++ ) {
-    diskmap.insert( std::pair<std::string,block::MajorMinor>( block::getDiskId( *d ), *d ) );
+    diskmap.insert( std::pair<std::string,block::MajorMinor>( (*d).getDiskId(), *d ) );
   }
   html << "<a class=\"anchor\" id=\"diskdetails\"></a><h1>Disk details</h1>" << endl;
   persist::Query qry(db);
@@ -441,24 +441,24 @@ void htmlDiskDetails( const persist::Database &db ) {
       std::pair<std::multimap<std::string,block::MajorMinor>::const_iterator,std::multimap<std::string,block::MajorMinor>::const_iterator> range;
       range = diskmap.equal_range( qry.getText(2) );
       for ( std::multimap<std::string,block::MajorMinor>::const_iterator r = range.first; r != range.second; r++ ) {
-        html << "<tr><th class='right'>current sysfs</th><td>" << block::getSysPath(r->second) << "</td></tr>" << endl;
+        html << "<tr><th class='right'>current sysfs</th><td>" << r->second.getSysPath() << "</td></tr>" << endl;
       }
       html << "<tr><th class='right'>current device file</th><td>" << (idisk->second).getDeviceFile() << "</td></tr>" << endl;
-      html << "<tr><th class='right'>wwn</th><td>" << block::getWWN(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>serial</th><td>" << block::getSerial(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>model</th><td>" << block::getModel(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>revision</th><td>" << block::getRevision(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>class</th><td>" << block::getClassStr(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>description</th><td>" << block::getRotationalStr(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>kernel module</th><td>" << block::getKernelModule(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>size</th><td>" << util::ByteStr( block::getSize(idisk->second), 2 ) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>sector size</th><td>" << block::getSectorSize(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>max hw io size</th><td>" << util::ByteStr( block::getMaxHWIOSize(idisk->second), 2 ) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>max io size</th><td>" << util::ByteStr( block::getMaxIOSize(idisk->second), 2 ) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>min io size</th><td>" << util::ByteStr( block::getMinIOSize(idisk->second), 2 ) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>read ahead</th><td>" << util::ByteStr( block::getReadAhead(idisk->second), 2 ) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>IO scheduler</th><td>" << block::getIOScheduler(idisk->second) << "</td></tr>" << endl;
-      html << "<tr><th class='right'>cache mode</th><td>" << block::getCacheMode(idisk->second) << "</td></tr>" << endl;
+      html << "<tr><th class='right'>wwn</th><td>" << idisk->second.getWWN() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>serial</th><td>" << idisk->second.getSerial() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>model</th><td>" << idisk->second.getModel() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>revision</th><td>" << idisk->second.getRevision() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>class</th><td>" << idisk->second.getClassStr() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>description</th><td>" << idisk->second.getRotationalStr() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>kernel module</th><td>" << idisk->second.getKernelModule() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>size</th><td>" << util::ByteStr( idisk->second.getSize(), 2 ) << "</td></tr>" << endl;
+      html << "<tr><th class='right'>sector size</th><td>" << idisk->second.getSectorSize() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>max hw io size</th><td>" << util::ByteStr( idisk->second.getMaxHWIOSize(), 2 ) << "</td></tr>" << endl;
+      html << "<tr><th class='right'>max io size</th><td>" << util::ByteStr( idisk->second.getMaxIOSize(), 2 ) << "</td></tr>" << endl;
+      html << "<tr><th class='right'>min io size</th><td>" << util::ByteStr( idisk->second.getMinIOSize(), 2 ) << "</td></tr>" << endl;
+      html << "<tr><th class='right'>read ahead</th><td>" << util::ByteStr( idisk->second.getReadAhead(), 2 ) << "</td></tr>" << endl;
+      html << "<tr><th class='right'>IO scheduler</th><td>" << idisk->second.getIOScheduler() << "</td></tr>" << endl;
+      html << "<tr><th class='right'>cache mode</th><td>" << idisk->second.getCacheMode() << "</td></tr>" << endl;
       html << "</table>" << endl;
 
       persist::Query stats(db);
@@ -519,7 +519,7 @@ void htmlDiskDetails( const persist::Database &db ) {
         std::list<leanux::sysdevice::SysDevice*> devices;
         size_t path_indent = 0;
         try {
-          if ( leanux::sysdevice::treeDetect( block::getSysPath(r->second), devices ) ) {
+          if ( leanux::sysdevice::treeDetect( r->second.getSysPath(), devices ) ) {
             unsigned int depth = 0;
             for ( std::list<leanux::sysdevice::SysDevice*>::const_iterator d = devices.begin(); d != devices.end(); d++, depth++ ) {
               html << "<tr>" << endl;
@@ -593,11 +593,11 @@ void htmlSystemDetails() {
   list<block::MajorMinor> disks;
   block::enumWholeDisks( disks );
   for ( list<block::MajorMinor>::const_iterator d = disks.begin(); d != disks.end(); d++ ) {
-    if ( block::getSize( *d ) > 0 ) {
+    if ( (*d).getSize() > 0 ) {
       html << "<tr><th class='right'>" << block::MajorMinor::getNameByMajorMinor( *d ) << "</th><td>" << endl;
-      html << *d << "&nbsp;" << (*d).getDeviceFile() << "&nbsp;" << block::getClassStr( *d ) << "<br />" << endl;
-      html << block::getModel( *d ) << "<br />" << endl;
-      html << util::ByteStr( block::getSize( *d ), 3 ) << "<br />" << endl;
+      html << *d << "&nbsp;" << (*d).getDeviceFile() << "&nbsp;" << (*d).getClassStr() << "<br />" << endl;
+      html << (*d).getModel() << "<br />" << endl;
+      html << util::ByteStr( (*d).getSize(), 3 ) << "<br />" << endl;
       html << "</td></tr>" << endl;
     }
   }
@@ -1182,7 +1182,7 @@ list<string> chartMountAverage( const persist::Database &db, const string &domut
       jsrsws << "var " << domrsws << "_data = google.visualization.arrayToDataTable([" << endl;
       jsrsws << "[ 'filesystem', 'reads', 'writes' ]," << endl;
       jsgrowth << "var " << domgrowth << "_data = google.visualization.arrayToDataTable([" << endl;
-      jsgrowth << "[ 'filesystem', 'growth' ]," << endl;      
+      jsgrowth << "[ 'filesystem', 'growth' ]," << endl;
 
     } else {
       jsutil << ",";
@@ -1258,7 +1258,7 @@ list<string> chartMountAverage( const persist::Database &db, const string &domut
   ss << "<div class=\"chart\" id='" << domrsws << "' style='width: " << dwidth << "px; height: " << dheight << "px;'></div>" << endl;
   result.push_back( ss.str() );
   ss.str("");
-  
+
   jsgrowth << "]);" << endl;
   jsgrowth << "var " << domgrowth << "_options = {" << endl;
   jsgrowth << "title: 'filesystem growth, MiB per hour'," << endl;
@@ -1272,7 +1272,7 @@ list<string> chartMountAverage( const persist::Database &db, const string &domut
 
   ss << "<div class=\"chart\" id='" << domgrowth << "' style='width: " << dwidth << "px; height: " << dheight << "px;'></div>" << endl;
   result.push_back( ss.str() );
-  ss.str("");  
+  ss.str("");
 
 
   jschart << jsutil.str();
@@ -1653,9 +1653,9 @@ void chartKernelTimeLine( const persist::Database &db, const string &domprocs, c
 
       jsfiles << "var " << domfiles << "_data = google.visualization.arrayToDataTable([" << endl;
       jsfiles << "['datetime', 'open files' ]," << endl;
-      
+
       jsinodes << "var " << dominodes << "_data = google.visualization.arrayToDataTable([" << endl;
-      jsinodes << "['datetime', 'open inodes' ]," << endl;      
+      jsinodes << "['datetime', 'open inodes' ]," << endl;
 
     } else {
       jsprocs << ",";
@@ -1717,7 +1717,7 @@ void chartKernelTimeLine( const persist::Database &db, const string &domprocs, c
   jsfiles << "};" << endl;
   jsfiles << "var " << domfiles << " = new google.visualization.LineChart(document.getElementById('" << domfiles << "'));" << endl;
   jsfiles << domfiles << ".draw(" << domfiles << "_data, " << domfiles << "_options);" << endl;
-  
+
   jsinodes << "]);" << endl;
   jsinodes << "var " << dominodes << "_options = {" << endl;
   jsinodes << "title: 'open inodes timeline (x1000)'," << endl;
@@ -1729,7 +1729,7 @@ void chartKernelTimeLine( const persist::Database &db, const string &domprocs, c
   jsinodes << timeline_chartarea << ", " << endl;
   jsinodes << "};" << endl;
   jsinodes << "var " << dominodes << " = new google.visualization.LineChart(document.getElementById('" << dominodes << "'));" << endl;
-  jsinodes << dominodes << ".draw(" << dominodes << "_data, " << dominodes << "_options);" << endl;  
+  jsinodes << dominodes << ".draw(" << dominodes << "_data, " << dominodes << "_options);" << endl;
 
   jschart << jsprocs.str();
   jschart << jsusers.str();
@@ -2121,10 +2121,10 @@ void chartMountTimeLine( const persist::Database &db, const string &domutil, con
   stringstream jssvctm;
   stringstream jssvctmcolumns;
   stringstream jssvctmdata;
-  
+
   stringstream jsused;
   stringstream jsusedcolumns;
-  stringstream jsuseddata;  
+  stringstream jsuseddata;
 
   persist::Query qry(db);
   qry.prepare( "select mountpoint.mountpoint, bat.a_istop, avg(util), avg(rbs)/1024.0/1024.0, avg(wbs)/1024.0/1024.0, avg(rs), avg(ws), avg(artm), avg(awtm), avg(svctm), max(used) from mountstat, mountpoint, "
@@ -2202,11 +2202,11 @@ void chartMountTimeLine( const persist::Database &db, const string &domutil, con
     jssvctm << domsvctm << "_data.addColumn( 'datetime', 'datetime' );" << endl;
     jssvctm << jssvctmcolumns.str();
     jssvctm << domsvctm << "_data.addRows(" << maxsz << ");" << endl;
-    
+
     jsused << "var " << domused << "_data = new google.visualization.DataTable();" << endl;
     jsused << domused << "_data.addColumn( 'datetime', 'datetime' );" << endl;
     jsused << jsusedcolumns.str();
-    jsused << domused << "_data.addRows(" << maxsz << ");" << endl;    
+    jsused << domused << "_data.addRows(" << maxsz << ");" << endl;
 
     size_t iter = 0;
     for ( DData::const_iterator i = data.begin(); i != data.end(); ++i ) {
@@ -2235,9 +2235,9 @@ void chartMountTimeLine( const persist::Database &db, const string &domutil, con
 
       jssvctmdata << domsvctm << "_data.setCell( " << iter << ", " << "0, ";
       jssvctmdata << "new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ) );" << endl;
-      
+
       jsuseddata << domused << "_data.setCell( " << iter << ", " << "0, ";
-      jsuseddata << "new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ) );" << endl;      
+      jsuseddata << "new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ) );" << endl;
 
       size_t colidx = 1;
       for ( set<string>::const_iterator d = devices.begin(); d != devices.end(); d++ ) {
@@ -2376,7 +2376,7 @@ void chartMountTimeLine( const persist::Database &db, const string &domutil, con
     jssvctm << "};" << endl;
     jssvctm << "var " << domsvctm << " = new google.visualization.LineChart(document.getElementById('" << domsvctm << "'));" << endl;
     jssvctm << domsvctm << ".draw(" << domsvctm << "_data, " << domsvctm << "_options);" << endl;
-    
+
     jsused << jsuseddata.str();
     jsused << "var " << domused << "_options = {" << endl;
     jsused << "title: 'Mountpoint used (GiB)'," << endl;
@@ -2389,7 +2389,7 @@ void chartMountTimeLine( const persist::Database &db, const string &domutil, con
     jsused << timeline_chartarea << endl;
     jsused << "};" << endl;
     jsused << "var " << domused << " = new google.visualization.AreaChart(document.getElementById('" << domused << "'));" << endl;
-    jsused << domused << ".draw(" << domused << "_data, " << domused << "_options);" << endl;    
+    jsused << domused << ".draw(" << domused << "_data, " << domused << "_options);" << endl;
 
     jschart << jsutil.str();
     jschart << jsbwr.str();
@@ -2752,8 +2752,8 @@ void htmlTimeLines( const persist::Database &db ) {
   htmlTimeLine( html, "cputimeline", "CPU timeline" );
 
   html << "<a class=\"anchor\" id=\"timeline_sched\"></a><h2>Scheduler</h2>" << endl;
-  chartSchedTimeLine( db, "forktimeline", "ctxswtimeline", "load5timeline" );  
-  htmlTimeLine( html, "load5timeline", "Load5 average timeline" );  
+  chartSchedTimeLine( db, "forktimeline", "ctxswtimeline", "load5timeline" );
+  htmlTimeLine( html, "load5timeline", "Load5 average timeline" );
   htmlTimeLine( html, "forktimeline", "Forks per second timeline" );
   htmlTimeLine( html, "ctxswtimeline", "Context switches per second timeline" );
 
@@ -2765,7 +2765,7 @@ void htmlTimeLines( const persist::Database &db ) {
   htmlTimeLine( html, "majflttimeline", "Major faults per second timeline" );
   htmlTimeLine( html, "pageintimeline", "page-ins per second timeline" );
   htmlTimeLine( html, "pageouttimeline", "page-outs per second timeline" );
-  
+
   html << "<a class=\"anchor\" id=\"timeline_kernel\"></a><h2>Kernel resources</h2>" << endl;
   chartKernelTimeLine( db, "procstimeline", "usertimeline", "filestimeline", "inodestimeline" );
   htmlTimeLine( html, "procstimeline", "#processes timeline" );

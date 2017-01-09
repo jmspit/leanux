@@ -73,6 +73,51 @@ namespace leanux {
     };
 
     /**
+     * Enumeration to discern device types.
+     */
+    enum DeviceClass {
+      Unknown,
+      RAMDisk,
+      FloppyDisk,
+      IDEDisk,
+      IDEDiskPartition,
+      Loopback,
+      SCSIDisk,
+      SCSIDiskPartition,
+      MetaDisk,
+      SCSICD,
+      DeviceMapper,
+      LVM,
+      MultiPath,
+      VirtioDisk,
+      VirtioDiskPartition,
+      NVMeDisk,
+      NVMeDiskPartition,
+      MMCDisk,
+      MMCDiskPartition,
+      BCacheDisk,
+      BCacheDiskPartition
+    };
+
+    /**
+     * Device stats from /proc/diskstats
+     * @see iostats.txt in the Linux kernel docs.
+     */
+    struct DeviceStats {
+      unsigned long reads;          /**< number of read operations */
+      unsigned long reads_merged;   /**< number of read operations merged with other read operations */
+      unsigned long read_sectors;   /**< number of sectors read */
+      unsigned long read_ms;        /**< number of milliseconds spent reading */
+      unsigned long writes;         /**< number of write operations */
+      unsigned long writes_merged;  /**< number of writes merged with other write operations */
+      unsigned long write_sectors;  /**< number of sectors written */
+      unsigned long write_ms;       /**< number of milliseconds spent writing */
+      unsigned long io_in_progress; /**< number of io's in progress (or pending and queued) */
+      unsigned long io_ms;          /**< number of milliseconds spent doing IO */
+      unsigned long io_weighted_ms; /**< not sure. */
+    };
+
+    /**
      * Datatype for major:minor pairs.
      * @see invalid.
      */
@@ -336,6 +381,313 @@ namespace leanux {
          */
         dev_t getDevT() const { return dev_; };
 
+        /**
+         * Get the DeviceClass for a MajorMinor.
+         */
+        DeviceClass getClass() const;
+
+        /**
+         * Get a descriptive string for the device type of the MajorMinor.
+         */
+        std::string getClassStr() const;
+
+        /**
+         * return the full device path as it appears under /sys/devices/block
+         */
+        std::string getSysPath() const;
+
+        /**
+         * Get the serial number for the device.
+         */
+        std::string getSerial() const;
+
+        /**
+         * Get the udev path for the device.
+         * gentoo, ubuntu
+         * /run/udev/data/b{major}:{minor}.
+         * suse, redhat
+         * /dev/.udev/db/block:{devicename}.
+         * suse 11.3
+         * /dev/.udev/db/b{major}:{minor}.
+         * @return the udev path as described or an empty string if not found
+         */
+        std::string getUDevPath() const;
+
+
+        /**
+         * Chech if a disk is mechanical or solid state.
+         * @return treu when the device is rotational.
+         */
+        bool getRotational() const;
+
+        /**
+         * Get a descriptive string of the rotational nature of the disk,
+         * @return strings like 'SSD' or '7200RPM spindle'.
+         */
+        std::string getRotationalStr() const;
+
+        /**
+         * get the device sector size. yields correct result for partitions
+         * as it returns the sector size of the device holding the partition.
+         * @return the device sector size in bytes.
+         */
+        unsigned long getSectorSize() const;
+
+        /**
+         * firmware revision of the device
+         */
+        std::string getRevision() const;
+
+        /**
+         * Return the size (capacity) of the device in bytes.
+         * @return the device capacity in bytes.
+         */
+        unsigned long getSize() const;
+
+        /**
+         * return the device dm name (or an empty string if not a dm device)
+         * @return the device dm name or an empty string.
+         */
+        std::string getDMName() const;
+
+        /**
+         * return the device dm uuid (or an empty string if not a dm device)
+         * @return the device dm name or an empty string.
+         */
+        std::string getDMUUID() const;
+
+        /**
+         * return the device dm target type (or an empty string if not a d device)
+         * @return the device dm target type or an empty string.
+         */
+        std::string getDMTargetTypes() const;
+
+        /**
+         * Get the model for the device.
+         * @return the device model or empty if unavailable.
+         */
+        std::string getModel() const;
+
+        /**
+         * get the kernel module (driver) used for the block device, such as 'scsi' or 'virtio'.
+         * @return the kernel module.
+         */
+        std::string getKernelModule() const;
+
+        /**
+         * Get the rotation speed of a device.
+         * @return the rotational speed if found, zero therwise. SSD's also report 0,
+         * @see getRotational.
+         */
+        unsigned long getRPM() const;
+
+        /**
+         * Get the filesystem type of the block device.
+         * @return the block device filesystem.
+         */
+        std::string getFSType() const;
+
+        /**
+         * Get the usage type of the block device.
+         * @return the block device usage type.
+         */
+        std::string getFSUsage() const;
+
+        /**
+         * Get the VG name the block device belongs to, or empty string if the device is not
+         * a LVM PV.
+         * @return the LVM VG name.
+         */
+        std::string getVGName() const;
+
+        /**
+         * Get the LV name the block device belongs to, or empty string if the device is not
+         * a LVM PV.
+         * @return the LVM LV name.
+         */
+        std::string getLVName() const;
+
+        /**
+         * return VG and LV name for a LVM device.
+         * @param vgname will be set to VG name if function returns true.
+         * @param lvname will be set to LV name if function returns true.
+         * @return false if either E:DM_VG_NAME or E:DM_LV_NAME is not found in udev data fro the device.
+         */
+        bool getLVMInfo( std::string &vgname, std::string& lvname ) const;
+
+        /**
+         * return the VG name the PV belongs to, or empty if the device is
+         * not a LVM PV.
+         * @return the VG name to which m is a physical volume.
+         */
+        std::string getLVMPV2VG() const;
+
+        /**
+         * Get the device MetaDisk RAID level or empty if the device is not an MetaDisk.
+         * @return the MetaDisk RAID level.
+         */
+        std::string getMDLevel() const;
+
+        /**
+         * Get the device MetaDisk name or empty if the device is not an MetaDisk.
+         * @return the MetaDisk name.
+         */
+        std::string getMDName() const;
+
+        /**
+         * Get the MD chunck size, valid for MetaDisk block devices.
+         * @return the chunk size or zero.
+         */
+        unsigned long getMDChunkSize() const;
+
+        /**
+         * Get the MD metadata version, valid for MetaDisk block devices.
+         * @return the metadata version or empty.
+         */
+        std::string getMDMetaDataVersion() const;
+
+        /**
+         * Get the MD array state, valid for MetaDisk block devices.
+         * @return the Array state or empty.
+         */
+        std::string getMDArrayState() const;
+
+        /**
+         * Get the raid disks participating in the MD array specified my MajorMinor.
+         * @param disks vector of MajorMinor for eachtof the disks (block devices) participating in the array. The vector index matches
+         * the index of the MajorMinor in the array.
+         */
+        void getMDRaidDisks( std::vector<MajorMinor> &disks ) const;
+
+        /**
+         * Get a string representing raid disk states as seen in /proc/mdstat
+         * @return the MDRaidDiskStates string.
+         */
+        std::string getMDRaidDiskStates() const;
+
+        /**
+         * Get the number of members in the MetaDisk or zero if not a MetaDisk.
+         * @return the number of members in the MetaDisk.
+         */
+        unsigned long getMDDevices() const;
+
+        /**
+         * get a list of device aliases, returned as full paths.
+         * @param aliases list of device aliases.
+         */
+        void getAliases( std::list<std::string> &aliases ) const;
+
+        /**
+         * get the host:channel:target:lun addess for the device.
+         * @return the HCTL or an empty string if not found.
+         */
+        std::string getSCSIHCTL() const;
+
+        /**
+         * get the iSCSI target address for the device.
+         * @return the target adddress or an empty string if not found.
+         */
+        std::string getiSCSITargetAddress() const;
+
+        std::string getiSCSITargetPort() const;
+
+        /**
+         * get the SCSI disk caching mode (write back/write through).
+         * @return the SCSI disk caching mode or an empty string if not found.
+         */
+        std::string getCacheMode() const;
+
+        /**
+         * get the IO scheduler (elevator) configured for the device.
+         * @return the IO scheduler configured.
+         */
+        std::string getIOScheduler() const;
+
+        /**
+         * get the maximum IO size the hardware device reports to support.
+         * @return the maximum hardware IO size in bytes.
+         */
+        unsigned long getMaxHWIOSize() const;
+
+        /**
+         * get the maximum IO size configured to the device.
+         * @return the maximum configured IO size in bytes.
+         */
+        unsigned long getMaxIOSize() const;
+
+        /**
+         * get the minimum IO size the device supports.
+         * @return the minimum IO size in bytes.
+         */
+        unsigned long getMinIOSize() const;
+
+        /**
+         * get the read-ahead size for the device
+         * @return the read-ahead size in bytes.
+         */
+        unsigned long getReadAhead() const;
+
+        /**
+         * Get the ATA port for the block MajorMinor.
+         * @return the ATA port or empty if the block device is not ATA connected.
+         */
+        std::string getATAPort() const;
+
+        /**
+         * Some block devices do not have a WWN, so there is no
+         * guarentee a WWN exists.
+         * @return the WWN of the disk or empty if no WWN assigned to the disk
+         */
+        std::string getWWN() const;
+
+        /**
+         * Retrieve a string identifying a disk on a best-efffort basis.
+         * If the disk has a WWN, that is returned,
+         * else if the disk has a serial number, that is returned,
+         * else the device name is returned, in absence of required truth.
+         * virtio and vmware disks can lack a WWN and a serial number, so these
+         * disk types are impossible to identify (without tagging their contents).
+         * @return a best-effort id for the disk.
+         */
+        std::string getDiskId() const;
+
+        /**
+         * Get a list of partition devices in the disk,
+         * @param partitions list of device names filled.
+         */
+        void getPartitions( std::list<std::string> &partitions ) const;
+
+        /**
+         * get MountInfo on devices with a mounted filesystem.
+         * @param info the MountInfo to fill.
+         * @return false if the device (or it's aliases) does not appear in /proc/mounts.
+         */
+        bool getMountInfo ( MountInfo &info ) const;
+
+        /** Get a list of devices holding (using) the device m.
+         * @param holders the devices holding m.
+         */
+        void getHolders( std::list<std::string> &holders ) const;
+
+        /** Get a list of devices slave to the device m.
+         * @param slaves providing m.
+         */
+        void getSlaves( std::list<std::string> &slaves ) const;
+
+        /**
+         * @todo this should go - unreliable
+         * Get the uptime for a block device.
+         * @return the uptime of the device in seconds.
+         */
+        double getUptime() const;
+
+        /**
+         * get performance statistics for the block device specified by MajorMinor.
+         * note that all numbers are totals since boot.
+         * @param stats the statistics to populate.
+         * @return false if the MajorMinor is not found.
+         */
+        bool getStats( DeviceStats& stats ) const;
 
         /**
          * Get a loose description of what the device mm is.
@@ -369,337 +721,12 @@ namespace leanux {
     };
 
     /**
-     * Enumeration to discern device types.
-     */
-    enum DeviceClass {
-      Unknown,
-      RAMDisk,
-      FloppyDisk,
-      IDEDisk,
-      IDEDiskPartition,
-      Loopback,
-      SCSIDisk,
-      SCSIDiskPartition,
-      MetaDisk,
-      SCSICD,
-      DeviceMapper,
-      LVM,
-      MultiPath,
-      VirtioDisk,
-      VirtioDiskPartition,
-      NVMeDisk,
-      NVMeDiskPartition,
-      MMCDisk,
-      MMCDiskPartition,
-      BCacheDisk,
-      BCacheDiskPartition
-    };
-
-    /**
-     * Get the DeviceClass for a MajorMinor.
-     * @param m the MajorMinor of the block device.
-     */
-    DeviceClass getClass( const MajorMinor &m );
-
-    /**
-     * Get a descriptive string for the device type of the MajorMinor.
-     * @param m the MajorMinor of the block device.
-     */
-    std::string getClassStr( const MajorMinor &m );
-
-    /**
-     * return the full device path as it appears under /sys/devices/block
-     * @param m the MajorMinor of the block device.
-     */
-    std::string getSysPath( const MajorMinor &m );
-
-    /**
-     * Get the serial number for the device.
-     */
-    std::string getSerial( const MajorMinor & );
-
-    /**
-     * Get the udev path for the device.
-     * gentoo, ubuntu
-     * /run/udev/data/b{major}:{minor}.
-     * suse, redhat
-     * /dev/.udev/db/block:{devicename}.
-     * suse 11.3
-     * /dev/.udev/db/b{major}:{minor}.
-     * @param m the MajorMinor to get the udev path for.
-     * @return the udev path as described or an empty string if not found
-     */
-    std::string getUDevPath( const MajorMinor &m );
-
-    /**
      * Write MajorMinor to stream as a string, eg {8,0} is written as '8:0'.
      */
     inline std::ostream& operator<<( std::ostream& s, const MajorMinor& m ) {
       s << MAJOR(m.getDevT()) << ":" << MINOR(m.getDevT());
       return s;
     }
-
-    /**
-     * Chech if a disk is mechanical or solid state.
-     * @param m the MajorMinor of the block device.
-     * @return treu when the device is rotational.
-     */
-    bool getRotational( const MajorMinor &m );
-
-    std::string getRotationalStr( const MajorMinor &m );
-
-    /**
-     * get the device sector size. yields correct result for partitions
-     * as it returns the sector size of the device holding the partition.
-     * @param m the MajorMinor of the block device.
-     * @return the device sector size in bytes.
-     */
-    unsigned long getSectorSize( const MajorMinor &m );
-
-    /**
-     * firmware revision of the device
-     */
-    std::string getRevision( const MajorMinor &m );
-
-    /**
-     * Return the size (capacity) of the device in bytes.
-     * @return the device capacity in bytes.
-     */
-    unsigned long getSize( const MajorMinor &m );
-
-    /**
-     * return the device dm name (or an empty string if not a dm device)
-     * @param m the MajorMinor of the device.
-     * @return the device dm name or an empty string.
-     */
-    std::string getDMName( const MajorMinor &m );
-
-    /**
-     * return the device dm uuid (or an empty string if not a dm device)
-     * @param m the MajorMinor of the device.
-     * @return the device dm name or an empty string.
-     */
-    std::string getDMUUID( const MajorMinor &m );
-
-    /**
-     * return the device dm target type (or an empty string if not a d device)
-     * @param m the MajorMinor of the device.
-     * @return the device dm target type or an empty string.
-     */
-    std::string getDMTargetTypes( const MajorMinor &m );
-
-    /**
-     * Get the model for the device.
-     * @param m the MajorMinor of the device.
-     * @return the device model or empty if unavailable.
-     */
-    std::string getModel( const MajorMinor &m );
-
-    /**
-     * get the kernel module (driver) used for the block device, such as 'scsi' or 'virtio'.
-     * @param m the MajorMinor of the device.
-     * @return the kernel module.
-     */
-    std::string getKernelModule( const MajorMinor &m );
-
-    /**
-     * Get the rotation speed of a device.
-     * @param m the MajorMinor of the block device.
-     * @return the rotational speed if found, zero therwise. SSD's also report 0,
-     * @see getRotational.
-     */
-    unsigned long getRPM( const MajorMinor &m );
-
-    /**
-     * Get the filesystem type of the block device.
-     * @param m the MajorMinor of the block device.
-     * @return the block device filesystem.
-     */
-    std::string getFSType( const MajorMinor &m );
-
-    /**
-     * Get the usage type of the block device.
-     * @param m the MajorMinor of the block device.
-     * @return the block device usage type.
-     */
-    std::string getFSUsage( const MajorMinor &m );
-
-    /**
-     * Get the VG name the block device belongs to, or empty string if the device is not
-     * a LVM PV.
-     * @param m the MajorMinor of the block device.
-     * @return the LVM VG name.
-     */
-    std::string getVGName( const MajorMinor &m );
-
-
-    /**
-     * Get the LV name the block device belongs to, or empty string if the device is not
-     * a LVM PV.
-     * @param m the MajorMinor of the block device.
-     * @return the LVM LV name.
-     */
-    std::string getLVName( const MajorMinor &m );
-
-    /**
-     * return VG and LV name for a LVM device.
-     * @param m the MajorMinor of the block device.
-     * @param vgname will be set to VG name if function returns true.
-     * @param lvname will be set to LV name if function returns true.
-     * @return false if either E:DM_VG_NAME or E:DM_LV_NAME is not found in udev data fro the device.
-     */
-    bool getLVMInfo( const MajorMinor& m, std::string &vgname, std::string& lvname );
-
-    /**
-     * return the VG name the PV belongs to, or empty if the device is
-     * not a LVM PV.
-     * @param m the MajorMinor of the block device.
-     * @return the VG name to which m is a physical volume.
-     */
-    std::string getLVMPV2VG( const MajorMinor &m );
-
-    /**
-     * Get name, raid level and number of members in a MetaDisk.
-     * @param m the MajorMinor of the device to investigate.
-     * @param mdname name of the device.
-     * @param mdlevel raid level of the device.
-     * @param numdevices the number of members in the MetaDisk device.
-     * @return true when the MajorMinor m is a MetaDisk device. if false, the out parameters are unchanged.
-     */
-    bool getMDInfo( const MajorMinor& m, std::string &mdname, std::string& mdlevel, unsigned long& numdevices );
-
-    /**
-     * Get the device MetaDisk RAID level or empty if the device is not an MetaDisk.
-     * @param m the MajorMinor of the device.
-     * @return the MetaDisk RAID level.
-     */
-    std::string getMDLevel( const MajorMinor &m );
-
-
-    /**
-     * Get the device MetaDisk name or empty if the device is not an MetaDisk.
-     * @param m the MajorMinor of the device.
-     * @return the MetaDisk name.
-     */
-    std::string getMDName( const MajorMinor &m );
-
-    /**
-     * Get the MD chunck size, valid for MetaDisk block devices.
-     * @param m the MetaDisk MajorMinor.
-     * @return the chunk size or zero.
-     */
-    unsigned long getMDChunkSize( const MajorMinor &m );
-
-    /**
-     * Get the MD metadata version, valid for MetaDisk block devices.
-     * @param m the MetaDisk MajorMinor.
-     * @return the metadata version or empty.
-     */
-    std::string getMDMetaDataVersion( const MajorMinor &m );
-
-    /**
-     * Get the MD array state, valid for MetaDisk block devices.
-     * @param m the MetaDisk MajorMinor.
-     * @return the Array state or empty.
-     */
-    std::string getMDArrayState( const MajorMinor &m );
-
-    /**
-     * Get the raid disks participating in the MD array specified my MajorMinor.
-     * @param m The MajorMinor of the MD array.
-     * @param disks vector of MajorMinor for eachtof the disks (block devices) participating in the array. The vector index matches
-     * the index of the MajorMinor in the array.
-     */
-    void getMDRaidDisks( const MajorMinor& m, std::vector<MajorMinor> &disks );
-
-    /**
-     * Get a string representing raid disk states as seen in /proc/mdstat
-     * @param m The MajorMinor of the MD array.
-     * @return the MDRaidDiskStates string.
-     */
-    std::string getMDRaidDiskStates( const MajorMinor& m );
-
-
-
-    /**
-     * Get the number of members in the MetaDisk or zero if not a MetaDisk.
-     * @param m the MajorMinor of the device.
-     * @return the number of members in the MetaDisk.
-     */
-    unsigned long getMDDevices( const MajorMinor &m );
-
-    ///**
-    // * Get the number of degraded members in the MetaDisk, also zero if not a MetaDisk.
-    // * @param m the MajorMinor of the device.
-    // * @return the number of degraded members in the MetaDisk.
-    // */
-    //unsigned long getMDDegradedDevices( const MajorMinor &m );
-
-    /**
-     * get a list of device aliases, returned as full paths.
-     * @param m the block device MajorMinor.
-     * @param aliases list of device aliases.
-     */
-    void getAliases( const MajorMinor &m, std::list<std::string> &aliases );
-
-    /**
-     * get the host:channel:target:lun addess for the device.
-     * @param m the block device MajorMinor.
-     * @return the HCTL or an empty string if not found.
-     */
-    std::string getSCSIHCTL( const MajorMinor &m );
-
-    std::string getiSCSITargetAddress( const MajorMinor &m );
-    std::string getiSCSITargetPort( const MajorMinor &m );
-
-    /**
-     * get the SCSI disk caching mode (write back/write through).
-     * @param m the block device MajorMinor.
-     * @return the SCSI disk caching mode or an empty string if not found.
-     */
-    std::string getCacheMode( const MajorMinor &m );
-
-    /**
-     * get the IO scheduler (elevator) configured for the device.
-     * @param m the block device MajorMinor.
-     * @return the IO scheduler configured.
-     */
-    std::string getIOScheduler( const MajorMinor &m );
-
-    /**
-     * get the maximum IO size the hardware device reports to support.
-     * @param m the block device MajorMinor.
-     * @return the maximum hardware IO size in bytes.
-     */
-    unsigned long getMaxHWIOSize( const MajorMinor &m );
-
-    /**
-     * get the maximum IO size configured to the device.
-     * @param m the block device MajorMinor.
-     * @return the maximum configured IO size in bytes.
-     */
-    unsigned long getMaxIOSize( const MajorMinor &m );
-
-    /**
-     * get the minimum IO size the device supports.
-     * @param m the block device MajorMinor.
-     * @return the minimum IO size in bytes.
-     */
-    unsigned long getMinIOSize( const MajorMinor &m );
-
-    /**
-     * get the read-ahead size for the device
-     * @param m the block device MajorMinor.
-     * @return the read-ahead size in bytes.
-     */
-    unsigned long getReadAhead( const MajorMinor &m );
-
-    /**
-     * Get the ATA port for the block MajorMinor.
-     * @param m the block device MajorMinor.
-     * @return the ATA port or empty if the block device is not ATA connected.
-     */
-    std::string getATAPort( const MajorMinor &m );
 
     /**
      * Get the ATA port link.
@@ -732,14 +759,6 @@ namespace leanux {
     void enumMounts( std::map<MajorMinor,MountInfo> &mounts, std::map<std::string,MajorMinor> &cache );
 
     /**
-     * get MountInfo on devices with a mounted filesystem.
-     * @param m the MajorMinor of the device.
-     * @param info the MountInfo to fill.
-     * @return false if the device (or it's aliases) does not appear in /proc/mounts.
-     */
-    bool getMountInfo ( const MajorMinor &m, MountInfo &info );
-
-    /**
      * get the MajorMinor for a device file or aliases to it, resolves
      * the devicefile with realpath.
      * @param devicefile the device special file or an alias (link) to it.
@@ -759,26 +778,6 @@ namespace leanux {
      * @return the number of bytes used.
      */
     unsigned long getMountUsedBytes( const std::string &mount );
-
-    /**
-     * Some block devices do not have a WWN, so there is no
-     * guarentee a WWN exists.
-     * @param m the MajorMinor of the device.
-     * @return the WWN of the disk or empty if no WWN assigned to the disk
-     */
-    std::string getWWN( const MajorMinor &m );
-
-    /**
-     * Retrieve a string identifying a disk on a best-efffort basis.
-     * If the disk has a WWN, that is returned,
-     * else if the disk has a serial number, that is returned,
-     * else the device name is returned, in absence of required truth.
-     * virtio and vmware disks can lack a WWN and a serial number, so these
-     * disk types are impossible to identify (without tagging their contents).
-     * @param m the MajorMinor of the device.
-     * @return a best-effort id for the disk.
-     */
-    std::string getDiskId( const MajorMinor &m );
 
     /**
      * get a list of all block devices
@@ -820,51 +819,6 @@ namespace leanux {
     unsigned long getAttachedWholeDisks();
 
     /**
-     * Get a list of partition devices in the disk,
-     * @param m the MajorMinor of the whole disk.
-     * @param partitions list of device names filled.
-     */
-    void getPartitions( const MajorMinor& m, std::list<std::string> &partitions );
-
-
-    /** Get a list of devices holding (using) the device m.
-     * @param m The MajorMinor of the disk to investigate.
-     * @param holders the devices holding m.
-     */
-    void getHolders( const MajorMinor& m, std::list<std::string> &holders );
-
-    /** Get a list of devices slave to the device m.
-     * @param m The MajorMinor of the disk to investigate.
-     * @param slaves providing m.
-     */
-    void getSlaves( const MajorMinor& m, std::list<std::string> &slaves );
-
-    /**
-     * Get the uptime for a block device.
-     * @param m the block device.
-     * @return the uptime of the device in seconds.
-     */
-    double getUptime( const MajorMinor& m );
-
-    /**
-     * Device stats from /proc/diskstats
-     * @see iostats.txt in the Linux kernel docs.
-     */
-    struct DeviceStats {
-      unsigned long reads;          /**< number of read operations */
-      unsigned long reads_merged;   /**< number of read operations merged with other read operations */
-      unsigned long read_sectors;   /**< number of sectors read */
-      unsigned long read_ms;        /**< number of milliseconds spent reading */
-      unsigned long writes;         /**< number of write operations */
-      unsigned long writes_merged;  /**< number of writes merged with other write operations */
-      unsigned long write_sectors;  /**< number of sectors written */
-      unsigned long write_ms;       /**< number of milliseconds spent writing */
-      unsigned long io_in_progress; /**< number of io's in progress (or pending and queued) */
-      unsigned long io_ms;          /**< number of milliseconds spent doing IO */
-      unsigned long io_weighted_ms; /**< not sure. */
-    };
-
-    /**
      * Default < operator for DeviceStats type.
      * @param s1 DeviceStats 1
      * @param s2 DeviceStats 2
@@ -886,15 +840,6 @@ namespace leanux {
              s1.reads_merged  == s2.reads_merged &&
              s1.writes_merged == s2.writes_merged;
     }
-
-    /**
-     * get performance statistics for the block device specified by MajorMinor.
-     * note that all numbers are totals since boot.
-     * @param m the MajorMinor for the device.
-     * @param stats the statistics to populate.
-     * @return false if the MajorMinor is not found.
-     */
-    bool getStats( const MajorMinor& m, DeviceStats& stats );
 
     /** map of MajorMinor to DeviceStats. */
     typedef std::map<MajorMinor,DeviceStats> DeviceStatsMap;

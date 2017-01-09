@@ -76,7 +76,7 @@ namespace leanux {
       std::stringstream ss;
       block::MajorMinor mm = getMajorMinor();
       ss << "dev_t=" << mm;
-      std::string model = block::getModel( mm );
+      std::string model = mm.getModel();
       if ( model != "" ) ss << " model=" << model;
       return ss.str();
     }

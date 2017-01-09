@@ -1065,7 +1065,7 @@ namespace leanux {
       unsigned long IOView::getSectorSize( const block::MajorMinor& m ) {
         std::map<block::MajorMinor,unsigned int>::const_iterator i = sector_size_cache_.find( m );
         if ( i == sector_size_cache_.end() ) {
-          unsigned long size = block::getSectorSize( m );
+          unsigned long size = m.getSectorSize();
           sector_size_cache_[ m ] = size;
           return size;
         } else return i->second;

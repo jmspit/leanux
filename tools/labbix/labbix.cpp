@@ -44,7 +44,7 @@ MajorMinor findByZabbix( const string& zabid ) {
   list<MajorMinor> disks;
   leanux::block::enumWholeDisks( disks );
   for ( std::list<MajorMinor>::const_iterator i = disks.begin(); i != disks.end(); i++ ) {
-    if ( zabbifyId(getDiskId(*i)) == zabid ) {
+    if ( zabbifyId((*i).getDiskId()) == zabid ) {
       return *i;
     }
   }
@@ -60,17 +60,17 @@ void discovery( ostream &json ) {
   json << "{" << endl;
   json << "  \"data\": [" << endl;
   for ( std::list<MajorMinor>::const_iterator i = disks.begin(); i != disks.end(); i++ ) {
-    if ( getSize(*i) > 0 ) {
+    if ( (*i).getSize() > 0 ) {
       json << "    {" << endl;
-      json << "      \"{#DISK}\":\"" << zabbifyId( getDiskId(*i) ) << "\"," << endl;
+      json << "      \"{#DISK}\":\"" << zabbifyId( (*i).getDiskId() ) << "\"," << endl;
       json << "      \"{#KNAME}\":\"" << (*i).getName() << "\"," << endl;
       json << "      \"{#UNAME}\":\"" << (*i).getDeviceFile() << "\"," << endl;
       json << "      \"{#MAJMIN}\":\"" << *i << "\"," << endl;
-      json << "      \"{#HCTL}\":\"" << getSCSIHCTL(*i) << "\"," << endl;
-      json << "      \"{#CLASS}\":\"" << getClassStr(*i) << "\"," << endl;
-      json << "      \"{#MODEL}\":\"" << getModel(*i) << "\"," << endl;
-      json << "      \"{#SECTOR}\":\"" << getSectorSize(*i) << "\"," << endl;
-      json << "      \"{#GIBIBYTES}\":\"" << fixed << setprecision(0) << getSize(*i)/1024.0/1024.0/1024.0 << "\"" << endl;
+      json << "      \"{#HCTL}\":\"" << (*i).getSCSIHCTL() << "\"," << endl;
+      json << "      \"{#CLASS}\":\"" << (*i).getClassStr() << "\"," << endl;
+      json << "      \"{#MODEL}\":\"" << (*i).getModel() << "\"," << endl;
+      json << "      \"{#SECTOR}\":\"" << (*i).getSectorSize() << "\"," << endl;
+      json << "      \"{#GIBIBYTES}\":\"" << fixed << setprecision(0) << (*i).getSize()/1024.0/1024.0/1024.0 << "\"" << endl;
       if ( (*i) == disks.back() ) json << "    }" << endl; else json << "    }," << endl;
     }
   }
@@ -82,7 +82,7 @@ void getReads( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.reads;
   } else output << "-1";
   output << endl;
@@ -92,7 +92,7 @@ void getReadSectors( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.read_sectors;
   } else output << "-1";
   output << endl;
@@ -102,7 +102,7 @@ void getWrites( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.writes;
   } else output << "-1";
   output << endl;
@@ -112,7 +112,7 @@ void getWriteSectors( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.write_sectors;
   } else output << "-1";
   output << endl;
@@ -122,7 +122,7 @@ void getIOs( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.reads + stats.writes;
   } else output << "-1";
   output << endl;
@@ -132,7 +132,7 @@ void getIOms( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.io_ms;
   } else output << "-1";
   output << endl;
@@ -142,7 +142,7 @@ void getReadms( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.read_ms;
   } else output << "-1";
   output << endl;
@@ -152,7 +152,7 @@ void getWritems( const string& zabid, ostream &output ) {
   MajorMinor m = findByZabbix(zabid);
   if ( m != MajorMinor::invalid ) {
     DeviceStats stats;
-    getStats( m, stats );
+    m.getStats( stats );
     output << std::fixed << stats.write_ms;
   } else output << "-1";
   output << endl;

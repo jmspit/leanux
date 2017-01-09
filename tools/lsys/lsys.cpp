@@ -381,7 +381,7 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
   } else if ( field == "model" ) {
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
-      return block::getModel( block_device->getMajorMinor() );
+      return block_device->getMajorMinor().getModel();
     }
     const sysdevice::PCIDevice* pci_device = dynamic_cast<const sysdevice::PCIDevice*>(leaf);
     if ( pci_device ) {
@@ -412,9 +412,9 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
       block::DeviceStats stats;
-      block::getStats( block_device->getMajorMinor(), stats );
+      block_device->getMajorMinor().getStats( stats );
       std::stringstream ss;
-      ss << util::ByteStr( stats.read_sectors * getSectorSize( block_device->getMajorMinor() ), 3 );
+      ss << util::ByteStr( stats.read_sectors * block_device->getMajorMinor().getSectorSize(), 3 );
       return ss.str();
     }
     const sysdevice::NetDevice* net_device = dynamic_cast<const sysdevice::NetDevice*>(leaf);
@@ -429,12 +429,12 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
   } else if ( field == "sched" ) {
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
-      return getIOScheduler( block_device->getMajorMinor() );
+      return block_device->getMajorMinor().getIOScheduler();
     }
   } else if ( field == "size" ) {
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
-      return util::ByteStr( block::getSize( block_device->getMajorMinor() ), 3 );
+      return util::ByteStr( block_device->getMajorMinor().getSize(), 3 );
     }
   } else if ( field == "speed" ) {
     const sysdevice::ATAPort* ata_port = dynamic_cast<const sysdevice::ATAPort*>(leaf);
@@ -453,7 +453,7 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
       block::DeviceStats stats;
-      block::getStats( block_device->getMajorMinor(), stats );
+      block_device->getMajorMinor().getStats( stats );
       if ( stats.reads+stats.writes > 0 )
         return util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) );
     }
@@ -467,7 +467,7 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
   } else if ( field == "uuid" ) {
     const sysdevice::MapperDevice* mapper_device = dynamic_cast<const sysdevice::MapperDevice*>(leaf);
     if ( mapper_device ) {
-      return block::getDMUUID( mapper_device->getMajorMinor() );
+      return mapper_device->getMajorMinor().getDMUUID();
     }
   } else if ( field == "vendor" ) {
     const sysdevice::PCIDevice* pci_device = dynamic_cast<const sysdevice::PCIDevice*>(leaf);
@@ -499,9 +499,9 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
       block::DeviceStats stats;
-      block::getStats( block_device->getMajorMinor(), stats );
+      block_device->getMajorMinor().getStats( stats );
       std::stringstream ss;
-      ss << util::ByteStr( stats.write_sectors * block::getSectorSize( block_device->getMajorMinor() ), 3 );
+      ss << util::ByteStr( stats.write_sectors * block_device->getMajorMinor().getSectorSize(), 3 );
       return ss.str();
     }
     const sysdevice::NetDevice* net_device = dynamic_cast<const sysdevice::NetDevice*>(leaf);
@@ -516,7 +516,7 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
   } else if ( field == "wwn" ) {
     const sysdevice::SCSIDevice* scsi_device = dynamic_cast<const sysdevice::SCSIDevice*>(leaf);
     if ( scsi_device ) {
-      return block::getWWN( scsi_device->getMajorMinor() );
+      return scsi_device->getMajorMinor().getWWN();
     }
   }
   return "";

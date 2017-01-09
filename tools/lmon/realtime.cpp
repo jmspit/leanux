@@ -153,8 +153,8 @@ namespace leanux {
           rec.util  = devicestats[*s].io_ms / 1000.0 / dt;
           rec.rs    = devicestats[*s].reads / dt;
           rec.ws    = devicestats[*s].writes / dt;
-          rec.rbs   = devicestats[*s].read_sectors * getSectorSize(*s) / dt;
-          rec.wbs   = devicestats[*s].write_sectors * getSectorSize(*s) / dt;
+          rec.rbs   = devicestats[*s].read_sectors * (*s).getSectorSize() / dt;
+          rec.wbs   = devicestats[*s].write_sectors * (*s).getSectorSize() / dt;
           if ( devicestats[*s].reads != 0 )
             rec.artm  = devicestats[*s].read_ms / 1000.0 / devicestats[*s].reads;
           else

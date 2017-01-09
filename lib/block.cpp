@@ -177,7 +177,7 @@ namespace leanux {
         mm2name_[ MajorMinor( major, minor ) ] = device;
         //check devicefile
         std::list<std::string> aliasses;
-        block::getAliases( MajorMinor( major, minor ), aliasses );
+        MajorMinor( major, minor ).getAliases( aliasses );
         for ( std::list<std::string>::const_iterator a = aliasses.begin(); a != aliasses.end(); a++ ) {
           std::string rp = util::realPath( *a );
           if ( rp != "" ) {
@@ -251,28 +251,27 @@ namespace leanux {
      * Get a loose description of what the device mm is.
      */
     std::string MajorMinor::getDescription( const block::MajorMinor &mm ) {
-      block::DeviceClass dclass = getClass( mm );
+      block::DeviceClass dclass = mm.getClass();
       std::stringstream ss;
       ss.str("");
       if ( dclass == block::MetaDisk ) {
-        ss << getMDDevices( mm ) << " disk " << getMDLevel( mm ) << " ";
+        ss << mm.getMDDevices() << " disk " << mm.getMDLevel() << " ";
       }
       block::MountInfo info;
-      if ( getMountInfo( mm, info ) ) {
+      if ( mm.getMountInfo( info ) ) {
         if ( dclass == block::LVM ) {
-          //ss << "VG " << getVGName( mm ) << " LV " << getLVName( mm ) << " ";
-          ss << getDMName( mm ) << " ";
+          ss << mm.getDMName() << " ";
         }
         ss << info.mountpoint << " (" << info.fstype << ")";
       } else {
-        if ( getFSType( mm ) == "LVM2_member" ) {
-          ss << "PV in VG " << getLVMPV2VG( mm );
-        } else if ( getDMName( mm ) != "" ) {
-          ss << getDMName( mm ) << " " << getFSType( mm );
-        } else if ( getSCSIHCTL( mm ) != "" ) {
-          ss << getSCSIHCTL( mm );
+        if ( mm.getFSType() == "LVM2_member" ) {
+          ss << "PV in VG " << mm.getLVMPV2VG();
+        } else if ( mm.getDMName() != "" ) {
+          ss << mm.getDMName() << " " << mm.getFSType();
+        } else if ( mm.getSCSIHCTL() != "" ) {
+          ss << mm.getSCSIHCTL();
         } else {
-          ss << getFSType( mm );
+          ss << mm.getFSType();
         }
       }
       return ss.str();
@@ -342,8 +341,41 @@ namespace leanux {
       return r == 1;
     }
 
-    std::string getClassStr( const MajorMinor &m ) {
-      DeviceClass dclass = getClass( m );
+    DeviceClass MajorMinor::getClass() const {
+      if ( MajorMinor::isSCSIDisk( getMajor() ) ) {
+        if ( isPartition() ) return SCSIDiskPartition; else return SCSIDisk;
+      } else if ( MajorMinor::isIDEDisk( getMajor() ) ) {
+        if ( isPartition() ) return IDEDiskPartition; else return IDEDisk;
+      } else if ( MajorMinor::isVirtIODisk( *this ) ) {
+        if ( isPartition() ) return VirtioDiskPartition; else return VirtioDisk;
+      } else if ( MajorMinor::isNVMeDisk( *this ) ) {
+        if ( isPartition() ) return NVMeDiskPartition; else return NVMeDisk;
+      } else if ( MajorMinor::isMMCDisk( *this ) ) {
+        if ( isPartition() ) return MMCDiskPartition; else return MMCDisk;
+      } else if ( MajorMinor::isBCacheDisk( *this ) ) {
+        if ( isPartition() ) return BCacheDiskPartition; else return BCacheDisk;
+      } else {
+        std::string lvname;
+        std::string dm_uuid;
+        lvname = getLVName();
+        if ( lvname != "" ) return LVM;
+        dm_uuid = getDMUUID();
+        if ( dm_uuid.find("mpath-") != std::string::npos ) return MultiPath;
+
+        switch ( getMajor() ) {
+          case 1 : return RAMDisk;
+          case 2 : return FloppyDisk;
+          case 7 : return Loopback;
+          case 9 : return MetaDisk;
+          case 11 : return SCSICD;
+          default : return Unknown;
+        }
+      }
+      return Unknown;
+    }
+
+    std::string MajorMinor::getClassStr() const {
+      DeviceClass dclass = getClass();
       switch ( dclass ) {
         case SCSIDisk:
           return "SCSI disk";
@@ -386,71 +418,120 @@ namespace leanux {
       return "";
     }
 
-    std::string getSysPath( const MajorMinor &m ) {
+    std::string MajorMinor::getSysPath() const {
       std::string devname = "";
-      if ( m.isPartition() )
-        devname = "/sys/block/" + MajorMinor::deriveWholeDisk(m).getName();
+      if ( isPartition() )
+        devname = "/sys/block/" + MajorMinor::deriveWholeDisk(*this).getName();
       else
-        devname = "/sys/block/" + m.getName();
+        devname = "/sys/block/" + getName();
       std::string resolved_path = util::realPath( devname );
       if ( resolved_path == devname) throw Oops( __FILE__, __LINE__, "realpath failed on'" + devname +"'" );
       else {
-          if ( m.isPartition() ) return resolved_path + "/" + m.getName();
+          if ( isPartition() ) return resolved_path + "/" + getName();
           else return resolved_path;
         };
     }
 
-    DeviceClass getClass( const MajorMinor &m ) {
-      if ( MajorMinor::isSCSIDisk( m.getMajor() ) ) {
-        if ( m.isPartition() ) return SCSIDiskPartition; else return SCSIDisk;
-      } else if ( MajorMinor::isIDEDisk( m.getMajor() ) ) {
-        if ( m.isPartition() ) return IDEDiskPartition; else return IDEDisk;
-      } else if ( MajorMinor::isVirtIODisk( m ) ) {
-        if ( m.isPartition() ) return VirtioDiskPartition; else return VirtioDisk;
-      } else if ( MajorMinor::isNVMeDisk( m ) ) {
-        if ( m.isPartition() ) return NVMeDiskPartition; else return NVMeDisk;
-      } else if ( MajorMinor::isMMCDisk( m ) ) {
-        if ( m.isPartition() ) return MMCDiskPartition; else return MMCDisk;
-      } else if ( MajorMinor::isBCacheDisk( m ) ) {
-        if ( m.isPartition() ) return BCacheDiskPartition; else return BCacheDisk;
-      } else {
-        std::string lvname;
-        std::string dm_uuid;
-        lvname = getLVName( m );
-        if ( lvname != "" ) return LVM;
-        dm_uuid = getDMUUID( m );
-        if ( dm_uuid.find("mpath-") != std::string::npos ) return MultiPath;
-
-        switch ( m.getMajor() ) {
-          case 1 : return RAMDisk;
-          case 2 : return FloppyDisk;
-          case 7 : return Loopback;
-          case 9 : return MetaDisk;
-          case 11 : return SCSICD;
-          default : return Unknown;
+    std::string MajorMinor::getSerial() const {
+      std::string udevp = getUDevPath();
+      std::ifstream i( udevp.c_str() );
+      std::string line = "";
+      std::string result = "";
+      while ( i.good() ) {
+        getline( i, line );
+        if ( strncmp( line.c_str(), "E:ID_SERIAL_SHORT=", 18 ) == 0 ) {
+          result = line.substr(18);
+          break;
         }
       }
-      return Unknown;
+      return result;
     }
 
-    std::string getUDevPath( const MajorMinor &m ) {
+    std::string MajorMinor::getUDevPath() const {
       std::stringstream ss;
       switch ( udev_mode ) {
         case umBlockMM :
-          ss << "block" << m;
+          ss << "block" << *this;
           break;
         case umBMM :
-          ss << "b" << m;
+          ss << "b" << *this;
           break;
         case umBlockName :
-          ss << "block:" << MajorMinor::getNameByMajorMinor( m );
+          ss << "block:" << MajorMinor::getNameByMajorMinor( *this );
           break;
       }
       return udev_path + ss.str();
     }
 
-    std::string getModel( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
+    bool MajorMinor::getRotational() const {
+      return (util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/queue/rotational" )[0] == '1');
+    }
+
+    std::string MajorMinor::getRotationalStr() const {
+      bool rotational = getRotational();
+      if ( rotational ) {
+        std::stringstream ss;
+        ss << getRPM() << "RPM spindle";
+        return ss.str();
+      } else return "SSD";
+    }
+
+    unsigned long MajorMinor::getSectorSize() const {
+      MajorMinor wholedisk = MajorMinor::deriveWholeDisk( *this );
+      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(wholedisk) + "/queue/hw_sector_size" );
+    }
+
+    std::string MajorMinor::getRevision() const {
+      try {
+        std::string result =  util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/rev" );
+        return result;
+      }
+      catch ( const leanux::Oops &oops ) {
+      }
+      return "";
+    }
+
+    unsigned long MajorMinor::getSize() const {
+      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/size" ) * 512UL;
+    }
+
+    std::string MajorMinor::getDMName() const {
+      std::string result = "";
+      try {
+        result = util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/dm/name" );
+      }
+      catch ( Oops &oops ) {
+      }
+      return result;
+    }
+
+    std::string MajorMinor::getDMUUID() const {
+      std::string result = "";
+      try {
+        result = util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/dm/uuid" );
+      }
+      catch ( Oops &oops ) {
+      }
+      return result;
+    }
+
+    std::string MajorMinor::getDMTargetTypes() const {
+      std::string udevp = getUDevPath();
+      std::ifstream i( udevp.c_str() );
+      std::string line = "";
+      std::string result = "";
+      while ( i.good() ) {
+        getline( i, line );
+        if ( strncmp( line.c_str(), "E:DM_TARGET_TYPES=", 18 ) == 0 ) {
+          result = line.substr(18);
+          break;
+        }
+      }
+      return result;
+    }
+
+    std::string MajorMinor::getModel() const {
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       std::string result = "";
@@ -463,49 +544,8 @@ namespace leanux {
       return result;
     }
 
-    std::string getCacheMode( const MajorMinor &m ) {
-      try {
-        std::string devname  = MajorMinor::getNameByMajorMinor( m );
-        std::string path = "/sys/class/block/" + devname + "/device/scsi_disk/" + getSCSIHCTL( m ) + "/cache_type";
-        return util::fileReadString( path );
-      }
-      catch ( const Oops &oops ) {
-      }
-      return "";
-    }
-
-    std::string getIOScheduler( const MajorMinor &m ) {
-      std::string devname  = MajorMinor::getNameByMajorMinor( m );
-      std::string path = "/sys/class/block/" + devname + "/queue/scheduler";
-      std::string scheduler = util::fileReadString( path );
-      size_t p1 = scheduler.find('[');
-      size_t p2 = scheduler.find(']');
-      if ( p1 == std::string::npos || p2 == std::string::npos ) return scheduler; else
-        return scheduler.substr(p1+1, p2-p1-1 );
-    }
-
-    unsigned long getMaxHWIOSize( const MajorMinor &m ) {
-      std::string devname  = MajorMinor::getNameByMajorMinor( m );
-      return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/max_hw_sectors_kb" );
-    }
-
-    unsigned long getMaxIOSize( const MajorMinor &m ) {
-      std::string devname  = MajorMinor::getNameByMajorMinor( m );
-      return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/max_sectors_kb" );
-    }
-
-    unsigned long getMinIOSize( const MajorMinor &m ) {
-      std::string devname  = MajorMinor::getNameByMajorMinor( m );
-      return util::fileReadUL( "/sys/class/block/" + devname + "/queue/minimum_io_size" );
-    }
-
-    unsigned long getReadAhead( const MajorMinor &m ) {
-      std::string devname  = MajorMinor::getNameByMajorMinor( m );
-      return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/read_ahead_kb" );
-    }
-
-    std::string getKernelModule( const MajorMinor &m ) {
-      std::string devname  = MajorMinor::getNameByMajorMinor( m );
+    std::string MajorMinor::getKernelModule() const {
+      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
       std::string result = "";
       try {
         result = util::fileReadString( "/sys/block/" + devname + "/device/modalias" );
@@ -522,90 +562,8 @@ namespace leanux {
       return result;
     }
 
-    bool getRotational( const MajorMinor &m ) {
-      return (util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/queue/rotational" )[0] == '1');
-    }
-
-    std::string getRotationalStr( const MajorMinor &m ) {
-      bool rotational = getRotational( m );
-      if ( rotational ) {
-        std::stringstream ss;
-        ss << getRPM(m) << "RPM spindle";
-        return ss.str();
-      } else return "SSD";
-    }
-
-    unsigned long getSectorSize( const MajorMinor &m ) {
-      MajorMinor wholedisk = MajorMinor::deriveWholeDisk( m );
-      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(wholedisk) + "/queue/hw_sector_size" );
-    }
-
-    std::string getRevision( const MajorMinor &m ) {
-      try {
-        std::string result =  util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/device/rev" );
-        return result;
-      }
-      catch ( const leanux::Oops &oops ) {
-      }
-      return "";
-    }
-
-    unsigned long getSize( const MajorMinor &m ) {
-      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/size" ) * 512UL;
-    }
-
-    std::string getDMName( const MajorMinor &m ) {
-      std::string result = "";
-      try {
-        result = util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/dm/name" );
-      }
-      catch ( Oops &oops ) {
-      }
-      return result;
-    }
-
-    std::string getDMUUID( const MajorMinor &m ) {
-      std::string result = "";
-      try {
-        result = util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/dm/uuid" );
-      }
-      catch ( Oops &oops ) {
-      }
-      return result;
-    }
-
-    std::string getDMTargetTypes( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:DM_TARGET_TYPES=", 18 ) == 0 ) {
-          result = line.substr(18);
-          break;
-        }
-      }
-      return result;
-    }
-
-    std::string getSerial( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:ID_SERIAL_SHORT=", 18 ) == 0 ) {
-          result = line.substr(18);
-          break;
-        }
-      }
-      return result;
-    }
-
-    unsigned long getRPM( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
+    unsigned long MajorMinor::getRPM() const {
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       unsigned long result = 0;
@@ -619,8 +577,8 @@ namespace leanux {
       return result;
     }
 
-    std::string getFSType( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
+    std::string MajorMinor::getFSType() const {
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       std::string result = "";
@@ -635,8 +593,8 @@ namespace leanux {
       return result;
     }
 
-    std::string getFSUsage( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
+    std::string MajorMinor::getFSUsage() const {
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       std::string result = "";
@@ -650,10 +608,40 @@ namespace leanux {
       return result;
     }
 
-    bool getLVMInfo( const MajorMinor& m, std::string &vgname, std::string& lvname ) {
+    std::string MajorMinor::getVGName() const {
+      std::string udevp = getUDevPath();
+      std::ifstream i( udevp.c_str() );
+      std::string line = "";
+      std::string result = "";
+      while ( i.good() ) {
+        getline( i, line );
+        if ( strncmp( line.c_str(), "E:DM_VG_NAME=", 13 ) == 0 ) {
+          result = line.substr(13).c_str();
+          break;
+        }
+      }
+      return result;
+    }
+
+    std::string MajorMinor::getLVName() const {
+      std::string udevp = getUDevPath();
+      std::ifstream i( udevp.c_str() );
+      std::string line = "";
+      std::string result = "";
+      while ( i.good() ) {
+        getline( i, line );
+        if ( strncmp( line.c_str(), "E:DM_LV_NAME=", 13 ) == 0 ) {
+          result = line.substr(13).c_str();
+          break;
+        }
+      }
+      return result;
+    }
+
+    bool MajorMinor::getLVMInfo( std::string &vgname, std::string& lvname ) const {
       vgname = "";
       lvname = "";
-      std::string udevp = getUDevPath( m );
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       std::string result = "";
@@ -672,43 +660,27 @@ namespace leanux {
       return found == 2;
     }
 
-    std::string getLVMPV2VG( const MajorMinor &m ) {
+    std::string MajorMinor::getLVMPV2VG() const {
       std::string result = "";
       std::list< std::string > holders;
-      getHolders( m, holders );
+      this->getHolders( holders );
       for ( std::list< std::string >:: const_iterator h = holders.begin(); h != holders.end(); h++ ) {
         if ( MajorMinor::getMajorMinorByName( *h ).isValid() ) {
-          result = getVGName( MajorMinor::getMajorMinorByName( *h ) );
+          result = MajorMinor::getMajorMinorByName( *h ).getVGName();
           if ( result == "" ) {
-            result = getLVMPV2VG( MajorMinor::getMajorMinorByName( *h ) );
+            result = getLVMPV2VG();
           } else break;
         }
       }
       return result;
     }
 
-
-    std::string getVGName( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:DM_VG_NAME=", 13 ) == 0 ) {
-          result = line.substr(13).c_str();
-          break;
-        }
-      }
-      return result;
+    std::string MajorMinor::getMDLevel() const {
+      return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/md/level" );
     }
 
-    std::string getMDLevel( const MajorMinor &m ) {
-      return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/md/level" );
-    }
-
-    std::string getMDName( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
+    std::string MajorMinor::getMDName() const {
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       std::string result = "";
@@ -722,40 +694,76 @@ namespace leanux {
       return result;
     }
 
-    unsigned long getMDDevices( const MajorMinor &m ) {
-      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/md/raid_disks" );
+    unsigned long MajorMinor::getMDChunkSize() const {
+      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/md/chunk_size" );
     }
 
-    unsigned long getMDChunkSize( const MajorMinor &m ) {
-      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/md/chunk_size" );
+    std::string MajorMinor::getIOScheduler() const {
+      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+      std::string path = "/sys/class/block/" + devname + "/queue/scheduler";
+      std::string scheduler = util::fileReadString( path );
+      size_t p1 = scheduler.find('[');
+      size_t p2 = scheduler.find(']');
+      if ( p1 == std::string::npos || p2 == std::string::npos ) return scheduler; else
+        return scheduler.substr(p1+1, p2-p1-1 );
     }
 
-    std::string getMDMetaDataVersion( const MajorMinor &m ) {
-      return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/md/metadata_version" );
+    std::string MajorMinor::getMDMetaDataVersion() const {
+      return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/md/metadata_version" );
     }
 
-    std::string getMDArrayState( const MajorMinor &m ) {
-      return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/md/array_state" );
+    std::string MajorMinor::getMDArrayState() const {
+      return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/md/array_state" );
     }
 
-    std::string getLVName( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:DM_LV_NAME=", 13 ) == 0 ) {
-          result = line.substr(13).c_str();
-          break;
+    void MajorMinor::getMDRaidDisks( std::vector<MajorMinor> &disks ) const {
+      disks.clear();
+      std::string devname = MajorMinor::getNameByMajorMinor(*this);
+      std::string path = "/sys/class/block/" + devname + "/md/";
+      DIR *d;
+      struct dirent *dir;
+      d = opendir( path.c_str() );
+      if ( d ) {
+        while ( (dir = readdir(d)) != NULL ) {
+          if ( strncmp( dir->d_name, "dev-", 4 ) == 0 ) {
+            std::string dev = util::fileReadString( "/sys/class/block/" + devname + "/md/" + dir->d_name + "/block/dev" );
+            disks.push_back( MajorMinor( dev ) );
+          }
         }
+      } else throw Oops( __FILE__, __LINE__, errno );
+      closedir( d );
+    }
+
+    std::string MajorMinor::getMDRaidDiskStates() const {
+      std::string result = "";
+      std::vector<MajorMinor> disks;
+      getMDRaidDisks( disks );
+      std::string devname = MajorMinor::getNameByMajorMinor(*this);
+      std::string path = "/sys/class/block/" + devname + "/md/";
+      for ( unsigned long i = 0; i < disks.size(); i++ ) {
+        std::stringstream p;
+        p << path << "dev-" << disks[i].getName() << "/state";
+        std::string state = util::fileReadString( p.str() );
+        if ( state == "in_sync" ) result += 'U';
+        else if ( state == "faulty" ) result += 'f';
+        else if ( state == "writemostly" ) result += 'W';
+        else if ( state == "blocked" ) result += 'b';
+        else if ( state == "spare" ) result += 'S';
+        else if ( state == "write_error" ) result += 'e';
+        else if ( state == "want_replacement" ) result += 'r';
+        else if ( state == "replacement" ) result += 'R';
+        else result += '?';
       }
       return result;
     }
 
-    void getAliases( const MajorMinor &m, std::list< std::string > &aliases ) {
+    unsigned long MajorMinor::getMDDevices() const {
+      return util::fileReadUL( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/md/raid_disks" );
+    }
+
+    void MajorMinor::getAliases( std::list< std::string > &aliases ) const {
       aliases.clear();
-      std::string udevp = getUDevPath( m );
+      std::string udevp = getUDevPath();
       std::ifstream i( udevp.c_str() );
       std::string line = "";
       while ( i.good() ) {
@@ -764,7 +772,7 @@ namespace leanux {
           std::string dev = "/dev/" + line.substr(2);
           struct stat st;
           if ( !stat( dev.c_str(), &st ) ) {
-            if ( st.st_rdev == m.getDevT() ) {
+            if ( st.st_rdev == getDevT() ) {
               aliases.push_back( "/dev/" + line.substr(2) );
             }
           }
@@ -772,9 +780,56 @@ namespace leanux {
       }
     }
 
-    std::string getATAPort( const MajorMinor &m ) {
+    std::string MajorMinor::getSCSIHCTL() const {
+      std::string path = "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/scsi_disk";
+      return util::findDir( path, "" );
+    }
+
+    std::string MajorMinor::getiSCSITargetAddress() const {
+      // @todo - this does not do anything?
+      std::string path = getSysPath();
+      return path;
+    }
+
+    std::string MajorMinor::getiSCSITargetPort() const {
+      // @todo - this does not do anything?
+      return "";
+    }
+
+    std::string MajorMinor::getCacheMode() const {
+      try {
+        std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+        std::string path = "/sys/class/block/" + devname + "/device/scsi_disk/" + getSCSIHCTL() + "/cache_type";
+        return util::fileReadString( path );
+      }
+      catch ( const Oops &oops ) {
+      }
+      return "";
+    }
+
+    unsigned long MajorMinor::getMaxHWIOSize() const {
+      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+      return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/max_hw_sectors_kb" );
+    }
+
+    unsigned long MajorMinor::getMaxIOSize() const {
+      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+      return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/max_sectors_kb" );
+    }
+
+    unsigned long MajorMinor::getMinIOSize() const {
+      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+      return util::fileReadUL( "/sys/class/block/" + devname + "/queue/minimum_io_size" );
+    }
+
+    unsigned long MajorMinor::getReadAhead() const {
+      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+      return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/read_ahead_kb" );
+    }
+
+    std::string MajorMinor::getATAPort() const {
       std::string result = "";
-      std::istringstream iss(getSysPath(m));
+      std::istringstream iss(getSysPath());
       std::string token = "";
       while (std::getline(iss, token, '/')) {
         if ( strncmp( token.c_str(), "ata", 3 ) == 0 ) {
@@ -783,6 +838,52 @@ namespace leanux {
       }
       return result;
     }
+
+    std::string MajorMinor::getWWN() const {
+      std::string udevp = getUDevPath();
+      std::ifstream i( udevp.c_str() );
+      std::string line = "";
+      std::string result = "";
+      while ( i.good() ) {
+        getline( i, line );
+        if ( strncmp( line.c_str(), "E:ID_WWN_WITH_EXTENSION=", 24 ) == 0 ) {
+          result = line.substr(24);
+          break;
+        }
+      }
+      return result;
+    }
+
+    void MajorMinor::getPartitions( std::list< std::string > &partitions ) const {
+      partitions.clear();
+      if ( !MajorMinor::isNVMeDisk( *this ) ) {
+        std::string devname = MajorMinor::getNameByMajorMinor(*this);
+        std::string path = "/sys/class/block/" + devname;
+        DIR *d;
+        struct dirent *dir;
+        d = opendir( path.c_str() );
+        if ( d ) {
+          while ( (dir = readdir(d)) != NULL ) {
+            if ( strncmp( devname.c_str(), dir->d_name, devname.length() ) == 0 ) {
+              partitions.push_back( dir->d_name );
+            }
+          }
+        } else throw Oops( __FILE__, __LINE__, errno );
+        closedir( d );
+      } else {
+      }
+    }
+
+    bool MajorMinor::getMountInfo ( MountInfo &info ) const {
+      std::map<MajorMinor,MountInfo> mounts;
+      enumMounts( mounts );
+      std::map<MajorMinor,MountInfo>::const_iterator found = mounts.find( *this );
+      if ( found != mounts.end() ) {
+        info = found->second;
+        return true;
+      } else return false;
+    }
+
 
     std::string getATAPortLink( const std::string& ata_port ) {
       std::string result = "";
@@ -796,20 +897,6 @@ namespace leanux {
       std::string path = "/sys/class/ata_port/" + ata_port + "/device/" + ata_link + "/ata_link/" + ata_link + "/sata_spd";
       result = util::fileReadString( path );
       return result;
-    }
-
-    std::string getSCSIHCTL( const MajorMinor &m ) {
-      std::string path = "/sys/class/block/" + MajorMinor::getNameByMajorMinor(m) + "/device/scsi_disk";
-      return util::findDir( path, "" );
-    }
-
-    std::string getiSCSITargetAddress( const MajorMinor &m ) {
-      std::string path = getSysPath( m );
-      return path;
-    }
-
-    std::string getiSCSITargetPort( const MajorMinor &m ) {
-      return "";
     }
 
     MajorMinor getFileMajorMinor( const std::string &devicefile ) {
@@ -895,38 +982,13 @@ namespace leanux {
       return result;
     }
 
-    bool getMountInfo ( const MajorMinor &m, MountInfo &info ) {
-      std::map<MajorMinor,MountInfo> mounts;
-      enumMounts( mounts );
-      std::map<MajorMinor,MountInfo>::const_iterator found = mounts.find( m );
-      if ( found != mounts.end() ) {
-        info = found->second;
-        return true;
-      } else return false;
-    }
-
-    std::string getWWN( const MajorMinor &m ) {
-      std::string udevp = getUDevPath( m );
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:ID_WWN_WITH_EXTENSION=", 24 ) == 0 ) {
-          result = line.substr(24);
-          break;
-        }
-      }
-      return result;
-    }
-
-    std::string getDiskId( const MajorMinor &m ) {
-      DeviceClass cl = getClass(m);
-      std::string id = getWWN( m );
-      if ( id == "" ) id = getSerial( m );
-      if ( id == "" && cl == MetaDisk ) id = getMDName( m );
-      if ( id == "" && (cl == DeviceMapper || cl == LVM ) ) id = getDMUUID( m );
-      if ( id == "" ) id = MajorMinor::getNameByMajorMinor( m );
+    std::string MajorMinor::getDiskId() const {
+      DeviceClass cl = getClass();
+      std::string id = getWWN();
+      if ( id == "" ) id = getSerial();
+      if ( id == "" && cl == MetaDisk ) id = getMDName();
+      if ( id == "" && (cl == DeviceMapper || cl == LVM ) ) id = getDMUUID();
+      if ( id == "" ) id = MajorMinor::getNameByMajorMinor( *this );
       return id;
     }
 
@@ -950,7 +1012,7 @@ namespace leanux {
       devices.clear();
       while ( i.good() && ! i.eof() ) {
         i >> major >> minor;
-        if ( i.good() && t == getClass( MajorMinor(major,minor) ) ) devices.push_back( MajorMinor(major,minor) );
+        if ( i.good() && t == MajorMinor(major,minor).getClass() ) devices.push_back( MajorMinor(major,minor) );
         i.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
       }
       devices.sort();
@@ -961,7 +1023,7 @@ namespace leanux {
       devices.clear();
       enumDevices( all );
       for ( std::list<MajorMinor>::const_iterator d = all.begin(); d != all.end(); d++ ) {
-        if ( getFSType( *d ) == "LVM2_member" ) {
+        if ( (*d).getFSType() == "LVM2_member" ) {
           devices.push_back( *d );
         }
       }
@@ -986,11 +1048,11 @@ namespace leanux {
       std::map< std::string, unsigned long > wwn_sizes;
       unsigned long no_wwn_total = 0;
       for ( std::list<MajorMinor>::const_iterator d = wd.begin(); d != wd.end(); d++ ) {
-        std::string wwn = getWWN( *d );
+        std::string wwn = (*d).getWWN();
         if ( wwn == "" )
-          no_wwn_total += getSize( *d );
+          no_wwn_total += (*d).getSize();
         else
-          wwn_sizes[wwn] = getSize( *d );
+          wwn_sizes[wwn] = (*d).getSize();
       }
       unsigned long result = 0;
       for ( std::map< std::string, unsigned long >::const_iterator i = wwn_sizes.begin(); i != wwn_sizes.end(); i++ ) {
@@ -1009,32 +1071,12 @@ namespace leanux {
       return wd.size();
     }
 
-    void getPartitions( const MajorMinor& m, std::list< std::string > &partitions ) {
-      partitions.clear();
-      if ( !MajorMinor::isNVMeDisk( m ) ) {
-        std::string devname = MajorMinor::getNameByMajorMinor(m);
-        std::string path = "/sys/class/block/" + devname;
-        DIR *d;
-        struct dirent *dir;
-        d = opendir( path.c_str() );
-        if ( d ) {
-          while ( (dir = readdir(d)) != NULL ) {
-            if ( strncmp( devname.c_str(), dir->d_name, devname.length() ) == 0 ) {
-              partitions.push_back( dir->d_name );
-            }
-          }
-        } else throw Oops( __FILE__, __LINE__, errno );
-        closedir( d );
-      } else {
-      }
-    }
-
-    void getHolders( const MajorMinor& m, std::list< std::string > &holders ) {
+    void MajorMinor::getHolders( std::list< std::string > &holders ) const {
       holders.clear();
-      std::string devname = MajorMinor::getNameByMajorMinor(m);
+      std::string devname = MajorMinor::getNameByMajorMinor(*this);
       std::string path;
-      if ( m.isPartition() ) {
-        MajorMinor whole = MajorMinor::deriveWholeDisk( m );
+      if ( isPartition() ) {
+        MajorMinor whole = MajorMinor::deriveWholeDisk( *this );
         path = "/sys/class/block/" + MajorMinor::getNameByMajorMinor( whole ) + "/" + devname;
       }
       else {
@@ -1054,12 +1096,12 @@ namespace leanux {
       closedir( d );
     }
 
-    void getSlaves( const MajorMinor& m, std::list< std::string > &slaves ) {
+    void MajorMinor::getSlaves( std::list< std::string > &slaves ) const {
       slaves.clear();
-      std::string devname = MajorMinor::getNameByMajorMinor(m);
+      std::string devname = MajorMinor::getNameByMajorMinor(*this);
       std::string path;
-      if ( m.isPartition() ) {
-        MajorMinor whole = MajorMinor::deriveWholeDisk( m );
+      if ( isPartition() ) {
+        MajorMinor whole = MajorMinor::deriveWholeDisk( *this );
         path = "/sys/class/block/" + MajorMinor::getNameByMajorMinor( whole );
       }
       else {
@@ -1079,61 +1121,20 @@ namespace leanux {
       closedir( d );
     }
 
-    double getUptime( const MajorMinor& m ) {
+    double MajorMinor::getUptime() const {
       struct timeval t;
       gettimeofday( &t, NULL );
-      std::string devfile = MajorMinor::getDeviceFileByMajorMinor(m);
+      std::string devfile = getDeviceFileByMajorMinor(*this);
       struct stat devstat;
       if ( !stat( devfile.c_str(), &devstat ) ) {
         return (double)(t.tv_sec-devstat.st_mtim.tv_sec) + (double)((t.tv_usec*1000.0-devstat.st_mtim.tv_nsec)/1.0E9);
       } else throw Oops( __FILE__, __LINE__, "cannot stat device file '" + devfile + "'" );
     }
 
-    void getMDRaidDisks( const MajorMinor& m, std::vector<MajorMinor> &disks ) {
-      disks.clear();
-      std::string devname = MajorMinor::getNameByMajorMinor(m);
-      std::string path = "/sys/class/block/" + devname + "/md/";
-      DIR *d;
-      struct dirent *dir;
-      d = opendir( path.c_str() );
-      if ( d ) {
-        while ( (dir = readdir(d)) != NULL ) {
-          if ( strncmp( dir->d_name, "dev-", 4 ) == 0 ) {
-            std::string dev = util::fileReadString( "/sys/class/block/" + devname + "/md/" + dir->d_name + "/block/dev" );
-            disks.push_back( MajorMinor( dev ) );
-          }
-        }
-      } else throw Oops( __FILE__, __LINE__, errno );
-      closedir( d );
-    }
-
-    std::string getMDRaidDiskStates( const MajorMinor& m ) {
-      std::string result = "";
-      std::vector<MajorMinor> disks;
-      getMDRaidDisks( m, disks );
-      std::string devname = MajorMinor::getNameByMajorMinor(m);
-      std::string path = "/sys/class/block/" + devname + "/md/";
-      for ( unsigned long i = 0; i < disks.size(); i++ ) {
-        std::stringstream p;
-        p << path << "dev-" << disks[i].getName() << "/state";
-        std::string state = util::fileReadString( p.str() );
-        if ( state == "in_sync" ) result += 'U';
-        else if ( state == "faulty" ) result += 'f';
-        else if ( state == "writemostly" ) result += 'W';
-        else if ( state == "blocked" ) result += 'b';
-        else if ( state == "spare" ) result += 'S';
-        else if ( state == "write_error" ) result += 'e';
-        else if ( state == "want_replacement" ) result += 'r';
-        else if ( state == "replacement" ) result += 'R';
-        else result += '?';
-      }
-      return result;
-    }
-
     /**
      * @todo can be fetched more efficiently from sysfs
      */
-    bool getStats( const MajorMinor& m, DeviceStats& stats ) {
+    bool MajorMinor::getStats( DeviceStats& stats ) const {
       std::ifstream i( "/proc/diskstats" );
       if ( !i.good() ) throw Oops( __FILE__, __LINE__, "failed to open '/proc/diskstats'" );
       int major, minor;
@@ -1141,7 +1142,7 @@ namespace leanux {
       bool found = false;
       while ( i.good() && ! i.eof() ) {
         i >> major >> minor >> devname;
-        if ( i.good() && MajorMinor(major,minor) == m ) {
+        if ( i.good() && MajorMinor(major,minor) == *this ) {
           i >> stats.reads;
           i >> stats.reads_merged;
           i >> stats.read_sectors;

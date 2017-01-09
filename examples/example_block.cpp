@@ -44,17 +44,17 @@ using namespace leanux::util;
 void dumpDeviceDescr( const string &prefix, const block::MajorMinor &mm ) {
   string devname = block::MajorMinor::getNameByMajorMinor( mm );
   cout << prefix << devname << " " << mm << " - ";
-  cout << ByteStr( block::getSize(mm), 3 ) << " ";
-  if ( block::getClass( mm ) == block::DeviceMapper ) {
+  cout << ByteStr( mm.getSize(), 3 ) << " ";
+  if ( mm.getClass() == block::DeviceMapper ) {
     string vgname = "";
     string lvname = "";
-    if ( block::getLVMInfo( mm, vgname, lvname ) ) {
-      cout << "LVM " << vgname << ":" << lvname << " as " << block::getFSType(mm);
+    if ( mm.getLVMInfo( vgname, lvname ) ) {
+      cout << "LVM " << vgname << ":" << lvname << " as " << mm.getFSType();
     }
-  } else if ( block::getClass( mm ) == block::MetaDisk ) {
-    cout << block::getMDName(mm) << " " << block::getMDDevices(mm) << "x" << block::getMDLevel(mm) << " as " << block::getFSType(mm);
+  } else if ( mm.getClass() == block::MetaDisk ) {
+    cout << mm.getMDName() << " " << mm.getMDDevices() << "x" << mm.getMDLevel() << " as " << mm.getFSType();
   } else {
-    cout << block::getClassStr(mm) << " as " << block::getFSType(mm);
+    cout << mm.getClassStr() << " as " << mm.getFSType();
   }
   if ( mm.isWholeDisk() ) {
     /**
@@ -66,9 +66,9 @@ void dumpDeviceDescr( const string &prefix, const block::MajorMinor &mm ) {
     cout << " " << block::getModel(mm) << " rev" << block::getRevision(mm) << " wwn=" << block::getWWN(mm);
     */
   }
-  if ( block::getFSUsage(mm) == "filesystem" ) {
+  if ( mm.getFSUsage() == "filesystem" ) {
     block::MountInfo info;
-    if ( block::getMountInfo( mm, info ) ) {
+    if ( mm.getMountInfo( info ) ) {
       cout << " mounted on " << info.mountpoint;
     }
   }
@@ -80,7 +80,7 @@ void listHolders( const block::MajorMinor &mm, string &prefix ) {
   list<string> holders;
   string devname = block::MajorMinor::getNameByMajorMinor( mm );
   dumpDeviceDescr( prefix, mm );
-  block::getHolders( mm, holders );
+  mm.getHolders( holders );
   if ( holders.size() > 0 )  {
     prefix += "  ";
   }
@@ -97,7 +97,7 @@ int main( int argc, char* argv[] ) {
     block::enumWholeDisks( wholedisks );
     for ( list<block::MajorMinor>::const_iterator wd = wholedisks.begin(); wd != wholedisks.end(); wd++ ) {
       list<string> partitions;
-      block::getPartitions( *wd, partitions );
+      wd->getPartitions( partitions );
       if ( partitions.size() > 0 ) {
         dumpDeviceDescr( "", *wd );
         for ( list<string>::const_iterator p = partitions.begin(); p != partitions.end(); p++ ) {

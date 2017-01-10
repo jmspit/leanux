@@ -483,6 +483,8 @@ namespace leanux {
         USBBus() : BusDevice() { sysdevicetype_ = sdtUSBBus; };
         USBBus( const USBBus &src ) : BusDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
+        virtual std::string getDescription() const;
+        virtual std::string getClass() const;
     };
 
     void enumDevices( std::list<SysDevicePath> &paths );

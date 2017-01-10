@@ -112,9 +112,9 @@ namespace leanux {
     };
 
     /**
-     * Typedef for usb device paths, relative to /sys/devices.
+     * Typedef for usb device absolute paths.
      * When connected to a PCI bus, such a path may be
-     * 'pci0000:00/0000:00:1a.0/usb5/5-1'.
+     * '/sys/devices/pci0000:00/0000:00:1a.0/usb5/5-1'.
      * @see enumUSBDevices to obtain valid device paths for all connected USB devices.
      */
     typedef std::string USBDevicePath;

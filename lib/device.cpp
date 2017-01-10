@@ -125,6 +125,29 @@ namespace leanux {
       return ss.str();
     }
 
+    std::string USBBus::getDescription() const {
+      std::stringstream ss;
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( path_, hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) ) {
+        //ss << "vendor=" << info.idVendor;
+        ss << "model=" << info.idProduct;
+      }
+      return ss.str();
+    }
+
+    std::string USBBus::getClass() const {
+      std::stringstream ss;
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( path_, hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) ) {
+        ss << usb::getUSBHardwareClassStr( usb::getUSBDeviceHardwareClass( path_ ) );
+      }
+      return ss.str();
+    }
+
     std::string USBInterface::getClass() const {
       std::stringstream ss;
       ss << usb::getUSBHardwareClassStr( usb::getUSBInterfaceHardwareClass( path_ ) );
@@ -1273,7 +1296,6 @@ namespace leanux {
         if ( sas_port.accept( wpath ) ) { parent = wpath; return new SASPort(sas_port); }
         if ( sas_end_device.accept( wpath ) ) { parent = wpath; return new SASEndDevice(sas_end_device); }
       }
-      //std::cout << "leafDetect fails " << path << std::endl;
       return 0;
     }
 
@@ -1287,7 +1309,6 @@ namespace leanux {
           if ( result && result->getType() != SysDevice::sdtUnknown ) {
             devices.push_front( result );
             wpath = parent;
-            //std::cout << "treeDetect leafpath=" << result->getPath() << " wpath=" << wpath << std::endl;
           } else return false;
         }
         return true;

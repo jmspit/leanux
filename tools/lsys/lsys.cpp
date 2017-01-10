@@ -408,6 +408,15 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
         return info.idProduct;
       }
     }
+    const sysdevice::USBBus* usb_bus = dynamic_cast<const sysdevice::USBBus*>(leaf);
+    if ( usb_bus ) {
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( leaf->getPath(), hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) ) {
+        return info.idProduct;
+      }
+    }
   } else if ( field == "read" ) {
     const sysdevice::BlockDevice* block_device = dynamic_cast<const sysdevice::BlockDevice*>(leaf);
     if ( block_device ) {
@@ -488,6 +497,15 @@ std::string getLeafColStr( const sysdevice::SysDevice* leaf, const std::string &
     }
     const sysdevice::USBDevice* usb_device = dynamic_cast<const sysdevice::USBDevice*>(leaf);
     if ( usb_device ) {
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( leaf->getPath(), hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) ) {
+        return info.idVendor;
+      }
+    }
+    const sysdevice::USBBus* usb_bus = dynamic_cast<const sysdevice::USBBus*>(leaf);
+    if ( usb_bus ) {
       usb::USBHardwareId hwid;
       getUSBHardwareId( leaf->getPath(), hwid );
       usb::USBHardwareInfo info;
@@ -674,6 +692,7 @@ int main( int argc, char* argv[] ) {
     registerField( "model", sysdevice::SysDevice::sdtPCIDevice );
     registerField( "model", sysdevice::SysDevice::sdtSCSIDevice );
     registerField( "model", sysdevice::SysDevice::sdtUSBDevice );
+    registerField( "model", sysdevice::SysDevice::sdtUSBBus );
     registerField( "model", sysdevice::SysDevice::sdtVirtioBlockDevice );
     registerField( "model", sysdevice::SysDevice::sdtVirtioNetDevice );
 
@@ -746,6 +765,7 @@ int main( int argc, char* argv[] ) {
 
     registerField( "vendor", sysdevice::SysDevice::sdtPCIDevice );
     registerField( "vendor", sysdevice::SysDevice::sdtUSBDevice );
+    registerField( "vendor", sysdevice::SysDevice::sdtUSBBus );
 
     registerField( "written", sysdevice::SysDevice::sdtBlock );
     registerField( "written", sysdevice::SysDevice::sdtBlockPartition );

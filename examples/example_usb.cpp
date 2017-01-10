@@ -25,11 +25,8 @@
 // sale, use or other dealings in this Software without prior written
 // authorization.
 //========================================================================
-
-//========================================================================
-//  Author: Jan-Marten Spit
-//========================================================================
 #include "usb.hpp"
+#include "device.hpp"
 #include "pci.hpp"
 #include "oops.hpp"
 #include "util.hpp"
@@ -43,20 +40,20 @@ using namespace std;
 int main() {
   try {
     leanux::init();
-    std::list<leanux::usb::USBDevicePath> paths;
+    list<leanux::usb::USBDevicePath> paths;
     leanux::usb::enumUSBDevices( paths );
-    for ( std::list<leanux::usb::USBDevicePath>::const_iterator u = paths.begin(); u != paths.end(); u++ ) {
-      std::cout << *u << std::endl;
+    for ( list<leanux::usb::USBDevicePath>::const_iterator u = paths.begin(); u != paths.end(); u++ ) {
+      cout << *u << endl;
       leanux::usb::USBHardwareId hardware;
       if ( getUSBHardwareId( *u, hardware ) ) {
         leanux::usb::USBHardwareInfo hwinfo;
-        cout << std::hex << std::setw(4) << std::setfill('0') << hardware.idVendor << ":" << std::hex << std::setw(4) << std::setfill('0') << hardware.idProduct << " = ";
+        cout << hex << setw(4) << setfill('0') << hardware.idVendor << ":" << hex << setw(4) << setfill('0') << hardware.idProduct << " = ";
         if ( leanux::usb::getUSBHardwareInfo( hardware, hwinfo ) ) {
-          cout << hwinfo.idVendor << " : " << hwinfo.idProduct << std::endl;
+          cout << hwinfo.idVendor << " : " << hwinfo.idProduct << endl;
         }
-        cout << "parent: " << leanux::usb::getParent( *u ) << std::endl;
+        cout << "parent: " << leanux::usb::getParent( *u ) << endl;
       }
-      cout << std::endl;
+      cout << endl;
     }
 
   }

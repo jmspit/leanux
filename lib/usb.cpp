@@ -85,7 +85,7 @@ namespace leanux {
             std::string path = sysdevice::sysbus_root + "/usb/devices/" + (std::string)dir->d_name;
             resolved_path = util::realPath( path );
             if ( resolved_path.length() > 13 ) {
-              paths.push_back( resolved_path );
+              paths.push_back( resolved_path.substr( sysdevice::sysdevice_root.length() ) );
             }
           }
         }
@@ -94,16 +94,13 @@ namespace leanux {
     }
 
     USBHardwareClass getUSBDeviceHardwareClass( const USBDevicePath &path ) {
-      std::string device = sysdevice::sysdevice_root + "/" + path;
+      std::string device =  sysdevice::sysdevice_root + "/" + path;
       if ( !util::fileReadAccess( device + "/bDeviceClass" ) ) return usbVendorSpecific;
       else return (USBHardwareClass)util::fileReadHexString( device + "/bDeviceClass" );
     }
 
     USBHardwareClass getUSBInterfaceHardwareClass( const USBDevicePath &path ) {
       std::string device = sysdevice::sysdevice_root + "/" + path;
-      //std::cout << path << std::endl;
-      //if ( !util::fileReadAccess( device + "/bInterfaceSubClass" ) ) return usbVendorSpecific;
-      //else
       return (USBHardwareClass)util::fileReadHexString( device + "/bInterfaceSubClass" );
     }
 

@@ -34,19 +34,19 @@
  * ncurses based real time linux performance monitoring tool - c++ source file.
  * presentation data definiton.
  */
- 
-#include <algorithm> 
-#include <string> 
-#include <vector> 
-#include <math.h> 
+
+#include <algorithm>
+#include <string>
+#include <vector>
+#include <math.h>
 #include "cpu.hpp"
 
 namespace leanux {
 
   namespace tools {
-  
+
     namespace lmon {
-      
+
       /**
        * Utility class for SysView::makeCPUBar.
        * The CPU character or symbol is the unique key.
@@ -89,8 +89,8 @@ namespace leanux {
 
           /** number of attributed cpu characters. */
           int height_;
-      };         
-    
+      };
+
       std::string makeCPUBar( const cpu::CPUStat &stat, double maxvalue, int maxlines ) {
         std::string s = "";
 
@@ -116,12 +116,12 @@ namespace leanux {
         };
         sort( s.begin(), s.end() );
         return s;
-      }  
-      
-    
+      }
+
+
     }; //namespace lmon
 
   }; //namespace tools
 
 }; //namespace leanux
-      
+

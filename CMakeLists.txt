@@ -49,6 +49,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/RE
 
 # include per tool constants
 include( tools/lard/lard.cmake )
+include( tools/lmon/lmon.cmake )
 
 # for reuse
 function(deb_monoinstall)

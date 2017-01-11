@@ -180,7 +180,7 @@ namespace leanux {
      * @return subdirectory or empty std::string if no match.
      */
     std::string findDir( const std::string& path, const std::string& match );
-    
+
     /**
      * Return current local time in ISO format; YYYY-MM-DD HH24:MI:SS
      * @return a string with the local time
@@ -188,7 +188,7 @@ namespace leanux {
     std::string localStrISODateTime();
     std::string localStrISODateTime(time_t);
     std::string localStrISOTime();
-    std::string localStrISOTime(time_t);    
+    std::string localStrISOTime(time_t);
 
     /**
      * Simple singleton tracing class.
@@ -317,6 +317,6 @@ namespace leanux {
 
   } //namespace util
 
-} //namespace std
+} //namespace leanux
 
 #endif

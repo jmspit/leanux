@@ -600,7 +600,7 @@ namespace leanux {
         if ( options.device == "" ) {
           std::list<sysdevice::SysDevicePath> devices;
           sysdevice::enumDevices( devices );
-          devices.sort( stlhexnatstrlt );
+          devices.sort( util::stlhexnatstrlt );
           listDevices( devices, type_map[options.opt_t] );
         } else {
           std::string sysfs = fullSysDevice(options.device);

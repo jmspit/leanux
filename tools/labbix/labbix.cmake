@@ -1,1 +1,1 @@
-set( LABBIX_DESCR "GNU/Linux Zabbix UserParameter disk extension" )
+set( LABBIX_DESCR "GNU/Linux Zabbix UserParameter disk monitoring extension" )

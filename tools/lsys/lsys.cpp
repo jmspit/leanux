@@ -29,6 +29,10 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * lsys tool c++ source file.
+ */
 
 #include "oops.hpp"
 #include "device.hpp"

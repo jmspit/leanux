@@ -7,6 +7,11 @@
 #include <block.hpp>
 #include <system.hpp>
 
+/**
+ * @file
+ * labbix tool c++ source file.
+ */
+
 namespace leanux {
   namespace tools {
     namespace labbix {

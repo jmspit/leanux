@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * lar tool snapshot c++ source file.
+ */
+
 #include "lar_snap.hpp"
 #include "configfile.hpp"
 #include "system.hpp"

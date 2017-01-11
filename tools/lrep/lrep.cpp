@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * lrep tool c++ source file.
+ */
+
 #include <list>
 #include <string>
 #include <iostream>

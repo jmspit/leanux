@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * lar tool snapshot c++ header file.
+ */
+
 #ifndef LEANUX_LAR_SNAP
 #define LEANUX_LAR_SNAP
 

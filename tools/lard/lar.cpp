@@ -59,7 +59,7 @@
 
 /**
  * @file
- * daemon that logs performance data to a sqlite database
+ * lar tool c++ source file.
  */
 
 

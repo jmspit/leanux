@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * lar tool sqlite3 database schema c++ source file.
+ */
+
 #include "lar_schema.hpp"
 #include "lar_snap.hpp"
 #include "oops.hpp"

@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * lar tool sqlite3 database schema c++ header file.
+ */
+
 #ifndef LEANUX_LAR_SCHEMA
 #define LEANUX_LAR_SCHEMA
 

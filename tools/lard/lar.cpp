@@ -394,7 +394,7 @@ namespace leanux {
         } else return 1;
       }
 
-    }; // namespace lmon
+    }; // namespace lard
   }; // namespace tools
 }; // namespace leanux
 

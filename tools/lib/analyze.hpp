@@ -29,29 +29,39 @@
 // authorization.
 //========================================================================
 
-#ifndef LEANUX_LAR_SCHEMA
-#define LEANUX_LAR_SCHEMA
+/**
+ * @file
+ * ncurses based real time linux performance monitoring tool - c++ source file.
+ * lmon ncurses screen implementation.
+ */
 
-#include "persist.hpp"
 
 namespace leanux {
+
   namespace tools {
-    namespace lard {
 
-      void createSchema( persist::Database & );
+    namespace analyze {
 
-      void updateSchema( persist::Database & );
+      class Context {
+        public:
+        protected:
+          long snap_start;
+          long snap_end;
+      };
 
-      void applyRetention( persist::Database & );
+      class Trigger {
+        public:
+          void check( const Context &context );
+      };
 
-      void vacuumAnalyze( persist::Database & );
+      class TriggerSet {
+        public:
+          void add( const Trigger& trigger );
+          void check( const Context &context );
+      }
 
-      void shrinkDB( persist::Database &, const std::string filename );
+    }; // namespace tools
 
-      void createStatusTable( persist::Database & );
-
-    }; // namespace lard
   }; // namespace tools
-}; // namespace leanux
 
-#endif
+}; // namespace leanux

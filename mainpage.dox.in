@@ -6,7 +6,7 @@
  *
  * leanux only reports on performance and configuration data, it provides no functionality that could change the system configuration.
  *
- * Most functionality can be invoked without root privileges, but the few exceptions are @link root_access listed here @endlink.
+ * Most functionality can be invoked without root privileges, but the are @link root_access a few exceptions @endlink.
  *
  * This document is the C++ API documentation. Refer to @LEANUX_WEBSITE@ for information such as build instructions, tool
  description and precompiled package downloads.
@@ -14,6 +14,8 @@
  * @section using_section Using leanux
  *
  * The first call to leanux must be leanux::init(), failing to do so will cause erroneous results.
+ *
+ * Refer to the <a class="el" href="examples.html">examples</a> for demonstrations on how to use the code, or check the source code fro the leanux::tools.
  *
  * @section system_section Namespaces
  *
@@ -40,8 +42,11 @@
  * | leanux::tools::lmon | @LMON_DESCR@ |
  * | leanux::tools::lard | @LARD_DESCR@ |
  * | leanux::tools::lrep | @LREP_DESCR@ |
+ * | leanux::tools::lblk | @LBLK_DESCR@ |
+ * | leanux::tools::lsys | @LSYS_DESCR@ |
+ * | leanux::tools::labbix | @LABBIX_DESCR@ |
  *
- * @section build_section Building from source
+ * @section build_section Building the source
  *
  * Follow the build instructions at @LEANUX_WEBSITE@.
  *
@@ -59,4 +64,10 @@
  * @LMON_DESCR@
  * @namespace leanux::tools::lrep
  * @LREP_DESCR@
+ * @namespace leanux::tools::lblk
+ * @LBLK_DESCR@
+ * @namespace leanux::tools::lsys
+ * @LSYS_DESCR@
+ * @namespace leanux::tools::labbix
+ * @LABBIX_DESCR@
  */

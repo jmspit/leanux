@@ -50,8 +50,6 @@
 #include <algorithm>
 #include <string.h>
 
-using namespace leanux;
-
 namespace leanux {
   namespace tools {
     namespace lmon {

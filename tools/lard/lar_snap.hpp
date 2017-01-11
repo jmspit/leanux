@@ -40,161 +40,167 @@
 #include "vmem.hpp"
 #include "persist.hpp"
 
-using namespace leanux;
+namespace leanux {
+  namespace tools {
+    namespace lard {
 
-void sysLog( unsigned short level, unsigned short limit, const std::string &msg );
+      void sysLog( unsigned short level, unsigned short limit, const std::string &msg );
 
-const unsigned short LOG_ERR = 0;
-const unsigned short LOG_WARN = 1;
-const unsigned short LOG_STAT = 2;
-const unsigned short LOG_INFO = 3;
-const unsigned short LOG_DEBUG = 4;
+      const unsigned short LOG_ERR = 0;
+      const unsigned short LOG_WARN = 1;
+      const unsigned short LOG_STAT = 2;
+      const unsigned short LOG_INFO = 3;
+      const unsigned short LOG_DEBUG = 4;
 
-typedef long snapid;
+      typedef long snapid;
 
-class Snapshot {
-  public:
-    Snapshot() {};
-    virtual ~Snapshot() {};
-    virtual void startSnap() = 0;
-    virtual void stopSnap() = 0;
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds ) = 0;
-  protected:
-};
+      class Snapshot {
+        public:
+          Snapshot() {};
+          virtual ~Snapshot() {};
+          virtual void startSnap() = 0;
+          virtual void stopSnap() = 0;
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds ) = 0;
+        protected:
+      };
 
-class TimeSnap: public Snapshot {
-  public:
-    TimeSnap() : Snapshot() { istart_ = 0; istop_ = 0; };
-    virtual ~TimeSnap() {};
-    virtual void startSnap() { istart_ = time(0); };
-    virtual void stopSnap()  { istop_ = time(0); };
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+      class TimeSnap: public Snapshot {
+        public:
+          TimeSnap() : Snapshot() { istart_ = 0; istop_ = 0; };
+          virtual ~TimeSnap() {};
+          virtual void startSnap() { istart_ = time(0); };
+          virtual void stopSnap()  { istop_ = time(0); };
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
 
-    long getSeconds() const { return istop_ - istart_; };
-  protected:
-    time_t istart_;
-    time_t istop_;
-};
+          long getSeconds() const { return istop_ - istart_; };
+        protected:
+          time_t istart_;
+          time_t istop_;
+      };
 
-class IOSnap : public Snapshot {
-  public:
-    IOSnap() : Snapshot() {};
-    virtual ~IOSnap() {};
+      class IOSnap : public Snapshot {
+        public:
+          IOSnap() : Snapshot() {};
+          virtual ~IOSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
 
-  protected:
-    block::DeviceStatsMap stat1_;
-    block::DeviceStatsMap stat2_;
-};
+        protected:
+          block::DeviceStatsMap stat1_;
+          block::DeviceStatsMap stat2_;
+      };
 
-class CPUSnap : public Snapshot {
-  public:
-    CPUSnap() : Snapshot() {};
-    virtual ~CPUSnap() {};
+      class CPUSnap : public Snapshot {
+        public:
+          CPUSnap() : Snapshot() {};
+          virtual ~CPUSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-    cpu::CPUStatsMap stat1_;
-    cpu::CPUStatsMap stat2_;
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          cpu::CPUStatsMap stat1_;
+          cpu::CPUStatsMap stat2_;
 
-};
+      };
 
-class SchedSnap : public Snapshot {
-  public:
-    SchedSnap() : Snapshot() {};
-    virtual ~SchedSnap() {};
+      class SchedSnap : public Snapshot {
+        public:
+          SchedSnap() : Snapshot() {};
+          virtual ~SchedSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-    cpu::SchedInfo sched1_;
-    cpu::SchedInfo sched2_;
-    cpu::LoadAvg load1_;
-    cpu::LoadAvg load2_;
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          cpu::SchedInfo sched1_;
+          cpu::SchedInfo sched2_;
+          cpu::LoadAvg load1_;
+          cpu::LoadAvg load2_;
 
-};
+      };
 
-class NetSnap : public Snapshot {
-  public:
-    NetSnap() : Snapshot() {};
-    virtual ~NetSnap() {};
+      class NetSnap : public Snapshot {
+        public:
+          NetSnap() : Snapshot() {};
+          virtual ~NetSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-    net::NetStatDeviceMap stat1_;
-    net::NetStatDeviceMap stat2_;
-};
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          net::NetStatDeviceMap stat1_;
+          net::NetStatDeviceMap stat2_;
+      };
 
-class VMSnap : public Snapshot {
-  public:
-    VMSnap() : Snapshot() {};
-    virtual ~VMSnap() {};
+      class VMSnap : public Snapshot {
+        public:
+          VMSnap() : Snapshot() {};
+          virtual ~VMSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-    vmem::VMStat stat1_;
-    vmem::VMStat stat2_;
-};
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          vmem::VMStat stat1_;
+          vmem::VMStat stat2_;
+      };
 
-class ProcSnap : public Snapshot {
-  public:
-    ProcSnap() : Snapshot() {};
-    virtual ~ProcSnap() {};
+      class ProcSnap : public Snapshot {
+        public:
+          ProcSnap() : Snapshot() {};
+          virtual ~ProcSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-    process::ProcPidStatMap snap1_;
-    process::ProcPidStatMap snap2_;
-};
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          process::ProcPidStatMap snap1_;
+          process::ProcPidStatMap snap2_;
+      };
 
-class ResSnap : public Snapshot {
-  public:
-    ResSnap() : Snapshot() {};
-    virtual ~ResSnap() {};
+      class ResSnap : public Snapshot {
+        public:
+          ResSnap() : Snapshot() {};
+          virtual ~ResSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-};
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+      };
 
-class MountSnap : public Snapshot {
-  public:
-    MountSnap() : Snapshot() {};
-    virtual ~MountSnap() {};
+      class MountSnap : public Snapshot {
+        public:
+          MountSnap() : Snapshot() {};
+          virtual ~MountSnap() {};
 
-    virtual void startSnap();
-    virtual void stopSnap();
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-    static std::map<std::string,block::MajorMinor> devicefilecache_;
-    block::DeviceStatsMap stat1_;
-    block::DeviceStatsMap stat2_;
-    std::map<std::string,unsigned long> fsbytes1_;
-    std::map<std::string,unsigned long> fsbytes2_;
-};
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          static std::map<std::string,block::MajorMinor> devicefilecache_;
+          block::DeviceStatsMap stat1_;
+          block::DeviceStatsMap stat2_;
+          std::map<std::string,unsigned long> fsbytes1_;
+          std::map<std::string,unsigned long> fsbytes2_;
+      };
 
-class TCPEstaSnap : public Snapshot {
-  public:
-    TCPEstaSnap() : Snapshot() {};
-    virtual ~TCPEstaSnap() {};
+      class TCPEstaSnap : public Snapshot {
+        public:
+          TCPEstaSnap() : Snapshot() {};
+          virtual ~TCPEstaSnap() {};
 
-    virtual void startSnap() {};
-    virtual void stopSnap() {};
-    virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
-  protected:
-};
+          virtual void startSnap() {};
+          virtual void stopSnap() {};
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+      };
+
+    }; // namespace lard
+  }; // namespace tools
+}; // namespace leanux
 
 #endif

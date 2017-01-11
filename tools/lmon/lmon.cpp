@@ -31,8 +31,7 @@
 
 /**
  * @file
- * ncurses based real time linux performance monitoring tool - c++ source file.
- * entry point, exception handling, main loop, help.
+ * ncurses based realtime and historical performance viewer
  */
 #include <iostream>
 #include <iomanip>

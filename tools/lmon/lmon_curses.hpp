@@ -61,9 +61,6 @@ namespace leanux {
 
   namespace tools {
 
-    /**
-     * ncurses/terminal based Linux performance monitor.
-     */
     namespace lmon {
 
       class Screen;

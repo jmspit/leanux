@@ -4,42 +4,42 @@
  * @section intro_section Introduction
  * @LEANUX_SHORT_DESC@.
  *
- * leanux only reports, it provides no functionality that would change the system configuration.
+ * leanux only reports on performance and configuration data, it provides no functionality that could change the system configuration.
  *
  * Most functionality can be invoked without root privileges, but the few exceptions are @link root_access listed here @endlink.
  *
- * This document is the C++ API documentation. Refer to @LEANUX_WEBSITE@ for more information, like build instructions, tool
- description and precompiled packages.
+ * This document is the C++ API documentation. Refer to @LEANUX_WEBSITE@ for information such as build instructions, tool
+ description and precompiled package downloads.
  *
  * @section using_section Using leanux
  *
- * The first function invoked from leanux <strong>must</strong> be leanux::init().
+ * The first call to leanux must be leanux::init(), failing to do so will cause erroneous results.
  *
- * @section system_section System namespace
+ * @section system_section Namespaces
  *
- * The leanux::system namespace provides basic system and kernel configuration,
- * such as leanux::system::getChassisType, leanux::system::getKernelVersion and so on.
+ * The ::leanux namespace contains several subnamespaces
  *
- * @section cpu_section CPU namespace
- * The leanux::cpu namespace contains CPU related functions and datastructures.
+ * | namespace | contains |
+ * |---|---|
+ * | leanux::block | access to block device configuration and performance data |
+ * | leanux::cpu   | accress to cpu configuration and performance data |
+ * | leanux::net   | accress to network configuration and performance data |
+ * | leanux::pci   | accress to pci configuration and performance data |
+ * | leanux::persist | library around SQLite3, which is used as storage backend by lard |
+ * | leanux::process | accress to process operation and performance data |
+ * | leanux::sysdevice | access to device (/sys/devices) configuration and performance data |
+ * | leanux::system | access to system configuration and operation data |
+ * | leanux::tools | contains several tools that use the leanux library |
+ * | leanux::usb | access to usb configuration and operation data |
+ * | leanux::util | utility clases and functions |
+ * | leanux::vmem | access to (virtual) memory configuration and operation data |
  *
- * - CPU topology, the number of physcial CPUs, CPU cores and logical CPUs (leanux::cpu::CPUTopology).
- * - CPU model, operating frequency, bogomips (leanux::cpu::CPUInfo).
- * - CPU usage statistics (leanux::cpu::getCPUStats).
- * - number of running and blocked processes, total number of context switches and forks (leanux::cpu::getSchedInfo).
- *
- * @section block_section Block namespace
- *
- * The leanux::block namespace provides configuration and performance data on various types of block devices and filesystems.
- *
- * @section net_section Net namespace
- * The leanux::net namespace retrieves network configuration and statistics.
- * @section process_section Process namespace
- *
- * The leanux::process namespace provides information on processes,
- *
- * - get statistics on a process with leanux::process::getProcPidStat
- * - get statistics on all processes with leanux::process::getAllProcPidStat
+ * The tools are
+ * | tool | description |
+ * |---|---|
+ * | leanux::tools::lmon | @LMON_DESCR@ |
+ * | leanux::tools::lard | @LARD_DESCR@ |
+ * | leanux::tools::lrep | @LREP_DESCR@ |
  *
  * @section build_section Building from source
  *
@@ -53,4 +53,10 @@
  *
  * @namespace leanux::tools
  * tools build on leanux.
+ * @namespace leanux::tools::lard
+ * @LARD_DESCR@
+ * @namespace leanux::tools::lmon
+ * @LMON_DESCR@
+ * @namespace leanux::tools::lrep
+ * @LREP_DESCR@
  */

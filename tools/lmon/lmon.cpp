@@ -60,7 +60,7 @@ namespace leanux {
       /**
        * The global Screen.
        */
-      tools::lmon::Screen *screen = 0;
+      Screen *screen = 0;
 
       /**
        * handle signals such a CTRL-C.
@@ -69,6 +69,7 @@ namespace leanux {
         signal(sig, SIG_IGN);
         if ( screen ) screen->Stop();
       }
+
 
       void printHelp() {
         std::cout << "lmon - Linux performance viewer." << std::endl;

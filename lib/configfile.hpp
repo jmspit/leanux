@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file configfile.hpp
+ * leanux::util::ConfigFile c++ header file.
+ */
+
 #ifndef LEANUX_CONFIG_FILE
 #define LEANUX_CONFIG_FILE
 

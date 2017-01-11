@@ -29,6 +29,12 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file configfile.cpp
+ * leanux::util::ConfigFile c++ source file.
+ */
+
+
 #include "configfile.hpp"
 #include "oops.hpp"
 #include "util.hpp"

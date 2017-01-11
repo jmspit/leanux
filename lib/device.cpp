@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * leanux::SysDevice c++ source file.
+ */
+
 #include "device.hpp"
 #include "util.hpp"
 #include "oops.hpp"

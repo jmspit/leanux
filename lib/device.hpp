@@ -33,6 +33,7 @@
  * @file
  * leanux::SysDevice c++ header file.
  */
+
 #ifndef LEANUX_DEVICE_HPP
 #define LEANUX_DEVICE_HPP
 

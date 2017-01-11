@@ -40,6 +40,11 @@
 #include <math.h>
 #include <string.h>
 
+/**
+ * @file
+ * SQLite3 wrapper c++ source file.
+ */
+
 namespace leanux {
 
   namespace persist {
@@ -486,10 +491,10 @@ namespace leanux {
       }
       return r == SQLITE_ROW;
     }
-    
+
     bool Query::isNull( int col ) const {
       return sqlite3_column_type( stmt_, col ) == SQLITE_NULL;
-    }    
+    }
 
     int Query::getInt( int col ) const {
       return sqlite3_column_int( stmt_, col );

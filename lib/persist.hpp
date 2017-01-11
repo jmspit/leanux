@@ -29,6 +29,11 @@
 // authorization.
 //========================================================================
 
+/**
+ * @file
+ * SQLite3 wrapper c++ header file.
+ */
+
 #ifndef LEANUX_PERSIST_HPP
 #define LEANUX_PERSIST_HPP
 

@@ -46,6 +46,7 @@ set( ${PROJECTUC}_SRC_URI "${${PROJECTUC}_SRC_URI_BASE}/${PROJECT}-${${PROJECT}_
 
 # configure README
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README @ONLY)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/INSTALL ${CMAKE_CURRENT_BINARY_DIR}/INSTALL @ONLY)
 
 # include per tool constants
 include( tools/lard/lard.cmake )

@@ -113,7 +113,7 @@
           stat.stime = stime / (double)leanux::system::getUserHz();
           stat.cutime = cutime / (double)leanux::system::getUserHz();
           stat.cstime = cstime / (double)leanux::system::getUserHz();
-          stat.delayacct_blkio_ticks = delayacct_blkio_ticks / (double)leanux::system::getUserHz();          
+          stat.delayacct_blkio_ticks = delayacct_blkio_ticks / (double)leanux::system::getUserHz();
         } else throw Oops( __FILE__, __LINE__, "parse failure on " + path.str() );
       } else return false;
       return true;

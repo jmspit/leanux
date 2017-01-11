@@ -351,7 +351,7 @@ namespace leanux {
       closedir( d );
       return result;
     }
-    
+
     std::string localStrISODateTime() {
       time_t t;
       char out[200];
@@ -360,18 +360,18 @@ namespace leanux {
       t = time(NULL);
       tmp = localtime( &t );
       strftime( out, sizeof(out), "%F %T", tmp );
-      return out;      
-    }  
-    
+      return out;
+    }
+
     std::string localStrISODateTime( time_t t ) {
       char out[200];
       memset( out, 0, 200 );
       struct tm *tmp;
       tmp = localtime( &t );
       strftime( out, sizeof(out), "%F %T", tmp );
-      return out;      
+      return out;
     }
-    
+
     std::string localStrISOTime() {
       time_t t;
       char out[200];
@@ -380,17 +380,17 @@ namespace leanux {
       t = time(NULL);
       tmp = localtime( &t );
       strftime( out, sizeof(out), "%T", tmp );
-      return out;      
-    }  
-    
+      return out;
+    }
+
     std::string localStrISOTime( time_t t ) {
       char out[200];
       memset( out, 0, 200 );
       struct tm *tmp;
       tmp = localtime( &t );
       strftime( out, sizeof(out), "%T", tmp );
-      return out;      
-    }          
+      return out;
+    }
 
     Tracer* Tracer::tracer_ = 0;
 

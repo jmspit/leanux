@@ -42,9 +42,9 @@
 namespace leanux {
 
   namespace tools {
-  
-    namespace lmon {      
-            
+
+    namespace lmon {
+
       /**
        * Provides data by real time sampling.
        */
@@ -54,12 +54,12 @@ namespace leanux {
            * Constructor
            */
           RealtimeSampler();
-          
+
           /**
            * Sample a snapshot.
            */
           void sample( int cpubarheight );
-          
+
           /**
            * Return snapshot XSysView data.
            */
@@ -67,9 +67,9 @@ namespace leanux {
           const XIOView& getXIOView() const { return xioview_; };
           const XNetView& getXNetView() const { return xnetview_; };
           const XProcView& getXProcView() const { return xprocview_; };
-          
+
           void resetCPUTrail() { xsysview_.cpupast.clear(); };
-          
+
         protected:
           void sampleXSysView( int cpubarheight );
           void sampleXIOView();
@@ -79,72 +79,72 @@ namespace leanux {
           XSysView xsysview_;
           XNetView xnetview_;
           XProcView xprocview_;
-          
+
           /** Earlier CPUStatsMap snapshot. */
           cpu::CPUStatsMap cpustat1_;
 
           /** Later CPUStatsMap snapshot. */
           cpu::CPUStatsMap cpustat2_;
-          
+
           /** Earlier SchedInfo snapshot. */
           cpu::SchedInfo   sched1_;
 
           /** Later SchedInfo snapshot. */
-          cpu::SchedInfo   sched2_;   
-          
+          cpu::SchedInfo   sched2_;
+
           /** Earlier VMStat snapshot. */
           vmem::VMStat vmstat1_;
 
           /** Later VMStat snapshot. */
-          vmem::VMStat vmstat2_;         
-          
+          vmem::VMStat vmstat2_;
+
           /** List of SwapInfo. */
           std::list<vmem::SwapInfo> swaps_;
-          
+
           /** Earlier DeviceStatsMap snapshot. */
           block::DeviceStatsMap diskstats1_;
 
           /** Later DeviceStatsMap snapshot. */
-          block::DeviceStatsMap diskstats2_;                
-          
-          
+          block::DeviceStatsMap diskstats2_;
+
+
           unsigned long mounted_bytes_1_;
 
-          unsigned long mounted_bytes_2_;             
-          
+          unsigned long mounted_bytes_2_;
+
           /** Delta of stat1_ and stat2_. */
-          leanux::cpu::CPUStatsMap delta_;     
-          
+          leanux::cpu::CPUStatsMap delta_;
+
           /** cpu model info */
           cpu::CPUInfo cpuinfo_;
-          
+
           /** cache of device special files to MajorMinor */
           static std::map<std::string,block::MajorMinor> devicefilecache_;
-          
+
           /** earlier snap. */
           net::NetStatDeviceMap netsnap1_;
 
           /** later snap. */
-          net::NetStatDeviceMap netsnap2_;  
-          
+          net::NetStatDeviceMap netsnap2_;
+
           /** earlier snap. */
           process::ProcPidStatMap procsnap1_;
 
           /** later snap. */
-          process::ProcPidStatMap procsnap2_;           
-          
+          process::ProcPidStatMap procsnap2_;
+
           /** number of procs on the system when sampling disabled. */
           unsigned long disabled_procs_;
 
           /** maximum sample duration in seconds before being disabled. */
-          static const double max_proc_sample_time;                 
-          
+          static const double max_proc_sample_time;
+
       };
-  
+
     }; //namespace lmon
 
   }; //namespace tools
 
 }; //namespace leanux
 
-#endif  
+#endif

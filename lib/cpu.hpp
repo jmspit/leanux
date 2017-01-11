@@ -72,7 +72,7 @@ namespace leanux {
      * @param topology the CPUTopology to fill.
      */
     void getCPUTopology( CPUTopology &topology );
-    
+
     /**
      * get the physical id of the logical CPU from
      * /sys/devices/system/cpu/cpuX/physical_package_id.
@@ -86,7 +86,7 @@ namespace leanux {
      * /sys/devices/system/cpu/cpuX/core_id.
      * @param logicalcpu the logical CPU number (starting from zero).
      * @return the core id (starting from zero).
-     */    
+     */
     unsigned long getCPUCoreId( unsigned long logicalcpu );
 
     /**

@@ -122,30 +122,3 @@ int main() {
   }
   return 0;
 }
-
-
-//CPU topology: 1 physical, 4 cores, 8 logical
-
-//CPU info:
-//cpu model  : Intel(R) Core(TM) i7-2600K CPU @ 3.40GHz
-//cpu_mhz    : 1600
-//bogomips   : 6822.45
-
-
-//5, 10 and 15 minute load averages:
-//0.42 0.33 0.22
-
-//processes running: 1
-//processes blocked: 0
-
-//CPU usage:
-//CPU#       user    nice  system    idle  iowait     irq softirq   steal   guest  guest_nice
-//CPU0       1.0%    0.0%    0.0%   99.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU1       0.0%    0.0%    0.0%   95.0%    3.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU2       0.0%    0.0%    0.0%  100.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU3       0.0%    0.0%    1.0%   99.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU4       0.0%    0.0%    1.0%   98.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU5       0.0%    0.0%    0.0%  100.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU6       0.0%    0.0%    0.0%  100.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-//CPU7       0.0%    1.0%    0.0%   99.0%    0.0%    0.0%    0.0%    0.0%    0.0%        0.0%
-

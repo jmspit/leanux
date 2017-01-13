@@ -96,21 +96,22 @@ namespace leanux {
       return ss.str();
     }
 
-    /**
-     * @todo extremely sloppy!
-     */
     PCIAddress decodeEBDF( const std::string &s ) {
       PCIAddress a = NullPCIAddress;
       std::stringstream ss;
       ss.str(s);
       ss >> std::hex;
       ss >> a.domain;
+      if ( !ss.good() ) return NullPCIAddress;
       ss.get();
       ss >> a.bus;
+      if ( !ss.good() ) return NullPCIAddress;
       ss.get();
       ss >> a.device;
+      if ( !ss.good() ) return NullPCIAddress;
       ss.get();
       ss >> a.function;
+      if ( !ss.good() ) return NullPCIAddress;
       return a;
     }
 

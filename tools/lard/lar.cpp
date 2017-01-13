@@ -67,7 +67,10 @@ namespace leanux {
   namespace tools {
     namespace lard {
 
-
+      /**
+       * when this becomes true, lard stops.
+       * @see interrupt_handler( int sig ) and mainLoop()
+       */
       bool stopped = false;
 
       bool was_busy = false;
@@ -171,10 +174,7 @@ namespace leanux {
 
       void mainLoop() {
 
-        /**
-         * @todo make this a config param, seems to work
-         */
-        persist::Database::softHeapLimit(util::ConfigFile::getConfig()->getIntValue("LOG_LEVEL"));
+        persist::Database::softHeapLimit(util::ConfigFile::getConfig()->getIntValue("SQLITE_SOFT_HEAPLIMIT"));
 
         initDB();
         leanux::persist::Database db( options.database, wait_log_handler );

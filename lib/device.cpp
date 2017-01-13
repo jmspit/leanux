@@ -1352,9 +1352,6 @@ namespace leanux {
       }
     }
 
-    /**
-     * @todo improve
-     */
     std::string SysDevice::getDriver() const {
       std::string rp = util::realPath( sysdevice_root + "/" + path_ + "/driver" );
       if ( util::directoryExists( rp ) ) {

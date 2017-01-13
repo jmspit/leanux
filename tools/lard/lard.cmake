@@ -38,6 +38,10 @@ set( LARD_CONF_MAINTENANCE_INTERVAL_DEFAULT "120" )
 set( LARD_CONF_MAINTENANCE_INTERVAL_DESCR "maintenance (purge) interval in minutes" )
 set( LARD_CONF_MAINTENANCE_INTERVAL_COMMENT "each maintenance interval snapshots that exceed either MAX_DB_SIZE or RETAIN_DAYS are removed, and the database is vacuumed and analyzed" )
 
+set( LARD_CONF_SQLITE_SOFT_HEAPLIMIT_DEFAULT "4194304" )
+set( LARD_CONF_SQLITE_SOFT_HEAPLIMIT_DESCR "soft limit for the SQLite heap" )
+set( LARD_CONF_SQLITE_SOFT_HEAPLIMIT_COMMENT "SQLite will try to stay below this limit. Operations such as hash joins and sorts benefit from adequate memory" )
+
 set( LARD_SYSDB_PATH "/var/lib/lard" )
 set( LARD_SYSDB_FILE "${LARD_SYSDB_PATH}/lard.db" )
 set( LARD_SYSCONF_DIR "/etc/lard" )

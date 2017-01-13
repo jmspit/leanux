@@ -174,7 +174,7 @@ namespace leanux {
         /**
          * @todo make this a config param, seems to work
          */
-        persist::Database::softHeapLimit(4*1024*1024);
+        persist::Database::softHeapLimit(util::ConfigFile::getConfig()->getIntValue("LOG_LEVEL"));
 
         initDB();
         leanux::persist::Database db( options.database, wait_log_handler );
@@ -376,6 +376,7 @@ namespace leanux {
             util::ConfigFile::setDefault( "SNAPSHOT_INTERVAL", LARD_CONF_SNAPSHOT_INTERVAL_DEFAULT, LARD_CONF_SNAPSHOT_INTERVAL_DESCR, LARD_CONF_SNAPSHOT_INTERVAL_COMMENT );
             util::ConfigFile::setDefault( "MAINTENANCE_INTERVAL", LARD_CONF_MAINTENANCE_INTERVAL_DEFAULT, LARD_CONF_MAINTENANCE_INTERVAL_DESCR, LARD_CONF_MAINTENANCE_INTERVAL_COMMENT );
             util::ConfigFile::setDefault( "LOG_LEVEL", LARD_CONF_LOG_LEVEL_DEFAULT, LARD_CONF_LOG_LEVEL_DESCR, LARD_CONF_LOG_LEVEL_COMMENT );
+            util::ConfigFile::setDefault( "SQLITE_SOFT_HEAPLIMIT", LARD_CONF_SQLITE_SOFT_HEAPLIMIT_DEFAULT, LARD_CONF_SQLITE_SOFT_HEAPLIMIT_DESCR, LARD_CONF_SQLITE_SOFT_HEAPLIMIT_COMMENT );
             util::ConfigFile::setConfig( "lard", options.config );
             util::ConfigFile::getConfig()->write();
 

@@ -96,7 +96,6 @@ int main( int argc, char* argv[] ) {
             cout << "          : read  await=" << (double)stats.read_ms / stats.reads << "ms" << endl;
             cout << "          : write await=" << (double)stats.write_ms / (stats.writes) << "ms" << endl;
             cout << "          : svctm      =" << (double)stats.io_ms / (stats.writes+stats.reads) << "ms" << endl;
-            cout << "          : %util      =" << (double)stats.io_ms/1000 / mm.getUptime() *100 << endl;
           } else
             cout << " unused" << endl;
         }

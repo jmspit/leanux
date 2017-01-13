@@ -681,13 +681,6 @@ namespace leanux {
         void getSlaves( std::list<std::string> &slaves ) const;
 
         /**
-         * @todo this should go - unreliable
-         * Get the uptime for a block device.
-         * @return the uptime of the device in seconds.
-         */
-        double getUptime() const;
-
-        /**
          * get performance statistics for the block device specified by MajorMinor.
          * note that all numbers are totals since boot.
          * @param stats the statistics to populate.

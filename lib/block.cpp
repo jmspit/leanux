@@ -1121,16 +1121,6 @@ namespace leanux {
       closedir( d );
     }
 
-    double MajorMinor::getUptime() const {
-      struct timeval t;
-      gettimeofday( &t, NULL );
-      std::string devfile = getDeviceFileByMajorMinor(*this);
-      struct stat devstat;
-      if ( !stat( devfile.c_str(), &devstat ) ) {
-        return (double)(t.tv_sec-devstat.st_mtim.tv_sec) + (double)((t.tv_usec*1000.0-devstat.st_mtim.tv_nsec)/1.0E9);
-      } else throw Oops( __FILE__, __LINE__, "cannot stat device file '" + devfile + "'" );
-    }
-
     /**
      * @todo can be fetched more efficiently from sysfs
      */

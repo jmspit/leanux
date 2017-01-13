@@ -200,7 +200,6 @@ namespace leanux {
           tab.addColumn( "dev", false );
           tab.addColumn( "class", false );
           tab.addColumn( "size" );
-          tab.addColumn( "util" );
           tab.addColumn( "svct" );
           tab.addColumn( "r/(r+w)" );
           tab.addColumn( "description", false );
@@ -220,7 +219,6 @@ namespace leanux {
 
         block::DeviceStats stats;
         if ( mm.getStats( stats ) ) {
-          tab.appendString( "util", util::NumStr( (stats.io_ms/10) / mm.getUptime() ) );
           if ( stats.reads+stats.writes > 0 ) {
             tab.appendString( "svct", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
             tab.appendString( "r/(r+w)", util::NumStr( (double)stats.reads/(double)(stats.reads+stats.writes) ) );
@@ -229,7 +227,6 @@ namespace leanux {
             tab.appendString( "r/(r+w)", " " );
           }
         } else {
-          tab.appendString( "util", " " );
           tab.appendString( "svct", " " );
           tab.appendString( "r/(r+w)", " " );
         }
@@ -258,7 +255,6 @@ namespace leanux {
           tab.addColumn( "dev", false );
           tab.addColumn( "class", false );
           tab.addColumn( "size" );
-          tab.addColumn( "util" );
           tab.addColumn( "svct" );
           tab.addColumn( "r/(r+w)" );
           tab.addColumn( "description", false );
@@ -277,7 +273,6 @@ namespace leanux {
 
         block::DeviceStats stats;
         if ( mm.getStats( stats ) ) {
-          tab.appendString( "util", util::NumStr( (stats.io_ms/10) / mm.getUptime() ) );
           if ( stats.reads+stats.writes > 0 ) {
             tab.appendString( "svct", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
             tab.appendString( "r/(r+w)", util::NumStr( (double)stats.reads/(double)(stats.reads+stats.writes) ) );
@@ -286,7 +281,6 @@ namespace leanux {
             tab.appendString( "r/(r+w)", " " );
           }
         } else {
-          tab.appendString( "util", " " );
           tab.appendString( "svct", " " );
           tab.appendString( "r/(r+w)", " " );
         }
@@ -391,8 +385,6 @@ namespace leanux {
         table.addColumn( "type", false );
         table.addColumn( "sect" );
         table.addColumn( "wwn", false );
-        //table.addColumn( "kmod", false );
-        table.addColumn( "util" );
         table.addColumn( "svct" );
         table.addColumn( "r/(r+w)" );
         for ( std::list<block::MajorMinor>::const_iterator i = devices.begin(); i != devices.end(); i++ ) {
@@ -415,15 +407,12 @@ namespace leanux {
               table.appendString( "sect", util::ByteStr( (*i).getSectorSize(), 3 ) );
               table.appendString( "wwn", (*i).getWWN() );
 
-              //table.appendString( "kmod", getKernelModule( *i ) );
               block::DeviceStats stats;
               if ( (*i).getStats( stats ) ) {
                 if ( stats.reads+stats.writes > 0 ) {
-                  table.appendString( "util", util::NumStr( (stats.io_ms/10) / (*i).getUptime() ) );
                   table.appendString( "svct", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
                   table.appendString( "r/(r+w)", util::NumStr( (double)stats.reads/(double)(stats.reads+stats.writes) ) );
                 } else {
-                  table.appendString( "util", " " );
                   table.appendString( "svct", " " );
                   table.appendString( "r/(r+w)", "" );
                 }
@@ -583,9 +572,6 @@ namespace leanux {
         tab.appendString( "property", "fs use" );
         tab.appendString( "value", mm.getFSUsage() );
 
-        tab.appendString( "property", "device uptime" );
-        tab.appendString( "value", util::TimeStrSec( mm.getUptime() ) );
-
         std::list<std::string> aliases;
         mm.getAliases( aliases );
         for ( std::list<std::string>::const_iterator alias = aliases.begin(); alias != aliases.end(); alias++ ) {
@@ -596,8 +582,6 @@ namespace leanux {
         block::DeviceStats stats;
         if ( mm.getStats( stats ) ) {
           if ( stats.reads+stats.writes > 0 ) {
-            tab.appendString( "property", "%util" );
-            tab.appendString( "value", util::NumStr( (stats.io_ms/10.0) / mm.getUptime(), 3 ) );
             tab.appendString( "property", "service time" );
             tab.appendString( "value", util::TimeStrSec( (stats.io_ms/1000.0) / (double)(stats.reads+stats.writes) ) );
             tab.appendString( "property", "r/(r+w) ratio" );

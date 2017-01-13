@@ -830,6 +830,7 @@ RECURSIVE              = NO
 # run.
 
 EXCLUDE                = attic \
+                         @CMAKE_CURRENT_SOURCE_DIR@/CMakeLists.txt \
                          @CMAKE_CURRENT_SOURCE_DIR@/lib/gzstream.h \
                          @CMAKE_CURRENT_SOURCE_DIR@/lib/gzstream.cpp
 

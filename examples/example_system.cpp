@@ -40,6 +40,7 @@ using namespace std;
 
 int main() {
   try {
+    leanux::init();
     leanux::system::Distribution dist = leanux::system::getDistribution();
     int w = 21;
     cout << setw(w) << left << "distribution" << ":" << dist.release << endl;

@@ -162,9 +162,8 @@ namespace leanux {
 
     /**
      * maximum width a std::string returned by ByteStr.
-     * @todo no define constants.
      */
-    #define WBYTESTR 64
+    const size_t bytestr_max_width = 64;
 
     /** pow(1024.0,1.0/3.0) */
     const long double base_1024 = 10.0793683991589837489755;
@@ -173,12 +172,12 @@ namespace leanux {
     const long double base_1024_log = 2.31049060186648436143741;
 
     std::string ByteStr( double bytes, int prec ) {
-      char bytestrbuf[WBYTESTR];
+      char bytestrbuf[bytestr_max_width];
       bytestrbuf[0] = 0;
       char format[20];
       std::string suffix;
       if ( isnan( bytes ) ) {
-        strncat( bytestrbuf, "nan", WBYTESTR );
+        strncat( bytestrbuf, "nan", bytestr_max_width );
       } else
       if ( bytes != 0.0 ) {
         // the order of the number
@@ -214,8 +213,8 @@ namespace leanux {
         else if ( scale < 7 ) suffix = "E";
         else if ( scale < 8 ) suffix = "Z";
         else if ( scale < 9 ) suffix = "Y";
-        snprintf( bytestrbuf, WBYTESTR, format, bytes/pow(base_1024,scale*3.0), suffix.c_str() );
-      } else strncat( bytestrbuf, "0", WBYTESTR );
+        snprintf( bytestrbuf, bytestr_max_width, format, bytes/pow(base_1024,scale*3.0), suffix.c_str() );
+      } else strncat( bytestrbuf, "0", bytestr_max_width );
       return bytestrbuf;
     }
 

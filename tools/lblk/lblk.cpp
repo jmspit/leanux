@@ -48,7 +48,6 @@
 #include "util.hpp"
 #include "vmem.hpp"
 #include "block.hpp"
-#include "../lmon/lmon_curses.hpp" /** @tdo why? move used functionality to a lib  */
 #include "leanux-config.hpp"
 #include "tabular.hpp"
 #include "device.hpp"

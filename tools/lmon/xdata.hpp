@@ -58,7 +58,7 @@ namespace leanux {
        * When the calue=maxvalue, the length of the bar equals maxlines.
        * @param stat the source data
        * @param maxvalue the max value (max possible number of CPU seconds in stat)
-       * @param the maximum number of lines/characters to incorporate.
+       * @param maxlines the maximum number of lines/characters to incorporate.
        */
       std::string makeCPUBar( const cpu::CPUStat &stat, double maxvalue, int maxlines );
 

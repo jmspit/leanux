@@ -51,6 +51,12 @@ namespace leanux {
 
   /**
    * block device API.
+   *
+   * Block devices are represented by instances of the MajorMinor class,
+   * of which the member functions can be used to retrieve per-block device
+   * data. Block devices present on the system can be enumerated into lists
+   * of MajorMinor objects with one of the enum* functions, such as
+   * enumWholeDisks(std::list< MajorMinor > &devices)
    */
   namespace block {
 
@@ -786,14 +792,14 @@ namespace leanux {
     void enumDevices( std::list<MajorMinor> &devices );
 
     /**
-     * get a list of block devices of the scpecified type
+     * get a list of block devices of the specified type
      * @param devices the list to fill
      * @param t list only these type of block devices
      */
     void enumDevices( std::list<MajorMinor> &devices, DeviceClass t );
 
     /**
-     * get a list of whole disks.
+     * get a list of whole disks (exclude partitions).
      * @param devices list of whole disk MajorMinors.
      * @see MajorMinor::isWholeDisk
      */

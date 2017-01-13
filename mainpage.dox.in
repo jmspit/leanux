@@ -53,8 +53,6 @@
  * @section more_info_section More info
  * See @LEANUX_WEBSITE@ for more information or @LEANUX_BUG_URL@ to report bugs.
  *
- * @file lib/gzstream.[h|cpp]
- * gz stream classes header by Deepak Bandyopadhyay, Lutz Kettner GPL 2.1
  *
  * @namespace leanux::tools
  * tools build on leanux.

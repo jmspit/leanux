@@ -55,9 +55,7 @@ namespace leanux {
     namespace lsys {
 
       /**
-       * lsysdev [device options] <device>
-       * lsysdev [list options]
-       *
+       * Invocation options
        */
       struct Options {
         bool        opt_h;   /**< -h : show help */

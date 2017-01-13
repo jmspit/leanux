@@ -131,11 +131,11 @@ namespace leanux {
           inline void textOut( int x, int y, int attrs, int i );
 
           /**
-           * Write character c at x,y with display attrs.
+           * Write character ch at x,y with display attrs.
            * @param x the x (column) position.
            * @param y the y (line) position.
            * @param attrs the ncurses display attributes to use.
-           * @param c the char to display.
+           * @param ch the char to display.
            */
           inline void charOut( int x, int y, int attrs, const chtype ch );
 
@@ -461,12 +461,6 @@ namespace leanux {
            * @return the optimal height in lines.
            */
           static int getOptimalHeight() { return 13; };
-
-          /**
-           * Set the displayed sample_interval.
-           * @param s the sample interval.
-           */
-          //void setSampleInterval( unsigned int s ) { sample_interval_s_ = s; };
 
         protected:
 

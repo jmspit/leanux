@@ -55,8 +55,7 @@ namespace leanux {
            * Sets the current time selection into the lard data.
            * If requested data is not available, setSel will do it's best
            * to provide a sane alternative.
-           * @param start will select the maximum of alls snapshots that are < start
-           * @param interval will select the minimum of all snapshots that are > start+interval
+           * @param zoom the snapshot time range in seconds
            */
           time_t setZoom( time_t zoom );
 

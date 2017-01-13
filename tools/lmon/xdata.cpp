@@ -91,6 +91,12 @@ namespace leanux {
           int height_;
       };
 
+      /**
+       * create a (vertical) CPU bar string from the CPUStat for terminal-based output.
+       * @param stat the CPUStat statistics
+       * @param maxvalue the maximum possible value
+       * @param maxlines the maximum number of characters (lines) in the string
+       */
       std::string makeCPUBar( const cpu::CPUStat &stat, double maxvalue, int maxlines ) {
         std::string s = "";
 

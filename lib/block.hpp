@@ -53,10 +53,10 @@ namespace leanux {
    * block device API.
    *
    * Block devices are represented by instances of the MajorMinor class,
-   * of which the member functions can be used to retrieve per-block device
-   * data. Block devices present on the system can be enumerated into lists
+   * of which the member functions retrieve per-block device
+   * statistics. Block devices present on the system are enumerated into lists
    * of MajorMinor objects with one of the enum* functions, such as
-   * enumWholeDisks(std::list< MajorMinor > &devices)
+   * enumWholeDisks(std::list< MajorMinor > &devices).
    */
   namespace block {
 
@@ -66,13 +66,13 @@ namespace leanux {
      */
     void init();
 
-    /** Information on a mounted filesystem. */
+    /** Mounted filesystem configuration. */
     struct MountInfo {
-      /** The name of the device mounted. */
+      /** The name of the device containing the filesystem. */
       std::string device;
-      /** The mountpoint of the device. */
+      /** The mountpoint of the filesystem. */
       std::string mountpoint;
-      /** The fstype of the device. */
+      /** The type of filesystem. */
       std::string fstype;
       /** The mount attributes. */
       std::string attrs;
@@ -749,9 +749,10 @@ namespace leanux {
     void enumMounts( std::map<MajorMinor,MountInfo> &mounts );
 
     /**
-     * Variant of enumMounts that accepts a cache of previously set mappings between
-     * device special file names and MajorMinor. The cache is not reset - the caller
-     * decides when if ever.
+     * Variant of enumMounts that accepts a cache of previously detected mappings between
+     * device special file names and MajorMinor. This cache will be updated when
+     * entries are absent, so the first call may specify an empty cache, causing
+     * subsequent calls to hit and avoid a relatively costly lookup.
      * @param mounts receives the map.
      * @param cache read through on cache miss, add to cache.
      */
@@ -785,7 +786,7 @@ namespace leanux {
     void enumDevices( std::list<MajorMinor> &devices );
 
     /**
-     * get a list of block devices of the specified type
+     * get a list of block devices of the specified DeviceClass
      * @param devices the list to fill
      * @param t list only these type of block devices
      */
@@ -853,10 +854,11 @@ namespace leanux {
     void getStats( DeviceStatsMap &statsmap );
 
     /**
-     * create a delta of two DeviceStatsMaps.
+     * create a delta of two DeviceStatsMaps. Only MajorMinor objects
+     * present in both snapshots are returned in delta.
      * @param snap1 first (earlier) DeviceStatsMap.
      * @param snap2 second (later) DeviceStatsMap.
-     * @param delta the delta filled.
+     * @param delta DeviceStatsMap receiving the delta.
      * @param vec out unsorted vector of MajorMinor entries in the delta map
      * @see StatsSorter
      */

@@ -74,7 +74,7 @@ namespace leanux {
     std::string udev_path = "";
 
     /**
-     * Type of layout used for udev block device entries.
+     * Three naming conventions for udev block device entries.
      * @see init
      */
     enum udevMode {
@@ -85,11 +85,14 @@ namespace leanux {
 
 
     /**
-     * The detcted udev mode.
+     * The detected udevMode.
      * @see init.
      */
     udevMode udev_mode = umBlockMM;
 
+    /**
+     * Detect the udevMode from the given MajorMinor and udev_path.
+     */
     udevMode modeFromMajorMinor( const MajorMinor& m, const std::string &udev_path ) {
       std::stringstream ss;
       ss << "b" << m;
@@ -953,33 +956,6 @@ namespace leanux {
           if ( m.isValid() ) mounts[m] = temp;
         }
       }
-    }
-
-    /**
-     * Lookup the mount entry for the device path.
-     * @param devpath the full device path
-     * @param info MountInfo filled if device is found.
-     * @return true of the entry is found.
-     */
-    bool findMountInfo( std::string devpath, MountInfo& info ) {
-      bool result = false;
-      std::ifstream pm( "/proc/mounts" );
-      while ( pm.good() ) {
-        MountInfo temp;
-        int dummy;
-        pm >> temp.device;
-        pm >> temp.mountpoint;
-        pm >> temp.fstype;
-        pm >> temp.attrs;
-        pm >> dummy;
-        pm >> dummy;
-        if ( temp.device == devpath ) {
-          info = temp;
-          result = true;
-          break;
-        }
-      }
-      return result;
     }
 
     std::string MajorMinor::getDiskId() const {

@@ -1121,35 +1121,22 @@ namespace leanux {
       closedir( d );
     }
 
-    /**
-     * @todo can be fetched more efficiently from sysfs
-     */
     bool MajorMinor::getStats( DeviceStats& stats ) const {
-      std::ifstream i( "/proc/diskstats" );
-      if ( !i.good() ) throw Oops( __FILE__, __LINE__, "failed to open '/proc/diskstats'" );
-      int major, minor;
-      std::string devname;
-      bool found = false;
-      while ( i.good() && ! i.eof() ) {
-        i >> major >> minor >> devname;
-        if ( i.good() && MajorMinor(major,minor) == *this ) {
-          i >> stats.reads;
-          i >> stats.reads_merged;
-          i >> stats.read_sectors;
-          i >> stats.read_ms;
-          i >> stats.writes;
-          i >> stats.writes_merged;
-          i >> stats.write_sectors;
-          i >> stats.write_ms;
-          i >> stats.io_in_progress;
-          i >> stats.io_ms;
-          i >> stats.io_weighted_ms;
-          found = true;
-          break;
-        }
-        i.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-      }
-      return found;
+      std::string path = getSysPath() + "/stat";
+      std::ifstream i( path.c_str() );
+      if ( !i.good() ) throw Oops( __FILE__, __LINE__, "failed to open '" + getSysPath() + "'" );
+      i >> stats.reads;
+      i >> stats.reads_merged;
+      i >> stats.read_sectors;
+      i >> stats.read_ms;
+      i >> stats.writes;
+      i >> stats.writes_merged;
+      i >> stats.write_sectors;
+      i >> stats.write_ms;
+      i >> stats.io_in_progress;
+      i >> stats.io_ms;
+      i >> stats.io_weighted_ms;
+      return i.good();
     }
 
     void getStats( DeviceStatsMap &statsmap ) {

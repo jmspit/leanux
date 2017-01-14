@@ -179,8 +179,8 @@ namespace leanux {
      * @param pid the process id.
      * @param io the ProcPidIO struct to fill.
      * @return false if the operation failed (no permission, pid does not exist).
-     * @root root access is required even to see the stats for processes the caller owns - as the information in this file
-     * might be used to deduce the size of an entered password.
+     * @root root access is required even for processes the caller owns (as the information in this file
+     * might be used to deduce the size of an entered password).
      */
     bool getProcPidIO( pid_t pid, ProcPidIO &io );
 

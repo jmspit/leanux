@@ -51,7 +51,6 @@ namespace leanux {
       std::map<std::string,block::MajorMinor> RealtimeSampler::devicefilecache_;
 
       RealtimeSampler::RealtimeSampler() {
-        cpu::getCPUTopology( xsysview_.cpu_topo );
         xsysview_.pagesize_ = system::getPageSize();
         cpu::getCPUInfo( cpuinfo_ );
         mounted_bytes_1_ = 0;
@@ -236,6 +235,7 @@ namespace leanux {
         vmstat1_ = vmstat2_;
         xsysview_.t1 = xsysview_.t2;
         gettimeofday( &xsysview_.t2, 0 );
+        cpu::getCPUTopology( xsysview_.cpu_topo );
         cpu::getCPUStats( cpustat2_ );
         sched2_ = cpu::getSchedInfo();
         vmem::getVMStat( vmstat2_ );

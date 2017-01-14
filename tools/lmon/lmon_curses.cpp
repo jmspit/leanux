@@ -761,10 +761,6 @@ namespace leanux {
         wnoutrefresh( window_ );
       }
 
-
-      /**
-       * @todo topo_ and info_ can change after lmon has started - refresh each sample?
-       */
       SysView::SysView( int width, int height, int x, int y, Screen* screen ) :
         View( width, height, x, y, screen ) {
       };

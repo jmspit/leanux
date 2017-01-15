@@ -356,7 +356,7 @@ namespace leanux {
         html << "<td>" << ss.str() << "</td>" << endl;
         html << "<td>" << mm.getClassStr() << "</td>" << endl;
         html << "<td>" << util::ByteStr( mm.getSize(), 3 ) << "</td>" << endl;
-        html << "<td>" << block::MajorMinor::getDescription( mm ) << "</td></tr>" << endl;
+        html << "<td>" << mm.getDescription() << "</td></tr>" << endl;
 
 
         mm.getPartitions( parts );

@@ -253,28 +253,28 @@ namespace leanux {
     /**
      * Get a loose description of what the device mm is.
      */
-    std::string MajorMinor::getDescription( const block::MajorMinor &mm ) {
-      block::DeviceClass dclass = mm.getClass();
+    std::string MajorMinor::getDescription() const {
+      block::DeviceClass dclass = getClass();
       std::stringstream ss;
       ss.str("");
       if ( dclass == block::MetaDisk ) {
-        ss << mm.getMDDevices() << " disk " << mm.getMDLevel() << " ";
+        ss << getMDDevices() << " disk " << getMDLevel() << " ";
       }
       block::MountInfo info;
-      if ( mm.getMountInfo( info ) ) {
+      if ( getMountInfo( info ) ) {
         if ( dclass == block::LVM ) {
-          ss << mm.getDMName() << " ";
+          ss << getDMName() << " ";
         }
         ss << info.mountpoint << " (" << info.fstype << ")";
       } else {
-        if ( mm.getFSType() == "LVM2_member" ) {
-          ss << "PV in VG " << mm.getLVMPV2VG();
-        } else if ( mm.getDMName() != "" ) {
-          ss << mm.getDMName() << " " << mm.getFSType();
-        } else if ( mm.getSCSIHCTL() != "" ) {
-          ss << mm.getSCSIHCTL();
+        if ( getFSType() == "LVM2_member" ) {
+          ss << "PV in VG " << getLVMPV2VG();
+        } else if ( getDMName() != "" ) {
+          ss << getDMName() << " " << getFSType();
+        } else if ( getSCSIHCTL() != "" ) {
+          ss << getSCSIHCTL();
         } else {
-          ss << mm.getFSType();
+          ss << getFSType();
         }
       }
       return ss.str();
@@ -788,17 +788,6 @@ namespace leanux {
       return util::findDir( path, "" );
     }
 
-    std::string MajorMinor::getiSCSITargetAddress() const {
-      // @todo - this does not do anything?
-      std::string path = getSysPath();
-      return path;
-    }
-
-    std::string MajorMinor::getiSCSITargetPort() const {
-      // @todo - this does not do anything?
-      return "";
-    }
-
     std::string MajorMinor::getCacheMode() const {
       try {
         std::string devname  = MajorMinor::getNameByMajorMinor( *this );
@@ -1037,10 +1026,6 @@ namespace leanux {
       return result + no_wwn_total;
     }
 
-    /**
-     * Get the number of whole disks in the machine.
-     * @return the number of whole disks.
-     */
     unsigned long getAttachedWholeDisks() {
       std::list<MajorMinor> wd;
       enumWholeDisks( wd );
@@ -1144,8 +1129,7 @@ namespace leanux {
     }
 
     void deltaDeviceStats( const DeviceStatsMap &snap1, const DeviceStatsMap &snap2, DeviceStatsMap &delta, MajorMinorVector &vec ) {
-      // some of the values may have wrapped,
-      // so check for that.
+      // some of the values may have wrapped, so check for that.
       delta.clear();
       for ( DeviceStatsMap::const_iterator s2 = snap2.begin(); s2 != snap2.end(); ++s2 ) {
         DeviceStatsMap::const_iterator s1 = snap1.find( s2->first );

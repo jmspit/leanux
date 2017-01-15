@@ -61,7 +61,7 @@ namespace leanux {
   namespace block {
 
     /**
-     * Initialize the block API.
+     * Initialize the block API. This is implicitly called by leanux::init.
      * @see leanux::init.
      */
     void init();
@@ -590,14 +590,6 @@ namespace leanux {
         std::string getSCSIHCTL() const;
 
         /**
-         * get the iSCSI target address for the device.
-         * @return the target adddress or an empty string if not found.
-         */
-        std::string getiSCSITargetAddress() const;
-
-        std::string getiSCSITargetPort() const;
-
-        /**
          * get the SCSI disk caching mode (write back/write through).
          * @return the SCSI disk caching mode or an empty string if not found.
          */
@@ -689,9 +681,9 @@ namespace leanux {
         bool getStats( DeviceStats& stats ) const;
 
         /**
-         * Get a loose description of what the device mm is.
+         * Get a pretty-print description for the device.
          */
-        static std::string getDescription( const block::MajorMinor &mm );
+        std::string getDescription() const;
 
       private:
         /** (re)build the cached mapping between device names and MajorMinor numbers. */
@@ -773,9 +765,11 @@ namespace leanux {
     unsigned long getMountUsedBytes();
 
     /**
-     * Bytes used on the filesystem.
-     * @param mount the filesystem mountpoint (or any filesystem file).
-     * @return the number of bytes used.
+     * Bytes used on the filesystem. btrfs breaks the stat (2) call, by
+     * reporting an invalid major:minor pair, and hence btrfs breaks this
+     * function.
+     * @param mount the filesystem mountpoint (or any file on the filesystem).
+     * @return the number of bytes used. always returns zero on btrfs.
      */
     unsigned long getMountUsedBytes( const std::string &mount );
 
@@ -819,7 +813,9 @@ namespace leanux {
     unsigned long getAttachedWholeDisks();
 
     /**
-     * Default < operator for DeviceStats type.
+     * less-than operator for DeviceStats type, used for
+     * sorting. DeviceStats with more IO activity are <.
+     * @see int StatsSorter::operator()( MajorMinor m1, MajorMinor m2 )
      * @param s1 DeviceStats 1
      * @param s2 DeviceStats 2
      * @return 1 if s1 < s2, 0 otherwise.
@@ -829,6 +825,12 @@ namespace leanux {
              ( s1.io_ms == s2.io_ms && s1.reads + s1.writes > s2.reads + s2.writes );
     }
 
+    /**
+     * test DeviceStats equality.
+     * @param s1 first DeviceStats
+     * @param s2 second DeviceStats
+     * @return 1 if the two DeviceStats are equal, 0 if not.
+     */
     inline int operator==( const DeviceStats &s1, const DeviceStats &s2 ) {
       return s1.io_ms         == s2.io_ms &&
              s1.reads         == s2.reads &&
@@ -874,7 +876,7 @@ namespace leanux {
         StatsSorter( const DeviceStatsMap *delta ) { delta_ = delta; };
 
         /**
-         * functor on two arghuments to sort.
+         * functor on two arguments to sort.
          * @param m1 first MajorMinor.
          * @param m2 second MajorMinor.
          * @return true when m1 < m2.

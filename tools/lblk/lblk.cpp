@@ -231,7 +231,7 @@ namespace leanux {
           tab.appendString( "r/(r+w)", " " );
         }
 
-        tab.appendString( "description", block::MajorMinor::getDescription( mm ) );
+        tab.appendString( "description", mm.getDescription() );
 
         mm.getPartitions( parts );
         mm.getHolders( holders );
@@ -285,7 +285,7 @@ namespace leanux {
           tab.appendString( "r/(r+w)", " " );
         }
 
-        tab.appendString( "description", block::MajorMinor::getDescription( mm ) );
+        tab.appendString( "description", mm.getDescription() );
 
         mm.getSlaves( slaves );
         for ( std::list<std::string>::const_iterator d = slaves.begin(); d != slaves.end(); d++ ) {
@@ -362,7 +362,7 @@ namespace leanux {
           table.appendString( "dev", ss.str() );
           table.appendString( "class", (*i).getClassStr() );
           table.appendString( "size", util::ByteStr( (*i).getSize(), 3 ) );
-          table.appendString( "description", block::MajorMinor::getDescription( *i ) );
+          table.appendString( "description", (*i).getDescription() );
         }
         table.dump( std::cout );
       }
@@ -629,7 +629,7 @@ namespace leanux {
         os << std::setw(wc) << "dev: " << mm << std::endl;
         os << std::setw(wc) << "device: " << mm.getName() << std::endl;
         os << std::setw(wc) << "devicepath: " << mm.getSysPath() << std::endl;
-        os << std::setw(wc) << "description: " << block::MajorMinor::getDescription(mm) << std::endl;
+        os << std::setw(wc) << "description: " << mm.getDescription() << std::endl;
         os << std::setw(wc) << "class: " << mm.getClassStr() << std::endl;
         os << std::setw(wc) << "name: " << mm.getMDName() << std::endl;
         os << std::setw(wc) << "size: " << util::ByteStr( mm.getSize(), 3 ) << std::endl;

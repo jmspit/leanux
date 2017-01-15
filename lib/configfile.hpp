@@ -162,17 +162,22 @@ namespace leanux {
          */
         static ConfigFile* setConfig( const std::string &appname, const std::string &filename );
 
-        static void releaseConfig() { if ( config_ ) delete config_; };
+        /**
+         * Release (delete) the configFile.
+         */
+        static void releaseConfig() { if ( config_ ) { delete config_; config_ = 0; } };
 
       private:
         /**
-         * Constructor should not be called directly.
+         * Constructor, should not be called directly, use setConfig and getConfig to
+         * create the ConfigFile.
          * @see getConfig.
          */
         ConfigFile( const std::string &appname, const std::string &filename );
 
         /**
-         * Destructor should not be called directly.
+         * Destructor, should not be called directly.
+         * @see releaseConfig
          */
         ~ConfigFile() {};
 
@@ -206,6 +211,9 @@ namespace leanux {
          */
         static std::map<std::string,Parameter> defaults_;
 
+        /**
+         * The singleton ConfigFile.
+         */
         static ConfigFile* config_;
 
     };

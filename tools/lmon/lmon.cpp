@@ -117,20 +117,20 @@ namespace leanux {
         try {
           leanux::init();
 
-          leanux::util::ConfigFile::setDefault( "COLOR_BACKGROUND", "(10,10,12)", "Color for background (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_TEXT", "(80,110,160)", "Color for text (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_BOLD_TEXT", "(110,130,170)", "Color for bold text (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_LINE", "(50,50,53)", "Color for lines (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_RUNNING_PROC", "(1,234,109)", "Color for processes in R state (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_BLOCKED_PROC", "(239,40,40)", "Color for processes in D state (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_USER_CPU", "(200,234,109)", "Color for user mode CPU (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_NICE_CPU", "(70,234,70)", "Color for nice mode CPU (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_SYSTEM_CPU", "(237,89,29)", "Color for system mode CPU (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_WAIT_CPU", "(239,40,40)", "Color for wait mode CPU (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_IRQ_CPU", "(49,130,253)", "Color for irq mode CPU (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "COLOR_SOFTIRQ_CPU", "(117,164,234)", "Color for softirq mode CPU (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::setDefault( "SAMPLE_INTERVAL", "4", "seconds between samples" );
-          leanux::util::ConfigFile::setDefault( "MAX_MOUNTPOINT_WIDTH", "22", "maximum characters used by a mountpoint" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_BACKGROUND", "(10,10,12)", "Color for background (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_TEXT", "(80,110,160)", "Color for text (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_BOLD_TEXT", "(110,130,170)", "Color for bold text (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_LINE", "(50,50,53)", "Color for lines (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_RUNNING_PROC", "(1,234,109)", "Color for processes in R state (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_BLOCKED_PROC", "(239,40,40)", "Color for processes in D state (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_USER_CPU", "(200,234,109)", "Color for user mode CPU (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_NICE_CPU", "(70,234,70)", "Color for nice mode CPU (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_SYSTEM_CPU", "(237,89,29)", "Color for system mode CPU (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_WAIT_CPU", "(239,40,40)", "Color for wait mode CPU (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_IRQ_CPU", "(49,130,253)", "Color for irq mode CPU (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_SOFTIRQ_CPU", "(117,164,234)", "Color for softirq mode CPU (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "SAMPLE_INTERVAL", "4", "seconds between samples" );
+          leanux::util::ConfigFile::declareParameter( "MAX_MOUNTPOINT_WIDTH", "22", "maximum characters used by a mountpoint" );
 
           leanux::util::ConfigFile::setConfig( "lmon", leanux::util::getUserConfigDir() + "/.leanux-lmon" );
 

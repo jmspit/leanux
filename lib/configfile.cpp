@@ -235,7 +235,7 @@ namespace leanux {
       values_[name].value_ = ss.str();
     }
 
-    void ConfigFile::setDefault( const std::string &name, const std::string &value, const std::string &description, const std::string &comment ) {
+    void ConfigFile::declareParameter( const std::string &name, const std::string &value, const std::string &description, const std::string &comment ) {
       ConfigFile::Parameter param;
       param.name_ = name;
       param.value_ = value;

@@ -46,7 +46,7 @@ namespace leanux {
   namespace util {
 
     /**
-     * A simple configuration file.
+     * A configuration file of name=value pairs.
      * File format:
      *   - empty lines or lines with first non-whitespace character='#' are ignored.
      *   - name=value<eol>
@@ -61,7 +61,7 @@ namespace leanux {
         struct Parameter {
           /** Default constructor. */
           Parameter() { name_ = ""; value_ = ""; };
-          /** INitializer constructor. */
+          /** Initializer constructor. */
           Parameter( const std::string &name, const std::string &value ) { name_ = name; value_ = value; };
           /** configuration parameter name. */
           std::string name_;
@@ -103,32 +103,34 @@ namespace leanux {
         int getIntValue( const std::string &name ) const;
 
         /**
-         * Set the configuration parameter to an int.
+         * Set the configuration parameter to an int value.
          * @param name the configuration parameter name.
          * @param value the integer value to set.
          */
         void setValue( const std::string name, int value );
 
         /**
-         * Set the configuration parameter to a string.
+         * Set the configuration parameter to a string value.
          * @param name the configuration parameter name.
          * @param value the string value to set.
          */
         void setValue( const std::string name, const std::string &value );
 
         /**
-         * Set the configuration parameter to a RGB.
+         * Set the configuration parameter to a RGB value.
          * @param name the configuration parameter name.
          * @param value the RGB value to set.
          */
         void setValue( const std::string name, const RGB &value );
 
         /**
-         * set static (hardcoded) default
-         * values in the config file must have a default set - existence of a
-         * default means the named configuration parameter is valid.
+         * declare the configuration paramater and set a hardcoded default.
+         * @param name the parameter name
+         * @param value the parameter default value
+         * @param description the parameter description
+         * @param comment parameter comment
          */
-        static void setDefault( const std::string &name, const std::string &value, const std::string &description, const std::string &comment = "" );
+        static void declareParameter( const std::string &name, const std::string &value, const std::string &description, const std::string &comment = "" );
 
         /**
          * read and interpret the configuration file.
@@ -148,7 +150,10 @@ namespace leanux {
 
         /**
          * Get the ConfigurationFile object for the appname, or
-         * construct one if it does not exist. setconfig must be called first.
+         * construct one if it does not exist.
+         * setConfig( const std::string &appname, const std::string &filename )
+         * must be called first.
+         * @return pointer to the ConfigFile, or 0 if setConfig was not called.
          */
         static ConfigFile* getConfig();
 

@@ -44,7 +44,7 @@ namespace leanux {
   namespace util {
 
     /**
-     * standard C natural string compare
+     * standard C natural c-string compare
      * @param s1 left string
      * @param s2 right string
      * @return -1 when s1 < s2, 0 when s1 == s2, 1 when s1 > s2
@@ -52,7 +52,7 @@ namespace leanux {
     int natstrcmp( const char* s1, const char* s2 );
 
     /**
-     * STL natural less-than string compare
+     * STL natural less-than c-string compare
      * @param s1 left string
      * @param s2 right string
      * @return true when natural s1 < s2
@@ -61,6 +61,7 @@ namespace leanux {
     bool hexnatstrlt( const char* s1, const char* s2 );
 
     /**
+     * STL natural less-than std::string compare
      * @param s1 left string
      * @param s2 right string
      * std::string variant of natstrlt.
@@ -70,6 +71,15 @@ namespace leanux {
       return natstrlt( s1.c_str(), s2.c_str() );
     }
 
+    /**
+     * STL natural less-than std::string compare,
+     * treating hex numbers as numbers.
+     * stable, good enough, but not flawless.
+     * @param s1 left string
+     * @param s2 right string
+     * std::string variant of natstrlt.
+     * @return true when natural s1 < s2
+     */
     inline bool stlhexnatstrlt( const std::string& s1, const std::string &s2 ) {
       return hexnatstrlt( s1.c_str(), s2.c_str() );
     }

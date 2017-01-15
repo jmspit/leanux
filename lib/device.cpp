@@ -1300,6 +1300,8 @@ namespace leanux {
         if ( scsi_vport.accept( wpath ) ) { parent = wpath; return new SCSIVPort(scsi_vport); }
         if ( sas_port.accept( wpath ) ) { parent = wpath; return new SASPort(sas_port); }
         if ( sas_end_device.accept( wpath ) ) { parent = wpath; return new SASEndDevice(sas_end_device); }
+        //give up, revert to UnknownSysDevice
+        if ( unknown.accept(wpath) ) { parent = ""; return new UnknownSysDevice(unknown); };
       }
       return 0;
     }

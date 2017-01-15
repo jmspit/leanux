@@ -47,6 +47,18 @@ namespace leanux {
 
   /**
    * system device API.
+   * Use the enum* functions to enumerate SysDevicePath device files on sysfs.
+   *
+   * The leafDetect( const SysDevicePath& path, SysDevicePath &parent ) function detects
+   * devices, returned as a concrete descendant of SysDevice, with the
+   * parent device returned as well.
+   *
+   * The treeDetect( const SysDevicePath& path, std::list<SysDevice*> &devices ) function
+   * detects entire system device trees, from the device in path and upwards.
+   *
+   * Note that the caller is responsiable to delete objects returned by
+   * leafDetect and treeDetect.
+   *
    * @see SysDevice::SysDeviceType
    * for supported types.
    */

@@ -46,7 +46,8 @@
 namespace leanux {
 
   /**
-   * system device detection API. @see SysDevice::SysDeviceType
+   * system device API.
+   * @see SysDevice::SysDeviceType
    * for supported types.
    */
   namespace sysdevice {
@@ -132,7 +133,7 @@ namespace leanux {
         virtual bool accept( SysDevicePath &path ) { return false; };
 
         /**
-         * Test SysDevicePath validaty; path must exist (be readable)
+         * Test SysDevicePath validity; path must exist (be readable)
          * and located under /sys/devices. Both conditions are not enough to
          * classify it as a SysDevice, but each SysDevice does have a path
          * that returns true here.
@@ -146,12 +147,16 @@ namespace leanux {
         SysDevicePath getPath() const { return path_; };
 
         /**
-         * Get the SysDevice type. @see SysDeviceType.
+         * Get the SysDeviceType. @see SysDeviceType.
          * @return the SysDevice type.
          */
         virtual SysDeviceType getType() const { return sysdevicetype_; };
 
-
+        /**
+         * test if this SysDevice is of type t.
+         * @param t the SysDeviceType to test.
+         * @return true if this has SysDeviceType t.
+         */
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t; };
 
         /**
@@ -165,8 +170,16 @@ namespace leanux {
          */
         virtual std::string getDescription() const { return ""; }
 
+        /**
+         * Get the driver for this device.
+         * @return the driver, or an empty string if no driver associated.
+         */
         virtual std::string getDriver() const;
 
+        /**
+         * Get the device class for this device.
+         * @return the device class, or an empty string if undetermined.
+         */
         virtual std::string getClass() const { return ""; };
 
         /**
@@ -189,6 +202,9 @@ namespace leanux {
 
     };
 
+    /**
+     * Generic block device.
+     */
     class BlockDevice : public SysDevice {
       public:
         BlockDevice() : SysDevice() {};
@@ -199,6 +215,9 @@ namespace leanux {
       protected:
     };
 
+    /**
+     * Generic block device partition.
+     */
     class BlockPartition : public BlockDevice {
       public:
         BlockPartition() : BlockDevice() { sysdevicetype_ = sdtBlockPartition; };
@@ -209,8 +228,9 @@ namespace leanux {
       protected:
     };
 
-
-
+    /**
+     * Generic networking device.
+     */
     class NetDevice : public SysDevice {
       public:
         NetDevice() : SysDevice() { sysdevicetype_ = sdtNetDevice; };
@@ -219,6 +239,9 @@ namespace leanux {
       protected:
     };
 
+    /**
+     * Virtual networking device.
+     */
     class VirtualNetDevice : public NetDevice {
       public:
         VirtualNetDevice() : NetDevice() { sysdevicetype_ = sdtVirtualNetDevice; };
@@ -228,6 +251,9 @@ namespace leanux {
       protected:
     };
 
+    /**
+     * Generic bus device.
+     */
     class BusDevice : public SysDevice {
       public:
         BusDevice() : SysDevice() {};
@@ -269,7 +295,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to scsi devices
+     * Say yes to SCSI devices
      */
     class SCSIDevice : public BlockDevice {
       public:
@@ -284,7 +310,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to scsi hosts
+     * Say yes to SCSI hosts
      */
     class SCSIHost : public SysDevice {
       public:
@@ -297,7 +323,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to scsi rport
+     * Say yes to SCSI rport
      */
     class SCSIRPort : public SysDevice {
       public:
@@ -308,7 +334,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to scsi vport
+     * Say yes to SCSI vport
      */
     class SCSIVPort : public SysDevice {
       public:
@@ -319,7 +345,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to iscsi devices
+     * Say yes to iSCSI devices
      */
     class iSCSIDevice : public SCSIDevice {
       public:
@@ -372,7 +398,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to (s)ata ports
+     * Say yes to (S)ATA ports
      */
     class ATAPort : public SysDevice {
       public:
@@ -408,7 +434,7 @@ namespace leanux {
     };
 
     /**
-     * Say yes to mapper devices.
+     * Say yes to devicemapper devices.
      */
     class MapperDevice : public BlockDevice {
       public:
@@ -488,13 +514,52 @@ namespace leanux {
         virtual std::string getClass() const;
     };
 
+    /**
+     * Enumerate all devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumDevices( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all block devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumBlockDevices( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all network devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumNetDevices( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all PCI bus devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumPCIBusses( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all PCI devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumPCIDevices( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all USB devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumUSBDevices( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all (S)ATA devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumATADevices( std::list<SysDevicePath> &paths );
+
+    /**
+     * Enumerate all SCSI host devices.
+     * @param paths recevies a list of SysDevicePath paths.
+     */
     void enumSCSIHostDevices( std::list<SysDevicePath> &paths );
 
     /**

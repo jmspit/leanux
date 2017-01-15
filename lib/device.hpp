@@ -281,7 +281,8 @@ namespace leanux {
       public:
         UnknownSysDevice() : SysDevice() { sysdevicetype_ = sdtUnknown; };
         UnknownSysDevice( const UnknownSysDevice &src ) : SysDevice( src ) {};
-        virtual bool accept( SysDevicePath &path ) { path = ""; return true; };
+        virtual bool accept( SysDevicePath &path ) { path_ = path; return true; };
+        virtual std::string getClass() const { return "unknown"; };
     };
 
     /**

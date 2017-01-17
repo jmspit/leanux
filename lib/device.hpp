@@ -115,6 +115,8 @@ namespace leanux {
           sdtVirtioBlockDevice,   /**< virtio block device */
           sdtVirtioNetDevice,     /**< virtio network device */
           sdtVirtualNetDevice,    /**< virtual network device */
+          sdtLoopbackDevice,      /**< loopback block device */
+          sdtRAMDiskDevice,       /**< ram disk block device */
           sdtUnknown              /**< unknown device */
         };
 
@@ -455,6 +457,28 @@ namespace leanux {
         MapperDevice( const MapperDevice &src ) : BlockDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtBlock; };
+    };
+
+    /**
+     * Say yes to loopback devices.
+     */
+    class LoopbackDevice : public BlockDevice {
+      public:
+        LoopbackDevice() : BlockDevice() { sysdevicetype_ = sdtLoopbackDevice; };
+        LoopbackDevice( const LoopbackDevice &src ) : BlockDevice( src ) {};
+        virtual bool accept( SysDevicePath &path );
+        virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtLoopbackDevice; };
+    };
+
+    /**
+     * Say yes to ramdisk devices.
+     */
+    class RamDiskDevice : public BlockDevice {
+      public:
+        RamDiskDevice() : BlockDevice() { sysdevicetype_ = sdtRAMDiskDevice; };
+        RamDiskDevice( const RamDiskDevice &src ) : BlockDevice( src ) {};
+        virtual bool accept( SysDevicePath &path );
+        virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtRAMDiskDevice; };
     };
 
     /**

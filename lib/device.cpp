@@ -371,6 +371,94 @@ namespace leanux {
       } else return false;
     }
 
+    bool LoopbackDevice::accept( SysDevicePath &path ) {
+      if ( path.find("virtual/block/loop") == std::string::npos ) return false;
+      std::list<std::string> tokens;
+      tokenize( path, tokens );
+      const unsigned int st_loop_device = 0;
+      const unsigned int st_block = 1;
+      const unsigned int st_virtual = 2;
+      const unsigned int st_fail = 3;
+      const unsigned int st_accept = 4;
+      unsigned int state = st_loop_device;
+      size_t eat_chars = 0;
+      util::RegExp reg;
+      for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end() && state != st_accept && state != st_fail; t++ ) {
+        switch ( state ) {
+          case st_loop_device:
+            reg.set( "loop([[:digit:]]+)" );
+            if ( reg.match( *t ) ) {
+              eat_chars += (*t).length() + 1;
+              state = st_block;
+            } else {
+              state = st_fail;
+            }
+            break;
+          case st_block:
+            if ( (*t) == "block" ) {
+              state = st_virtual;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+          case st_virtual:
+            if ( (*t) == "virtual" ) {
+              state = st_accept;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+        }
+      }
+      if ( state == st_accept && eat_chars ) {
+        path_ = path.substr(13);
+        path = path.substr( 0, path.length() - eat_chars );
+        return true;
+      } else return false;
+    }
+
+    bool RamDiskDevice::accept( SysDevicePath &path ) {
+      if ( path.find("virtual/block/ram") == std::string::npos ) return false;
+      std::list<std::string> tokens;
+      tokenize( path, tokens );
+      const unsigned int st_ram_device = 0;
+      const unsigned int st_block = 1;
+      const unsigned int st_virtual = 2;
+      const unsigned int st_fail = 3;
+      const unsigned int st_accept = 4;
+      unsigned int state = st_ram_device;
+      size_t eat_chars = 0;
+      util::RegExp reg;
+      for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end() && state != st_accept && state != st_fail; t++ ) {
+        switch ( state ) {
+          case st_ram_device:
+            reg.set( "ram([[:digit:]]+)" );
+            if ( reg.match( *t ) ) {
+              eat_chars += (*t).length() + 1;
+              state = st_block;
+            } else {
+              state = st_fail;
+            }
+            break;
+          case st_block:
+            if ( (*t) == "block" ) {
+              state = st_virtual;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+          case st_virtual:
+            if ( (*t) == "virtual" ) {
+              state = st_accept;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+        }
+      }
+      if ( state == st_accept && eat_chars ) {
+        path_ = path.substr(13);
+        path = path.substr( 0, path.length() - eat_chars );
+        return true;
+      } else return false;
+    }
+
     bool BCacheDevice::accept( SysDevicePath &path ) {
       if ( path.find("virtual/block") == std::string::npos ) return false;
       std::list<std::string> tokens;
@@ -1268,6 +1356,8 @@ namespace leanux {
         NVMeDevice nvme;
         NetDevice net;
         VirtualNetDevice vnet;
+        LoopbackDevice loopback;
+        RamDiskDevice ramdisk;
         BlockPartition part;
         if ( wpath.find( "/block/" ) != std::string::npos ) {
           if ( iscsi.accept( wpath ) ) { parent = wpath; return new iSCSIDevice(iscsi); }
@@ -1279,6 +1369,8 @@ namespace leanux {
           else if ( virtio.accept( wpath ) ) { parent = wpath; return new VirtioBlockDevice(virtio); }
           else if ( part.accept( wpath ) ) { parent = wpath; return new BlockPartition(part); }
           else if ( bcache.accept( wpath ) ) { parent = wpath; return new BCacheDevice(bcache); }
+          else if ( loopback.accept( wpath ) ) { parent = wpath; return new LoopbackDevice(loopback); }
+          else if ( ramdisk.accept( wpath ) ) { parent = wpath; return new RamDiskDevice(ramdisk); }
         }
         if ( wpath.find( "/pci" ) != std::string::npos ) {
           if ( pcibus.accept( wpath ) ) { parent = wpath; return new PCIBus(pcibus); }
@@ -1349,6 +1441,8 @@ namespace leanux {
         case sdtMMCDevice : return "MMC device";
         case sdtNetDevice : return "network device";
         case sdtVirtualNetDevice : return "virtual network device";
+        case sdtLoopbackDevice : return "loopback device";
+        case sdtRAMDiskDevice : return "ramdisk device";
         case sdtUnknown : return "unknown device";
         default: return "undefined SysDeviceType";
       }

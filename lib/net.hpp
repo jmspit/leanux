@@ -233,6 +233,8 @@ namespace leanux {
 
     /**
      * Get the service name, eg 'ssh' for port 22.
+     * @param port the port number of the service
+     * @return the service name associated with the port number
      */
     std::string getServiceName( int port );
 

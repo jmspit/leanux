@@ -6,9 +6,9 @@ string(TOUPPER ${PROJECT} PROJECTUC)
 
 project( ${PROJECT} )
 
-set( ${PROJECT}_VERSION_MAJOR "0" )
+set( ${PROJECT}_VERSION_MAJOR "1" )
 set( ${PROJECT}_VERSION_MINOR "0" )
-set( ${PROJECT}_VERSION_PATCH "10" )
+set( ${PROJECT}_VERSION_PATCH "0" )
 
 if ( ${CMAKE_SIZEOF_VOID_P} STREQUAL "8" )
 execute_process(

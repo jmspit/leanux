@@ -131,6 +131,9 @@ namespace leanux {
           leanux::util::ConfigFile::declareParameter( "COLOR_SOFTIRQ_CPU", "(117,164,234)", "Color for softirq mode CPU (only effective for 256color terminals)" );
           leanux::util::ConfigFile::declareParameter( "SAMPLE_INTERVAL", "4", "seconds between samples" );
           leanux::util::ConfigFile::declareParameter( "MAX_MOUNTPOINT_WIDTH", "22", "maximum characters used by a mountpoint" );
+          leanux::util::ConfigFile::declareParameter( "IOVIEW_MIN_HEIGHT", "4", "minimum height (#rows) for disk and mount IO view" );
+          leanux::util::ConfigFile::declareParameter( "IOVIEW_MAX_HEIGHT", "14", "maximum height (#rows) for disk and mount IO view" );
+          leanux::util::ConfigFile::declareParameter( "NETVIEW_MIN_HEIGHT", "4", "minimum height (#rows) for network and TCP view" );
 
           leanux::util::ConfigFile::setConfig( "lmon", leanux::util::getUserConfigDir() + "/.leanux-lmon" );
 

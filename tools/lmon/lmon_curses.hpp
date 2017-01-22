@@ -641,7 +641,7 @@ namespace leanux {
            * Get the minimal height for the NetView.
            * @return the minimal height in lines.
            */
-          static int getMinHeight() { return 6; };
+          static int getMinHeight();
 
           /**
            * provide the optimal height for the NetView,

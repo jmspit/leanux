@@ -1039,7 +1039,7 @@ namespace leanux {
       }
 
       int IOView::getMinHeight()  {
-        return 4;
+        return leanux::util::ConfigFile::getConfig()->getIntValue( "IOVIEW_MIN_HEIGHT" );
       }
 
       unsigned int IOView::max_mountpoint_width_;
@@ -1050,7 +1050,13 @@ namespace leanux {
         vmem::getSwapInfo( swaps );
         std::map<block::MajorMinor,block::MountInfo> mounts;
         block::enumMounts( mounts, devicefilecache_ );
-        return std::min( (size_t)14, std::max( (size_t)block::getAttachedWholeDisks(), mounts.size() + swaps.size() ) + 3 );
+        return
+          std::max( (size_t)leanux::util::ConfigFile::getConfig()->getIntValue( "IOVIEW_MIN_HEIGHT" ),
+                    std::min( (size_t)leanux::util::ConfigFile::getConfig()->getIntValue( "IOVIEW_MAX_HEIGHT" ),
+                              std::max( (size_t)block::getAttachedWholeDisks(), mounts.size() + swaps.size() )
+                              + 3
+                            )
+                  );
       }
 
       IOView::IOView( int width, int height, int x, int y, Screen* screen ) :
@@ -1404,6 +1410,10 @@ namespace leanux {
       }
 
       void NetView::doSample() {
+      }
+
+      int NetView::getMinHeight() {
+        return leanux::util::ConfigFile::getConfig()->getIntValue( "NETVIEW_MIN_HEIGHT" );
       }
 
       void NetView::xrefresh( const XNetView &data ) {

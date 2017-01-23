@@ -11,6 +11,9 @@
 # set ownership on lard config dir
 /usr/bin/chown -R root:@LARD_USER@ @LARD_SYSCONF_DIR@
 
+# reload systemctl daemon status
+/usr/bin/systemctl daemon-reload
+
 # some info to the installing user
 /usr/bin/echo "start lard on boot: /usr/sbin/chkconfig --add lard"
 /usr/bin/echo "start lard now: /usr/sbin/service lard start"

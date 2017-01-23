@@ -31,9 +31,9 @@ src_configure() {
 src_install() {
   cmake-utils_src_install
   insinto @LARD_SYSCONF_DIR@
-  newins "${WORKDIR}"/"${P}"/tools/lard/etc/lard.conf lard.conf
-  newinitd "${WORKDIR}"/"${P}"/init.d/lard lard
-  newconfd "${WORKDIR}"/"${P}"/tools/lard/gentoo/conf.d/lard lard
+  newins "${BUILD_DIR}"/lard.conf lard.conf
+  newinitd "${BUILD_DIR}"/init.d/lard lard
+  newconfd "${BUILD_DIR}"/conf.d/lard lard
 }
 
 pkg_postinst() {

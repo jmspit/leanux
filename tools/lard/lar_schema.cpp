@@ -308,11 +308,11 @@ namespace leanux {
 
         ddl.reset();
         ddl.prepare( "CREATE TABLE IF NOT EXISTS procstat (\n"
-                     "  snapshot  INTEGER NOT NULL, -- snapshot id\n"
-                     "  pid       INTEGER NOT NULL, -- process id\n"
+                     "  snapshot  INTEGER NOT NULL,    -- snapshot id\n"
+                     "  pid       INTEGER NOT NULL,    -- process id\n"
                      "  state     TEXT    NOT NULL,    -- process state\n"
-                     "  uid       INTEGER NOT NULL, -- process uid\n"
-                     "  cmd       INTEGER NOT NULL, -- command id\n"
+                     "  uid       INTEGER NOT NULL,    -- process uid\n"
+                     "  cmd       INTEGER NOT NULL,    -- command id\n"
                      "  usercpu   REAL    NOT NULL,    -- average user mode cpu seconds per second\n"
                      "  systemcpu REAL    NOT NULL,    -- average system mode cpu seconds per second\n"
                      "  iotime    REAL    NOT NULL,    -- average iowait mode cpu seconds per second\n"

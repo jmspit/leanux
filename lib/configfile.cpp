@@ -159,6 +159,16 @@ namespace leanux {
       if ( user == values_.end() ) return def->second.value_; else return user->second.value_;
     }
 
+    std::list<std::string> ConfigFile::getStringListValue( const std::string &name ) const {
+      std::string value = getValue( name );
+      std::stringstream iss(value);
+      std::list<std::string> result;
+      for (std::string token; std::getline(iss, token, ',' ); ) {
+        result.push_back( token );
+      }
+      return result;
+    }
+
     ConfigFile::RGB ConfigFile::getRGBValue( const std::string &name ) const {
       ConfigFile::RGB rgb;
       std::string s = getValue( name );
@@ -232,6 +242,17 @@ namespace leanux {
       if ( def == defaults_.end() ) throw Oops( __FILE__, __LINE__, "invalid configuration parameter '" + name + "'" );
       std::stringstream ss;
       ss << std::fixed << "(" << value.red << "," << value.green << "," << value.blue << ")";
+      values_[name].value_ = ss.str();
+    }
+
+    void ConfigFile::setValue( const std::string name, const std::list<std::string> value ) {
+      std::map<std::string,Parameter>::const_iterator def = defaults_.find( name );
+      if ( def == defaults_.end() ) throw Oops( __FILE__, __LINE__, "invalid configuration parameter '" + name + "'" );
+      std::stringstream ss;
+      for ( std::list<std::string>::const_iterator i = value.begin(); i != value.end(); i++ ) {
+        if ( i != value.begin() ) ss << ",";
+        ss << (*i);
+      }
       values_[name].value_ = ss.str();
     }
 

@@ -42,6 +42,10 @@ set( LARD_CONF_SQLITE_SOFT_HEAPLIMIT_DEFAULT "4194304" )
 set( LARD_CONF_SQLITE_SOFT_HEAPLIMIT_DESCR "soft limit for the SQLite heap" )
 set( LARD_CONF_SQLITE_SOFT_HEAPLIMIT_COMMENT "SQLite will try to stay below this limit. Operations such as hash joins and sorts benefit from adequate memory" )
 
+set( LARD_CONF_COMMAND_ARGS_IGNORE_DEFAULT "" )
+set( LARD_CONF_COMMAND_ARGS_IGNORE_DESCR "comma-separated list of commands to exclude from argument storing" )
+set( LARD_CONF_COMMAND_ARGS_IGNORE_COMMENT "some commands will have unique arguments on each invocation, requiring storage in the lard database. arguments may also contain dangereous data. note that only the first linux/sched.h:TASK_COMM_LEN characters are matched" )
+
 set( LARD_SYSDB_PATH "/var/lib/lard" )
 set( LARD_SYSDB_FILE "${LARD_SYSDB_PATH}/lard.db" )
 set( LARD_SYSCONF_DIR "/etc/lard" )

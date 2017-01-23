@@ -40,6 +40,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <list>
 
 namespace leanux {
 
@@ -103,6 +104,13 @@ namespace leanux {
         int getIntValue( const std::string &name ) const;
 
         /**
+         * return the configuration parameter as an int.
+         * @param name the configuration parameter name.
+         * @return the configuration parameter value.
+         */
+        std::list<std::string> getStringListValue( const std::string &name ) const;
+
+        /**
          * Set the configuration parameter to an int value.
          * @param name the configuration parameter name.
          * @param value the integer value to set.
@@ -122,6 +130,13 @@ namespace leanux {
          * @param value the RGB value to set.
          */
         void setValue( const std::string name, const RGB &value );
+
+        /**
+         * Set the configuration parameter to a stringlist value.
+         * @param name the configuration parameter name.
+         * @param value the stringlist value to set.
+         */
+        void setValue( const std::string name, const std::list<std::string> value );
 
         /**
          * declare the configuration paramater and set a hardcoded default.

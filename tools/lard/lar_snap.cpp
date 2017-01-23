@@ -40,10 +40,18 @@
 #include <syslog.h>
 #include <algorithm>
 #include <sstream>
+#include <string.h>
 
 namespace leanux {
   namespace tools {
     namespace lard {
+
+      /**
+       * maximum size of a command name as tracked by the kernel.
+       * should be set to TASK_COMM_LEN which seems to be unavailable
+       * outside kernel sources (/usr/src/linux/include/linux/sched.h)
+       */
+      const size_t task_comm_len = 16;
 
       void sysLog( unsigned short level, unsigned short limit, const std::string &msg ) {
         if ( level <= limit ) {
@@ -416,7 +424,15 @@ namespace leanux {
         long max_proc = util::ConfigFile::getConfig()->getIntValue("MAX_PROCESSES");
         for ( leanux::process::ProcPidStatDeltaVector::const_iterator i = delta.begin(); i != delta.end() && maxrow < max_proc; i++, maxrow++ ) {
           qry_cmd.reset();
+          std::list<std::string> excludecmdargs = util::ConfigFile::getConfig()->getStringListValue("COMMAND_ARGS_IGNORE");
           std::string args = process::getProcCmdLine( (*i).pid );
+          for ( std::list<std::string>::const_iterator e = excludecmdargs.begin(); e != excludecmdargs.end(); e++ ) {
+            if ( strncmp( (*e).c_str(), snap2_[(*i).pid].comm.c_str(), task_comm_len ) == 0 ) {
+              args = "";
+              break;
+            }
+          }
+
           qry_cmd.bind( 1, snap2_[(*i).pid].comm );
           qry_cmd.bind( 2, args );
           if ( qry_cmd.step() ) {

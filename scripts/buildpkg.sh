@@ -89,7 +89,7 @@ function buildSource() {
   HOST=$1
   SRC=$2
   ssh spjm@${HOST} "mkdir -p ${SRC%.tar.gz}/build/release" || return 1
-  ssh spjm@${HOST} "cd ${SRC%.tar.gz}/build/release && cmake ../.. -DCMAKE_BUILD_TYPE=Release && make package" || return 1
+  ssh spjm@${HOST} "cd ${SRC%.tar.gz}/build/release && cmake ../.. -DCMAKE_BUILD_TYPE=Release && make package && sync" || return 1
   return 0;
 }
 

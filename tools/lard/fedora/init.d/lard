@@ -30,7 +30,7 @@ start() {
 }
 
 stop() {
-  echo -n "Shutting down ${RPOG}: "
+  echo -n "Shutting down ${PROG}: "
   killproc ${PROG}
   ERR=$?
   rm -f ${LOCKFILE}

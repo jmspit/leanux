@@ -31,6 +31,7 @@ if ( EXISTS "/etc/os-release" )
       OUTPUT_VARIABLE OS_RELEASE_PRETTY_NAME
       OUTPUT_STRIP_TRAILING_WHITESPACE
     )
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/gentoo/init.d/lard ${CMAKE_CURRENT_BINARY_DIR}/init.d/lard @ONLY)
     set( CPACK_GENERATOR "TGZ" )
     set( MAN_INSTALL_DIR "share/man" )
     set( OS_RELEASE_TAG "${OS_RELEASE_ID}" )

@@ -103,7 +103,6 @@ namespace leanux {
           case SIGQUIT:
           case SIGTERM:
             stopped = true;
-            signal( sig, SIG_IGN );
             break;
         }
         std::stringstream ss;

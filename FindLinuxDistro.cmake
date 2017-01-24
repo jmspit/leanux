@@ -223,6 +223,7 @@ if ( EXISTS "/etc/os-release" )
       OUTPUT_VARIABLE OS_RELEASE_PRETTY_NAME
       OUTPUT_STRIP_TRAILING_WHITESPACE
     )
+    set( OS_RELEASE_TAG "Arch" )
   endif()
 
 ###############################

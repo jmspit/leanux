@@ -166,10 +166,10 @@ namespace leanux {
     const size_t bytestr_max_width = 64;
 
     /** pow(1024.0,1.0/3.0) */
-    const long double base_1024 = 10.0793683991589837489755;
+    const double base_1024 = 10.0793683991589837489755;
 
     /** log ( pow(1024.0,1.0/3.0) */
-    const long double base_1024_log = 2.31049060186648436143741;
+    const double base_1024_log = 2.31049060186648436143741;
 
     std::string ByteStr( double bytes, int prec ) {
       char bytestrbuf[bytestr_max_width];

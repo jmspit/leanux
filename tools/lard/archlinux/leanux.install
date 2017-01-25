@@ -6,8 +6,13 @@ post_install() {
   chown -R leanux:leanux /var/lib/lard
   chmod 770 /var/lib/lard
   chmod 660 /var/lib/lard/lard.db
+  systemctl daemon-reload
 }
 
 pre_remove() {
   systemctl stop lard
+}
+
+post_remove() {
+  systemctl daemon-reload
 }

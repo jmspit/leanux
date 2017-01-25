@@ -8,6 +8,7 @@ license=("GPLv3")
 makedepends=("ncurses" "cmake" "zlib" "sqlite3")
 source=("@LEANUX_SRC_URI_BASE@/$pkgname-$pkgver.tar.gz")
 sha512sums=("@LEANUX_SOURCE_SHA512SUM@")
+install=leanux
 
 build() {
     mkdir $pkgname-$pkgver/release

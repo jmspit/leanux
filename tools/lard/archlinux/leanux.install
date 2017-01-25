@@ -1,5 +1,5 @@
 post_install() {
-  groupdadd leanux
+  groupadd leanux
   useradd -M -s /bin/false -g leanux leanux
   mkdir -p /var/lib/lard
   touch /var/lib/lard/lard.db
@@ -9,5 +9,5 @@ post_install() {
 }
 
 pre_remove() {
-  servicectl stop lard
+  systemctl stop lard
 }

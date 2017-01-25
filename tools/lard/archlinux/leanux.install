@@ -1,0 +1,13 @@
+post_install() {
+  groupdadd leanux
+  useradd -M -s /bin/false -g leanux leanux
+  mkdir -p /var/lib/lard
+  touch /var/lib/lard/lard.db
+  chown -R leanux:leanux /var/lib/lard
+  chmod 770 /var/lib/lard
+  chmod 660 /var/lib/lard/lard.db
+}
+
+pre_remove() {
+  servicectl stop lard
+}

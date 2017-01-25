@@ -217,13 +217,17 @@ if ( EXISTS "/etc/os-release" )
     set( OS_RELEASE_TAG "${OS_RELEASE_ID}_${OS_RELEASE_VERSION_ID}" )
     set(CPACK_GENERATOR "TGZ")
     set( MAN_INSTALL_DIR "man" )
+    set( OS_RELEASE_TAG "Arch" )
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/archlinux/leanux.install ${CMAKE_CURRENT_BINARY_DIR}/leanux.install @ONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/archlinux/lard.service ${CMAKE_CURRENT_BINARY_DIR}/lard.service @ONLY)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lard.service DESTINATION "/etc/systemd/system")
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lard.conf DESTINATION "/etc/lard")
   else()
     execute_process(
       COMMAND sh -c "cat /etc/os-release | grep 'PRETTY_NAME=' | cut -d= -f2 | sed 's,\",,g'"
       OUTPUT_VARIABLE OS_RELEASE_PRETTY_NAME
       OUTPUT_STRIP_TRAILING_WHITESPACE
     )
-    set( OS_RELEASE_TAG "Arch" )
   endif()
 
 ###############################

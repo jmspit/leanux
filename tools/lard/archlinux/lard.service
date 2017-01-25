@@ -1,0 +1,12 @@
+[Unit]
+Description=@LARD_DESCR@
+ConditionFileIsExecutable=/usr/bin/lard
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/lard -c /etc/lard/lard.conf -f /var/lib/lard/lard.db
+TimeoutSec=0
+StandardOutput=tty
+RemainAfterExit=yes
+
+[Install]

@@ -266,9 +266,12 @@ namespace leanux {
             case 0x02 : ss << "EISA bridge"; break;
             case 0x03 : ss << "MCA bridge"; break;
             case 0x04 :
-              if ( function_ == 0x00 ) ss << "PCI-to-PCI bridge";
-              else if ( function_ == 0x01 ) ss << "PCI-to-PCI bridge (subtractive decode)";
-              else ss << "unknown function for pciBridge 0x04 function " << function_; break;
+              if ( function_ == 0x00 )
+                ss << "PCI-to-PCI bridge";
+              else if ( function_ == 0x01 )
+                ss << "PCI-to-PCI bridge (subtractive decode)";
+              else
+                ss << "unknown function for pciBridge 0x04 function " << function_;
               break;
             case 0x05 : ss << "PCMCIA bridge"; break;
             case 0x06 : ss << "NuBus bridge"; break;
@@ -375,8 +378,10 @@ namespace leanux {
             case 0x02: ss << "mouse controller"; break;
             case 0x03: ss << "scanner controller"; break;
             case 0x04:
-              if ( function_ == 0x00 ) ss << "gameport controller (generic)";
-              else if ( function_ == 0x10 ) ss << "gameport controller (legacy)";
+              if ( function_ == 0x00 )
+                ss << "gameport controller (generic)";
+              else if ( function_ == 0x10 )
+                ss << "gameport controller (legacy)";
               else ss << "unknown function for pciInput 0x04 function " << function_;
               break;
             case 0x80 : ss << "other input controller"; break;
@@ -457,9 +462,12 @@ namespace leanux {
           break;
 
         case pciIntelligentIO:
-          if ( subclass_ == 0x00 && function_ == 0x00 ) ss << "message FIFO";
-          else if ( subclass_ == 0x00 && function_ != 0x00 ) ss << "I20 architecture";
-          else ss << "unknown pciIntelligentIO subclass (" << subclass_ << ")"; break;
+          if ( subclass_ == 0x00 && function_ == 0x00 )
+            ss << "message FIFO";
+          else if ( subclass_ == 0x00 && function_ != 0x00 )
+            ss << "I20 architecture";
+          else
+            ss << "unknown pciIntelligentIO subclass (" << subclass_ << ")";
           break;
 
         case pciSatelliteCommunication:

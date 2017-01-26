@@ -3,7 +3,6 @@ LEANUX_RELEASE=$1
 CLONE_DIR=/home/spjm/leanux-clone
 
 VMLIST="centos debian fedora opensuse ubuntu"
-#VMLIST="centos"
 
 VBOX=/usr/bin/VBoxManage
 
@@ -16,6 +15,10 @@ function packageExtension() {
     ubuntu)
       echo "deb"
       return 0
+      ;;
+    archlinux)
+      echo "xz"
+      return 0;
       ;;
     *)
       echo "rpm"
@@ -93,6 +96,18 @@ function buildSource() {
   return 0;
 }
 
+function buildSourceArch() {
+  HOST=$1
+  SRC=$2
+  ssh spjm@${HOST} "rm ${SRC%.tar.gz}*.tar.xz; rm -rf src pkg" || return 1
+  ssh spjm@${HOST} "mkdir -p ${SRC%.tar.gz}/build/release" || return 1
+  ssh spjm@${HOST} "cd ${SRC%.tar.gz}/build/release && cmake ../.. -DCMAKE_BUILD_TYPE=Release && sync" || return 1
+  ssh spjm@${HOST} "cp ${SRC%.tar.gz}/build/release/${SRC%.tar.gz}.PKGBUILD ~" || return 1
+  ssh spjm@${HOST} "cp ${SRC%.tar.gz}/build/release/leanux.install ~" || return 1
+  ssh spjm@${HOST} "makepkg --skipinteg -p ${SRC%.tar.gz}.PKGBUILD && sync" || return 1
+  return 0;
+}
+
 function copyPackages() {
   HOST=$1
   SRC=$2
@@ -100,6 +115,16 @@ function copyPackages() {
   mkdir -p $LOCALDIR
   EXT=$(packageExtension $HOST)
   scp spjm@${HOST}:~/${SRC%.tar.gz}/build/release/*.${EXT} $LOCALDIR || return 1
+  return 0;
+}
+
+function copyPackagesArch() {
+  HOST=$1
+  SRC=$2
+  LOCALDIR=remotebuilds/$HOST
+  mkdir -p $LOCALDIR
+  EXT=$(packageExtension $HOST)
+  scp spjm@${HOST}:~/${SRC%.tar.gz}*.pkg.tar.${EXT} $LOCALDIR || return 1
   return 0;
 }
 
@@ -112,7 +137,7 @@ cd leanux || { echo "expected git clone 'leanux' found"; exit 1; }
 git checkout $LEANUX_RELEASE || { echo "failed to checkout $LEANUX_RELEASE"; exit 1; }
 SRC_DIR=$CLONE_DIR/leanux/build/release
 mkdir -p $SRC_DIR || { echo "failed to create directory $SRC_DIR"; exit 1; }
-cd $SRC_DIR || { echo "failed to chdirt into $SRC_DIR"; exit 1; }
+cd $SRC_DIR || { echo "failed to chdir into $SRC_DIR"; exit 1; }
 cmake ../.. || { echo "cmake failed"; exit 1; }
 make package_source || { echo "make package_source failed"; exit 1; }
 
@@ -131,9 +156,20 @@ do
   stopvm $vm || { echo "failed to stop vm $vm"; exit 1; }
 done
 
+# and seperately for special case arch linux
+vm="archlinux"
+startvm $vm || { echo "failed to start vm $vm"; exit 1; }
+copySource $vm $SRC_FILE || { echo "failed to copy source $SRC_FILE to vm $vm"; exit 1; }
+unpackSource $vm $SRC_SHORT || { echo "unpacking source $SRC_SHORT failed on vm $vm"; exit 1; }
+buildSourceArch $vm $SRC_SHORT || { echo "building source $SRC_SHORT failed on vm $vm"; exit 1; }
+copyPackagesArch $vm $SRC_SHORT || { echo "retrieving packages from vm $vm failed"; exit 1; }
+stopvm $vm || { echo "failed to stop vm $vm"; exit 1; }
+
+
 # publish
-rm -f out.html
-for vm in ${VMLIST}
+rm -f publish.html
+echo "<table>" >> publish.html
+for vm in archlinux ${VMLIST}
 do
   LOCALDIR=remotebuilds/$vm
   REMOTEDIR=/var/www/www.o-rho.com/htdocs/drupal/sites/default/files/article_files
@@ -142,17 +178,16 @@ do
   ssh root@vlerk "chown root:apache ${REMOTEDIR}/*.${EXT}" || { echo "chown on website for distribution $vm failed"; exit 1; }
   ssh root@vlerk "chmod 640 ${REMOTEDIR}/*.${EXT}" || { echo "chmod on website for distribution $vm failed"; exit 1; }
 
-  echo "<table>" >> out.html
-  echo "<tr><th>$vm</th><th>build date</th><th>size</th><th>sha256</th></tr>" >> out.html
+  echo "<tr><th>$vm</th><th>build date</th><th>size</th></tr>" >> publish.html
   for file in $(ls -1 ${LOCALDIR})
   do
     DATE=$(stat -c %y ${LOCALDIR}/$file)
     SIZE=$(stat -c %s ${LOCALDIR}/$file)
     SHA256SUM=$(sha256sum ${LOCALDIR}/$file | cut -d\  -f1)
-    echo "<tr><td><a href=\"https://www.o-rho.com/sites/default/files/article_files/$file\">$file</a>" >> out.html
-    echo "<td>$DATE</td><td>$SIZE</td><td>$SHA256SUM</td></tr>" >> out.html
+    echo "<tr><td><a href=\"https://www.o-rho.com/sites/default/files/article_files/$file\" title=\"$SHA256SUM\">$file</a>" >> publish.html
+    echo "<td>$DATE</td><td>$SIZE</td></tr>" >> publish.html
   done
-  echo "</table>" >> out.html
 done
+echo "</table>" >> publish.html
 
 #test -d "$CLONE_DIR" && rm -rf "$CLONE_DIR"

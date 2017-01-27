@@ -199,7 +199,7 @@ namespace leanux {
             xioview_.mountstats[m->second.mountpoint].svctm = xioview_.iostats[(*s).getName()].svctm;
             xioview_.mountstats[m->second.mountpoint].svctm = xioview_.iostats[(*s).getName()].svctm;
             xioview_.mountstats[m->second.mountpoint].device = m->second.mountpoint;
-            xioview_.mountstats[m->second.mountpoint].growths = (xioview_.fsbytes2[m->second.mountpoint] - xioview_.fsbytes1[m->second.mountpoint])/dt;
+            xioview_.mountstats[m->second.mountpoint].growths = ((double)xioview_.fsbytes2[m->second.mountpoint] - (double)xioview_.fsbytes1[m->second.mountpoint])/dt;
             xioview_.mountsorted.push_back(m->second.mountpoint);
           } else {
             //include swap filesystems

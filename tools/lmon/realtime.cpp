@@ -57,9 +57,17 @@ namespace leanux {
         mounted_bytes_2_ = 0;
         xioview_.sample_count = 0;
         xsysview_.sample_count = 0;
+
+        xnetview_.delta.clear();
+        gettimeofday( &xnetview_.t1, 0 );
+        gettimeofday( &xnetview_.t2, 0 );
         xnetview_.sample_count = 0;
+        xnetview_.tcpclient.clear();
+        xnetview_.tcpserver.clear();
+
         xprocview_.sample_count = 0;
         xprocview_.disabled = false;
+
         sample(0);
       }
 
@@ -313,7 +321,7 @@ namespace leanux {
 
           std::string bar = makeCPUBar( xsysview_.cpu_total, xsysview_.cpu_topo.logical, cpubarheight - 2 );
           xsysview_.cpurtpast.push_back( bar );
-          if ( xsysview_.cpupast.size() > MAX_CPU_TRAIL ) xsysview_.cpupast.pop_front();
+          while ( xsysview_.cpurtpast.size() > MAX_CPU_TRAIL ) xsysview_.cpurtpast.pop_front();
         } else {
           xsysview_.cpu_seconds = xsysview_.cpu_total.steal +
                                   xsysview_.cpu_total.softirq +

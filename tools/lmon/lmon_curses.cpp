@@ -1036,9 +1036,6 @@ namespace leanux {
         return result;
       }
 
-      void SysView::doSample() {
-      }
-
       int IOView::getMinHeight()  {
         return leanux::util::ConfigFile::getConfig()->getIntValue( "IOVIEW_MIN_HEIGHT" );
       }
@@ -1062,7 +1059,6 @@ namespace leanux {
 
       IOView::IOView( int width, int height, int x, int y, Screen* screen ) :
         View( width, height, x, y, screen ) {
-        sample();
       }
 
       unsigned long IOView::getSectorSize( const block::MajorMinor& m ) {
@@ -1261,14 +1257,9 @@ namespace leanux {
 
       ProcessView::ProcessView( int width, int height, int x, int y, Screen* screen )
         : View( width, height, x, y, screen) {
-        sample();
       }
 
       ProcessView::~ProcessView() {
-      }
-
-      void ProcessView::doSample() {
-
       }
 
       void ProcessView::resize( int width, int height, int x, int y ) {
@@ -1404,7 +1395,6 @@ namespace leanux {
 
       NetView::NetView( int width, int height, int x, int y, Screen* screen )
         : View( width, height, x, y, screen ) {
-        sample();
       }
 
       NetView::~NetView() {

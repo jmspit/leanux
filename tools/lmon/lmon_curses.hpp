@@ -98,11 +98,6 @@ namespace leanux {
            */
           static int getMinHeight() { return 0; };
 
-          /**
-           * Run a sample of statistics.
-           */
-          inline void sample() { doSample(); sample_count_++; };
-
           int getHeight() const { return height_; }
 
         protected:
@@ -465,11 +460,6 @@ namespace leanux {
         protected:
 
           /**
-           * Overloaded by descendent classes to take a sample.
-           */
-          virtual void doSample();
-
-          /**
            * Get ncurses display attributes depending on the type of CPU chararcter.
            * @param c the CPU character.
            * @return the ncurses display attributes.
@@ -592,11 +582,6 @@ namespace leanux {
            */
           static int getOptimalHeight() { return 10000; };
         protected:
-
-          /**
-           * Take a ProcessView sample.
-           */
-          virtual void doSample();
 
           /** width of the wchan column. */
           static int width_wchan_;

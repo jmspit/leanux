@@ -215,6 +215,7 @@ namespace leanux {
         catch ( ... ) {
         }
         delete vprocess_;
+        delete vnetwork_;
         delete vio_;
         delete vsys_;
         delete vheader_;

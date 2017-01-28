@@ -50,24 +50,13 @@ namespace leanux {
 
       std::map<std::string,block::MajorMinor> RealtimeSampler::devicefilecache_;
 
-      RealtimeSampler::RealtimeSampler() {
+      RealtimeSampler::RealtimeSampler() : xioview_(), xsysview_(), xnetview_(), xprocview_() {
         xsysview_.pagesize_ = system::getPageSize();
         cpu::getCPUInfo( cpuinfo_ );
         mounted_bytes_1_ = 0;
         mounted_bytes_2_ = 0;
-        xioview_.sample_count = 0;
-        xsysview_.sample_count = 0;
 
-        xnetview_.delta.clear();
-        gettimeofday( &xnetview_.t1, 0 );
-        gettimeofday( &xnetview_.t2, 0 );
-        xnetview_.sample_count = 0;
-        xnetview_.tcpclient.clear();
-        xnetview_.tcpserver.clear();
-
-        xprocview_.sample_count = 0;
         xprocview_.disabled = false;
-
         sample(0);
       }
 

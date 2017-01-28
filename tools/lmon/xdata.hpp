@@ -146,9 +146,6 @@ namespace leanux {
         /** number of samples taken */
         unsigned long sample_count;
 
-        /** device statistics delta for all MajorMinor */
-        //block::DeviceStatsMap devicestats;
-
         IORecMap iostats;
         std::vector<std::string> iosorted;
 

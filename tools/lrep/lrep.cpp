@@ -2991,9 +2991,8 @@ namespace leanux {
         persist::Query qry(db);
         qry.prepare( "select sub.istop, avg(sub.usercpu), avg(systemcpu), avg(iotime) from ( "
            "select istop, ifnull(usercpu,0) usercpu, ifnull(systemcpu,0) systemcpu, ifnull(iotime,0) iotime from snapshot "
-           "left outer join cmd on procstat.cmd=cmd.id "
-           "left outer join (select snapshot,cmd,usercpu,systemcpu,iotime from procstat) procstat on snapshot.id=procstat.snapshot "
-           "where cmd.cmd=:cmdname and snapshot.id>=:from and snapshot.id<=:to "
+           "left outer join (select snapshot,cmd.cmd,sum(usercpu) usercpu,sum(systemcpu) systemcpu, sum(iotime) iotime from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
+           "                  and procstat.snapshot>=:from and procstat.snapshot<=:to group by snapshot,cmd.cmd) procstat on snapshot.id=procstat.snapshot "
          ") sub "
          "group by sub.istop/:bucket "
          "order by 1" );
@@ -3043,14 +3042,14 @@ namespace leanux {
         stringstream ssdom;
         ssdom << "cmd" << jsIdFromString(cmdname) << "_rss_timeline";
         persist::Query qry(db);
-        qry.prepare( "select sub.istop, avg(sub.rss) from ( "
-           "select istop, ifnull(rss,0) rss from snapshot "
-           "left outer join cmd on cmd.id=procstat.cmd "
-           "left outer join (select snapshot,cmd,rss from procstat) procstat on snapshot.id=procstat.snapshot "
-           "where cmd.cmd=:cmdname and snapshot.id>=:from and snapshot.id<=:to "
+        qry.prepare( "select sub.istop, avg(sub.srss) from ( "
+           "select istop, ifnull(srss,0) srss from snapshot "
+           " left outer join (select snapshot,cmd.cmd,sum(rss) srss from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
+           "                  and procstat.snapshot>=:from and procstat.snapshot<=:to group by snapshot,cmd.cmd) procstat on snapshot.id=procstat.snapshot "
          ") sub "
          "group by sub.istop/:bucket "
          "order by 1" );
+
         qry.bind( 1, cmdname );
         qry.bind( 2, snaprange.snap_min );
         qry.bind( 3, snaprange.snap_max );

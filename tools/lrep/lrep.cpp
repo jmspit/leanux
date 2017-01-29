@@ -165,6 +165,20 @@ namespace leanux {
       map<string,string> resolvemap;
 
       /**
+       * deterministic transform of arbitray strings into valid javascript identifiers
+       */
+      string jsIdFromString( const string &s ) {
+        std::stringstream ss;
+        ss << "id";
+        for ( std::string::const_iterator i = s.begin(); i != s.end(); i++ ) {
+          if ( *i > 122 || *i < 97 ) {
+            ss << (int)*i;
+          } else ss << *i;
+        }
+        return ss.str();
+      }
+
+      /**
        * get from cache or DNS request on cache miss
        */
       string resolveCacheIP( const string &ip ) {
@@ -2970,19 +2984,20 @@ namespace leanux {
         }
       }
 
-      void htmlCmdCPUDetail( long cmdid, const string& cmdname, const persist::Database &db ) {
+      void htmlCmdCPUDetail( const string& cmdname, const persist::Database &db ) {
         stringstream js;
         stringstream ssdom;
-        ssdom << "cmd" << cmdid << "_cpu_timeline";
+        ssdom << "cmd" << jsIdFromString(cmdname) << "_cpu_timeline";
         persist::Query qry(db);
         qry.prepare( "select sub.istop, avg(sub.usercpu), avg(systemcpu), avg(iotime) from ( "
-           "select istop, cmd, ifnull(usercpu,0) usercpu, ifnull(systemcpu,0) systemcpu, ifnull(iotime,0) iotime from snapshot "
-           "left outer join (select snapshot,cmd,usercpu,systemcpu,iotime from procstat where cmd=:cmd) procstat on snapshot.id=procstat.snapshot "
-           "where snapshot.id>=:from and snapshot.id<=:to "
+           "select istop, ifnull(usercpu,0) usercpu, ifnull(systemcpu,0) systemcpu, ifnull(iotime,0) iotime from snapshot "
+           "left outer join cmd on procstat.cmd=cmd.id "
+           "left outer join (select snapshot,cmd,usercpu,systemcpu,iotime from procstat) procstat on snapshot.id=procstat.snapshot "
+           "where cmd.cmd=:cmdname and snapshot.id>=:from and snapshot.id<=:to "
          ") sub "
          "group by sub.istop/:bucket "
          "order by 1" );
-        qry.bind( 1, cmdid );
+        qry.bind( 1, cmdname );
         qry.bind( 2, snaprange.snap_min );
         qry.bind( 3, snaprange.snap_max );
         qry.bind( 4, snaprange.timeline_bucket );
@@ -3023,19 +3038,20 @@ namespace leanux {
         }
       }
 
-      void htmlCmdRSSDetail( long cmdid, const string& cmdname, const persist::Database &db ) {
+      void htmlCmdRSSDetail( const string& cmdname, const persist::Database &db ) {
         stringstream js;
         stringstream ssdom;
-        ssdom << "cmd" << cmdid << "_rss_timeline";
+        ssdom << "cmd" << jsIdFromString(cmdname) << "_rss_timeline";
         persist::Query qry(db);
         qry.prepare( "select sub.istop, avg(sub.rss) from ( "
-           "select istop, cmd, ifnull(rss,0) rss from snapshot "
-           "left outer join (select snapshot,cmd,rss from procstat where cmd=:cmd) procstat on snapshot.id=procstat.snapshot "
-           "where snapshot.id>=:from and snapshot.id<=:to "
+           "select istop, ifnull(rss,0) rss from snapshot "
+           "left outer join cmd on cmd.id=procstat.cmd "
+           "left outer join (select snapshot,cmd,rss from procstat) procstat on snapshot.id=procstat.snapshot "
+           "where cmd.cmd=:cmdname and snapshot.id>=:from and snapshot.id<=:to "
          ") sub "
          "group by sub.istop/:bucket "
          "order by 1" );
-        qry.bind( 1, cmdid );
+        qry.bind( 1, cmdname );
         qry.bind( 2, snaprange.snap_min );
         qry.bind( 3, snaprange.snap_max );
         qry.bind( 4, snaprange.timeline_bucket );
@@ -3073,12 +3089,12 @@ namespace leanux {
         }
       }
 
-      void htmlCmdUidDetail( long cmdid, const string& cmdname, const persist::Database &db ) {
+      void htmlCmdUidDetail( const string& cmdname, const persist::Database &db ) {
         persist::Query qry(db);
-        qry.prepare( "select uid, avg(usercpu),avg(systemcpu),avg(iotime) from procstat "
-                     "where procstat.cmd=:cmdid "
+        qry.prepare( "select uid, avg(usercpu),avg(systemcpu),avg(iotime) from procstat, cmd "
+                     "where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
                      "and snapshot>=:from and snapshot<=:to group by uid order by sum(usercpu),sum(systemcpu),sum(iotime) desc limit 10;" );
-        qry.bind( 1, cmdid );
+        qry.bind( 1, cmdname );
         qry.bind( 2, snaprange.snap_min );
         qry.bind( 3, snaprange.snap_max );
         html << "<table class=\"datatable\">" << endl;
@@ -3102,13 +3118,13 @@ namespace leanux {
         while ( qry.step() ) {
           stringstream ss_link;
           stringstream ss_menu;
-          ss_link << "cmddetail_" << qry.getText(0);
+          ss_link << "cmddetail_" << qry.getText(1);
           ss_menu << qry.getText(1);
           menu_cmds.push_back( std::pair<string,string>( ss_link.str(), ss_menu.str() ) );
           html << "<a class=\"anchor\" id=\"" << ss_link.str() << "\"></a><h2>" << qry.getText(1) << "</h2>" << endl;
-          htmlCmdUidDetail( qry.getInt(0), qry.getText(1), db );
-          htmlCmdCPUDetail( qry.getInt(0), qry.getText(1), db );
-          htmlCmdRSSDetail( qry.getInt(0), qry.getText(1), db );
+          htmlCmdUidDetail( qry.getText(1), db );
+          htmlCmdCPUDetail( qry.getText(1), db );
+          htmlCmdRSSDetail( qry.getText(1), db );
         }
       }
 

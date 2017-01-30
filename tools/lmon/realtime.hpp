@@ -68,7 +68,7 @@ namespace leanux {
           const XNetView& getXNetView() const { return xnetview_; };
           const XProcView& getXProcView() const { return xprocview_; };
 
-          void resetCPUTrail() { xsysview_.cpupast.clear(); };
+          void resetCPUTrail() { xsysview_.cpurtpast.clear(); };
 
         protected:
           void sampleXSysView( int cpubarheight );

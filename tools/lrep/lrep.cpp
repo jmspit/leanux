@@ -3263,43 +3263,60 @@ namespace leanux {
                 cout << "snapshot range spans " << snaprange.time_max-snaprange.time_min << " seconds, " << util::TimeStrSec( snaprange.time_max-snaprange.time_min ) << endl;
 
                 util::Stopwatch sw;
+                util::Stopwatch sw2;
 
                 //if ( setpriority( PRIO_PROCESS, 0, 2 ) ) {
                 //  cerr << "failed to lower scheduling priority: " << strerror( errno ) << endl;
                 //  return 1;
                 //}
 
-                cout << "compute totals ..." << flush;
+                cout << "compute totals .. " << flush;
+                sw2.start();
                 computeTotals( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                cout << "snapshot details ..." << flush;
+                cout << "snapshot details .. " << flush;
+                sw2.start();
                 htmlSnapDetails( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                cout << "system details ..." << flush;
+                cout << "system details .. " << flush;
+                sw2.start();
                 htmlSystemDetails();
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                cout << "heat maps ..." << flush;
+                cout << "heat maps .. " << flush;
+                sw2.start();
                 htmlHeatMaps( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                cout << "report averages ..." << flush;
+                cout << "report averages .. " << flush;
+                sw2.start();
                 htmlReportAverages( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
                 cout << "timelines ..." << flush;
+                sw2.start();
                 htmlTimeLines( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                cout << "disk details ..." << flush;
+                cout << "disk details .. " << flush;
+                sw2.start();
                 htmlDiskDetails( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                cout << "cmd details ..." << flush;
+                cout << "cmd details .. " << flush;
+                sw2.start();
                 htmlCmdDetails( db );
-                cout << " done!" << endl << flush;
+                sw2.stop();
+                cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
                 html << "<p class=\"foot\">This report is generated with lrep, part of the <a href=\"https://www.o-rho.com/leanux\">leanux</a> toolkit.</p>" << endl;
 

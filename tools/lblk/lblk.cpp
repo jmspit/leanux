@@ -564,6 +564,17 @@ namespace leanux {
           tab.appendString( "property", "read ahead" );
           tab.appendString( "value", util::ByteStr( mm.getReadAhead(), 3 ) );
 
+          tab.appendString( "property", "SCSI requests" );
+          tab.appendString( "value", util::NumStr( mm.getSCSIIORequest(), 3 ) );
+
+          tab.appendString( "property", "SCSI iodone" );
+          tab.appendString( "value", util::NumStr( mm.getSCSIIODone(), 3 ) );
+
+          tab.appendString( "property", "SCSI errors" );
+          std::stringstream ss;
+          ss << util::NumStr( mm.getSCSIIOError(), 3 ) << " (" << util::NumStr( (double)mm.getSCSIIOError()/(double)mm.getSCSIIORequest()*100.0, 3 ) << "%)";
+          tab.appendString( "value", ss.str() );
+
         }
 
         tab.appendString( "property", "fs type" );

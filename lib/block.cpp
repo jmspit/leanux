@@ -280,6 +280,36 @@ namespace leanux {
       return ss.str();
     }
 
+    unsigned long MajorMinor::getSCSIIODone() const {
+      unsigned long result = 0;
+      try {
+        result = util::fileReadHexString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/iodone_cnt" );
+      }
+      catch ( Oops &oops ) {
+      }
+      return result;
+    }
+
+    unsigned long MajorMinor::getSCSIIORequest() const {
+      unsigned long result = 0;
+      try {
+        result = util::fileReadHexString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/iorequest_cnt" );
+      }
+      catch ( Oops &oops ) {
+      }
+      return result;
+    }
+
+    unsigned long MajorMinor::getSCSIIOError() const {
+      unsigned long result = 0;
+      try {
+        result = util::fileReadHexString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/ioerr_cnt" );
+      }
+      catch ( Oops &oops ) {
+      }
+      return result;
+    }
+
     MajorMinor MajorMinor::deriveWholeDisk( const MajorMinor& partition ) {
       if ( isSCSIDisk( MAJOR(partition.dev_) ) ) {
         return MajorMinor( MKDEV(MAJOR(partition.dev_), MINOR(partition.dev_) - MINOR(partition.dev_) % 16  ) );

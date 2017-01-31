@@ -685,6 +685,12 @@ namespace leanux {
          */
         std::string getDescription() const;
 
+        unsigned long getSCSIIODone() const;
+
+        unsigned long getSCSIIORequest() const;
+
+        unsigned long getSCSIIOError() const;
+
       private:
         /** (re)build the cached mapping between device names and MajorMinor numbers. */
         static void buildCache();

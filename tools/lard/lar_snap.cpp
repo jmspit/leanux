@@ -141,7 +141,7 @@ namespace leanux {
               diskid = db.lastInsertRowid();
             }
             persist::DML dml(db);
-            dml.prepare( "INSERT INTO iostat (snapshot,disk,util,svctm,rs,ws,rbs,wbs,artm,awtm,qsz) VALUES ( \
+            dml.prepare( "INSERT INTO iostat (snapshot,disk,util,svctm,rs,ws,rbs,wbs,artm,awtm,qsz,errs) VALUES ( \
               :snapid, \
               :disk, \
               :util, \
@@ -152,7 +152,8 @@ namespace leanux {
               :wbs, \
               :artm, \
               :awtm, \
-              :qsz \
+              :qsz, \
+              :errs \
               )" );
             dml.bind( 1, snapid );
             dml.bind( 2, diskid );
@@ -165,6 +166,7 @@ namespace leanux {
             if ( delta[*d].reads > 0 ) dml.bind( 9, delta[*d].read_ms/1000.0/delta[*d].reads ); else dml.bind( 9, 0 );
             if ( delta[*d].writes > 0 ) dml.bind( 10, delta[*d].write_ms/1000.0/delta[*d].writes ); else dml.bind( 10, 0 );
             dml.bind( 11, (double)delta[*d].io_in_progress );
+            dml.bind( 12, (double)delta[*d].ioerr_cnt );
             dml.execute();
             stored_disks++;
           }

@@ -135,7 +135,7 @@ namespace leanux {
           qry.prepare( "SELECT count(name) FROM sqlite_master WHERE type='table' AND name='status'" );
           if ( qry.step() ) {
             if ( qry.getInt(0) == 0 ) {
-              createStatusTable( db );
+              createTableStatus( db );
             }
           }
           qry.reset();

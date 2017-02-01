@@ -49,17 +49,16 @@ namespace leanux {
   namespace tools {
     namespace lard {
 
-      int schema_version = 1976;
+      int schema_version = 1977;
 
-      void createStatusTable( persist::Database &db ) {
+      void createTableStatus( persist::Database &db ) {
         persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS status ( name TEXT PRIMARY KEY, value TEXT NOT NULL)" );
         ddl.execute();
       }
 
-      void createSchema( persist::Database &db ) {
+      void createTableSnapshot( persist::Database &db ) {
         persist::DDL ddl( db );
-        createStatusTable( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS snapshot (\n"
                      "  id     INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, -- monotonically increasing\n"
                      "  istart INTEGER NOT NULL,  -- start time in seconds since unixepoch\n"
@@ -72,8 +71,10 @@ namespace leanux {
         ddl.reset();
         ddl.prepare( "CREATE INDEX IF NOT EXISTS i_stop_id ON snapshot( istop, id )" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableCpustat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS cpustat (\n"
                      "  snapshot     INTEGER NOT NULL, -- snapshot id\n"
                      "  phyid        INTEGER NOT NULL, -- physical id\n"
@@ -135,8 +136,10 @@ namespace leanux {
                      "  cpustat.snapshot=snapshot.id\n"
                      "GROUP BY id,istart,istop" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableSchedstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS schedstat (\n"
                      "  snapshot INTEGER PRIMARY KEY NOT NULL, -- snapshot id\n"
                      "  forks    REAL NOT NULL,                -- average forks/second\n"
@@ -168,8 +171,10 @@ namespace leanux {
                      "WHERE\n"
                      "  schedstat.snapshot=snapshot.id\n" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableDisk( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS disk (\n"
                      "  id        INTEGER PRIMARY KEY NOT NULL,\n"
                      "  device    TEXT NOT NULL, -- disk device name\n"
@@ -178,8 +183,10 @@ namespace leanux {
                      "  syspath   TEXT NOT NULL  -- disk sysfs (hardware) path\n"
                      ")" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableIostat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS iostat (\n"
                      "  snapshot INTEGER NOT NULL, -- snapshot id\n"
                      "  disk     INTEGER NOT NULL, -- disk id\n"
@@ -192,6 +199,7 @@ namespace leanux {
                      "  artm     REAL NOT NULL,    -- average read time in seconds (svctm + queue time)\n"
                      "  awtm     REAL NOT NULL,    -- averate write time in seconds (svctm + queue time)\n"
                      "  qsz      REAL NOT NULL,    -- disk queue size at snapshot end\n"
+                     "  errs     REAL NOT NULL,    -- SCSI errors per second\n"
                      "  PRIMARY KEY (snapshot,disk),\n"
                      "  FOREIGN KEY (disk) REFERENCES disk(id),\n"
                      "  FOREIGN KEY (snapshot) REFERENCES snapshot(id)\n"
@@ -224,8 +232,10 @@ namespace leanux {
                      "WHERE\n"
                      "  iostat.snapshot=snapshot.id\n" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableNic( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS nic (\n"
                      "  id      INTEGER PRIMARY KEY NOT NULL, -- nic primary key\n"
                      "  device  TEXT NOT NULL, -- nic device name\n"
@@ -234,7 +244,10 @@ namespace leanux {
                      "  UNIQUE (mac,syspath)\n"
                      ")" );
         ddl.execute();
-        ddl.reset();
+      }
+
+      void createTableNetstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS netstat (\n"
                      "  snapshot INTEGER NOT NULL, -- snapshot id\n"
                      "  nic      INTEGER NOT NULL,      -- nic id\n"
@@ -253,8 +266,10 @@ namespace leanux {
         ddl.reset();
         ddl.prepare( "CREATE INDEX IF NOT EXISTS i_netstat_nic ON netstat( nic )" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableVmstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS vmstat (\n"
                      "  snapshot INTEGER PRIMARY KEY NOT NULL, -- snapshot id\n"
                      "  realmem  REAL NOT NULL, -- real memory in bytes\n"
@@ -285,7 +300,10 @@ namespace leanux {
                      "  FOREIGN KEY (snapshot)  REFERENCES snapshot(id)\n"
                      ")" );
         ddl.execute();
-        ddl.reset();
+      }
+
+      void createTableCmd( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS cmd (\n"
                      "  id  INTEGER PRIMARY KEY NOT NULL, -- command id\n"
                      "  cmd TEXT not null,                -- command name\n"
@@ -293,20 +311,23 @@ namespace leanux {
                      "  UNIQUE (cmd,args)\n"
                      ")" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableWchan( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS wchan (\n"
                      "  id    INTEGER NOT NULL, -- wchan id\n"
                      "  wchan TEXT NOT NULL,    -- wchan\n"
                      "  PRIMARY KEY (id)\n"
                      ")" );
         ddl.execute();
-
         ddl.reset();
         ddl.prepare( "REPLACE INTO wchan (id, wchan) VALUES (0,'none')" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableProcstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS procstat (\n"
                      "  snapshot  INTEGER NOT NULL,    -- snapshot id\n"
                      "  pid       INTEGER NOT NULL,    -- process id\n"
@@ -335,8 +356,10 @@ namespace leanux {
         ddl.reset();
         ddl.prepare( "CREATE INDEX IF NOT EXISTS i_procstat_ps ON procstat( pid, snapshot )" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableResstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS resstat (\n"
                      "  snapshot    INTEGER PRIMARY KEY NOT NULL, -- snapshot id\n"
                      "  processes   INTEGER NOT NULL,             -- number of processes at snapshot end \n"
@@ -367,16 +390,20 @@ namespace leanux {
                      "WHERE\n"
                      "  resstat.snapshot=snapshot.id\n" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableMountpoint( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS mountpoint (\n"
                      "  id INTEGER PRIMARY KEY NOT NULL, -- mountpoint id\n"
                      "  mountpoint TEXT NOT NULL,        -- mountpoint directory\n"
                      "  UNIQUE (mountpoint)\n"
                      ")\n" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableMountstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS mountstat (\n"
                      "  snapshot INTEGER NOT NULL,   -- snapshot id\n"
                      "  mountpoint INTEGER NOT NULL, -- mountpoint id\n"
@@ -395,12 +422,13 @@ namespace leanux {
                      "  FOREIGN KEY (mountpoint)  REFERENCES mountpoint(id)\n"
                      ")" );
         ddl.execute();
-
         ddl.reset();
         ddl.prepare( "CREATE INDEX IF NOT EXISTS i_mountstat_mountpoint ON mountstat( mountpoint )" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableTcpkey( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS tcpkey (\n"
                      "  id       INTEGER NOT NULL, -- tcpkey id\n"
                      "  ip       TEXT NOT NULL,    -- ip address\n"
@@ -410,8 +438,10 @@ namespace leanux {
                      "  UNIQUE(ip,port,uid)\n"
                      ")" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableTcpserverstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS tcpserverstat (\n"
                      "  snapshot INTEGER NOT NULL, -- snapshot id\n"
                      "  tcpkey   INTEGER NOT NULL, -- tcpkey id\n"
@@ -421,8 +451,10 @@ namespace leanux {
                      "  FOREIGN KEY (tcpkey)  REFERENCES tcpkey(id)\n"
                      ")" );
         ddl.execute();
+      }
 
-        ddl.reset();
+      void createTableTcpclientstat( persist::Database &db ) {
+        persist::DDL ddl( db );
         ddl.prepare( "CREATE TABLE IF NOT EXISTS tcpclientstat (\n"
                      "  snapshot INTEGER NOT NULL, -- snapshot id\n"
                      "  tcpkey   INTEGER NOT NULL, -- tcpkey id\n"
@@ -432,7 +464,27 @@ namespace leanux {
                      "  FOREIGN KEY (tcpkey)  REFERENCES tcpkey(id)\n"
                      ")" );
         ddl.execute();
-        ddl.close();
+      }
+
+      void createSchema( persist::Database &db ) {
+        createTableStatus( db );
+        createTableSnapshot( db );
+        createTableCpustat( db );
+        createTableSchedstat( db );
+        createTableDisk( db );
+        createTableIostat( db );
+        createTableNic( db );
+        createTableNetstat( db );
+        createTableVmstat( db );
+        createTableCmd( db );
+        createTableWchan( db );
+        createTableProcstat( db );
+        createTableResstat( db );
+        createTableMountpoint( db );
+        createTableMountstat( db );
+        createTableTcpkey( db );
+        createTableTcpserverstat( db );
+        createTableTcpclientstat( db );
       }
 
       void deleteSnapshots( persist::Database &db, long snapid ) {

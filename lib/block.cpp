@@ -1127,6 +1127,9 @@ namespace leanux {
       i >> stats.io_in_progress;
       i >> stats.io_ms;
       i >> stats.io_weighted_ms;
+      stats.iodone_cnt = getSCSIIODone();
+      stats.iorequest_cnt = getSCSIIORequest();
+      stats.ioerr_cnt = getSCSIIOError();
       return i.good();
     }
 
@@ -1152,6 +1155,9 @@ namespace leanux {
           i >> stats.io_ms;
           i >> stats.io_weighted_ms;
           MajorMinor mm( major, minor );
+          stats.iodone_cnt = mm.getSCSIIODone();
+          stats.iorequest_cnt = mm.getSCSIIORequest();
+          stats.ioerr_cnt = mm.getSCSIIOError();
           statsmap[ mm ] = stats;
         }
         i.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -1185,6 +1191,9 @@ namespace leanux {
             delta[s1->first].io_in_progress = s2->second.io_in_progress - s1->second.io_in_progress;
             delta[s1->first].io_ms = s2->second.io_ms - s1->second.io_ms;
             delta[s1->first].io_weighted_ms = s2->second.io_weighted_ms - s1->second.io_weighted_ms;
+            delta[s1->first].iodone_cnt = s2->second.iodone_cnt - s1->second.iodone_cnt;
+            delta[s1->first].iorequest_cnt = s2->second.iorequest_cnt - s1->second.iorequest_cnt;
+            delta[s1->first].ioerr_cnt = s2->second.ioerr_cnt - s1->second.ioerr_cnt;
             vec.push_back( s2->first );
           }
         }

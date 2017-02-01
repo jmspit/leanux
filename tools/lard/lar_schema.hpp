@@ -53,7 +53,7 @@ namespace leanux {
 
       void shrinkDB( persist::Database &, const std::string filename );
 
-      void createStatusTable( persist::Database & );
+      void createTableStatus( persist::Database & );
 
     }; // namespace lard
   }; // namespace tools

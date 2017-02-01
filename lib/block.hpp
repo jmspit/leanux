@@ -121,6 +121,9 @@ namespace leanux {
       unsigned long io_in_progress; /**< number of io's in progress (or pending and queued) */
       unsigned long io_ms;          /**< number of milliseconds spent doing IO */
       unsigned long io_weighted_ms; /**< not sure. */
+      unsigned long iodone_cnt;     /**< number of SCSI IO's completed */
+      unsigned long iorequest_cnt;  /**< number of SCSI IO's requested */
+      unsigned long ioerr_cnt;      /**< number of SCSI IO errors */
     };
 
     /**
@@ -685,10 +688,22 @@ namespace leanux {
          */
         std::string getDescription() const;
 
+        /**
+         * Get SCSI iodone_cnt (number of SCSI IO completions)
+         * @return iodone_cnt
+         */
         unsigned long getSCSIIODone() const;
 
+        /**
+         * Get SCSI iorequest_cnt (number of SCSI IO requests)
+         * @return iorequest_cnt
+         */
         unsigned long getSCSIIORequest() const;
 
+        /**
+         * Get SCSI ioerr_cnt (number of SCSI IO errors)
+         * @return ioerr_cnt
+         */
         unsigned long getSCSIIOError() const;
 
       private:

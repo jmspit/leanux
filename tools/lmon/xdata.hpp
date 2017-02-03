@@ -129,6 +129,9 @@ namespace leanux {
         double awtm;
         double qsz;
         double growths;
+        double iodone_cnt;
+        double iorequest_cnt;
+        double ioerr_cnt;
       };
 
       typedef std::map<std::string,XIORec> IORecMap;

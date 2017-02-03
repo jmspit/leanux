@@ -452,7 +452,10 @@ namespace leanux {
                          "  avg(i.wbs),"
                          "  avg(i.artm),"
                          "  avg(i.awtm),"
-                         "  avg(i.qsz) "
+                         "  avg(i.qsz), "
+                         "  avg(i.iodones), "
+                         "  avg(i.ioreqs), "
+                         "  avg(i.ioerrs) "
                          "FROM "
                          "  iostat i,"
                          "  disk d "
@@ -481,6 +484,9 @@ namespace leanux {
           stat.artm           = qiostat.getDouble(8);
           stat.awtm           = qiostat.getDouble(9);
           stat.qsz            = qiostat.getDouble(10);
+          stat.iodone_cnt     = qiostat.getDouble(11);
+          stat.iorequest_cnt  = qiostat.getDouble(12);
+          stat.ioerr_cnt      = qiostat.getDouble(13);
           ioview.iostats[device] = stat;
           ioview.iosorted.push_back(device);
         }

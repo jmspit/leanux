@@ -1092,6 +1092,9 @@ namespace leanux {
         const unsigned int rsz_width = 5;
         const unsigned int wsz_width = 5;
         const unsigned int qsz_width = 5;
+        const unsigned int iodone_width = 5;
+        const unsigned int ioreq_width = 5;
+        const unsigned int ioerr_width = 5;
         const unsigned int fsg_width = 7;
         werase( window_ );
         std::stringstream ss;
@@ -1112,6 +1115,9 @@ namespace leanux {
         textOutMoveXRA( x, 1, rsz_width, attr_bold_text_, "rsz" );
         textOutMoveXRA( x, 1, wsz_width, attr_bold_text_, "wsz" );
         textOutMoveXRA( x, 1, qsz_width, attr_bold_text_, "qsz" );
+        textOutMoveXRA( x, 1, iodone_width, attr_bold_text_, "dones" );
+        textOutMoveXRA( x, 1, ioreq_width, attr_bold_text_, "reqs" );
+        textOutMoveXRA( x, 1, ioerr_width, attr_bold_text_, "errs" );
 
         unsigned int fs_start = x;
 
@@ -1145,6 +1151,13 @@ namespace leanux {
               else x += wsz_width + 1;
               if ( dstat->second.svctm != 0 )
                 textOutMoveXRA( x, y, qsz_width, attr_normal_text_, util::NumStr( (dstat->second.artm+dstat->second.awtm)/dstat->second.svctm - 1.0 ) );
+              else x += qsz_width + 1;
+              textOutMoveXRA( x, y, iodone_width, attr_normal_text_, util::NumStr(dstat->second.iodone_cnt ) );
+              textOutMoveXRA( x, y, ioreq_width, attr_normal_text_, util::NumStr(dstat->second.iorequest_cnt ) );
+              if ( dstat->second.ioerr_cnt > 0 )
+                textOutMoveXRA( x, y, ioerr_width, COLOR_PAIR( screen_->palette_.getColorBlockedProc() ), util::NumStr(dstat->second.ioerr_cnt ) );
+              else
+                textOutMoveXRA( x, y, ioerr_width, attr_normal_text_, util::NumStr(dstat->second.ioerr_cnt ) );
               y++;
             }
             s_disk_util += (double)dstat->second.util;

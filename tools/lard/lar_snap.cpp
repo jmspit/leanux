@@ -114,7 +114,7 @@ namespace leanux {
         block::StatsSorter sorter( &delta );
         sort( vec.begin(), vec.end(), sorter );
         for ( block::MajorMinorVector::const_iterator d = vec.begin(); d != vec.end(); d++ ) {
-          if ( (*d).isWholeDisk() && (delta[*d].reads + delta[*d].writes) > 0 ) {
+          if ( (*d).isWholeDisk() && (delta[*d].reads + delta[*d].writes + delta[*d].iorequest_cnt) > 0 ) {
             std::string sdiskid = (*d).getDiskId();
             std::string ssyspath = (*d).getSysPath();
             size_t p = ssyspath.rfind("/");
@@ -141,7 +141,7 @@ namespace leanux {
               diskid = db.lastInsertRowid();
             }
             persist::DML dml(db);
-            dml.prepare( "INSERT INTO iostat (snapshot,disk,util,svctm,rs,ws,rbs,wbs,artm,awtm,qsz,errs) VALUES ( \
+            dml.prepare( "INSERT INTO iostat (snapshot,disk,util,svctm,rs,ws,rbs,wbs,artm,awtm,qsz,iodones,ioreqs,ioerrs) VALUES ( \
               :snapid, \
               :disk, \
               :util, \
@@ -153,7 +153,9 @@ namespace leanux {
               :artm, \
               :awtm, \
               :qsz, \
-              :errs \
+              :iodones, \
+              :ioreqs, \
+              :ioerrs \
               )" );
             dml.bind( 1, snapid );
             dml.bind( 2, diskid );
@@ -166,7 +168,9 @@ namespace leanux {
             if ( delta[*d].reads > 0 ) dml.bind( 9, delta[*d].read_ms/1000.0/delta[*d].reads ); else dml.bind( 9, 0 );
             if ( delta[*d].writes > 0 ) dml.bind( 10, delta[*d].write_ms/1000.0/delta[*d].writes ); else dml.bind( 10, 0 );
             dml.bind( 11, (double)delta[*d].io_in_progress );
-            dml.bind( 12, (double)delta[*d].ioerr_cnt );
+            dml.bind( 12, (double)delta[*d].iodone_cnt/seconds );
+            dml.bind( 13, (double)delta[*d].iorequest_cnt/seconds );
+            dml.bind( 14, (double)delta[*d].ioerr_cnt/seconds );
             dml.execute();
             stored_disks++;
           }

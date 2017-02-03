@@ -167,6 +167,9 @@ namespace leanux {
             rec.qsz   =  (rec.awtm+rec.awtm)/rec.svctm;
           else
             rec.qsz = 0;
+          rec.iodone_cnt = devicestats[*s].iodone_cnt / dt;
+          rec.iorequest_cnt = devicestats[*s].iorequest_cnt / dt;
+          rec.ioerr_cnt = devicestats[*s].ioerr_cnt / dt;
           xioview_.iostats[ (*s).getName() ] = rec;
           if ( (*s).isWholeDisk() ) {
             xioview_.iosorted.push_back((*s).getName());

@@ -187,6 +187,30 @@ namespace leanux {
      */
     void getSwapInfo( std::list<SwapInfo> &swaps );
 
+    /**
+     * get /proc/sys/vm/dirty_bytes
+     * @return /proc/sys/vm/dirty_bytes
+     */
+    ssize_t getDirtyBytes();
+
+    /**
+     * get /proc/sys/vm/dirty_ratio
+     * @return /proc/sys/vm/dirty_ratio
+     */
+    ssize_t getDirtyRatio();
+
+    /**
+     * get /proc/sys/vm/dirty_background_bytes
+     * @return /proc/sys/vm/dirty_background_bytes
+     */
+    ssize_t getDirtyBackgroundBytes();
+
+    /**
+     * get /proc/sys/vm/dirty_background_ratio
+     * @return /proc/sys/vm/dirty_background_ratio
+     */
+    ssize_t getDirtyBackgroundRatio();
+
   }
 
 }

@@ -34,6 +34,7 @@
  * leanux::vmem c++ source file.
  */
 #include "system.hpp"
+#include "util.hpp"
 #include "vmem.hpp"
 
 #include <string>
@@ -155,6 +156,28 @@ namespace leanux {
         inf.used *= 1024;
         if ( fs.good() ) swaps.push_back( inf );
       }
+    }
+
+    ssize_t getDirtyBytes() {
+      return util::fileReadUL( "/proc/sys/vm/dirty_bytes" );
+    }
+
+    ssize_t getDirtyRatio() {
+      return util::fileReadUL( "/proc/sys/vm/dirty_ratio" );
+    }
+
+    ssize_t getDirtyBackgroundBytes() {
+      return util::fileReadUL( "/proc/sys/vm/dirty_background_bytes" );
+    }
+
+    ssize_t getDirtyBackgroundRatio() {
+      return util::fileReadUL( "/proc/sys/vm/dirty_background_ratio" );
+    }
+
+    double getDirtyPressure( ssize_t ram, ssize_t dirtied ) {
+      ssize_t dirty_limit = getDirtyBytes();
+      if ( dirty_limit == 0 ) dirty_limit = (double)ram / 100.0 * (double)getDirtyRatio();
+      return (double)dirtied/(double)dirty_limit;
     }
 
   }

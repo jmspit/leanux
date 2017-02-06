@@ -356,8 +356,9 @@ namespace leanux {
       char out[200];
       memset( out, 0, 200 );
       struct tm *tmp;
+      struct tm res;
       t = time(NULL);
-      tmp = localtime( &t );
+      tmp = localtime_r( &t, &res );
       strftime( out, sizeof(out), "%F %T", tmp );
       return out;
     }
@@ -366,7 +367,8 @@ namespace leanux {
       char out[200];
       memset( out, 0, 200 );
       struct tm *tmp;
-      tmp = localtime( &t );
+      struct tm res;
+      tmp = localtime_r( &t, &res );
       strftime( out, sizeof(out), "%F %T", tmp );
       return out;
     }
@@ -376,8 +378,9 @@ namespace leanux {
       char out[200];
       memset( out, 0, 200 );
       struct tm *tmp;
+      struct tm res;
       t = time(NULL);
-      tmp = localtime( &t );
+      tmp = localtime_r( &t, &res );
       strftime( out, sizeof(out), "%T", tmp );
       return out;
     }
@@ -386,7 +389,8 @@ namespace leanux {
       char out[200];
       memset( out, 0, 200 );
       struct tm *tmp;
-      tmp = localtime( &t );
+      struct tm res;
+      tmp = localtime_r( &t, &res );
       strftime( out, sizeof(out), "%T", tmp );
       return out;
     }
@@ -405,8 +409,9 @@ namespace leanux {
       time_t t;
       char out[200];
       struct tm *tmp;
+      struct tm res;
       t = time(NULL);
-      tmp = localtime( &t );
+      tmp = localtime_r( &t, &res );
       strftime( out, sizeof(out), "%F %T", tmp );
       (*tracer_->of_) << out << " " << s << std::endl;
     }

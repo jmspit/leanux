@@ -114,7 +114,7 @@ namespace leanux {
            * @param attrs the ncurses display attributes to use.
            * @param text the text to display.
            */
-          inline void textOut( int x, int y, int attrs, std::string text );
+          inline void textOut( int x, int y, int attrs, const std::string &text );
 
           /**
            * Write integer as std::string at x,y with display attrs.
@@ -160,7 +160,7 @@ namespace leanux {
            * @param attrs the ncurses display attributes to use.
            * @param text the text to display.
            */
-          inline void textOutRA( int x, int y, int w, int attrs, std::string text );
+          inline void textOutRA( int x, int y, int w, int attrs, const std::string &text );
 
           /**
            * Draw integer right-adjusted.
@@ -180,7 +180,7 @@ namespace leanux {
            * @param attrs the ncurses display attributes to use.
            * @param text the text to display.
            */
-          inline void textOutMoveXRA( int &x, int y, int w, int attrs, std::string text );
+          inline void textOutMoveXRA( int &x, int y, int w, int attrs, const std::string &text );
 
           /**
            * Draw an integer right-adjusted and progress x with w+1.
@@ -340,7 +340,7 @@ namespace leanux {
                * @param prio the Message priority.
                * @param message the Message text.
                */
-              Message( unsigned int key, unsigned int prio, std::string message ) { key_ = key; prio_ = prio; message_ = message; first_seen_ = time(NULL); repeat_ = 0; };
+              Message( unsigned int key, unsigned int prio, const std::string &message ) { key_ = key; prio_ = prio; message_ = message; first_seen_ = time(NULL); repeat_ = 0; };
               /** The Message (unique) key. */
               unsigned int key_;
               /** the Message priority. */
@@ -872,7 +872,7 @@ namespace leanux {
 
       };
 
-      void View::textOut( int x, int y, int attrs, std::string text ) {
+      void View::textOut( int x, int y, int attrs, const std::string &text ) {
         wattrset( window_, attrs );
         mvwprintw( window_, y, x, "%s", text.c_str() );
       }
@@ -889,7 +889,7 @@ namespace leanux {
         mvwaddch( window_, y, x, ch );
       }
 
-      void View::textOutRA( int x, int y, int w, int attrs, std::string text ) {
+      void View::textOutRA( int x, int y, int w, int attrs, const std::string &text ) {
         wattrset( window_, attrs );
         std::stringstream ss;
         ss << std::setw(w) << std::right << text.substr(0,w);
@@ -903,7 +903,7 @@ namespace leanux {
         mvwprintw( window_, y, x, "%s", ss.str().c_str() );
       }
 
-      void View::textOutMoveXRA( int &x, int y, int w, int attrs, std::string text ) {
+      void View::textOutMoveXRA( int &x, int y, int w, int attrs, const std::string &text ) {
         wattrset( window_, attrs );
         std::stringstream ss;
         ss << std::setw(w) << std::right << text.substr(0,w);

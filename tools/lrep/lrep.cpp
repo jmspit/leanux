@@ -2993,6 +2993,7 @@ namespace leanux {
            "select istop, ifnull(usercpu,0) usercpu, ifnull(systemcpu,0) systemcpu, ifnull(iotime,0) iotime from snapshot "
            "left outer join (select snapshot,cmd.cmd,sum(usercpu) usercpu,sum(systemcpu) systemcpu, sum(iotime) iotime from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
            "                  and procstat.snapshot>=:from and procstat.snapshot<=:to group by snapshot,cmd.cmd) procstat on snapshot.id=procstat.snapshot "
+           " where snapshot.id>=:from and snapshot.id<=:to "
          ") sub "
          "group by sub.istop/:bucket "
          "order by 1" );
@@ -3046,6 +3047,7 @@ namespace leanux {
            "select istop, ifnull(srss,0) srss from snapshot "
            " left outer join (select snapshot,cmd.cmd,sum(rss) srss from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
            "                  and procstat.snapshot>=:from and procstat.snapshot<=:to group by snapshot,cmd.cmd) procstat on snapshot.id=procstat.snapshot "
+         " where snapshot.id>=:from and snapshot.id<=:to "
          ") sub "
          "group by sub.istop/:bucket "
          "order by 1" );

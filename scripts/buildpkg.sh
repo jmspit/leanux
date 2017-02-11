@@ -2,7 +2,8 @@
 LEANUX_RELEASE=$1
 CLONE_DIR=/home/spjm/leanux-clone
 
-VMLIST="centos debian fedora opensuse ubuntu"
+#VMLIST="centos debian fedora opensuse ubuntu"
+VMLIST=""
 
 VBOX=/usr/bin/VBoxManage
 

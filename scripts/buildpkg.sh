@@ -153,7 +153,7 @@ mkdir -p "${CLONE_DIR}" || { echo "failed to create directory ${CLONE_DIR}"; exi
 cd "${CLONE_DIR}" || { echo "failed to chdir into ${CLONE_DIR}"; exit 1; }
 git clone https://github.com/jmspit/leanux.git || { echo "git clone failed"; exit 1; }
 cd leanux || { echo "git clone 'leanux' found"; exit 1; }
-git checkout ${LEANUX_RELEASE} || { echo "failed to checkout ${LEANUX_RELEASE}"; exit 1; }
+git checkout -b ${LEANUX_RELEASE} || { echo "failed to checkout ${LEANUX_RELEASE}"; exit 1; }
 SRC_DIR=${CLONE_DIR}/leanux/build/release
 mkdir -p ${SRC_DIR} || { echo "failed to create directory ${SRC_DIR}"; exit 1; }
 cd ${SRC_DIR} || { echo "failed to chdir into ${SRC_DIR}"; exit 1; }
@@ -162,7 +162,6 @@ make package_source || { echo "make package_source failed"; exit 1; }
 
 SRC_FILE=${SRC_DIR}/leanux-${LEANUX_RELEASE}.tar.gz
 SRC_SHORT=leanux-${LEANUX_RELEASE}.tar.gz
-
 
 # build and retrieve the packages
 for vm in ${VMLIST}

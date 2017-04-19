@@ -19,7 +19,6 @@ build() {
 
 check() {
     cd $pkgname-$pkgver/release
-    make test
 }
 
 package() {

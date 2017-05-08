@@ -43,6 +43,7 @@
 #include <list>
 #include <sys/time.h>
 #include <regex.h>
+#include "leanux-config.hpp"
 
 namespace leanux {
 
@@ -51,6 +52,11 @@ namespace leanux {
    */
   namespace util {
 
+    inline std::string leanuxVersion() { return LEANUX_VERSION; };
+
+    /**
+     * returns the leaf of the tree - that string after the last '/'
+     */
     std::string leafDir( const std::string &dir );
 
     void tokenize( const std::string &str, std::list<std::string> &tokens, char sep, const std::set<std::string> &omit, bool reverse = false );

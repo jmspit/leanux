@@ -52,6 +52,9 @@ namespace leanux {
    */
   namespace util {
 
+    /**
+     * return the build leanux version
+     */
     inline std::string leanuxVersion() { return LEANUX_VERSION; };
 
     /**

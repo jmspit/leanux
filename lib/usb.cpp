@@ -149,6 +149,7 @@ namespace leanux {
       ss.str("");
       ss << std::setfill('0') << std::setw(4) << id.idProduct;
       std::string hex_product = ss.str();
+      inf.idProduct = "unknown product id 0x" + hex_product;
 
       std::ifstream f( USBDeviceDatabase.c_str() );
       if ( !f.good() ) throw Oops( __FILE__, __LINE__, "error opening usb.ids" );
@@ -183,7 +184,7 @@ namespace leanux {
           }
         }
       }
-      return ( state == 2 );
+      return ( state >= 1 );
     }
 
     USBDevicePath getParent( const USBDevicePath &path ) {

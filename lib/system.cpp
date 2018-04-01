@@ -39,6 +39,7 @@
 #include "block.hpp"
 #include "pci.hpp"
 #include "usb.hpp"
+#include "net.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -70,6 +71,7 @@ namespace leanux {
     if ( !util::directoryExists( "/sys" ) ) throw Oops( __FILE__, __LINE__, "leanux requires /sys sysfs" );
     pci::init();
     block::init();
+    net::init();
     usb::init();
   }
 

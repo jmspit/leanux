@@ -425,6 +425,7 @@ namespace leanux {
 
     void RegExp::set( const std::string& expr ) {
       expr_ = expr;
+      regfree( &regex_ );
       int r = regcomp( &regex_, expr_.c_str(), REG_EXTENDED );
       if ( r ) {
         throw Oops( __FILE__, __LINE__, "invalid regex : '" + expr + "'" );

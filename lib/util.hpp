@@ -43,6 +43,7 @@
 #include <list>
 #include <sys/time.h>
 #include <regex.h>
+#include <string.h>
 #include "leanux-config.hpp"
 
 namespace leanux {
@@ -311,7 +312,8 @@ namespace leanux {
      */
     class RegExp {
       public:
-        RegExp() {};
+        RegExp() { memset( &regex_, 0, sizeof(regex_) ); expr_ = ""; };
+        ~RegExp() { regfree( &regex_ ); };
         void set( const std::string& expr );
         bool match( const std::string& str ) const;
       private:

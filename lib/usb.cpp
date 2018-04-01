@@ -84,9 +84,7 @@ namespace leanux {
           if ( dir->d_name[0] != '.' && ! strchr( dir->d_name, ':' ) ) {
             std::string path = sysdevice::sysbus_root + "/usb/devices/" + (std::string)dir->d_name;
             resolved_path = util::realPath( path );
-            if ( resolved_path.length() > 13 ) {
-              paths.push_back( resolved_path.substr( sysdevice::sysdevice_root.length() ) );
-            }
+            paths.push_back( resolved_path );
           }
         }
         closedir( d );
@@ -94,14 +92,18 @@ namespace leanux {
     }
 
     USBHardwareClass getUSBDeviceHardwareClass( const USBDevicePath &path ) {
-      std::string device =  sysdevice::sysdevice_root + "/" + path;
+      std::string device =  path;
       if ( !util::fileReadAccess( device + "/bDeviceClass" ) ) return usbVendorSpecific;
       else return (USBHardwareClass)util::fileReadHexString( device + "/bDeviceClass" );
     }
 
     USBHardwareClass getUSBInterfaceHardwareClass( const USBDevicePath &path ) {
-      std::string device = sysdevice::sysdevice_root + "/" + path;
-      return (USBHardwareClass)util::fileReadHexString( device + "/bInterfaceSubClass" );
+      std::string device = path;
+      if ( util::fileReadAccess( device + "/bInterfaceClass" ) )
+        return (USBHardwareClass)util::fileReadHexString( device + "/bInterfaceClass" );
+      else if ( util::fileReadAccess( device + "/bInterfaceSubClass" ) )
+        return (USBHardwareClass)util::fileReadHexString( device + "/bInterfaceSubClass" );
+      else return (USBHardwareClass)0x0;
     }
 
     std::string getUSBHardwareClassStr( USBHardwareClass c ) {
@@ -131,7 +133,7 @@ namespace leanux {
     }
 
     bool getUSBHardwareId( const USBDevicePath &path, USBHardwareId &id ) {
-      std::string device = sysdevice::sysdevice_root + "/" + path;
+      std::string device = path;
       if ( !util::fileReadAccess( device + "/idVendor" ) ) return false;
       id.idVendor = util::fileReadHexString( device + "/idVendor" );
       if ( !util::fileReadAccess( device + "/idProduct" ) ) return false;

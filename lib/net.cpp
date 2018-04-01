@@ -55,6 +55,20 @@ namespace leanux {
 
   namespace net {
 
+    std::string MACOUIDatabase = "/usr/share/misc/oui.txt";
+
+    void init() throw ( Oops ) {
+      if ( util::fileReadAccess( "/usr/share/misc/oui.txt" ) ) {
+        MACOUIDatabase = "/usr/share/misc/oui.txt";
+      } else
+      if ( util::fileReadAccess( "/usr/share/hwdata/oui.txt" ) ) {
+        MACOUIDatabase = "/usr/share/hwdata/oui.txt";
+      } else
+      if ( util::fileReadAccess( "/usr/share/oui.txt" ) ) {
+        MACOUIDatabase ="/usr/share/oui.txt";
+      } else throw Oops( __FILE__, __LINE__, "leanux cannot find oui.txt file" );
+    }
+
     std::string getDeviceOperState( const std::string &device ) {
       std::ifstream i( std::string("/sys/class/net/" + device + "/operstate").c_str() );
       std::string r;
@@ -100,6 +114,44 @@ namespace leanux {
       std::string r;
       i >> r;
       return r;
+    }
+
+    void getMACOUI( const std::string &mac, OUI &oui ) throw(Oops) {
+      oui.vendor = "";
+      oui.countrycode = "";
+      oui.address.clear();
+      std::string search = mac.substr(0,2) + mac.substr(3,2) + mac.substr(6,2);
+      std::transform(search.begin(), search.end(), search.begin(), toupper);
+
+      std::ifstream f( MACOUIDatabase.c_str() );
+      if ( !f.good() ) throw Oops( __FILE__, __LINE__, "error opening oui.txt" );
+
+      while ( f.good() && !f.eof() ) {
+        std::string s = "";
+        getline( f, s );
+        if ( strncmp( search.c_str(), s.c_str(), 6 ) == 0 ) {
+          size_t lasttab = s.find_last_of( '\t', std::string::npos );
+          if ( lasttab == std::string::npos || lasttab >= s.length() - 1 )
+            throw Oops( __FILE__, __LINE__, "parse error in oui.txt" );
+          else {
+            // the remainder of the first string is the vendor
+            oui.vendor = s.substr( lasttab + 1 );
+          }
+          std::vector<std::string> tmp;
+          while ( f.good() && tmp.size() < 10 ) {
+            getline( f, s );
+            if ( s == "" ) break;
+            lasttab = s.find_last_of( '\t', std::string::npos );
+            if ( lasttab != std::string::npos ) tmp.push_back( s.substr(lasttab+1) ); else break;
+          }
+          if ( tmp.size() < 3 ) throw Oops( __FILE__, __LINE__, "parse error in oui.txt" );
+          for ( size_t j = 0; j < tmp.size()-1; j++ ) {
+            oui.address.push_back( tmp[j] );
+          }
+          oui.countrycode = tmp[tmp.size()-1];
+          break;
+        }
+      }
     }
 
     void getDeviceIP4Addresses( const std::string &device, std::list<std::string> &addrlist ) {

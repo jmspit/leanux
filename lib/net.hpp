@@ -54,6 +54,11 @@ namespace leanux {
   namespace net {
 
     /**
+     * initialize net library
+     */
+    void init() throw( Oops );
+
+    /**
      * TCP connection states.
      */
     enum TCPState {
@@ -94,6 +99,14 @@ namespace leanux {
      * Get the device's MAC address.
      */
     std::string getDeviceMACAddress( const std::string &device );
+
+    struct OUI {
+      std::string vendor;
+      std::string countrycode;
+      std::list<std::string> address;
+    };
+
+    void getMACOUI( const std::string &mac, OUI &oui ) throw(Oops);
 
     /**
      * Get the duplex mode of the device.

@@ -59,7 +59,7 @@
       std::stringstream path;
       stat.pid = pid;
       stat.comm = "";
-      path << "/proc/" << pid << "/stat";
+      path << "/proc/" << pid << "/task/" << pid << "/stat";
       std::ifstream ifs( path.str().c_str() );
       std::string s;
       getline( ifs, s );
@@ -113,7 +113,7 @@
           stat.stime = stime / (double)leanux::system::getUserHz();
           stat.cutime = cutime / (double)leanux::system::getUserHz();
           stat.cstime = cstime / (double)leanux::system::getUserHz();
-          stat.delayacct_blkio_ticks = delayacct_blkio_ticks / (double)leanux::system::getUserHz();
+          stat.delayacct_blkio_ticks = (double)delayacct_blkio_ticks / (double)leanux::system::getUserHz();
         } else throw Oops( __FILE__, __LINE__, "parse failure on " + path.str() );
       } else return false;
       return true;
@@ -171,24 +171,41 @@
 
     void getAllProcPidStat( ProcPidStatMap &stats ) {
       stats.clear();
+      std::set<pid_t> threadset;
       std::string path = "/proc";
-      DIR *d;
-      struct dirent *dir;
-      d = opendir( path.c_str() );
-      if ( d ) {
-        while ( (dir = readdir(d)) != NULL ) {
-          if ( isdigit( dir->d_name[0] ) ) {
-            pid_t pid = atoi( dir->d_name );
+      DIR *pidd;
+      struct dirent *piddir;
+      pidd = opendir( path.c_str() );
+      if ( pidd ) {
+        while ( ( piddir = readdir( pidd )) != NULL ) {
+          if ( isdigit( piddir->d_name[0] ) ) {
+            pid_t pid = atoi( piddir->d_name );
             if ( pid ) {
-              ProcPidStat stat;
-              if ( getProcPidStat( pid, stat ) ) {
-                stats[pid] = stat;
+              std::string tpath = "/proc/" + (std::string)piddir->d_name + "/task";
+              DIR *tidd;
+              struct dirent *tiddir;
+              tidd = opendir( tpath.c_str() );
+              if ( tidd ) {
+                while ( ( tiddir = readdir( tidd )) != NULL ) {
+                  if ( isdigit( tiddir->d_name[0] ) ) {
+                    pid_t tid = atoi( tiddir->d_name );
+                    threadset.insert(tid);
+                  }
+                }
               }
+              closedir( tidd );
+              threadset.insert(pid);
             }
           }
         }
       } else throw Oops( __FILE__, __LINE__, errno );
-      closedir( d );
+      closedir( pidd );
+      for ( std::set<pid_t>::const_iterator t = threadset.begin(); t != threadset.end(); ++t ) {
+        ProcPidStat stat;
+        if ( getProcPidStat( *t, stat ) ) {
+          stats[*t] = stat;
+        }
+      }
     };
 
     void getAllDirectChildren( pid_t parent, const ProcPidStatMap &snap, std::list<pid_t> &children ) {
@@ -228,6 +245,7 @@
       for ( ProcPidStatMap::const_iterator s2 = snap2.begin(); s2 != snap2.end(); ++s2 ) {
         ProcPidStatDelta dt;
         dt.pid = s2->first;
+        dt.tpgid = s2->second.tpgid;
         ProcPidStatMap::const_iterator s1 = snap1.find( s2->first );
         if ( s1 != snap1.end() ) {
           dt.utime = s2->second.utime - s1->second.utime;
@@ -291,9 +309,9 @@
         case vsize:
           return d1.vsize > d2.vsize;
         case top:
+          //return ( d1.utime+d1.stime+d1.delayacct_blkio_ticks > d2.utime+d2.stime+d2.delayacct_blkio_ticks );
         default:
-          return
-                 ( d1.utime+d1.stime+d1.delayacct_blkio_ticks > d2.utime+d2.stime+d2.delayacct_blkio_ticks ) ||
+          return ( d1.utime+d1.stime+d1.delayacct_blkio_ticks > d2.utime+d2.stime+d2.delayacct_blkio_ticks ) ||
                  ( d1.utime+d1.stime+d1.delayacct_blkio_ticks == d2.utime+d2.stime+d2.delayacct_blkio_ticks && d1.majflt > d2.majflt ) ||
                  ( d1.utime+d1.stime+d1.delayacct_blkio_ticks == d2.utime+d2.stime+d2.delayacct_blkio_ticks && d1.majflt == d2.majflt && d1.minflt > d2.minflt ) ||
                  ( d1.utime+d1.stime+d1.delayacct_blkio_ticks == d2.utime+d2.stime+d2.delayacct_blkio_ticks && d1.majflt == d2.majflt && d1.minflt == d2.minflt && d1.rss > d2.rss);

@@ -807,6 +807,5 @@ namespace leanux {
 }; // namespace leanux
 
 int main( int argc, char* argv[] ) {
-  std::cout << leanux::system::getUserHz() << std::endl;
-  //return leanux::tools::lsys::main( argc, argv );
+  return leanux::tools::lsys::main( argc, argv );
 }

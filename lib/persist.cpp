@@ -131,22 +131,6 @@ namespace leanux {
       }
     }
 
-    #ifdef LEANUX_DEBUG
-    typedef enum  {
-      stCreated,
-      stPrepared,
-      stStepping,
-      stReset,
-      stClose
-    } StmtStat;
-    typedef struct {
-      std::string sql;
-      StmtStat state;
-    } RStmt;
-    typedef std::map<Statement*,RStmt> StmtMap;
-    StmtMap stmtmap;
-    #endif
-
     Database::Database( const std::string &filename, WaitHandler handler ) {
       database_ = NULL;
       int r = sqlite3_open_v2( filename.c_str(), &database_, SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_NOMUTEX, NULL );
@@ -213,14 +197,6 @@ namespace leanux {
     Database::~Database() {
       int r = sqlite3_close_v2( database_ );
       if ( r != SQLITE_OK ) std::cout << "sqlite3_close returns " << r << std::endl;
-
-      #ifdef LEANUX_DEBUG
-      if ( stmtmap.size() > 0 ) {
-        for ( StmtMap::const_iterator i = stmtmap.begin(); i != stmtmap.end(); ++i ) {
-          std::cout << i->first << " " << i->second.state << " " << i->second.sql << std::endl;
-        }
-      } else std::cout << "all statements appear to be finalized" << std::endl;
-      #endif
     }
 
     void Database::enableForeignKeys() throw(Oops) {
@@ -374,10 +350,6 @@ namespace leanux {
     }
 
     Statement::Statement( const Database& db ) {
-      #ifdef LEANUX_DEBUG
-      stmtmap[this].state = stCreated;
-      stmtmap[this].sql = "";
-      #endif
       database_ = db.getDB();
       stmt_ = 0;
     }
@@ -386,9 +358,6 @@ namespace leanux {
       if ( stmt_ ) {
         sqlite3_finalize( stmt_ );
       }
-      #ifdef LEANUX_DEBUG
-      stmtmap.erase(this);
-      #endif
     }
 
     void Statement::prepare( const std::string &sql ) throw(Oops) {
@@ -400,10 +369,6 @@ namespace leanux {
         ss << sqlite3_errmsg( database_ ) << " at '" << err << "' sql='" << sql << "'";
         throw Oops( __FILE__, __LINE__, ss.str() );
       }
-      #ifdef LEANUX_DEBUG
-      stmtmap[this].sql = sql;
-      stmtmap[this].state = stPrepared;
-      #endif
     }
 
     void Statement::reset() throw(Oops) {
@@ -411,9 +376,6 @@ namespace leanux {
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
-      #ifdef LEANUX_DEBUG
-      stmtmap[this].state = stReset;
-      #endif
     }
 
     void Statement::close() throw(Oops) {
@@ -422,13 +384,7 @@ namespace leanux {
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
-      #ifdef LEANUX_DEBUG
-      stmtmap[this].state = stClose;
-      #endif
     }
-
-
-
 
     void DDL::execute() throw(Oops) {
       int r = sqlite3_step( stmt_ );
@@ -440,9 +396,6 @@ namespace leanux {
     int DDL::execute_r() {
       return sqlite3_step( stmt_ );
     }
-
-
-
 
     DML::DML( const Database& db ) : Statement( db ) {
     }
@@ -511,6 +464,10 @@ namespace leanux {
     std::string Query::getText( int col ) const {
       const char* c = (const char*)sqlite3_column_text( stmt_, col );
       if ( c ) return c; else return "";
+    }
+
+    int Query::getColumnCount() const {
+      return sqlite3_column_count( stmt_ );
     }
 
   }; // namespace persist

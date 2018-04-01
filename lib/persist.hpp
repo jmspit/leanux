@@ -342,6 +342,12 @@ namespace leanux {
          * @return the select list value.
          */
         std::string getText( int col ) const;
+
+        /**
+         * get the number of columns in the query result set.
+         * @return the number of columns
+         */
+        int getColumnCount() const;
     };
 
 

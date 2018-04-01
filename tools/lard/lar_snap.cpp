@@ -114,7 +114,8 @@ namespace leanux {
         block::StatsSorter sorter( &delta );
         sort( vec.begin(), vec.end(), sorter );
         for ( block::MajorMinorVector::const_iterator d = vec.begin(); d != vec.end(); d++ ) {
-          if ( (*d).isWholeDisk() && (delta[*d].reads + delta[*d].writes + delta[*d].iorequest_cnt) > 0 ) {
+          //if ( (*d).isWholeDisk() && (delta[*d].reads + delta[*d].writes + delta[*d].iorequest_cnt) > 0 ) {
+          if ( (*d).isWholeDisk() ) {
             std::string sdiskid = (*d).getDiskId();
             std::string ssyspath = (*d).getSysPath();
             size_t p = ssyspath.rfind("/");

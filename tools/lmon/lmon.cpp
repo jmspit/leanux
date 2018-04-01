@@ -76,7 +76,9 @@ namespace leanux {
         std::cout << "  -g      : (re)write the configuration file with default values" << std::endl;
         std::cout << "  -h      : show this help" << std::endl;
         std::cout << "  -v      : show version" << std::endl;
+        std::cout << "  -v      : show version" << std::endl;
         std::cout << std::endl;
+        std::cout << "created by " << LEANUX_MAINTAINER_NAME << std::endl;
       }
 
       bool verifyDatabase( persist::Database &db ) {

@@ -83,6 +83,12 @@ namespace leanux {
             system::getNumProcesses( &disabled_procs_ );
           } else {
             deltaProcPidStats( procsnap1_, procsnap2_, xprocview_.delta );
+            // @todo dirty hack to solve a nasty kernel reporting problem - some values are way too high
+            // https://bugzilla.kernel.org/show_bug.cgi?id=198245
+            for ( process::ProcPidStatDeltaVector::iterator i = xprocview_.delta.begin(); i != xprocview_.delta.end(); i++ ) {
+              if ( (*i).delayacct_blkio_ticks / dt > 1 ) (*i).delayacct_blkio_ticks = 0;
+            }
+            // @todo dirty hack to solve a nasty kernel reporting problem - some values are way too high
             process::StatsSorter top_sorter( process::StatsSorter::top );
             sort( xprocview_.delta.begin(), xprocview_.delta.end(), top_sorter );
             for ( process::ProcPidStatDeltaVector::iterator i = xprocview_.delta.begin(); i != xprocview_.delta.end(); i++ ) {

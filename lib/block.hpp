@@ -295,7 +295,7 @@ namespace leanux {
           if ( isSCSIDisk( MAJOR(dev_) ) ) return (MINOR(dev_) % 16) != 0;
           else if ( isIDEDisk( MAJOR(dev_) ) ) return (MINOR(dev_) % 64 ) != 0;
           else if ( isVirtIODisk( MajorMinor( MAJOR(dev_), 0  )  ) ) return (MINOR(dev_) % 16 ) != 0;
-          else if ( isNVMeDisk( MajorMinor( MAJOR(dev_), MINOR(dev_) ) ) ) {
+          else if ( isNVMeDisk( MajorMinor( MAJOR(dev_), 0 ) ) ) {
             unsigned int host = 0;
             unsigned int disk = 0;
             unsigned int partition = 0;
@@ -739,6 +739,16 @@ namespace leanux {
       s << MAJOR(m.getDevT()) << ":" << MINOR(m.getDevT());
       return s;
     }
+
+    /**
+     * return the ata port name from the device path
+     */
+    std::string getATAPortName( const std::string& device );
+
+    /**
+     * get the ata device name from a device path
+     */
+    std::string getATADeviceName( const std::string& device );
 
     /**
      * Get the ATA port link.

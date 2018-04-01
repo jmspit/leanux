@@ -39,7 +39,8 @@
 #include "device.hpp"
 
 #include <string.h>
-#include <sys/types.h>
+//#include <sys/types.h>
+#include <sys/sysmacros.h>
 #include <sys/stat.h>
 #include <sys/statfs.h>
 #include <unistd.h>
@@ -181,13 +182,20 @@ namespace leanux {
         //check devicefile
         std::list<std::string> aliasses;
         MajorMinor( major, minor ).getAliases( aliasses );
+        bool nodevice = true;
         for ( std::list<std::string>::const_iterator a = aliasses.begin(); a != aliasses.end(); a++ ) {
           std::string rp = util::realPath( *a );
           if ( rp != "" ) {
             file2mm_[ rp ] = MajorMinor( major, minor );
             mm2file_[ MajorMinor( major, minor ) ] = rp;
+            nodevice = false;
             break;
           }
+        }
+        if ( nodevice ) {
+          std::string rp = "/dev/" + device;
+          file2mm_[ rp ] = MajorMinor( major, minor );
+          mm2file_[ MajorMinor( major, minor ) ] = rp;
         }
 
         i.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -317,7 +325,7 @@ namespace leanux {
         return MajorMinor( MKDEV(MAJOR(partition.dev_), MINOR(partition.dev_) - MINOR(partition.dev_) % 64  ) );
       } else if ( isVirtIODisk( MajorMinor( MAJOR(partition.dev_), 0 ) ) ) {
         return MajorMinor( MKDEV(MAJOR(partition.dev_), MINOR(partition.dev_) - MINOR(partition.dev_) % 16  ) );
-      } else if ( isNVMeDisk( partition ) ) {
+      } else if ( isNVMeDisk( MajorMinor( MAJOR(partition.dev_), 0 ) ) ) {
         std::string devname = getNameByMajorMinor( partition );
         unsigned int host = 0;
         unsigned int disk = 0;
@@ -466,18 +474,23 @@ namespace leanux {
     }
 
     std::string MajorMinor::getSerial() const {
-      std::string udevp = getUDevPath();
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:ID_SERIAL_SHORT=", 18 ) == 0 ) {
-          result = line.substr(18);
-          break;
+      std::string file = "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/serial";
+      if ( util::fileReadAccess( file ) )
+        return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/serial" );
+      else {
+        std::string udevp = getUDevPath();
+        std::ifstream i( udevp.c_str() );
+        std::string line = "";
+        std::string result = "";
+        while ( i.good() ) {
+          getline( i, line );
+          if ( strncmp( line.c_str(), "E:ID_SERIAL_SHORT=", 18 ) == 0 ) {
+            result = line.substr(18);
+            break;
+          }
         }
+        return result;
       }
-      return result;
     }
 
     std::string MajorMinor::getUDevPath() const {
@@ -497,7 +510,16 @@ namespace leanux {
     }
 
     bool MajorMinor::getRotational() const {
-      return (util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/queue/rotational" )[0] == '1');
+      bool result = true;
+      std::stringstream ss;
+      MajorMinor mm = *this;
+      if ( isPartition() ) mm = MajorMinor::deriveWholeDisk(*this);
+      try {
+        result = util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(mm) + "/queue/rotational" )[0] == '1';
+      }
+      catch ( Oops & oops ) {
+      }
+      return result;
     }
 
     std::string MajorMinor::getRotationalStr() const {
@@ -564,17 +586,22 @@ namespace leanux {
     }
 
     std::string MajorMinor::getModel() const {
-      std::string udevp = getUDevPath();
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:ID_MODEL=", 11 ) == 0 ) {
-          result = line.substr(11);
+      std::string file = "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/device/model";
+      if ( util::fileReadAccess( file ) )
+        return util::fileReadString( file );
+      else {
+        std::string udevp = getUDevPath();
+        std::ifstream i( udevp.c_str() );
+        std::string line = "";
+        std::string result = "";
+        while ( i.good() ) {
+          getline( i, line );
+          if ( strncmp( line.c_str(), "E:ID_MODEL=", 11 ) == 0 ) {
+            result = line.substr(11);
+          }
         }
+        return result;
       }
-      return result;
     }
 
     std::string MajorMinor::getKernelModule() const {
@@ -845,7 +872,9 @@ namespace leanux {
     }
 
     unsigned long MajorMinor::getReadAhead() const {
-      std::string devname  = MajorMinor::getNameByMajorMinor( *this );
+      MajorMinor mm = *this;
+      if ( mm.isPartition() ) mm = MajorMinor::deriveWholeDisk(*this);
+      std::string devname  = MajorMinor::getNameByMajorMinor( mm );
       return 1024 * util::fileReadUL( "/sys/class/block/" + devname + "/queue/read_ahead_kb" );
     }
 
@@ -862,38 +891,40 @@ namespace leanux {
     }
 
     std::string MajorMinor::getWWN() const {
-      std::string udevp = getUDevPath();
-      std::ifstream i( udevp.c_str() );
-      std::string line = "";
-      std::string result = "";
-      while ( i.good() ) {
-        getline( i, line );
-        if ( strncmp( line.c_str(), "E:ID_WWN_WITH_EXTENSION=", 24 ) == 0 ) {
-          result = line.substr(24);
-          break;
+      if ( isNVMeDisk(*this ) ) {
+        return util::fileReadString( "/sys/class/block/" + MajorMinor::getNameByMajorMinor(*this) + "/wwid" );
+      } else {
+        std::string udevp = getUDevPath();
+        std::ifstream i( udevp.c_str() );
+        std::string line = "";
+        std::string result = "";
+        while ( i.good() ) {
+          getline( i, line );
+          if ( strncmp( line.c_str(), "E:ID_WWN_WITH_EXTENSION=", 24 ) == 0 ) {
+            result = line.substr(24);
+            break;
+          }
         }
+        return result;
       }
-      return result;
     }
 
     void MajorMinor::getPartitions( std::list< std::string > &partitions ) const {
       partitions.clear();
-      if ( !MajorMinor::isNVMeDisk( *this ) ) {
-        std::string devname = MajorMinor::getNameByMajorMinor(*this);
-        std::string path = "/sys/class/block/" + devname;
-        DIR *d;
-        struct dirent *dir;
-        d = opendir( path.c_str() );
-        if ( d ) {
-          while ( (dir = readdir(d)) != NULL ) {
-            if ( strncmp( devname.c_str(), dir->d_name, devname.length() ) == 0 ) {
-              partitions.push_back( dir->d_name );
-            }
+      std::string devname = MajorMinor::getNameByMajorMinor(*this);
+      std::string path = "/sys/class/block/" + devname;
+      DIR *d;
+      struct dirent *dir;
+      d = opendir( path.c_str() );
+      if ( d ) {
+        while ( (dir = readdir(d)) != NULL ) {
+          if ( strncmp( devname.c_str(), dir->d_name, devname.length() ) == 0 ) {
+            partitions.push_back( dir->d_name );
           }
-        } else throw Oops( __FILE__, __LINE__, errno );
-        closedir( d );
-      } else {
-      }
+        }
+      } else throw Oops( __FILE__, __LINE__, errno );
+      closedir( d );
+      partitions.sort();
     }
 
     bool MajorMinor::getMountInfo ( MountInfo &info ) const {
@@ -918,6 +949,67 @@ namespace leanux {
       std::string result = "";
       std::string path = "/sys/class/ata_port/" + ata_port + "/device/" + ata_link + "/ata_link/" + ata_link + "/sata_spd";
       result = util::fileReadString( path );
+      return result;
+    }
+
+    std::string getATADeviceName( const std::string& device ) {
+      std::string result = "";
+      std::string path = device;
+      DIR *d;
+      struct dirent *dir;
+      int hurray = 0;
+      d = opendir( path.c_str() );
+      if ( d ) {
+        while ( (dir = readdir(d)) != NULL ) {
+          if ( strncmp( dir->d_name, "host", 4 ) == 0 ) {
+            path += ( "/" + (std::string)dir->d_name );
+            hurray++;
+            break;
+          }
+        }
+        closedir( d );
+      }
+      d = opendir( path.c_str() );
+      if ( d ) {
+        while ( (dir = readdir(d)) != NULL ) {
+          if ( strncmp( dir->d_name, "target", 6 ) == 0 ) {
+            path += ( "/" + (std::string)dir->d_name );
+            hurray++;
+            break;
+          }
+        }
+        closedir( d );
+      }
+      d = opendir( path.c_str() );
+      if ( d && hurray == 2 ) {
+        while ( (dir = readdir(d)) != NULL ) {
+          if ( isdigit( dir->d_name[0] ) ) {
+            path += ( "/" + (std::string)dir->d_name + "/block" );
+            hurray++;
+            break;
+          }
+        }
+        closedir( d );
+      }
+      d = opendir( path.c_str() );
+      if ( d && hurray == 3 ) {
+        while ( (dir = readdir(d)) != NULL ) {
+          if ( dir->d_name[0] != '.' ) {
+            result = dir->d_name;
+            break;
+          }
+        }
+        closedir( d );
+      }
+      return result;
+    }
+
+    std::string getATAPortName( const std::string& device ) {
+      std::string result = "";
+      size_t p = device.find_last_of( "/" );
+      if ( p != std::string::npos ) {
+        result = device.substr( p+1 );
+      }
       return result;
     }
 
@@ -1085,6 +1177,7 @@ namespace leanux {
         }
       } else throw Oops( __FILE__, __LINE__, errno );
       closedir( d );
+      holders.sort();
     }
 
     void MajorMinor::getSlaves( std::list< std::string > &slaves ) const {
@@ -1110,6 +1203,7 @@ namespace leanux {
         }
       } else throw Oops( __FILE__, __LINE__, errno );
       closedir( d );
+      slaves.sort();
     }
 
     bool MajorMinor::getStats( DeviceStats& stats ) const {

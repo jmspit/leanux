@@ -65,7 +65,7 @@ namespace leanux {
   namespace sysdevice {
 
     /**
-     * A string representing a path on the sysfs filesystem.
+     * A string representing an absolute path on the sysfs filesystem.
      */
     typedef std::string SysDevicePath;
 
@@ -78,6 +78,21 @@ namespace leanux {
      * const for '/sys/bus'
      */
     extern const SysDevicePath sysbus_root;
+
+    class PropertyValue {
+      public:
+        PropertyValue( const std::string &property, const std::string &value )
+          { property_ = property; value_ = value; };
+        PropertyValue( const PropertyValue & pv )
+          { property_ = pv.property_; value_ = pv.value_; };
+        std::string getProperty() const { return property_; }
+        std::string getValue() const { return value_; }
+      protected:
+        std::string property_;
+        std::string value_;
+    };
+
+    typedef std::list<PropertyValue> PropertyValueList;
 
     /**
      * Generic SysDevice, utility class for device detection from a SysDevicePath.
@@ -100,6 +115,7 @@ namespace leanux {
           sdtMMCDevice,           /**< MMC disk */
           sdtNetDevice,           /**< network device */
           sdtNVMeDevice,          /**< NVMe disk */
+          sdtNVMePartition,       /**< NVMe partition */
           sdtBlockPartition,      /**< generic block partition */
           sdtPCIBus,              /**< PCI bus */
           sdtPCIDevice,           /**< PCI device */
@@ -117,18 +133,21 @@ namespace leanux {
           sdtVirtualNetDevice,    /**< virtual network device */
           sdtLoopbackDevice,      /**< loopback block device */
           sdtRAMDiskDevice,       /**< ram disk block device */
+          sdtVirtualRoot,         /**< root for virtual devices */
+          sdtVirtualBlockRoot,    /**< root for virtual block devices */
+          sdtVirtualNetRoot,      /**< root for virtual net devices */
           sdtUnknown              /**< unknown device */
         };
 
         /**
          * Default constructor.
          */
-        SysDevice() { path_ = ""; sysdevicetype_ = sdtAbstract; };
+        SysDevice() { path_ = ""; leaf_ = ""; sysdevicetype_ = sdtAbstract; };
 
         /**
          * Copy constructor.
          */
-        SysDevice( const SysDevice &src) { path_ = src.path_; sysdevicetype_ = src.sysdevicetype_; };
+        SysDevice( const SysDevice &src) { path_ = src.path_; leaf_ = src.leaf_; sysdevicetype_ = src.sysdevicetype_; };
 
         /**
          * Destructor.
@@ -159,6 +178,8 @@ namespace leanux {
          * @return the SysDevice path.
          */
         SysDevicePath getPath() const { return path_; };
+
+        SysDevicePath getLeaf() const { return leaf_; };
 
         /**
          * Get the SysDeviceType. @see SysDeviceType.
@@ -196,11 +217,19 @@ namespace leanux {
          */
         virtual std::string getClass() const { return ""; };
 
+        virtual std::string getModel() const { return ""; };
+
+        virtual std::string getVendor() const { return ""; };
+
+        virtual std::string getDisplayName() const;
+
         /**
          * Transform a SysDevicePath into a list of tokens in reverse
          * order.
          */
         static void tokenize( const SysDevicePath &path, std::list<std::string> &tokens );
+
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
 
       protected:
 
@@ -208,6 +237,11 @@ namespace leanux {
          * The path for this device.
          */
         SysDevicePath path_;
+
+        /**
+         * The leaf of the path_ for this SysDevice
+         */
+        std::string leaf_;
 
         /**
          * The SysDevice SysDeviceType.
@@ -226,6 +260,8 @@ namespace leanux {
         block::MajorMinor getMajorMinor() const;
         virtual std::string getDescription() const;
         virtual std::string getDriver() const;
+        virtual std::string getDisplayName() const;
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
       protected:
     };
 
@@ -238,7 +274,9 @@ namespace leanux {
         BlockPartition( const BlockPartition &src ) : BlockDevice( src ) {};
         virtual std::string getDriver() const { return ""; };
         virtual bool accept( SysDevicePath &path );
+        virtual std::string getDisplayName() const;
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtBlock; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
       protected:
     };
 
@@ -250,6 +288,43 @@ namespace leanux {
         NetDevice() : SysDevice() { sysdevicetype_ = sdtNetDevice; };
         NetDevice( const NetDevice &src ) : SysDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
+      protected:
+    };
+
+    /**
+     * Virtual root.
+     */
+    class VirtualRoot : public SysDevice {
+      public:
+        VirtualRoot() : SysDevice() { sysdevicetype_ = sdtVirtualRoot; };
+        VirtualRoot( const VirtualRoot &src ) : SysDevice( src ) {};
+        virtual bool accept( SysDevicePath &path );
+        virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtVirtualRoot; };
+      protected:
+    };
+
+    /**
+     * Virtual block root.
+     */
+    class VirtualBlockRoot : public SysDevice {
+      public:
+        VirtualBlockRoot() : SysDevice() { sysdevicetype_ = sdtVirtualBlockRoot; };
+        VirtualBlockRoot( const VirtualBlockRoot &src ) : SysDevice( src ) {};
+        virtual bool accept( SysDevicePath &path );
+        virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtVirtualBlockRoot; };
+      protected:
+    };
+
+    /**
+     * Virtual net root.
+     */
+    class VirtualNetRoot : public SysDevice {
+      public:
+        VirtualNetRoot() : SysDevice() { sysdevicetype_ = sdtVirtualNetRoot; };
+        VirtualNetRoot( const VirtualNetRoot &src ) : SysDevice( src ) {};
+        virtual bool accept( SysDevicePath &path );
+        virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtVirtualNetRoot; };
       protected:
     };
 
@@ -397,6 +472,21 @@ namespace leanux {
         NVMeDevice( const NVMeDevice &src ) : BlockDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtBlock; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
+      protected:
+    };
+
+    /**
+     * Say yes to partitions on NVMe devices
+     */
+    class NVMePartition : public BlockDevice {
+      public:
+        NVMePartition() : BlockDevice() { sysdevicetype_ = sdtNVMePartition; };
+        NVMePartition( const BlockPartition &src ) : BlockDevice( src ) {};
+        virtual std::string getDriver() const { return ""; };
+        virtual bool accept( SysDevicePath &path );
+        virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtBlock; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
       protected:
     };
 
@@ -422,6 +512,7 @@ namespace leanux {
         virtual bool accept( SysDevicePath &path );
         virtual std::string getDescription() const;
         unsigned int getPort() const { return port_; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
       protected:
         unsigned int port_;
     };
@@ -457,6 +548,7 @@ namespace leanux {
         MapperDevice( const MapperDevice &src ) : BlockDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtBlock; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -468,6 +560,7 @@ namespace leanux {
         LoopbackDevice( const LoopbackDevice &src ) : BlockDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtLoopbackDevice; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -479,6 +572,7 @@ namespace leanux {
         RamDiskDevice( const RamDiskDevice &src ) : BlockDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtRAMDiskDevice; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -490,6 +584,7 @@ namespace leanux {
         MDDevice( const MDDevice &src ) : BlockDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual bool matchSysDeviceType( SysDeviceType t) const { return sysdevicetype_ == t || t == sdtBlock; };
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -498,10 +593,13 @@ namespace leanux {
     class PCIDevice : public SysDevice {
       public:
         PCIDevice() : SysDevice() { sysdevicetype_ = sdtPCIDevice; };
+        virtual ~PCIDevice() {};
         PCIDevice( const PCIDevice &src ) : SysDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual std::string getDescription() const;
         virtual std::string getClass() const;
+        virtual std::string getDisplayName() const;
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -513,6 +611,8 @@ namespace leanux {
         PCIBus( const PCIBus &src ) : BusDevice( src ) {};
         virtual bool accept( SysDevicePath &path );
         virtual std::string getDescription() const;
+        virtual std::string getDisplayName() const;
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -525,6 +625,8 @@ namespace leanux {
         virtual bool accept( SysDevicePath &path );
         virtual std::string getDescription() const;
         virtual std::string getClass() const;
+        virtual std::string getDisplayName() const;
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**
@@ -537,6 +639,7 @@ namespace leanux {
         virtual bool accept( SysDevicePath &path );
         virtual std::string getDescription() const;
         virtual std::string getClass() const;
+        virtual std::string getDisplayName() { return ""; };
     };
 
     /**
@@ -549,6 +652,8 @@ namespace leanux {
         virtual bool accept( SysDevicePath &path );
         virtual std::string getDescription() const;
         virtual std::string getClass() const;
+        virtual std::string getDisplayName() const;
+        virtual void getPropertyValueList( PropertyValueList &pv ) const;
     };
 
     /**

@@ -35,8 +35,10 @@
  */
 
 #include "device.hpp"
+#include "block.hpp"
 #include "util.hpp"
 #include "oops.hpp"
+#include "net.hpp"
 #include "pci.hpp"
 #include "usb.hpp"
 #include "block.hpp"
@@ -69,12 +71,80 @@ namespace leanux {
       return false;
     }
 
+    void SysDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      pv.push_back( PropertyValue( "sysfs", path_ ) );
+      if ( getDriver().length() > 0 )
+        pv.push_back( PropertyValue( "driver", getDriver() ) );
+      pv.push_back( PropertyValue( "type", getTypeStr( sysdevicetype_ ) ) );
+      if ( getClass().length() > 0 )
+        pv.push_back( PropertyValue( "class", getClass() ) );
+    }
+
+    std::string SysDevice::getDisplayName() const {
+      return leaf_;
+    }
+
     block::MajorMinor BlockDevice::getMajorMinor() const {
-      std::string devpath = sysdevice_root + "/" + path_ + "/dev";
+      std::string devpath = path_ + "/dev";
       if ( util::fileReadAccess( devpath ) ) {
         std::string dev = util::fileReadString( devpath );
         return block::MajorMinor( dev );
       } else return block::MajorMinor::invalid;
+    }
+
+    void BlockDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      pv.push_back( PropertyValue( "model", getMajorMinor().getModel() ) );
+      std::stringstream ss;
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "SCSI hctl", getMajorMinor().getSCSIHCTL() ) );
+      pv.push_back( PropertyValue( "modalias", getMajorMinor().getKernelModule() ) );
+      pv.push_back( PropertyValue( "WWN", getMajorMinor().getWWN() ) );
+      pv.push_back( PropertyValue( "serial number", getMajorMinor().getSerial() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "firmware", getMajorMinor().getRevision() ) );
+      pv.push_back( PropertyValue( "rotational", getMajorMinor().getRotationalStr() ) );
+      ss << leanux::util::ByteStr(getMajorMinor().getSectorSize(), 0 );
+      pv.push_back( PropertyValue( "sector size", ss.str() ) );
+      ss.str("");
+
+      ss << leanux::util::ByteStr(getMajorMinor().getMinIOSize(), 0 );
+      pv.push_back( PropertyValue( "min IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxIOSize(), 0 );
+      pv.push_back( PropertyValue( "max IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxHWIOSize(), 0 );
+      pv.push_back( PropertyValue( "max hw IO size", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "IO scheduler", getMajorMinor().getIOScheduler() ) );
+      pv.push_back( PropertyValue( "Write cache", getMajorMinor().getCacheMode() ) );
+
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
+    }
+
+    std::string BlockDevice::getDisplayName() const {
+      std::stringstream ss;
+      ss << getMajorMinor().getName();
+      if ( getMajorMinor().getModel().length() > 0 ) {
+        ss << " " << getMajorMinor().getModel();
+      }
+      return ss.str();
     }
 
     std::string BlockDevice::getDescription() const {
@@ -91,7 +161,6 @@ namespace leanux {
       pci::PCIHardwareId hwid = pci::getPCIHardwareId( path_ );
       pci::PCIHardwareInfo hwinfo;
       if ( pci::getPCIHardwareInfo( hwid, hwinfo ) ) {
-        //ss << "vendor=" << hwinfo.vendor << " model=" << hwinfo.device;
         ss << "model=" << hwinfo.device;
       }
       return ss.str();
@@ -130,13 +199,35 @@ namespace leanux {
       return ss.str();
     }
 
+    std::string USBDevice::getDisplayName() const {
+      usb::USBHardwareId hwid;
+      if ( getUSBHardwareId( path_, hwid ) ) {
+        usb::USBHardwareInfo info;
+        if ( getUSBHardwareInfo( hwid, info ) )
+          return info.idProduct;
+        else
+          return SysDevice::getDisplayName();
+      } else return SysDevice::getDisplayName();
+    }
+
+    void USBDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( path_, hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) ) {
+        pv.push_back( PropertyValue( "model", info.idProduct ) );
+        pv.push_back( PropertyValue( "vendor", info.idVendor ) );
+      }
+    }
+
     std::string USBBus::getDescription() const {
       std::stringstream ss;
       usb::USBHardwareId hwid;
       getUSBHardwareId( path_, hwid );
       usb::USBHardwareInfo info;
       if ( getUSBHardwareInfo( hwid, info ) ) {
-        //ss << "vendor=" << info.idVendor;
         ss << "model=" << info.idProduct;
       }
       return ss.str();
@@ -153,10 +244,36 @@ namespace leanux {
       return ss.str();
     }
 
+    std::string USBBus::getDisplayName() const {
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( path_, hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) )
+        return info.idProduct;
+      else
+        return SysDevice::getDisplayName();
+    }
+
+    void USBBus::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      usb::USBHardwareId hwid;
+      getUSBHardwareId( path_, hwid );
+      usb::USBHardwareInfo info;
+      if ( getUSBHardwareInfo( hwid, info ) ) {
+        pv.push_back( PropertyValue( "model", info.idProduct ) );
+        pv.push_back( PropertyValue( "vendor", info.idVendor ) );
+      }
+    }
+
     std::string USBInterface::getClass() const {
       std::stringstream ss;
       ss << usb::getUSBHardwareClassStr( usb::getUSBInterfaceHardwareClass( path_ ) );
       return ss.str();
+    }
+
+    std::string USBInterface::getDescription() const {
+      return "";
     }
 
     std::string ATAPort::getDescription() const {
@@ -167,10 +284,6 @@ namespace leanux {
       ss.str("");
       ss << "link=" << ata_link << " speed=" << block::getATALinkSpeed( ata_port, ata_link );
       return ss.str();
-    }
-
-    std::string USBInterface::getDescription() const {
-      return "";
     }
 
     bool VirtioBlockDevice::accept( SysDevicePath &path ) {
@@ -210,7 +323,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
@@ -253,7 +367,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
@@ -288,34 +403,43 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
     }
 
     bool NVMeDevice::accept( SysDevicePath &path ) {
-      if ( path.find("nvme") == std::string::npos ) return false;
+      if ( path.find("/nvme/") == std::string::npos ) return false;
       std::list<std::string> tokens;
       tokenize( path, tokens );
-      const unsigned int st_blkdev_name = 0;      // nvme<minor>
-      const unsigned int st_misc = 1;             // misc
-      const unsigned int st_accept = 2;
-      const unsigned int st_fail = 3;
+      const unsigned int st_blkdev_name = 0;      // nvme0n1
+      const unsigned int st_controller  = 1;      // nvme0
+      const unsigned int st_nvmeroot    = 2;      // nvme
+      const unsigned int st_accept = 3;
+      const unsigned int st_fail = 4;
       unsigned int state = st_blkdev_name;
       util::RegExp reg;
       size_t eat_chars = 0;
       for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end() && state != st_accept && state != st_fail; t++ ) {
         switch ( state ) {
           case st_blkdev_name:
-            reg.set( "(nvme)[[:xdigit:]]+" );
+            reg.set( "(nvme)[[:xdigit:]]n[[:xdigit:]]" );
             if ( reg.match( *t ) ) {
-              state = st_misc;
+              state = st_controller;
               eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
-          case st_misc:
-            if ( *t == "misc" ) {
+          case st_controller:
+            reg.set( "(nvme)[[:xdigit:]]" );
+            if ( reg.match( *t ) ) {
+              state = st_nvmeroot;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+          case st_nvmeroot:
+            if ( *t == "nvme" ) {
               state = st_accept;
               eat_chars += (*t).length() + 1;
             } else state = st_fail;
@@ -323,10 +447,124 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
+    }
+
+    void NVMeDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      pv.push_back( PropertyValue( "model", getMajorMinor().getModel() ) );
+      std::stringstream ss;
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "modalias", getMajorMinor().getKernelModule() ) );
+      pv.push_back( PropertyValue( "WWN", getMajorMinor().getWWN() ) );
+      pv.push_back( PropertyValue( "serial number", getMajorMinor().getSerial() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "firmware", getMajorMinor().getRevision() ) );
+      pv.push_back( PropertyValue( "rotational", getMajorMinor().getRotationalStr() ) );
+      ss << leanux::util::ByteStr(getMajorMinor().getSectorSize(), 0 );
+      pv.push_back( PropertyValue( "sector size", ss.str() ) );
+      ss.str("");
+
+      ss << leanux::util::ByteStr(getMajorMinor().getMinIOSize(), 0 );
+      pv.push_back( PropertyValue( "min IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxIOSize(), 0 );
+      pv.push_back( PropertyValue( "max IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxHWIOSize(), 0 );
+      pv.push_back( PropertyValue( "max hw IO size", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "IO scheduler", getMajorMinor().getIOScheduler() ) );
+      pv.push_back( PropertyValue( "Write cache", getMajorMinor().getCacheMode() ) );
+
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
+    }
+
+    bool NVMePartition::accept( SysDevicePath &path ) {
+      if ( path.find("/nvme/") == std::string::npos ) return false;
+      std::list<std::string> tokens;
+      tokenize( path, tokens );
+      const unsigned int st_blkdev_part = 0;      // nvme0n1p1
+      const unsigned int st_blkdev_name = 1;      // nvme0n1
+      const unsigned int st_controller  = 2;      // nvme0
+      const unsigned int st_nvmeroot    = 3;      // nvme
+      const unsigned int st_accept = 4;
+      const unsigned int st_fail = 5;
+      unsigned int state = st_blkdev_part;
+      util::RegExp reg;
+      size_t eat_chars = 0;
+      for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end() && state != st_accept && state != st_fail; t++ ) {
+        switch ( state ) {
+          case st_blkdev_part:
+            reg.set( "(nvme)[[:xdigit:]]n[[:xdigit:]]p[[:xdigit:]]" );
+            if ( reg.match( *t ) ) {
+              state = st_blkdev_name;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+          case st_blkdev_name:
+            reg.set( "(nvme)[[:xdigit:]]n[[:xdigit:]]" );
+            if ( reg.match( *t ) ) {
+              state = st_controller;
+            } else state = st_fail;
+            break;
+          case st_controller:
+            reg.set( "(nvme)[[:xdigit:]]" );
+            if ( reg.match( *t ) ) {
+              state = st_nvmeroot;
+            } else state = st_fail;
+            break;
+          case st_nvmeroot:
+            if ( *t == "nvme" ) {
+              state = st_accept;
+            } else state = st_fail;
+            break;
+        }
+      }
+      if ( state == st_accept ) {
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
+        path = path.substr( 0, path.length() - eat_chars );
+        return true;
+      } else return false;
+    }
+
+    void NVMePartition::getPropertyValueList( PropertyValueList &pv ) const {
+      std::stringstream ss;
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
     }
 
     bool MapperDevice::accept( SysDevicePath &path ) {
@@ -353,22 +591,64 @@ namespace leanux {
           case st_const_block:
             if ( *t == "block" ) {
               state = st_virtual;
-              eat_chars += (*t).length() + 1;
+              //eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
           case st_virtual:
             if ( *t == "virtual" ) {
               state = st_accept;
-              eat_chars += (*t).length() + 1;
+              //eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
+    }
+
+    void MapperDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      std::stringstream ss;
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getSectorSize(), 0 );
+      pv.push_back( PropertyValue( "sector size", ss.str() ) );
+      ss.str("");
+
+      ss << leanux::util::ByteStr(getMajorMinor().getMinIOSize(), 0 );
+      pv.push_back( PropertyValue( "min IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxIOSize(), 0 );
+      pv.push_back( PropertyValue( "max IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxHWIOSize(), 0 );
+      pv.push_back( PropertyValue( "max hw IO size", ss.str() ) );
+      ss.str("");
+
+      pv.push_back( PropertyValue( "uuid", getMajorMinor().getDMUUID() ) );
+      if (  getMajorMinor().getVGName().length() > 0 )
+        pv.push_back( PropertyValue( "VG name", getMajorMinor().getVGName() ) );
+      if (  getMajorMinor().getLVName().length() > 0 )
+        pv.push_back( PropertyValue( "LV name", getMajorMinor().getLVName() ) );
+
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
     }
 
     bool LoopbackDevice::accept( SysDevicePath &path ) {
@@ -397,22 +677,54 @@ namespace leanux {
           case st_block:
             if ( (*t) == "block" ) {
               state = st_virtual;
-              eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
           case st_virtual:
             if ( (*t) == "virtual" ) {
               state = st_accept;
-              eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
         }
       }
       if ( state == st_accept && eat_chars ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
+    }
+
+    void LoopbackDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      std::stringstream ss;
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getSectorSize(), 0 );
+      pv.push_back( PropertyValue( "sector size", ss.str() ) );
+      ss.str("");
+
+      ss << leanux::util::ByteStr(getMajorMinor().getMinIOSize(), 0 );
+      pv.push_back( PropertyValue( "min IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxIOSize(), 0 );
+      pv.push_back( PropertyValue( "max IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxHWIOSize(), 0 );
+      pv.push_back( PropertyValue( "max hw IO size", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "IO scheduler", getMajorMinor().getIOScheduler() ) );
+
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
     }
 
     bool RamDiskDevice::accept( SysDevicePath &path ) {
@@ -441,22 +753,58 @@ namespace leanux {
           case st_block:
             if ( (*t) == "block" ) {
               state = st_virtual;
-              eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
           case st_virtual:
             if ( (*t) == "virtual" ) {
               state = st_accept;
-              eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
         }
       }
       if ( state == st_accept && eat_chars ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
+    }
+
+    void RamDiskDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      std::stringstream ss;
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "rotational", getMajorMinor().getRotationalStr() ) );
+      ss << leanux::util::ByteStr(getMajorMinor().getSectorSize(), 0 );
+      pv.push_back( PropertyValue( "sector size", ss.str() ) );
+      ss.str("");
+
+      ss << leanux::util::ByteStr(getMajorMinor().getMinIOSize(), 0 );
+      pv.push_back( PropertyValue( "min IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxIOSize(), 0 );
+      pv.push_back( PropertyValue( "max IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxHWIOSize(), 0 );
+      pv.push_back( PropertyValue( "max hw IO size", ss.str() ) );
+      ss.str("");
+      pv.push_back( PropertyValue( "IO scheduler", getMajorMinor().getIOScheduler() ) );
+
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
     }
 
     bool BCacheDevice::accept( SysDevicePath &path ) {
@@ -495,7 +843,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars +1  );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
@@ -525,29 +874,68 @@ namespace leanux {
           case st_const_block:
             if ( *t == "block" ) {
               state = st_virtual;
-              eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
           case st_virtual:
             if ( *t == "virtual" ) {
               state = st_accept;
-              eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
     }
 
-    std::string SCSIDevice::getDescription() const {
+    void MDDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
       std::stringstream ss;
-      ss << BlockDevice::getDescription();
-      ss << " hctl=" << address_;
-      return ss.str();
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getSectorSize(), 0 );
+      pv.push_back( PropertyValue( "sector size", ss.str() ) );
+      ss.str("");
+
+      ss << leanux::util::ByteStr(getMajorMinor().getMinIOSize(), 0 );
+      pv.push_back( PropertyValue( "min IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxIOSize(), 0 );
+      pv.push_back( PropertyValue( "max IO size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr(getMajorMinor().getMaxHWIOSize(), 0 );
+      pv.push_back( PropertyValue( "max hw IO size", ss.str() ) );
+      pv.push_back( PropertyValue( "IO scheduler", getMajorMinor().getIOScheduler() ) );
+
+      pv.push_back( PropertyValue( "md name", getMajorMinor().getMDName() ) );
+      pv.push_back( PropertyValue( "metadata", getMajorMinor().getMDMetaDataVersion() ) );
+      pv.push_back( PropertyValue( "raid level", getMajorMinor().getMDLevel() ) );
+      pv.push_back( PropertyValue( "array state", getMajorMinor().getMDArrayState() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getMDChunkSize(), 0 );
+      pv.push_back( PropertyValue( "chunk size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getMDDevices(), 0 );
+      pv.push_back( PropertyValue( "#devices", ss.str() ) );
+
+
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
+      }
     }
 
     bool SASPort::accept( SysDevicePath &path ) {
@@ -571,7 +959,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
@@ -600,12 +989,20 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
         return false;
       }
+    }
+
+    std::string SCSIDevice::getDescription() const {
+      std::stringstream ss;
+      ss << BlockDevice::getDescription();
+      ss << " hctl=" << address_;
+      return ss.str();
     }
 
     bool SCSIDevice::accept( SysDevicePath &path ) {
@@ -656,7 +1053,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
@@ -686,7 +1084,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
@@ -715,7 +1114,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
@@ -744,7 +1144,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
@@ -752,46 +1153,28 @@ namespace leanux {
       }
     }
 
-    bool BlockPartition::accept( SysDevicePath &path ) {
-      if ( path.find("block") == std::string::npos ) return false;
-      std::list<std::string> tokens;
-      tokenize( path, tokens );
-      const unsigned int st_part_name = 0;        // rely on block namespace
-      const unsigned int st_blkdev_name = 1;      // <sda>
-      const unsigned int st_const_block = 2;      // block
-      const unsigned int st_accept = 6;
-      const unsigned int st_fail = 7;
-      unsigned int state = st_part_name;
-      util::RegExp reg;
-      size_t eat_chars = 0;
-      for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end() && state != st_accept && state != st_fail; t++ ) {
-        switch ( state ) {
-          case st_part_name:
-            if ( block::MajorMinor::getMajorMinorByName( *t ) != block::MajorMinor::invalid &&
-                 block::MajorMinor::getMajorMinorByName( *t ).isPartition() ) {
-              state = st_blkdev_name;
-              eat_chars += (*t).length() + 1;
-            } else state = st_fail;
-            break;
-          case st_blkdev_name:
-            if ( block::MajorMinor::getMajorMinorByName( *t ) != block::MajorMinor::invalid &&
-                 !block::MajorMinor::getMajorMinorByName( *t ).isPartition() ) {
-              state = st_const_block;
-            } else state = st_const_block;
-            break;
-          case st_const_block:
-            if ( *t == "block" ) {
-              state = st_accept;
-            } else state = st_fail;
-            break;
-        }
-      }
-      if ( state == st_accept ) {
-        path_ = path.substr(13);
-        path = path.substr( 0, path.length() - eat_chars );
-        return true;
-      } else {
-        return false;
+
+    std::string BlockPartition::getDisplayName() const {
+      return getMajorMinor().getName();
+    }
+
+    void BlockPartition::getPropertyValueList( PropertyValueList &pv ) const {
+      std::stringstream ss;
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      ss << getMajorMinor();
+      pv.push_back( PropertyValue( "major:minor", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getSize(), 2 );
+      pv.push_back( PropertyValue( "size", ss.str() ) );
+      ss.str("");
+      ss << leanux::util::ByteStr( getMajorMinor().getReadAhead(), 2 );
+      pv.push_back( PropertyValue( "read-ahead", ss.str() ) );
+      pv.push_back( PropertyValue( "udev path", getMajorMinor().getUDevPath() ) );
+      std::list<std::string> aliases;
+      getMajorMinor().getAliases( aliases );
+      for ( std::list<std::string>::const_iterator i = aliases.begin(); i != aliases.end(); i++ ) {
+        pv.push_back( PropertyValue( "alias", *i ) );
       }
     }
 
@@ -810,7 +1193,7 @@ namespace leanux {
     std::string iSCSIDevice::getTargetAddress() const {
       size_t p = path_.find( session_ );
       if ( p != std::string::npos ) {
-        std::string sesroot = sysdevice_root + "/" + path_.substr(0, p + session_.length() + 1 );
+        std::string sesroot = path_.substr(0, p + session_.length() + 1 );
         std::string conndir = util::findDir( sesroot, "connection" );
         std::string tgtpath = sesroot + conndir + "/iscsi_connection/" + conndir + "/address";
         if ( util::fileReadAccess( tgtpath ) ) return util::fileReadString( tgtpath );
@@ -821,7 +1204,7 @@ namespace leanux {
     std::string iSCSIDevice::getTargetPort() const {
       size_t p = path_.find( session_ );
       if ( p != std::string::npos ) {
-        std::string sesroot = sysdevice_root + "/" + path_.substr(0, p + session_.length() + 1 );
+        std::string sesroot = path_.substr(0, p + session_.length() + 1 );
         std::string conndir = util::findDir( sesroot, "connection" );
         std::string tgtpath = sesroot + conndir + "/iscsi_connection/" + conndir + "/port";
         if ( util::fileReadAccess( tgtpath ) ) return util::fileReadString( tgtpath );
@@ -832,7 +1215,7 @@ namespace leanux {
     std::string iSCSIDevice::getTargetIQN() const {
       size_t p = path_.find( session_ );
       if ( p != std::string::npos ) {
-        std::string sesroot = sysdevice_root + "/" + path_.substr(0, p + session_.length() + 1 );
+        std::string sesroot = path_.substr(0, p + session_.length() + 1 );
         std::string iqnpath = sesroot + "iscsi_session/" + session_ + "/targetname";
         if ( util::fileReadAccess( iqnpath ) ) return util::fileReadString( iqnpath );
       }
@@ -914,7 +1297,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else {
@@ -947,10 +1331,38 @@ namespace leanux {
         }
       }
       if ( state == st_accept ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
+    }
+
+    void ATAPort::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      std::string port = leanux::block::getATAPortName( path_ );
+      std::string link = leanux::block::getATAPortLink( port );
+      pv.push_back( PropertyValue( "port", leanux::block::getATAPortName( path_ ) ) );
+      pv.push_back( PropertyValue( "link", leanux::block::getATAPortLink( leanux::block::getATAPortName( path_ ) ) ) );
+      pv.push_back( PropertyValue( "speed", leanux::block::getATALinkSpeed( port, link ) ) );
+    }
+
+    void PCIDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+
+      leanux::pci::PCIHardwareId  pcihwid = leanux::pci::getPCIHardwareId( path_ );
+      leanux::pci::PCIHardwareInfo  pcihwinfo;
+      leanux::pci::getPCIHardwareInfo( pcihwid, pcihwinfo );
+
+      if ( pcihwinfo.device.length() > 0 ) {
+        pv.push_back( PropertyValue( "model", pcihwinfo.device ) );
+        pv.push_back( PropertyValue( "vendor", pcihwinfo.vendor ) );
+      }
+      std::stringstream ss;
+      ss << leanux::pci::getPCIDeviceIRQ( path_ );
+      pv.push_back( PropertyValue( "irq", ss.str() ) );
     }
 
     bool PCIDevice::accept( SysDevicePath &path ) {
@@ -984,23 +1396,43 @@ namespace leanux {
         }
       }
       if ( state == st_accept && eat_chars > 0 ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
     }
 
+    std::string PCIDevice::getDisplayName() const {
+      leanux::pci::PCIHardwareId  pcihwid = leanux::pci::getPCIHardwareId( path_ );
+      leanux::pci::PCIHardwareInfo  pcihwinfo;
+      leanux::pci::getPCIHardwareInfo( pcihwid, pcihwinfo );
+      if ( pcihwinfo.device.length() > 0 )
+        return pcihwinfo.device;
+      else
+        return SysDevice::getDisplayName();
+    }
+
     bool PCIBus::accept( SysDevicePath &path ) {
       bool accept = false;
       if ( util::directoryExists( path + "/pci_bus" ) ) {
-        path_ = path.substr(13);
-        //std::cout << "PCIBus::accept path=" << path << " path_=" << path_ << std::endl;
+        path_ = path;
         size_t p = path.rfind( "/" );
+        leaf_ = path_.substr( p + 1 );
         path = path.substr( 0,  p );
-        //std::cout << "PCIBus::accept path=" << path << " path_=" << path_ << " p=" << p << std::endl;
         accept = true;
       }
       return accept;
+    }
+
+    std::string PCIBus::getDisplayName() const {
+      leanux::pci::PCIHardwareId  pcihwid = leanux::pci::getPCIHardwareId( path_ );
+      leanux::pci::PCIHardwareInfo  pcihwinfo;
+      leanux::pci::getPCIHardwareInfo( pcihwid, pcihwinfo );
+      if ( pcihwinfo.device.length() > 0 )
+        return pcihwinfo.device;
+      else
+        return SysDevice::getDisplayName();
     }
 
     std::string PCIBus::getDescription() const {
@@ -1008,10 +1440,26 @@ namespace leanux {
       pci::PCIHardwareId hwid = pci::getPCIHardwareId( path_ );
       pci::PCIHardwareInfo hwinfo;
       if ( pci::getPCIHardwareInfo( hwid, hwinfo ) ) {
-        //ss << "vendor=" << hwinfo.vendor << " model=" << hwinfo.device;
         ss << "model=" << hwinfo.device;
       }
       return ss.str();
+    }
+
+    void PCIBus::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+
+      leanux::pci::PCIHardwareId  pcihwid = leanux::pci::getPCIHardwareId( path_ );
+      leanux::pci::PCIHardwareInfo  pcihwinfo;
+      leanux::pci::getPCIHardwareInfo( pcihwid, pcihwinfo );
+
+      if ( pcihwinfo.device.length() > 0 ) {
+        pv.push_back( PropertyValue( "model", pcihwinfo.device ) );
+        pv.push_back( PropertyValue( "vendor", pcihwinfo.vendor ) );
+      }
+      std::stringstream ss;
+      ss << leanux::pci::getPCIDeviceIRQ( path_ );
+      pv.push_back( PropertyValue( "irq", ss.str() ) );
     }
 
     /**
@@ -1054,7 +1502,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept && match ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
@@ -1093,7 +1542,8 @@ namespace leanux {
         }
       }
       if ( state == st_accept && match ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
@@ -1107,7 +1557,8 @@ namespace leanux {
       reg.set( "(usb)([[:digit:]]+)" );
       for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end(); t++ ) {
         if ( reg.match( *t ) ) {
-          path_ = path.substr(13);
+          path_ = path;
+          leaf_ = path.substr( path.length() - (*t).length() );
           path = path.substr( 0, path.length() - (*t).length() - 1 );
           return true;
         } else return false;
@@ -1148,8 +1599,110 @@ namespace leanux {
         }
       }
       if ( state == st_accept && eat_chars ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
+        return true;
+      } else return false;
+    }
+
+    bool BlockPartition::accept( SysDevicePath &path ) {
+      if ( path.find("block") == std::string::npos ) return false;
+      std::list<std::string> tokens;
+      tokenize( path, tokens );
+      const unsigned int st_part_name = 0;        // rely on block namespace
+      const unsigned int st_blkdev_name = 1;      // <sda>
+      const unsigned int st_const_block = 2;      // block
+      const unsigned int st_accept = 6;
+      const unsigned int st_fail = 7;
+      unsigned int state = st_part_name;
+      util::RegExp reg;
+      size_t eat_chars = 0;
+      for ( std::list<std::string>::const_iterator t = tokens.begin(); t != tokens.end() && state != st_accept && state != st_fail; t++ ) {
+        switch ( state ) {
+          case st_part_name:
+            if ( block::MajorMinor::getMajorMinorByName( *t ) != block::MajorMinor::invalid &&
+                 block::MajorMinor::getMajorMinorByName( *t ).isPartition() ) {
+              state = st_blkdev_name;
+              eat_chars += (*t).length() + 1;
+            } else state = st_fail;
+            break;
+          case st_blkdev_name:
+            if ( block::MajorMinor::getMajorMinorByName( *t ) != block::MajorMinor::invalid &&
+                 !block::MajorMinor::getMajorMinorByName( *t ).isPartition() ) {
+              state = st_const_block;
+            } else state = st_const_block;
+            break;
+          case st_const_block:
+            if ( *t == "block" ) {
+              state = st_accept;
+            } else state = st_fail;
+            break;
+        }
+      }
+      if ( state == st_accept ) {
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
+        path = path.substr( 0, path.length() - eat_chars );
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    void NetDevice::getPropertyValueList( PropertyValueList &pv ) const {
+      pv.clear();
+      SysDevice::getPropertyValueList( pv );
+      std::string netdev =  leanux::util::leafDir( path_ );
+      pv.push_back( PropertyValue( "dev", netdev ) );
+      std::stringstream ss;
+      ss << (leanux::net::getDeviceCarrier(netdev)==1?"yes":"no");
+      pv.push_back( PropertyValue( "carrier", ss.str() ) );
+      if ( leanux::net::getDeviceCarrier(netdev) ) pv.push_back( PropertyValue( "duplex", leanux::net::getDeviceDuplex(netdev) ) );
+      pv.push_back( PropertyValue( "MAC", leanux::net::getDeviceMACAddress(netdev) ) );
+      leanux::net::OUI oui;
+      leanux::net::getMACOUI(leanux::net::getDeviceMACAddress(netdev), oui);
+      pv.push_back( PropertyValue( "MAC vendor", oui.vendor ) );
+      pv.push_back( PropertyValue( "MAC country", oui.countrycode ) );
+      pv.push_back( PropertyValue( "state", leanux::net::getDeviceOperState(netdev) ) );
+      ss.str("");
+      ss << leanux::net::getDeviceSpeed(netdev) << " Mbps";
+      if ( leanux::net::getDeviceCarrier(netdev) ) pv.push_back( PropertyValue( "speed", ss.str() ) );
+      std::list<std::string> ipv4;
+      leanux::net::getDeviceIP4Addresses( netdev, ipv4 );
+      for ( std::list<std::string>::const_iterator i = ipv4.begin(); i != ipv4.end(); i++ ) {
+        pv.push_back( PropertyValue( "ipv4", *i ) );
+      }
+      std::list<std::string> ipv6;
+      leanux::net::getDeviceIP6Addresses( netdev, ipv6 );
+      for ( std::list<std::string>::const_iterator i = ipv6.begin(); i != ipv6.end(); i++ ) {
+        pv.push_back( PropertyValue( "ipv6", *i ) );
+      }
+    }
+
+    bool VirtualRoot::accept( SysDevicePath &path ) {
+      if ( path == "/sys/devices/virtual" ) {
+        path_ = path;
+        leaf_ = "virtual";
+        path = "/sys/devices";
+        return true;
+      } else return false;
+    }
+
+    bool VirtualBlockRoot::accept( SysDevicePath &path ) {
+      if ( path == "/sys/devices/virtual/block" ) {
+        path_ = path;
+        leaf_ = "block";
+        path = "/sys/devices/virtual";
+        return true;
+      } else return false;
+    }
+
+    bool VirtualNetRoot::accept( SysDevicePath &path ) {
+      if ( path == "/sys/devices/virtual/net" ) {
+        path_ = path;
+        leaf_ = "net";
+        path = "/sys/devices/virtual";
         return true;
       } else return false;
     }
@@ -1180,19 +1733,20 @@ namespace leanux {
           case st_net:
             if ( (*t) == "net" ) {
               state = st_virtual;
-              eat_chars += (*t).length() + 1;
+              //eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
           case st_virtual:
             if ( (*t) == "virtual" ) {
               state = st_accept;
-              eat_chars += (*t).length() + 1;
+              //eat_chars += (*t).length() + 1;
             } else state = st_fail;
             break;
         }
       }
       if ( state == st_accept && eat_chars ) {
-        path_ = path.substr(13);
+        path_ = path;
+        leaf_ = path.substr( path.length() - eat_chars + 1 );
         path = path.substr( 0, path.length() - eat_chars );
         return true;
       } else return false;
@@ -1354,24 +1908,30 @@ namespace leanux {
         MDDevice md;
         MMCDevice mmc;
         NVMeDevice nvme;
+        NVMePartition nvmepart;
         NetDevice net;
+        VirtualRoot vroot;
+        VirtualBlockRoot vblockroot;
+        VirtualNetRoot vnetroot;
         VirtualNetDevice vnet;
         LoopbackDevice loopback;
         RamDiskDevice ramdisk;
         BlockPartition part;
-        if ( wpath.find( "/block/" ) != std::string::npos ) {
+        if ( wpath.find( "/block/" ) != std::string::npos || wpath.find("virtual/block") != std::string::npos ) {
           if ( iscsi.accept( wpath ) ) { parent = wpath; return new iSCSIDevice(iscsi); }
           else if ( scsi.accept( wpath ) ) { parent = wpath; return new SCSIDevice(scsi); }
           else if ( dm.accept( wpath ) ) { parent = wpath; return new MapperDevice(dm); }
           else if ( md.accept( wpath ) ) { parent = wpath; return new MDDevice(md); }
           else if ( mmc.accept( wpath ) ) { parent = wpath; return new MMCDevice(mmc); }
-          else if ( nvme.accept( wpath ) ) { parent = wpath; return new NVMeDevice(nvme); }
           else if ( virtio.accept( wpath ) ) { parent = wpath; return new VirtioBlockDevice(virtio); }
           else if ( part.accept( wpath ) ) { parent = wpath; return new BlockPartition(part); }
           else if ( bcache.accept( wpath ) ) { parent = wpath; return new BCacheDevice(bcache); }
           else if ( loopback.accept( wpath ) ) { parent = wpath; return new LoopbackDevice(loopback); }
           else if ( ramdisk.accept( wpath ) ) { parent = wpath; return new RamDiskDevice(ramdisk); }
+          else if ( vblockroot.accept( wpath ) ) { parent = wpath; return new VirtualBlockRoot(vblockroot); }
         }
+        if ( nvmepart.accept( wpath ) ) { parent = wpath; return new NVMePartition(nvmepart); }
+        if ( nvme.accept( wpath ) ) { parent = wpath; return new NVMeDevice(nvme); }
         if ( wpath.find( "/pci" ) != std::string::npos ) {
           if ( pcibus.accept( wpath ) ) { parent = wpath; return new PCIBus(pcibus); }
           else if ( pci.accept( wpath ) ) { parent = wpath; return new PCIDevice(pci); }
@@ -1385,6 +1945,7 @@ namespace leanux {
           if ( net.accept( wpath ) ) { parent = wpath; return new NetDevice(net); }
           else if ( vnet.accept( wpath ) ) { parent = wpath; return new VirtualNetDevice(vnet); }
           else if ( virtionet.accept( wpath ) ) { parent = wpath; return new VirtioNetDevice(virtionet); }
+          else if ( vnetroot.accept( wpath ) ) { parent = wpath; return new VirtualNetRoot(vnetroot); }
         }
         if ( ata.accept( wpath ) ) { parent = wpath; return new ATAPort(ata); }
         if ( scsi_host.accept( wpath ) ) { parent = wpath; return new SCSIHost(scsi_host); }
@@ -1392,6 +1953,7 @@ namespace leanux {
         if ( scsi_vport.accept( wpath ) ) { parent = wpath; return new SCSIVPort(scsi_vport); }
         if ( sas_port.accept( wpath ) ) { parent = wpath; return new SASPort(sas_port); }
         if ( sas_end_device.accept( wpath ) ) { parent = wpath; return new SASEndDevice(sas_end_device); }
+        if ( vroot.accept( wpath ) ) { parent = wpath; return new VirtualRoot(vroot); }
         //give up, revert to UnknownSysDevice
         if ( unknown.accept(wpath) ) { parent = ""; return new UnknownSysDevice(unknown); };
       }
@@ -1408,7 +1970,10 @@ namespace leanux {
           if ( result && result->getType() != SysDevice::sdtUnknown ) {
             devices.push_front( result );
             wpath = parent;
-          } else return false;
+          } else {
+            if ( result ) delete result;
+            return false;
+          }
         }
         return true;
       } else throw Oops( __FILE__, __LINE__, "invalid sys device path '" + path + "'" );
@@ -1438,8 +2003,12 @@ namespace leanux {
         case sdtVirtioNetDevice : return "virtio net device";
         case sdtMetaDisk : return "MetaDisk device";
         case sdtNVMeDevice : return "NVMe device";
+        case sdtNVMePartition : return "partition";
         case sdtMMCDevice : return "MMC device";
         case sdtNetDevice : return "network device";
+        case sdtVirtualRoot : return "virtual root";
+        case sdtVirtualBlockRoot : return "virtual block root";
+        case sdtVirtualNetRoot : return "virtual net root";
         case sdtVirtualNetDevice : return "virtual network device";
         case sdtLoopbackDevice : return "loopback device";
         case sdtRAMDiskDevice : return "ramdisk device";
@@ -1449,7 +2018,7 @@ namespace leanux {
     }
 
     std::string SysDevice::getDriver() const {
-      std::string rp = util::realPath( sysdevice_root + "/" + path_ + "/driver" );
+      std::string rp = util::realPath( path_ + "/driver" );
       if ( util::directoryExists( rp ) ) {
         std::istringstream iss(rp);
         std::string token = "";
@@ -1460,7 +2029,7 @@ namespace leanux {
     }
 
     std::string BlockDevice::getDriver() const {
-      std::string rp = util::realPath( sysdevice_root + "/" + path_ + "/../../driver" );
+      std::string rp = util::realPath( path_ + "/../../driver" );
       if ( util::directoryExists( rp ) ) {
         std::istringstream iss(rp);
         std::string token = "";

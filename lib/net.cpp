@@ -65,8 +65,12 @@ namespace leanux {
         MACOUIDatabase = "/usr/share/hwdata/oui.txt";
       } else
       if ( util::fileReadAccess( "/usr/share/oui.txt" ) ) {
-        MACOUIDatabase ="/usr/share/oui.txt";
-      } else throw Oops( __FILE__, __LINE__, "leanux cannot find oui.txt file" );
+        MACOUIDatabase = "/usr/share/oui.txt";
+      } else
+      if ( util::fileReadAccess( "/usr/share/ieee-data/oui.txt" ) ) {
+        MACOUIDatabase = "/usr/share/ieee-data/oui.txt";
+      } else
+      throw Oops( __FILE__, __LINE__, "leanux cannot find oui.txt file" );
     }
 
     std::string getDeviceOperState( const std::string &device ) {

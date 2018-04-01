@@ -602,7 +602,7 @@ namespace leanux {
       std::list<std::string> paths;
       pci::enumPCIDevicePaths( paths );
       for ( std::list<std::string>::const_iterator i = paths.begin(); i != paths.end(); i++ ) {
-        std::string irqpath = sysdevice::sysdevice_root + "/" + *i + "/irq";
+        std::string irqpath = *i + "/irq";
         if ( util::fileReadAccess( irqpath ) ) {
           unsigned int firq = util::fileReadInt( irqpath );
           if ( firq == irq ) return *i;
@@ -628,7 +628,7 @@ namespace leanux {
     }
 
     unsigned int getPCIDeviceIRQ( const PCIDevicePath& device ) {
-      std::string irqpath = sysdevice::sysdevice_root + "/" + device + "/irq";
+      std::string irqpath = device + "/irq";
       if ( util::fileReadAccess( irqpath ) ) {
         return util::fileReadInt( irqpath );
       } else return 0;
@@ -640,7 +640,7 @@ namespace leanux {
       ports.clear();
       DIR *d;
       struct dirent *dir;
-      d = opendir( (sysdevice::sysdevice_root + "/" + device).c_str() );
+      d = opendir( device.c_str() );
       std::list<std::string> pcidirlist;
       if ( d ) {
         while ( (dir = readdir(d)) != NULL ) {
@@ -652,70 +652,9 @@ namespace leanux {
       }
     }
 
-    std::string getATADeviceName( const PCIDevicePath& device ) {
-      std::string result = "";
-      std::string path = sysdevice::sysdevice_root + "/" + device;
-      DIR *d;
-      struct dirent *dir;
-      int hurray = 0;
-      d = opendir( path.c_str() );
-      if ( d ) {
-        while ( (dir = readdir(d)) != NULL ) {
-          if ( strncmp( dir->d_name, "host", 4 ) == 0 ) {
-            path += ( "/" + (std::string)dir->d_name );
-            hurray++;
-            break;
-          }
-        }
-        closedir( d );
-      }
-      d = opendir( path.c_str() );
-      if ( d ) {
-        while ( (dir = readdir(d)) != NULL ) {
-          if ( strncmp( dir->d_name, "target", 6 ) == 0 ) {
-            path += ( "/" + (std::string)dir->d_name );
-            hurray++;
-            break;
-          }
-        }
-        closedir( d );
-      }
-      d = opendir( path.c_str() );
-      if ( d && hurray == 2 ) {
-        while ( (dir = readdir(d)) != NULL ) {
-          if ( isdigit( dir->d_name[0] ) ) {
-            path += ( "/" + (std::string)dir->d_name + "/block" );
-            hurray++;
-            break;
-          }
-        }
-        closedir( d );
-      }
-      d = opendir( path.c_str() );
-      if ( d && hurray == 3 ) {
-        while ( (dir = readdir(d)) != NULL ) {
-          if ( dir->d_name[0] != '.' ) {
-            result = dir->d_name;
-            break;
-          }
-        }
-        closedir( d );
-      }
-      return result;
-    }
-
-    std::string getATAPortName( const PCIDevicePath& device ) {
-      std::string result = "";
-      size_t p = device.find_last_of( "/" );
-      if ( p != std::string::npos ) {
-        result = device.substr( p );
-      }
-      return result;
-    }
-
     std::string getEtherNetworkInterfaceName( const PCIDevicePath& device ) {
       std::string result = "";
-      std::string path = sysdevice::sysdevice_root + "/" + device + "/net";
+      std::string path = device + "/net";
       DIR *d;
       struct dirent *dir;
       d = opendir( path.c_str() );
@@ -734,11 +673,11 @@ namespace leanux {
     PCIHardwareId getPCIHardwareId( const PCIDevicePath& devicepath ) {
       PCIHardwareId result;
       try {
-        result.pciclass = util::fileReadHexString( sysdevice::sysdevice_root + "/" + devicepath + "/class" );
-        result.vendor = util::fileReadHexString( sysdevice::sysdevice_root + "/" + devicepath + "/vendor" );
-        result.device = util::fileReadHexString( sysdevice::sysdevice_root + "/" + devicepath + "/device" );
-        result.subvendor = util::fileReadHexString( sysdevice::sysdevice_root + "/" + devicepath + "/subsystem_vendor" );
-        result.subdevice = util::fileReadHexString( sysdevice::sysdevice_root + "/" + devicepath + "/subsystem_device" );
+        result.pciclass = util::fileReadHexString( devicepath + "/class" );
+        result.vendor = util::fileReadHexString( devicepath + "/vendor" );
+        result.device = util::fileReadHexString( devicepath + "/device" );
+        result.subvendor = util::fileReadHexString( devicepath + "/subsystem_vendor" );
+        result.subdevice = util::fileReadHexString( devicepath + "/subsystem_device" );
       }
       catch ( Oops & ) {}
       return result;

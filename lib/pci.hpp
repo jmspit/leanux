@@ -268,16 +268,6 @@ namespace leanux {
     void enumPCIATAPorts( const PCIDevicePath& device, std::list<std::string> &ports );
 
     /**
-     * return the ata port name from the device path
-     */
-    std::string getATAPortName( const PCIDevicePath& device );
-
-    /**
-     * get the ata device name from a device path
-     */
-    std::string getATADeviceName( const PCIDevicePath& device );
-
-    /**
      * handy for debugging.
      */
     inline std::ostream& operator<<( std::ostream& os, PCIAddress a ) {

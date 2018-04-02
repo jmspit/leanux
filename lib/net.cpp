@@ -57,7 +57,7 @@ namespace leanux {
 
     std::string MACOUIDatabase = "/usr/share/misc/oui.txt";
 
-    void init() throw ( Oops ) {
+    void init() {
       if ( util::fileReadAccess( "/usr/share/misc/oui.txt" ) ) {
         MACOUIDatabase = "/usr/share/misc/oui.txt";
       } else
@@ -120,7 +120,7 @@ namespace leanux {
       return r;
     }
 
-    void getMACOUI( const std::string &mac, OUI &oui ) throw(Oops) {
+    void getMACOUI( const std::string &mac, OUI &oui ) {
       oui.vendor = "";
       oui.countrycode = "";
       oui.address.clear();
@@ -388,7 +388,7 @@ namespace leanux {
       return os;
     }
 
-    int whatAF_INET( const std::string &addr ) throw ( Oops ) {
+    int whatAF_INET( const std::string &addr ) {
       struct addrinfo hint, *res = NULL;
       int ret;
       memset(&hint, '\0', sizeof hint);

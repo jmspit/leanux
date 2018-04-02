@@ -56,7 +56,7 @@ namespace leanux {
     /**
      * initialize net library
      */
-    void init() throw( Oops );
+    void init();
 
     /**
      * TCP connection states.
@@ -106,7 +106,7 @@ namespace leanux {
       std::list<std::string> address;
     };
 
-    void getMACOUI( const std::string &mac, OUI &oui ) throw(Oops);
+    void getMACOUI( const std::string &mac, OUI &oui );
 
     /**
      * Get the duplex mode of the device.
@@ -234,7 +234,7 @@ namespace leanux {
      * @param addr the IP address to inspect.
      * @return AF_INET or AF_INET6.
      */
-    int whatAF_INET( const std::string &addr ) throw ( Oops );
+    int whatAF_INET( const std::string &addr );
 
     /**
      * Try to resolve an IPv4 or IPv6 address.

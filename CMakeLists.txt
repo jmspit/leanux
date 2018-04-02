@@ -405,5 +405,5 @@ COMMENT "Generating API documentation with Doxygen" VERBATIM
 )
 endif(DOXYGEN_FOUND)
 
-# write the osrelease tag to a file
-file( WRITE osrelease.txt "${CMAKE_HOST_SYSTEM}" )
+# write the osrelease pretty name to a file
+file( WRITE osrelease.txt "${OS_RELEASE_PRETTY_NAME}" )

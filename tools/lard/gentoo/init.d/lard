@@ -1,10 +1,10 @@
-#!/sbin/runscript
+#!/sbin/openrc-run
 
 # lard init script for Gentoo
 # configure with /etc/conf.d/lard
 # lard is a performance logging daemon part of the sys-apps/leanux toolkit
 
-# do not modify 
+# do not modify
 LARD_PIDDIR="/var/run/lard"
 LARD_PIDFILE="${LARD_PIDDIR}/lard.pid"
 

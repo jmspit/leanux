@@ -59,7 +59,7 @@ namespace leanux {
     /**
      * initialize usb namespace.
      */
-    void init() throw (Oops);
+    void init();
 
     /**
      * The location of the system's PCI device database.

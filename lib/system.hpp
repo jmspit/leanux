@@ -59,7 +59,7 @@ namespace leanux {
    * This must be the first call to make against leanux.
    * @throw Oops if something is wrong.
    */
-  void init() throw( Oops );
+  void init();
 
   /**
    * System / kernel detail API
@@ -72,14 +72,14 @@ namespace leanux {
      * @throw Oops if call to uname fails.
      * @return the system node name.
      */
-    std::string getNodeName() throw ( Oops );
+    std::string getNodeName();
 
     /**
      * Get the kernel version.
      * @throw Oops if call to uname fails.
      * @return the kernel version.
      */
-    std::string getKernelVersion() throw ( Oops );
+    std::string getKernelVersion();
 
     /**
      * Get the system architecture.

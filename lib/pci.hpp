@@ -66,7 +66,7 @@ namespace leanux {
     /**
      * Initialize pci namespace.
      */
-    void init() throw ( Oops );
+    void init();
 
     /**
      * String path relative to /sys/devices identifying the PCI device

@@ -60,7 +60,7 @@ namespace leanux {
 
     const PCIAddress NullPCIAddress = {0xffff, 0xffff, 0xffff, 0xffff};
 
-    void init() throw ( Oops ) {
+    void init() {
       if ( util::fileReadAccess( "/usr/share/misc/pci.ids" ) ) {
         PCIDeviceDatabase = "/usr/share/misc/pci.ids";
       } else

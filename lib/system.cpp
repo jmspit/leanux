@@ -63,7 +63,7 @@ namespace leanux {
    */
   const std::string kernel_required = "2.6.24";
 
-  void init() throw ( Oops ) {
+  void init() {
     std::string version = system::getKernelVersion();
     if ( version < kernel_required )
       throw Oops( __FILE__, __LINE__, "leanux requires at least " + kernel_required + ", this kernel is " + version );
@@ -77,7 +77,7 @@ namespace leanux {
 
   namespace system {
 
-    std::string getKernelVersion() throw ( Oops ) {
+    std::string getKernelVersion() {
       struct utsname buf;
       int r = uname( &buf );
       if ( r ) throw Oops( __FILE__, __LINE__, errno );
@@ -87,7 +87,7 @@ namespace leanux {
       return result.str();
     }
 
-    std::string getNodeName() throw ( Oops ) {
+    std::string getNodeName() {
       struct utsname buf;
       int r = uname( &buf );
       if ( r ) throw Oops( __FILE__, __LINE__, errno );

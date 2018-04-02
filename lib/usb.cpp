@@ -61,7 +61,7 @@ namespace leanux {
 
     std::string USBDeviceDatabase = "/usr/share/misc/pci.ids";
 
-    void init() throw ( Oops ) {
+    void init() {
       if ( util::fileReadAccess( "/usr/share/misc/usb.ids" ) ) {
         USBDeviceDatabase = "/usr/share/misc/usb.ids";
       } else

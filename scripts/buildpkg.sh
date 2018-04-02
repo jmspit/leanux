@@ -196,7 +196,7 @@ do
   ssh root@vlerk "chown root:apache ${REMOTEDIR}/*.${EXT}" || { echo "chown on website for distribution ${vm} failed"; exit 1; }
   ssh root@vlerk "chmod 640 ${REMOTEDIR}/*.${EXT}" || { echo "chmod on website for distribution ${vm} failed"; exit 1; }
 
-  echo "<tr><th>${vm} $(cat ${LOCALDIR}/osrelease.txt) </th><th>build date</th><th>size</th></tr>" >> ${PUBLISH}
+  echo "<tr><th>${vm} - $(cat ${LOCALDIR}/osrelease.txt)</th><th>build date</th><th>size</th></tr>" >> ${PUBLISH}
   for file in $(ls -1 ${LOCALDIR})
   do
     DATE=$(stat -c %y ${LOCALDIR}/${file})

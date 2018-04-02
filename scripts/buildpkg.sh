@@ -3,6 +3,12 @@
 # ./buildpkg.sh 1.0.1
 
 LEANUX_RELEASE=${1}
+BRANCH=${2}
+if [ -z $BRANCH ]; then
+  BRANCH=${LEANUX_RELEASE}
+fi
+
+
 CLONE_DIR=/home/spjm/leanux-clone
 
 VMLIST="centos debian fedora opensuse ubuntu"
@@ -138,15 +144,15 @@ function copyPackagesArch() {
 }
 
 # input sanity
-if [ ! -z ${LEANUX_RELEASE} ]; then
-  if [[ ! ${LEANUX_RELEASE} =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    (>&2 echo "invalid release '${LEANUX_RELEASE}' regexp should match ^[0-9]+\.[0-9]+\.[0-9]+$")
-    exit 1
-  fi
-else
-  (>&2 echo "specify a release number")
-  exit 1
-fi
+#if [ ! -z ${LEANUX_RELEASE} ]; then
+  #if [[ ! ${LEANUX_RELEASE} =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    #(>&2 echo "invalid release '${LEANUX_RELEASE}' regexp should match ^[0-9]+\.[0-9]+\.[0-9]+$")
+    #exit 1
+  #fi
+#else
+  #(>&2 echo "specify a release number")
+  #exit 1
+#fi
 
 #clone from git
 test -d "${CLONE_DIR}" && rm -rf "${CLONE_DIR}"
@@ -154,7 +160,7 @@ mkdir -p "${CLONE_DIR}" || { echo "failed to create directory ${CLONE_DIR}"; exi
 cd "${CLONE_DIR}" || { echo "failed to chdir into ${CLONE_DIR}"; exit 1; }
 git clone https://github.com/jmspit/leanux.git || { echo "git clone failed"; exit 1; }
 cd leanux || { echo "git clone 'leanux' found"; exit 1; }
-git checkout -b ${LEANUX_RELEASE} || { echo "failed to checkout ${LEANUX_RELEASE}"; exit 1; }
+git checkout -b ${BRANCH} || { echo "failed to checkout branch ${BRANCH}"; exit 1; }
 SRC_DIR=${CLONE_DIR}/leanux/build/release
 mkdir -p ${SRC_DIR} || { echo "failed to create directory ${SRC_DIR}"; exit 1; }
 cd ${SRC_DIR} || { echo "failed to chdir into ${SRC_DIR}"; exit 1; }

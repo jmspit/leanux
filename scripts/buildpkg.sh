@@ -133,6 +133,7 @@ function copyPackagesArch() {
   mkdir -p ${LOCALDIR}
   EXT=$(packageExtension ${HOST})
   scp ${BUILDUSER}@${HOST}:~/${SRC%.tar.gz}*.pkg.tar.${EXT} ${LOCALDIR} || return 1
+  scp ${BUILDUSER}@${HOST}:~/${SRC%.tar.gz}/osrelease.txt ${LOCALDIR} || return 1
   return 0;
 }
 

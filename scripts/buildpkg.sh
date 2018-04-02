@@ -1,13 +1,12 @@
 #/bin/bash
 # use buildpkg.sh release
-# ./buildpkg.sh 1.0.0
+# ./buildpkg.sh 1.0.1
 
 LEANUX_RELEASE=${1}
 CLONE_DIR=/home/spjm/leanux-clone
 
 VMLIST="centos debian fedora opensuse ubuntu"
-#VMLIST="centos"
-BUILDUSER="spjm"
+BUILDUSER="build"
 PUBLISH="publish.html"
 WEBUSER="root"
 WEBSERVER="vlerk"
@@ -123,6 +122,7 @@ function copyPackages() {
   mkdir -p ${LOCALDIR}
   EXT=$(packageExtension ${HOST})
   scp ${BUILDUSER}@${HOST}:~/${SRC%.tar.gz}/build/release/*.${EXT} ${LOCALDIR} || return 1
+  scp ${BUILDUSER}@${HOST}:~/${SRC%.tar.gz}/osrelease.txt ${LOCALDIR} || return 1
   return 0;
 }
 
@@ -195,7 +195,7 @@ do
   ssh root@vlerk "chown root:apache ${REMOTEDIR}/*.${EXT}" || { echo "chown on website for distribution ${vm} failed"; exit 1; }
   ssh root@vlerk "chmod 640 ${REMOTEDIR}/*.${EXT}" || { echo "chmod on website for distribution ${vm} failed"; exit 1; }
 
-  echo "<tr><th>${vm}</th><th>build date</th><th>size</th></tr>" >> ${PUBLISH}
+  echo "<tr><th>${vm} $(cat ${LOCALDIR}/osrelease.txt) </th><th>build date</th><th>size</th></tr>" >> ${PUBLISH}
   for file in $(ls -1 ${LOCALDIR})
   do
     DATE=$(stat -c %y ${LOCALDIR}/${file})

@@ -199,7 +199,7 @@ namespace leanux {
       if ( r != SQLITE_OK ) std::cout << "sqlite3_close returns " << r << std::endl;
     }
 
-    void Database::enableForeignKeys() throw(Oops) {
+    void Database::enableForeignKeys() {
       int succes = 0;
       int r = sqlite3_db_config( database_, SQLITE_DBCONFIG_ENABLE_FKEY, 1, &succes );
       if ( r != SQLITE_OK ) {
@@ -207,7 +207,7 @@ namespace leanux {
       }
     }
 
-    void Database::disableForeignKeys() throw(Oops) {
+    void Database::disableForeignKeys() {
       int succes = 0;
       int r = sqlite3_db_config( database_, SQLITE_DBCONFIG_ENABLE_FKEY, 0, &succes );
       if ( r != SQLITE_OK ) {
@@ -215,7 +215,7 @@ namespace leanux {
       }
     }
 
-    void Database::enableTriggers() throw(Oops) {
+    void Database::enableTriggers() {
       int succes = 0;
       int r = sqlite3_db_config( database_, SQLITE_DBCONFIG_ENABLE_TRIGGER, 1, &succes );
       if ( r != SQLITE_OK ) {
@@ -223,7 +223,7 @@ namespace leanux {
       }
     }
 
-    void Database::begin() throw(Oops) {
+    void Database::begin() {
       std::stringstream ss;
       ss << "BEGIN";
       DDL ddl( *this );
@@ -232,7 +232,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::beginImmediate() throw(Oops) {
+    void Database::beginImmediate() {
       std::stringstream ss;
       ss << "BEGIN IMMEDIATE";
       DDL ddl( *this );
@@ -241,7 +241,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::beginExclusive() throw(Oops) {
+    void Database::beginExclusive() {
       std::stringstream ss;
       ss << "BEGIN EXCLUSIVE";
       DDL ddl( *this );
@@ -250,7 +250,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::commit() throw(Oops) {
+    void Database::commit() {
       std::stringstream ss;
       ss << "COMMIT";
       DDL ddl( *this );
@@ -259,7 +259,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::rollback() throw(Oops) {
+    void Database::rollback() {
       std::stringstream ss;
       ss << "ROLLBACK";
       DDL ddl( *this );
@@ -268,7 +268,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::savepoint( const std::string &sp ) throw(Oops) {
+    void Database::savepoint( const std::string &sp ) {
       std::stringstream ss;
       ss << "SAVEPOINT " << sp;
       DDL ddl( *this );
@@ -277,7 +277,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::release( const std::string &sp ) throw(Oops) {
+    void Database::release( const std::string &sp ) {
       std::stringstream ss;
       ss << "RELEASE " << sp;
       DDL ddl( *this );
@@ -286,7 +286,7 @@ namespace leanux {
       ddl.close();
     }
 
-    void Database::rollback( const std::string &sp ) throw(Oops) {
+    void Database::rollback( const std::string &sp ) {
       std::stringstream ss;
       ss << "ROLLBACK TO SAVEPOINT " << sp;
       DDL ddl( *this );
@@ -295,7 +295,7 @@ namespace leanux {
       ddl.close();
     }
 
-    long Database::lastInsertRowid() const throw(Oops) {
+    long Database::lastInsertRowid() const {
       long r = sqlite3_last_insert_rowid( database_ );
       if ( !r ) {
         throw Oops( __FILE__, __LINE__, "lastInsertRowid failed" );
@@ -303,7 +303,7 @@ namespace leanux {
       return r;
     }
 
-    void Database::checkPointPassive() throw(Oops) {
+    void Database::checkPointPassive() {
       int nLog = 0;
       int nCkpt = 0;
       int r = sqlite3_wal_checkpoint_v2( database_, NULL, SQLITE_CHECKPOINT_PASSIVE, &nLog, &nCkpt );
@@ -312,7 +312,7 @@ namespace leanux {
       }
     }
 
-    void Database::checkPointTruncate() throw(Oops) {
+    void Database::checkPointTruncate() {
       int nLog = 0;
       int nCkpt = 0;
       #if SQLITE_VERSION_NUMBERS > 30080303
@@ -360,7 +360,7 @@ namespace leanux {
       }
     }
 
-    void Statement::prepare( const std::string &sql ) throw(Oops) {
+    void Statement::prepare( const std::string &sql ) {
       const char *err = 0;
       if ( stmt_ ) close();
       int r = sqlite3_prepare_v2( database_, sql.c_str(), -1, &stmt_, &err );
@@ -371,14 +371,14 @@ namespace leanux {
       }
     }
 
-    void Statement::reset() throw(Oops) {
+    void Statement::reset() {
       int r = sqlite3_reset( stmt_ );
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
     }
 
-    void Statement::close() throw(Oops) {
+    void Statement::close() {
       int r = sqlite3_finalize( stmt_ );
       stmt_ = 0;
       if ( r != SQLITE_OK ) {
@@ -386,7 +386,7 @@ namespace leanux {
       }
     }
 
-    void DDL::execute() throw(Oops) {
+    void DDL::execute() {
       int r = sqlite3_step( stmt_ );
       if ( r != SQLITE_DONE ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
@@ -400,35 +400,35 @@ namespace leanux {
     DML::DML( const Database& db ) : Statement( db ) {
     }
 
-    void DML::execute() throw(Oops) {
+    void DML::execute() {
       int r = sqlite3_step( stmt_ );
       if ( r != SQLITE_DONE ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
     }
 
-    void DML::bind( int position, double value ) throw(Oops) {
+    void DML::bind( int position, double value ) {
       int r = sqlite3_bind_double( stmt_, position, value );
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
     }
 
-    void DML::bind( int position, int value ) throw(Oops) {
+    void DML::bind( int position, int value ) {
       int r = sqlite3_bind_int( stmt_, position, value );
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
     }
 
-    void DML::bind( int position, long value ) throw(Oops) {
+    void DML::bind( int position, long value ) {
       int r = sqlite3_bind_int64( stmt_, position, value );
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
       }
     }
 
-    void DML::bind( int position, const std::string &value ) throw(Oops) {
+    void DML::bind( int position, const std::string &value ) {
       int r = sqlite3_bind_text( stmt_, position, value.c_str(), -1,  SQLITE_TRANSIENT );
       if ( r != SQLITE_OK ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );
@@ -437,7 +437,7 @@ namespace leanux {
 
 
 
-    bool Query::step() throw(Oops) {
+    bool Query::step() {
       int r = sqlite3_step( stmt_ );
       if ( r != SQLITE_DONE && r != SQLITE_ROW ) {
         throw Oops( __FILE__, __LINE__, sqlite3_errmsg( database_ ) );

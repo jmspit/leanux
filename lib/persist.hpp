@@ -77,14 +77,14 @@ namespace leanux {
         /**
          * Enable foreign key constraints.
          */
-        void enableForeignKeys() throw(Oops);
+        void enableForeignKeys();
 
-        void disableForeignKeys() throw(Oops);
+        void disableForeignKeys();
 
         /**
          * Enable triggers.
          */
-        void enableTriggers() throw(Oops);
+        void enableTriggers();
 
         /**
          * Return database handle.
@@ -93,53 +93,53 @@ namespace leanux {
         sqlite3* getDB() const { return database_; };
 
         /** Begin a transaction. */
-        void begin() throw(Oops);
+        void begin();
 
         /** Begin an immediate transaction. */
-        void beginImmediate() throw(Oops);
+        void beginImmediate();
 
         /** Begin an exclusive transaction. */
-        void beginExclusive() throw(Oops);
+        void beginExclusive();
 
         /** Commit a transaction. */
-        void commit() throw(Oops);
+        void commit();
 
         /** Rollback a transaction. */
-        void rollback() throw(Oops);
+        void rollback();
 
         /**
          * Create a named savepoint.
          * @param sp the savepoint name
          * @see release, rollback
          */
-        void savepoint( const std::string &sp ) throw(Oops);
+        void savepoint( const std::string &sp );
 
         /**
          * Release a savepoint.
          * @param sp the savepoint name
          */
-        void release( const std::string &sp ) throw(Oops);
+        void release( const std::string &sp );
 
         /**
          * Rollback to a savepoint.
          * @param sp the savepoint name
          */
-        void rollback( const std::string &sp ) throw(Oops);
+        void rollback( const std::string &sp );
 
         /**
          * Issue a passive checpoint.
          */
-        void checkPointPassive() throw(Oops);
+        void checkPointPassive();
 
         /**
          * Issue a (WAL) truncate checpoint.
          */
-        void checkPointTruncate() throw(Oops);
+        void checkPointTruncate();
 
         /**
          * Get the rowid of the last inserted row.
          */
-        long lastInsertRowid() const throw(Oops);
+        long lastInsertRowid() const;
 
         /**
          * set the user_version pragma
@@ -194,19 +194,19 @@ namespace leanux {
          * Prepare a SQL statement.
          * @param sql the SQL statement.
          */
-        void prepare( const std::string &sql ) throw(Oops);
+        void prepare( const std::string &sql );
 
         /**
          * Reset a SQL statement for rexecute or even re-prepare.
          */
-        void reset() throw(Oops);
+        void reset();
 
         /**
          * A statement handle can be explicitly closed without deleting
          * the Statement object itself. This frees the resources in SQLite,
          * . it's allowed to call prepare() again.
          */
-        void close() throw(Oops);
+        void close();
 
       protected:
 
@@ -235,7 +235,7 @@ namespace leanux {
          * execute, throws Oops on error.
          * @see execute_r
          */
-        void execute() throw(Oops);
+        void execute();
 
         /**
          * execute and return result code.
@@ -260,35 +260,35 @@ namespace leanux {
         /**
          * Execute.
          */
-        void execute() throw(Oops);
+        void execute();
 
         /**
          * Bind a double value to the bind at position.
          * @param position the bind position in the SQL (start with 1)
          * @param value the value to bind.
          */
-        void bind( int position, double value ) throw(Oops);
+        void bind( int position, double value );
 
         /**
          * Bind an int value to the bind at position.
          * @param position the bind position in the SQL (start with 1)
          * @param value the value to bind.
          */
-        void bind( int position, int value ) throw(Oops);
+        void bind( int position, int value );
 
         /**
          * Bind a long value to the bind at position.
          * @param position the bind position in the SQL (start with 1)
          * @param value the value to bind.
          */
-        void bind( int position, long value ) throw(Oops);
+        void bind( int position, long value );
 
         /**
          * Bind a string value to the bind at position.
          * @param position the bind position in the SQL (start with 1)
          * @param value the value to bind.
          */
-        void bind( int position, const std::string &value ) throw(Oops);
+        void bind( int position, const std::string &value );
     };
 
     /**
@@ -306,7 +306,7 @@ namespace leanux {
          * Step the result list, end of list returns false.
          * @return true as long as there are more rows.
          */
-        bool step() throw(Oops);
+        bool step();
 
         /**
          * Test if the result is NULL

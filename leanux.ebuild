@@ -7,7 +7,7 @@ inherit eutils cmake-utils flag-o-matic user
 
 DESCRIPTION="@LEANUX_SHORT_DESC@"
 HOMEPAGE="@LEANUX_WEBSITE@"
-SRC_URI="@LEANUX_SRC_URI@"
+SRC_URI="@LEANUX_SRC_URI@ -> ${P}.tar.gz"
 
 LICENSE="GPL-3"
 SLOT="0"

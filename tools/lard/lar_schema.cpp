@@ -333,6 +333,7 @@ namespace leanux {
         ddl.prepare( "CREATE TABLE IF NOT EXISTS procstat (\n"
                      "  snapshot  INTEGER NOT NULL,    -- snapshot id\n"
                      "  pid       INTEGER NOT NULL,    -- process id\n"
+                     "  pgrp      INTEGER NOT NULL,    -- process group id\n"
                      "  state     TEXT    NOT NULL,    -- process state\n"
                      "  uid       INTEGER NOT NULL,    -- process uid\n"
                      "  cmd       INTEGER NOT NULL,    -- command id\n"

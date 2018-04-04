@@ -468,9 +468,10 @@ namespace leanux {
           }
 
           persist::DML dml(db);
-          dml.prepare( "INSERT INTO procstat (snapshot,pid,state,uid,cmd,usercpu,systemcpu,iotime,minflt,majflt,rss,vsz,wchan) VALUES ( \
+          dml.prepare( "INSERT INTO procstat (snapshot,pid,pgrp,state,uid,cmd,usercpu,systemcpu,iotime,minflt,majflt,rss,vsz,wchan) VALUES ( \
             :snapid, \
             :pid, \
+            :pgrp, \
             :state, \
             :uid, \
             :cmd, \
@@ -485,21 +486,22 @@ namespace leanux {
             )" );
           dml.bind( 1, snapid );
           dml.bind( 2, (*i).pid );
+          dml.bind( 3, (*i).pgrp );
           std::string sstate = "";
           sstate += (*i).state;
-          dml.bind( 3, sstate );
+          dml.bind( 4, sstate );
           uid_t uid = 0;
           if ( !process::getProcUid( (*i).pid, uid ) ) uid = 20041968;
-          dml.bind( 4,  (long)uid );
-          dml.bind( 5, cmdid );
-          dml.bind( 6, (*i).utime/seconds );
-          dml.bind( 7, (*i).stime/seconds );
-          dml.bind( 8, (*i).delayacct_blkio_ticks/seconds );
-          dml.bind( 9, (*i).minflt/seconds );
-          dml.bind( 10, (*i).majflt/seconds );
-          dml.bind( 11, (long)(*i).rss );
-          dml.bind( 12, (long)(*i).vsize );
-          if ( (*i).state == 'D' ) dml.bind( 13, wchanid ); else dml.bind( 13, 0 );
+          dml.bind( 5,  (long)uid );
+          dml.bind( 6, cmdid );
+          dml.bind( 7, (*i).utime/seconds );
+          dml.bind( 8, (*i).stime/seconds );
+          dml.bind( 9, (*i).delayacct_blkio_ticks/seconds );
+          dml.bind( 10, (*i).minflt/seconds );
+          dml.bind( 11, (*i).majflt/seconds );
+          dml.bind( 12, (long)(*i).rss );
+          dml.bind( 13, (long)(*i).vsize );
+          if ( (*i).state == 'D' ) dml.bind( 14, wchanid ); else dml.bind( 14, 0 );
           dml.execute();
         }
         return 0;

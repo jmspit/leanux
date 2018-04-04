@@ -227,7 +227,7 @@ namespace leanux {
     /** Delta of a pid's stats. */
     struct ProcPidStatDelta {
       pid_t pid;
-      pid_t tpgid;
+      pid_t pgrp;
       char state;
       /** user time delta */
       double utime;

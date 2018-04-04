@@ -245,7 +245,7 @@
       for ( ProcPidStatMap::const_iterator s2 = snap2.begin(); s2 != snap2.end(); ++s2 ) {
         ProcPidStatDelta dt;
         dt.pid = s2->first;
-        dt.tpgid = s2->second.tpgid;
+        dt.pgrp = s2->second.pgrp;
         ProcPidStatMap::const_iterator s1 = snap1.find( s2->first );
         if ( s1 != snap1.end() ) {
           dt.utime = s2->second.utime - s1->second.utime;

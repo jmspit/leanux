@@ -1281,7 +1281,7 @@ namespace leanux {
 
       void ProcessView::xrefresh( const XProcView& data ) {
         const int width_pid = 6;
-        const int width_tpgid = 6;
+        const int width_pgrp = 6;
         const int width_q = 2;
         const int width_user = 8;
         const int width_comm = 16;
@@ -1293,7 +1293,7 @@ namespace leanux {
         const int width_majflt = 7;
         const int width_rss = 6;
         const int width_vsz = 6;
-        const int width_fixed = width_pid + width_tpgid + width_q + width_user + width_comm + width_time + width_utime + width_stime
+        const int width_fixed = width_pid + width_pgrp + width_q + width_user + width_comm + width_time + width_utime + width_stime
           + width_iotime + width_minflt + width_majflt + width_rss + width_vsz + 11;
 
         width_wchan_ = std::max( width_wchan_, (int)16 );
@@ -1316,7 +1316,7 @@ namespace leanux {
 
           int x = 0;
           textOutMoveXRA( x, 1, width_pid, attr_bold_text_, "pid" );
-          textOutMoveXRA( x, 1, width_tpgid, attr_bold_text_, "tpgid" );
+          textOutMoveXRA( x, 1, width_pgrp, attr_bold_text_, "pgrp" );
           textOutMoveXRA( x, 1, width_q, attr_bold_text_, "S" );
           textOutMoveXRA( x, 1, width_user, attr_bold_text_, "user" );
           textOutMoveXRA( x, 1, width_comm, attr_bold_text_, "comm" );
@@ -1346,7 +1346,7 @@ namespace leanux {
               if ( y < height_ - 1 ) {
                 x = 0;
                 textOutMoveXRA( x, y, width_pid, attr_normal_text_, (*i).pid );
-                textOutMoveXRA( x, y, width_tpgid, attr_normal_text_, (*i).tpgid );
+                textOutMoveXRA( x, y, width_pgrp, attr_normal_text_, (*i).pgrp );
                 std::stringstream ss;
                 int text_attr = attr_normal_text_;
                 if ( (*i).state == 'D' ) {
@@ -1389,7 +1389,7 @@ namespace leanux {
               s_minflt += (*i).minflt;
               s_majflt += (*i).majflt;
             }
-            x = width_pid + width_tpgid + width_q + width_user + 4;
+            x = width_pid + width_pgrp + width_q + width_user + 4;
             textOutMoveXRA( x, y, width_comm, attr_bold_text_, "total" );
             textOutMoveXRA( x, y, width_time, attr_bold_text_, util::NumStr( s_time, 3 ) );
             textOutMoveXRA( x, y, width_utime, attr_bold_text_, util::NumStr( s_utime, 3 ) );

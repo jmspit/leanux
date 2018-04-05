@@ -34,7 +34,7 @@ start() {
   chown -R @LARD_USER@:@LARD_USER@ ${DB_DIR}
   chmod 770 ${DB_DIR}
   chmod 660 ${DB_FILE}
-  start_daemon -p ${PIDFILE} ${PROGRAM} -c ${CONF_FILE} -f ${DB_FILE}
+  start_daemon -p ${PIDFILE} ${PROGRAM} -c ${CONF_FILE} -f ${DB_FILE} -d
   log_end_msg $?
 }
 

@@ -82,6 +82,8 @@ namespace leanux {
         std::string database;
         /** configuration file */
         std::string config;
+        /** daemonize */
+        bool daemonize;
       };
 
       Options options;
@@ -327,13 +329,16 @@ namespace leanux {
         options.database = "";
         options.config = "";
         int opt;
-        while ( (opt = getopt( argc, argv, "f:c:" ) ) != -1 ) {
+        while ( (opt = getopt( argc, argv, "f:c:d" ) ) != -1 ) {
           switch ( opt ) {
             case 'f':
               options.database = optarg;
               break;
             case 'c':
               options.config = optarg;
+              break;
+            case 'd':
+              options.daemonize = true;
               break;
             default:
               return false;
@@ -359,9 +364,11 @@ namespace leanux {
             signal(SIGINT, interrupt_handler);
             signal(SIGQUIT, interrupt_handler);
             signal(SIGTERM, interrupt_handler);
-            if ( daemon(1,1) ) {
-              sysLog( LOG_ERR, 0, "daemon call failed" );
-              return 2;
+            if ( options.daemonize ) {
+              if ( daemon(1,1) ) {
+                sysLog( LOG_ERR, 0, "daemon call failed" );
+                return 2;
+              }
             }
             leanux::init();
 

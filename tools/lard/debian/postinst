@@ -12,7 +12,7 @@ test -f @LARD_SYSCONF_FILE@ && /bin/chmod 660 @LARD_SYSCONF_FILE@
 test -d @LARD_SYSCONF_DIR@ && /bin/chown -R root:@LARD_USER@ @LARD_SYSCONF_DIR@
 
 # some info to the installing user
-/bin/echo "start lard on boot: /usr/sbin/chkconfig --add lard"
-/bin/echo "start lard now: /usr/sbin/service lard start"
+/bin/echo "start lard on boot: systemctl enable lard"
+/bin/echo "start lard now: service lard start"
 
 exit 0

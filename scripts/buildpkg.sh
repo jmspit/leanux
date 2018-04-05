@@ -160,7 +160,7 @@ mkdir -p "${CLONE_DIR}" || { echo "failed to create directory ${CLONE_DIR}"; exi
 cd "${CLONE_DIR}" || { echo "failed to chdir into ${CLONE_DIR}"; exit 1; }
 git clone https://github.com/jmspit/leanux.git || { echo "git clone failed"; exit 1; }
 cd leanux || { echo "git clone 'leanux' found"; exit 1; }
-git checkout -b ${BRANCH} || { echo "failed to checkout branch ${BRANCH}"; exit 1; }
+git checkout ${BRANCH} || { echo "failed to checkout branch ${BRANCH}"; exit 1; }
 SRC_DIR=${CLONE_DIR}/leanux/build/release
 mkdir -p ${SRC_DIR} || { echo "failed to create directory ${SRC_DIR}"; exit 1; }
 cd ${SRC_DIR} || { echo "failed to chdir into ${SRC_DIR}"; exit 1; }

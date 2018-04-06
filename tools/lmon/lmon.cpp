@@ -120,9 +120,9 @@ namespace leanux {
           leanux::init();
 
           leanux::util::ConfigFile::declareParameter( "COLOR_BACKGROUND", "(10,10,12)", "Color for background (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::declareParameter( "COLOR_TEXT", "(80,110,160)", "Color for text (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::declareParameter( "COLOR_BOLD_TEXT", "(110,130,170)", "Color for bold text (only effective for 256color terminals)" );
-          leanux::util::ConfigFile::declareParameter( "COLOR_LINE", "(50,50,53)", "Color for lines (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_TEXT", "(90,120,170)", "Color for text (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_BOLD_TEXT", "(130,150,190)", "Color for bold text (only effective for 256color terminals)" );
+          leanux::util::ConfigFile::declareParameter( "COLOR_LINE", "(50,50,73)", "Color for lines (only effective for 256color terminals)" );
           leanux::util::ConfigFile::declareParameter( "COLOR_RUNNING_PROC", "(1,234,109)", "Color for processes in R state (only effective for 256color terminals)" );
           leanux::util::ConfigFile::declareParameter( "COLOR_BLOCKED_PROC", "(239,40,40)", "Color for processes in D state (only effective for 256color terminals)" );
           leanux::util::ConfigFile::declareParameter( "COLOR_USER_CPU", "(200,234,109)", "Color for user mode CPU (only effective for 256color terminals)" );

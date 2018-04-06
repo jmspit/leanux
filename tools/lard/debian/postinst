@@ -19,7 +19,7 @@ chmod 770 /var/lib/lard
 chmod 660 /var/lib/lard/lard.db
 
 # reload systemctl daemon status
-/usr/bin/systemctl daemon-reload
+systemctl daemon-reload
 
 # some info to the installing user
 /bin/echo "start lard on boot: systemctl enable lard"

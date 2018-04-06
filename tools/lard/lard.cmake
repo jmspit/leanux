@@ -51,6 +51,7 @@ set( LARD_SYSDB_FILE "${LARD_SYSDB_PATH}/lard.db" )
 set( LARD_SYSCONF_DIR "/etc/lard" )
 set( LARD_SYSCONF_FILE "${LARD_SYSCONF_DIR}/lard.conf" )
 set( LARD_SYSVINIT_FILE "/etc/init.d/lard" )
+set( LARD_SYSTEMD_FILE "/etc/systemd/system/lard.service" )
 set( LARD_USER "leanux" )
 
 

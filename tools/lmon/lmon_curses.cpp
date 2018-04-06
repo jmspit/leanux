@@ -209,6 +209,7 @@ namespace leanux {
 
       Screen::~Screen() {
         try {
+          leanux::util::ConfigFile::getConfig()->read();
           leanux::util::ConfigFile::getConfig()->setValue( "SAMPLE_INTERVAL", sample_interval_s_ );
           leanux::util::ConfigFile::getConfig()->write();
         }

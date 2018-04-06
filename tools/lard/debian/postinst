@@ -11,6 +11,16 @@ test -f @LARD_SYSCONF_FILE@ && /bin/chmod 660 @LARD_SYSCONF_FILE@
 # set ownership on lard config dir
 test -d @LARD_SYSCONF_DIR@ && /bin/chown -R root:@LARD_USER@ @LARD_SYSCONF_DIR@
 
+# setup lard database dir
+mkdir -p /var/lib/lard
+touch /var/lib/lard/lard.db
+chown -R @LARD_USER@:@LARD_USER@ /var/lib/lard
+chmod 770 /var/lib/lard
+chmod 660 /var/lib/lard/lard.db
+
+# reload systemctl daemon status
+/usr/bin/systemctl daemon-reload
+
 # some info to the installing user
 /bin/echo "start lard on boot: systemctl enable lard"
 /bin/echo "start lard now: service lard start"

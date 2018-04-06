@@ -11,7 +11,8 @@ fi
 
 CLONE_DIR=/home/spjm/leanux-clone
 
-VMLIST="centos debian fedora opensuse ubuntu"
+#VMLIST="centos debian fedora opensuse ubuntu"
+VMLIST="debian"
 BUILDUSER="build"
 PUBLISH="publish.html"
 WEBUSER="root"

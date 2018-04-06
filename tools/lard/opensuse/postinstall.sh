@@ -2,11 +2,11 @@
 getent group @LARD_USER@ > /dev/null || groupadd -r @LARD_USER@
 getent passwd @LARD_USER@ > /dev/null || useradd -r -M -s /sbin/nologin -g @LARD_USER@ @LARD_USER@
 
-# set permission on lard init script
-/usr/bin/chmod 700 @LARD_SYSVINIT_FILE@
-
 # set permission on lard config file
 chmod 660 @LARD_SYSCONF_FILE@
+
+# set ownership on lard config dir
+chown -R root:@LARD_USER@ @LARD_SYSCONF_DIR@
 
 # setup lard database dir
 mkdir -p /var/lib/lard

@@ -20,6 +20,6 @@ systemctl daemon-reload
 
 # some info to the installing user
 /bin/echo "start lard on boot: systemctl enable lard"
-/bin/echo "start lard now: service lard start"
+/bin/echo "start lard now: systemctl start lard"
 
 exit 0

@@ -19,5 +19,5 @@ chmod 660 /var/lib/lard/lard.db
 systemctl daemon-reload
 
 # some info to the installing user
-/bin/echo "start lard on boot: /usr/sbin/chkconfig --add lard"
-/bin/echo "start lard now: /usr/sbin/service lard start"
+/bin/echo "start lard on boot: systemctl enable lard"
+/bin/echo "start lard now: systemctl start lard"

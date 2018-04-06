@@ -3,6 +3,8 @@ Description=@LARD_DESCR@
 ConditionFileIsExecutable=/usr/bin/lard
 
 [Service]
+User=@LARD_USER@
+Group=@LARD_USER@
 Type=forking
 ExecStart=/usr/bin/lard -c /etc/lard/lard.conf -f /var/lib/lard/lard.db -d
 TimeoutSec=0

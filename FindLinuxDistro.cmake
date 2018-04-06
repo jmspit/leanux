@@ -194,9 +194,9 @@ if ( EXISTS "/etc/os-release" )
       OUTPUT_VARIABLE OS_RELEASE_VERSION_ID
       OUTPUT_STRIP_TRAILING_WHITESPACE
     )
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/fedora/init.d/lard ${CMAKE_CURRENT_BINARY_DIR}/init.d/lard @ONLY)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/fedora/lard.service ${CMAKE_CURRENT_BINARY_DIR}/lard.service @ONLY)
     install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lard.conf DESTINATION "/etc/lard" COMPONENT lard)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/init.d/lard DESTINATION "/etc/init.d" COMPONENT lard)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/lard.service DESTINATION "/etc/systemd/system" COMPONENT lard)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/fedora/postinstall.sh" ${CMAKE_CURRENT_BINARY_DIR}/postinstall.sh @ONLY)
     configure_file("${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/fedora/preuninstall.sh" ${CMAKE_CURRENT_BINARY_DIR}/preuninstall.sh @ONLY)
     set( CPACK_RPM_lard_POST_INSTALL_SCRIPT_FILE "${CMAKE_CURRENT_BINARY_DIR}/postinstall.sh" )

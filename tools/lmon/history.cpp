@@ -291,6 +291,7 @@ namespace leanux {
                           "  c.cmd,"
                           "  c.args,"
                           "  s.pid,"
+                          "  s.pgrp,"
                           "  s.uid,"
                           "  sum(s.usercpu),"
                           "  sum(s.systemcpu),"
@@ -320,15 +321,16 @@ namespace leanux {
           process::ProcPidStatDelta stat;
           stat.comm = qprocstat.getText(0);
           stat.pid  = qprocstat.getLong(2);
-          stat.utime = qprocstat.getDouble(4)/dt;
-          stat.stime = qprocstat.getDouble(5)/dt;
-          stat.delayacct_blkio_ticks = qprocstat.getDouble(6)/dt;
-          stat.minflt = qprocstat.getDouble(7)/dt;
-          stat.majflt = qprocstat.getDouble(8)/dt;
-          stat.rss = qprocstat.getDouble(9);
-          stat.vsize = qprocstat.getDouble(10);
+          stat.pgrp  = qprocstat.getLong(3);
+          stat.utime = qprocstat.getDouble(5)/dt;
+          stat.stime = qprocstat.getDouble(6)/dt;
+          stat.delayacct_blkio_ticks = qprocstat.getDouble(7)/dt;
+          stat.minflt = qprocstat.getDouble(8)/dt;
+          stat.majflt = qprocstat.getDouble(9)/dt;
+          stat.rss = qprocstat.getDouble(10);
+          stat.vsize = qprocstat.getDouble(11);
           procview.pidargs[stat.pid] = qprocstat.getText(1);
-          procview.piduids[stat.pid] = qprocstat.getLong(3);
+          procview.piduids[stat.pid] = qprocstat.getLong(4);
 
           stat.state='S';
           stat.wchan="";

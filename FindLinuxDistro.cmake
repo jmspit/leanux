@@ -89,6 +89,7 @@ if ( EXISTS "/etc/os-release" )
     set(CPACK_GENERATOR "RPM")
     set( DIST_PKG_ZLIB "libz1" )
     set( DIST_PKG_NCURSES "libncurses5" )
+    set( DIST_PKG_OUI "hwdata" )
 
   ###############################
   # Ubuntu
@@ -279,6 +280,10 @@ elseif ( EXISTS "/etc/redhat-release" )
   set( CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION /usr /usr/bin /usr/include /usr/lib64 /usr/share /usr/share/man /usr/share/man/man1 )
   set( CPACK_GENERATOR "RPM" )
   set( OS_RELEASE_TAG "el${RHEL_MAJOR}" )
+  set( DIST_PKG_SQLITE3 "sqlite")
+  set( DIST_PKG_PCIIDS "hwdata" )
+  set( DIST_PKG_USBIDS "hwdata" )
+  set( DIST_PKG_OUI "hwdata" )
 else()
   message(STATUS "GNU/Linux distribution not recognized")
 endif()

@@ -183,6 +183,8 @@ if ( EXISTS "/etc/os-release" )
     set( CPACK_GENERATOR "RPM" )
     set( OS_RELEASE_TAG "el${OS_RELEASE_VERSION_ID}" )
     set( DIST_PKG_SQLITE3 "sqlite")
+    set( DIST_PKG_PCIIDS "hwdata" )
+    set( DIST_PKG_USBIDS "hwdata" )
     set( DIST_PKG_OUI "hwdata" )
   ###############################
   # FEDORA

@@ -182,7 +182,8 @@ if ( EXISTS "/etc/os-release" )
     set( CPACK_RPM_EXCLUDE_FROM_AUTO_FILELIST_ADDITION /usr /usr/bin /usr/include /usr/lib64 /usr/share /usr/share/man /usr/share/man/man1 /etc/systemd /etc/systemd/system )
     set( CPACK_GENERATOR "RPM" )
     set( OS_RELEASE_TAG "el${OS_RELEASE_VERSION_ID}" )
-    set(DIST_PKG_SQLITE3 "sqlite")
+    set( DIST_PKG_SQLITE3 "sqlite")
+    set( DIST_PKG_OUI "hwdata" )
   ###############################
   # FEDORA
   ###############################

@@ -208,6 +208,7 @@ if ( EXISTS "/etc/os-release" )
     set( OS_RELEASE_TAG "${OS_RELEASE_ID}_${OS_RELEASE_VERSION_ID}" )
     set(CPACK_GENERATOR "RPM")
     set(DIST_PKG_SQLITE3 "sqlite-libs")
+    set( DIST_PKG_OUI "hwdata" )
   ###############################
   # Arch Linux
   ###############################

@@ -156,6 +156,7 @@ if ( EXISTS "/etc/os-release" )
     set( INSTALL_LIB_PATH "lib" )
     set( DIST_PKG_ZLIB "zlib1g" )
     set( DIST_PKG_NCURSES "libncurses5" )
+    set( DIST_PKG_OUI "ieee-data" )
 
   ###############################
   # CENTOS

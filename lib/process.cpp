@@ -126,6 +126,7 @@
       std::string result = "";
       try {
         result = util::fileReadString( ss.str() );
+        if ( result == "0" ) result = "";
       } catch ( ... ) {
         result = "";
       }

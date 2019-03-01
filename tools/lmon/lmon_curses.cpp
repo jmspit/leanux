@@ -1299,8 +1299,9 @@ namespace leanux {
 
         width_wchan_ = std::max( width_wchan_, (int)16 );
         //if ( width_wchan_ < 5 ) width_wchan_ = 5;
-        int width_arg0 = width_ - width_wchan_ - width_fixed - 2;
+        int width_arg0 = width_ - width_wchan_ - width_fixed - 3;
         if ( width_arg0 < 0 ) width_arg0 = 0;
+
 
         werase( window_ );
         hLine( 0, width_, 0, attr_line_ );
@@ -1333,6 +1334,7 @@ namespace leanux {
             textOut( x, 1,  attr_bold_text_, "args" );
           }
           x += width_arg0 + 1;
+          //std::cerr << "width_" << width_ << "width_arg0:" << width_arg0 << " width_wchan_" << width_wchan_ << " x:" << x << std::endl;
           if (  width_+ 2 > x + width_wchan_ + 1 ) textOut( x, 1,  attr_bold_text_, "wchan" );
           if ( data.sample_count > 1 ) {
             double s_utime = 0;
@@ -1376,7 +1378,7 @@ namespace leanux {
                   }
                   x += width_arg0+1;
 
-                  if ( (width_+ 2 > x + width_wchan_ + 1) && (*i).state == 'D' ) {
+                  if ( (width_+ 2 > x + width_wchan_ + 1) && ((*i).state == 'D' || (*i).state == 'R' || (*i).state == 'S') ) {
                     textOut( x, y, text_attr, (*i).wchan.substr(0, width_wchan_ ) );
                     width_wchan_ = std::max( width_wchan_ , (int)(*i).wchan.length() );
                   }

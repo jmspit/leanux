@@ -8,7 +8,7 @@ project( ${PROJECT} )
 
 set( ${PROJECT}_VERSION_MAJOR "1" )
 set( ${PROJECT}_VERSION_MINOR "0" )
-set( ${PROJECT}_VERSION_PATCH "1" )
+set( ${PROJECT}_VERSION_PATCH "2" )
 
 # options
 option(EXAMPLE_TEST "set to ON to build examples and tests" "OFF")

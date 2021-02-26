@@ -202,7 +202,7 @@ namespace leanux {
     void enumTCP4Sockets( std::list<TCP4SocketInfo> &sockets );
 
     /**
-     * Enumerate TCP6 sockets from /proc/net/tcp
+     * Enumerate TCP6 sockets from /proc/net/tcp6
      * @param sockets the list of TCP6SocketInfo to fill.
      */
     void enumTCP6Sockets( std::list<TCP6SocketInfo> &sockets );

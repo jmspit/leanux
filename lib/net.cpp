@@ -273,24 +273,6 @@ namespace leanux {
         &tmp.inode
         );
       if ( r > 0 ) {
-        std::stringstream neat;
-        neat << std::setfill('0') << std::hex <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[0] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[1]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[2] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[3]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[4] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[5]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[6] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[7]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[8] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[9]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[10] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[11]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[12] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[13]<<":"<<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[14] <<
-          std::setw(2) << (int)tmp.local_addr.s6_addr[15];
         info = tmp;
         return true;
       } else return false;

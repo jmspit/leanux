@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required(VERSION 3.18)
 
 # base names
 set( PROJECT "leanux" )
@@ -6,9 +6,16 @@ string(TOUPPER ${PROJECT} PROJECTUC)
 
 project( ${PROJECT} )
 
-set( ${PROJECT}_VERSION_MAJOR "1" )
-set( ${PROJECT}_VERSION_MINOR "0" )
-set( ${PROJECT}_VERSION_PATCH "2" )
+include( cmake/MunkeiVersionFromGit.cmake )
+
+version_from_git(
+  LOG       ON
+  TIMESTAMP "%Y%m%d%H%M%S"
+)
+
+set( ${PROJECT}_VERSION_MAJOR "${VERSION_MAJOR}" )
+set( ${PROJECT}_VERSION_MINOR "${VERSION_MINOR}" )
+set( ${PROJECT}_VERSION_PATCH "${VERSION_PATCH}" )
 
 # options
 option(EXAMPLE_TEST "set to ON to build examples and tests" "OFF")
@@ -32,8 +39,8 @@ message( STATUS "CMAKE_CXX_COMPILER     : ${CMAKE_CXX_COMPILER}")
 message( STATUS "CMAKE_HOST_SYSTEM      : ${CMAKE_HOST_SYSTEM}")
 message( STATUS "CMAKE_VERSION          : ${CMAKE_VERSION}")
 
-set(${PROJECTUC}_VERSION_STR "${${PROJECT}_VERSION_MAJOR}.${${PROJECT}_VERSION_MINOR}.${${PROJECT}_VERSION_PATCH}")
-set(${PROJECT}_VERSION_STR "${${PROJECT}_VERSION_MAJOR}.${${PROJECT}_VERSION_MINOR}.${${PROJECT}_VERSION_PATCH}")
+set(${PROJECTUC}_VERSION_STR "${SEMVER}")
+set(${PROJECT}_VERSION_STR "${SEMVER}")
 message( STATUS "${PROJECTUC} BUILD VERSION   : ${${PROJECTUC}_VERSION_STR}")
 set(${PROJECT}_LIB_NAME "${PROJECT}-${${PROJECT}_VERSION_STR}")
 message( STATUS "examples and tests     : ${EXAMPLE_TEST}")
@@ -77,14 +84,14 @@ function(deb_monoinstall)
 endfunction(deb_monoinstall)
 
 # detect distros and set distro specifics
-include(FindLinuxDistro.cmake)
+include(cmake/FindLinuxDistro.cmake)
 deb_monoinstall()
 
 message( STATUS "${PROJECTUC}_DEB_MONOINSTALL : ${${PROJECTUC}_DEB_MONOINSTALL}")
 
 # detect sqlite
 set( SQLITE3_FIND_QUIETLY 1 )
-include(FindSqlite3.cmake)
+include(cmake/FindSqlite3.cmake)
 if (SQLITE3_FOUND)
   execute_process(
     COMMAND sh -c "grep '#define SQLITE_VERSION_NUMBER' /usr/include/sqlite3.h | awk '{print $3}'"

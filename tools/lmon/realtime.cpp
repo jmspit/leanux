@@ -176,9 +176,11 @@ namespace leanux {
           rec.iodone_cnt = devicestats[*s].iodone_cnt / dt;
           rec.iorequest_cnt = devicestats[*s].iorequest_cnt / dt;
           rec.ioerr_cnt = devicestats[*s].ioerr_cnt / dt;
-          xioview_.iostats[ (*s).getName() ] = rec;
-          if ( (*s).isWholeDisk() ) {
-            xioview_.iosorted.push_back((*s).getName());
+          if ( xioview_.iostats.find( (*s).getName() ) == xioview_.iostats.end() ) {
+            xioview_.iostats[ (*s).getName() ] = rec;
+            if ( (*s).isWholeDisk() ) {
+              xioview_.iosorted.push_back((*s).getName());
+            }
           }
         }
         vmem::getSwapInfo( swaps_ );

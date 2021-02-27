@@ -1033,11 +1033,14 @@ namespace leanux {
         pm >> temp.attrs;
         pm >> dummy;
         pm >> dummy;
+
         if ( temp.device.length() > 0 && temp.device[0] == '/' ) {
           MajorMinor m = getFileMajorMinor( temp.device );
           // hack for btrfs quirk
           if ( temp.fstype == "btrfs" ) temp.mountpoint = "btrfs:" + m.getName();
-          if ( m.isValid() ) mounts[m] = temp;
+          if ( m.isValid() && mounts.find(m) == mounts.end() ) {
+            mounts[m] = temp;
+          }
         }
       }
     }
@@ -1060,11 +1063,10 @@ namespace leanux {
           if ( icache == devicefilecache.end() ) {
             m = getFileMajorMinor( temp.device );
             devicefilecache[temp.device] = m;
-          } else
-            m = icache->second;
+          } else m = icache->second;
           // hack for btrfs quirk
           if ( temp.fstype == "btrfs" ) temp.mountpoint = "btrfs:" + m.getName();
-          if ( m.isValid() ) mounts[m] = temp;
+          if ( m.isValid() && mounts.find(m) == mounts.end() ) mounts[m] = temp;
         }
       }
     }

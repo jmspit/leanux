@@ -6,7 +6,7 @@ arch=("i686" "x86_64" "mips" "sparc" "armv7h")
 url="@LEANUX_WEBSITE@"
 license=("GPLv3")
 makedepends=("ncurses" "cmake" "zlib" "sqlite3")
-source=("@LEANUX_SRC_URI_BASE@/$pkgname-$pkgver.tar.gz")
+source=("@LEANUX_SRC_URI_BASE@/v${pkgver}.tar.gz")
 sha512sums=("@LEANUX_SOURCE_SHA512SUM@")
 install=leanux.install
 

@@ -60,9 +60,9 @@ set( ${PROJECTUC}_COPYRIGHT "copyright GPL v3, ${${PROJECTUC}_MAINTAINER_NAME} 2
 set( ${PROJECTUC}_SOFTWARE_REPO "https://github.com/jmspit/${PROJECT}" )
 set( ${PROJECTUC}_BUG_URL "${${PROJECTUC}_SOFTWARE_REPO}/issues" )
 set( ${PROJECTUC}_SHORT_DESC "${PROJECT} - GNU/Linux performance tools and C++ API" )
-set( ${PROJECTUC}_WEBSITE "https://www.o-rho.com/${PROJECT}" )
+set( ${PROJECTUC}_WEBSITE "https://jmspit.github.io/${PROJECT}" )
 set( ${PROJECTUC}_SRC_URI_BASE "${${PROJECTUC}_SOFTWARE_REPO}/archive" )
-set( ${PROJECTUC}_SRC_URI "${${PROJECTUC}_SRC_URI_BASE}/${${PROJECT}_VERSION_STR}.tar.gz")
+set( ${PROJECTUC}_SRC_URI "${${PROJECTUC}_SRC_URI_BASE}/v${${PROJECT}_VERSION_STR}.tar.gz")
 
 message( STATUS "${PROJECTUC}_MAINTAINER_NAME : ${${PROJECTUC}_MAINTAINER_NAME}")
 message( STATUS "${PROJECTUC}_MAINTAINER_EMAIL: ${${PROJECTUC}_MAINTAINER_EMAIL}")
@@ -71,7 +71,6 @@ message( STATUS "${PROJECTUC}_BUG_URL         : ${${PROJECTUC}_BUG_URL}")
 message( STATUS "${PROJECTUC}_WEBSITE         : ${${PROJECTUC}_WEBSITE}")
 
 # configure README
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/README ${CMAKE_CURRENT_BINARY_DIR}/README @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/INSTALL ${CMAKE_CURRENT_BINARY_DIR}/INSTALL @ONLY)
 
 # include per tool constants

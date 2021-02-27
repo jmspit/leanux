@@ -6,7 +6,7 @@ if [ -z ${tag} ]; then
   exit 1
 fi
 
-git tag -d "${tag}"
-git push origin :refs/tags/"${tag}"
-git tag -a "${tag}"  -m "release ${tag}"
+#git tag -d "${tag}"
+#git push origin :refs/tags/"${tag}"
+git tag -afff "${tag}"  -m "release ${tag}"
 git push origin "${tag}"

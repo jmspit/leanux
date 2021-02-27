@@ -82,5 +82,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        asset_paths: '["${{github.workspace}}/build/*.deb","${{github.workspace}}/build/*.rpm","${{github.workspace}}/build/*.tar.gz"]'
+        asset_paths: '["${{github.workspace}}/build/*.deb","${{github.workspace}}/build/*.rpm","${{github.workspace}}/build/*.tar.gz","${{github.workspace}}/build/*.ebuild","${{github.workspace}}/build/*.PKGBUILD"]'
 

@@ -6,6 +6,13 @@ string(TOUPPER ${PROJECT} PROJECTUC)
 
 project( ${PROJECT} )
 
+execute_process(
+    COMMAND git describe --tags --always
+    OUTPUT_VARIABLE GIT_TAG
+    OUTPUT_STRIP_TRAILING_WHITESPACE
+  )
+message( STATUS "GIT_TAG              : ${GIT_TAG}")
+
 include( cmake/MunkeiVersionFromGit.cmake )
 
 version_from_git(

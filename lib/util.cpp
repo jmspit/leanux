@@ -172,7 +172,7 @@ namespace leanux {
     const double base_1024_log = 2.31049060186648436143741;
 
     std::string ByteStr( double bytes, int prec ) {
-      char bytestrbuf[bytestr_max_width];
+      char bytestrbuf[bytestr_max_width+1];
       bytestrbuf[0] = 0;
       char format[20];
       std::string suffix;
@@ -268,7 +268,7 @@ namespace leanux {
       char format[20];
       std::string suffix;
       if ( isnan( num ) ) {
-        strncat( numstrbuf, "nan", sizeof(numstrbuf) );
+        strncat( numstrbuf, "nan", sizeof(numstrbuf)-1 );
       } else
       if ( num != 0.0 ) {
         // the order of the number
@@ -296,7 +296,7 @@ namespace leanux {
         else if ( scale < 7 ) suffix = "E";
         else if ( scale < 8 ) suffix = "Z";
         snprintf( numstrbuf, sizeof(numstrbuf), format, num/pow(10.0,scale*3.0), suffix.c_str() );
-      } else strncat( numstrbuf, "0", sizeof(numstrbuf) );
+      } else strncat( numstrbuf, "0", sizeof(numstrbuf)-1 );
       return numstrbuf;
     }
 

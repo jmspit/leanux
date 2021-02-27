@@ -135,8 +135,8 @@ add_library (${${PROJECT}_LIB_NAME} SHARED ${${PROJECT}_objects})
 target_link_libraries (${${PROJECT}_LIB_NAME} ${SQLITE3_LIBRARY})
 
 # lmon tool
-add_executable( lmon tools/lmon/lmon.cpp tools/lmon/history.cpp tools/lmon/lmon_curses.cpp tools/lmon/xdata.cpp tools/lmon/realtime.cpp libtermkey/driver-csi.c libtermkey/driver-ti.c libtermkey/termkey.c )
-target_link_libraries (lmon ${${PROJECT}_LIB_NAME})
+add_executable( lmon tools/lmon/lmon.cpp tools/lmon/history.cpp tools/lmon/lmon_curses.cpp tools/lmon/xdata.cpp tools/lmon/realtime.cpp )
+target_link_libraries (lmon ${${PROJECT}_LIB_NAME} )
 
 # lblk tool
 add_executable( lblk tools/lblk/lblk.cpp tools/lib/tabular.cpp )
@@ -161,7 +161,7 @@ add_executable( labbix tools/labbix/labbix.cpp )
 target_link_libraries (labbix ${${PROJECT}_LIB_NAME})
 
 # setup include directories for compiling
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/lib ${CMAKE_CURRENT_SOURCE_DIR}/libtermkey ${CMAKE_CURRENT_SOURCE_DIR}/tools/lib ${CMAKE_CURRENT_BINARY_DIR} ${SQLITE3_INCLUDE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/lib ${CMAKE_CURRENT_SOURCE_DIR}/tools/lib ${CMAKE_CURRENT_BINARY_DIR} ${SQLITE3_INCLUDE_DIR})
 
 # examples
 if ( ${EXAMPLE_TEST} STREQUAL "ON" )
@@ -240,7 +240,8 @@ endif()
 find_package(Curses REQUIRED)
 if (CURSES_FOUND)
   #message( STATUS "curses is " ${CURSES_LIBRARY})
-  target_link_libraries(lmon ${CURSES_LIBRARIES})
+  #target_link_libraries(lmon ${CURSES_LIBRARIES})
+  target_link_libraries(lmon ncurses tinfo )
 endif (CURSES_FOUND)
 
 # install binaries

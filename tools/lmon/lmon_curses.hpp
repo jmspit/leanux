@@ -49,7 +49,6 @@
 #include <sys/ioctl.h>
 #include <sys/time.h>
 
-#include "termkey.h"
 #include <poll.h>
 
 #include <iomanip>
@@ -859,16 +858,6 @@ namespace leanux {
            * Footer scrolling interval.
            */
           unsigned int footer_scroll_interval_s_;
-
-          /**
-           * Termkey pointer for keyboard input.
-           */
-          TermKey *tk_;
-
-          /**
-           * Polling structure for keyboard input.
-           */
-          struct pollfd fd_;
 
       };
 

@@ -198,10 +198,6 @@ namespace leanux {
         vio_ = 0;
         vprocess_ = 0;
         vnetwork_ = 0;
-        fd_.fd = 0; /* the file descriptor we passed to termkey_new() */
-        fd_.events = POLLIN;
-
-        tk_ = termkey_new(0, 0);
         initTerminal();
         screenResize();
         doupdate();
@@ -223,7 +219,6 @@ namespace leanux {
         delete vfooter_;
         start_color();
         Screen::resetTerminal();
-        termkey_destroy(tk_);
       }
 
       void Screen::initTerminal() {
@@ -348,10 +343,10 @@ namespace leanux {
       }
 
       void Screen::resetTerminal() {
-        endwin();
         curs_set(1);
         nocbreak();
         echo();
+        endwin();
       }
 
       void Screen::runHistory( persist::Database *db ) {
@@ -381,63 +376,49 @@ namespace leanux {
 
         gettimeofday( &last_size_check, 0 );
 
-        TermKeyResult ret;
-        TermKeyKey key;
-        int nextwait = 10;
-
         while ( !stopped_ ) {
 
-          if ( poll( &fd_, 1, nextwait ) == 0 ) {
-            // Timed out
-            //if ( termkey_getkey_force( tk_, &key ) == TERMKEY_RES_KEY )
-            //  has_key = true;
-          }
-          if( fd_.revents & ( POLLIN | POLLHUP | POLLERR ) )
-            termkey_advisereadable( tk_ );
+        char key = getch();
+        if ( key == 'q' ) {
+          stopped_ = true;
+        } else if ( key == KEY_RIGHT ) {
+          history.rangeUp();
+          update_required = true;
+        } else if ( key == KEY_RIGHT ) {
+          history.rangeDown();
+          update_required = true;
+        } else if ( key == KEY_HOME ) {
+          history.rangeStart();
+          update_required = true;
+        } else if ( key == KEY_END ) {
+          history.rangeEnd();
+          update_required = true;
+        } else if (key == '-' ) {
+          cur_zoom = history.zoomOut();
+          update_required = true;
+        } else if ( key == '+' ) {
+          cur_zoom = history.zoomIn();
+          update_required = true;
+        } else if ( key == 'h' ) {
+          history.hourDown();
+          update_required = true;
+        } else if ( key == 'H' ) {
+          history.hourUp();
+          update_required = true;
+        } else if ( key == 'd' ) {
+          history.dayDown();
+          update_required = true;
+        } else if ( key == 'D' ) {
+          history.dayUp();
+          update_required = true;
+        } else if ( key == 'w' ) {
+          history.weekDown();
+          update_required = true;
+        } else if ( key == 'W' ) {
+          history.weekUp();
+          update_required = true;
+        }
 
-          // any recognized user input?
-          if ( ( ret = termkey_getkey( tk_, &key ) ) == TERMKEY_RES_KEY ) {
-            if ( key.code.codepoint == 'q' ) {
-              stopped_ = true;
-            } else if ( key.code.sym == 10 || key.code.codepoint == '.' ) { // RIGHT ARROW
-              history.rangeUp();
-              update_required = true;
-            } else if ( key.code.sym == 9  || key.code.codepoint == ',' ) {  // LEFT ARROW
-              history.rangeDown();
-              update_required = true;
-            } else if ( key.code.sym == 18 ) { // HOME key
-              history.rangeStart();
-              update_required = true;
-            } else if ( key.code.sym == 19 ) { // END key
-              history.rangeEnd();
-              update_required = true;
-            } else if ( key.code.codepoint == '-' ) {
-              cur_zoom = history.zoomOut();
-              update_required = true;
-            } else if ( key.code.codepoint == '+' ) {
-              cur_zoom = history.zoomIn();
-              update_required = true;
-            } else if ( key.code.codepoint == 'h' ) {
-              history.hourDown();
-              update_required = true;
-            } else if ( key.code.codepoint == 'H' ) {
-              history.hourUp();
-              update_required = true;
-            } else if ( key.code.codepoint == 'd' ) {
-              history.dayDown();
-              update_required = true;
-            } else if ( key.code.codepoint == 'D' ) {
-              history.dayUp();
-              update_required = true;
-            } else if ( key.code.codepoint == 'w' ) {
-              history.weekDown();
-              update_required = true;
-            } else if ( key.code.codepoint == 'W' ) {
-              history.weekUp();
-              update_required = true;
-            }
-
-          }
 
           if ( update_required ) {
             history.fetchXSysView( sysview );
@@ -494,8 +475,6 @@ namespace leanux {
               footer_refresh = false;
             }
             doupdate();
-            // eat away all further input to prevent key/refresh queuing
-            while ( ( ret = termkey_getkey( tk_, &key ) ) == TERMKEY_RES_KEY );
           }
 
           if ( !stopped_ ) util::Sleep( 0, (long int)(sleep_duration_ms_ * 1.0E6) );
@@ -517,34 +496,21 @@ namespace leanux {
 
         gettimeofday( &last_size_check, 0 );
 
-        TermKeyResult ret;
-        TermKeyKey key;
-        int nextwait = 0;
-
         while ( !stopped_ ) {
 
-          if ( poll( &fd_, 1, nextwait ) == 0 ) {
-            // Timed out
-            //if ( termkey_getkey_force( tk_, &key ) == TERMKEY_RES_KEY )
-            //  has_key = true;
-          }
-          if( fd_.revents & ( POLLIN | POLLHUP | POLLERR ) )
-            termkey_advisereadable( tk_ );
-
           // any recognized user input?
-          if ( ( ret = termkey_getkey( tk_, &key ) ) == TERMKEY_RES_KEY ) {
-            if ( key.code.codepoint == 'q' ) {
-              stopped_ = true;
-            } else if ( key.code.codepoint == '+' ) {
-              sample_interval_s_ += 1;
+          char key = getch();
+          if ( key == 'q' ) {
+            stopped_ = true;
+          } else if ( key == '+' ) {
+            sample_interval_s_ += 1;
+            realtimesampler.resetCPUTrail();
+            update_required = true;
+          } else if ( key == '-' ) {
+            if ( sample_interval_s_ > 1 ) {
+              sample_interval_s_ -= 1;
               realtimesampler.resetCPUTrail();
               update_required = true;
-            } else if ( key.code.codepoint == '-' ) {
-              if ( sample_interval_s_ > 1 ) {
-                sample_interval_s_ -= 1;
-                realtimesampler.resetCPUTrail();
-                update_required = true;
-              }
             }
           }
 

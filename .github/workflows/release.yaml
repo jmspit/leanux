@@ -65,7 +65,7 @@ jobs:
       continue-on-error: true
       with:
         delete_release: true
-        tag_name: ${{ github.ref }}
+        tag_name: ${{ github.event.tag_name }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

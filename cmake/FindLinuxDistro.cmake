@@ -37,6 +37,10 @@ if ( EXISTS "/etc/os-release" )
     set( CPACK_GENERATOR "TGZ" )
     set( MAN_INSTALL_DIR "share/man" )
     set( OS_RELEASE_TAG "${OS_RELEASE_ID}" )
+    set( DIST_PKG_SQLITE3 "dev-db/sqlite")
+    set( DIST_PKG_PCIIDS "sys-apps/hwids" )
+    set( DIST_PKG_USBIDS "sys-apps/hwids" )
+    set( DIST_PKG_OUI "sys-apps/hwids" )
 
   ###############################
   # RHEL
@@ -319,6 +323,10 @@ elseif ( ${CPACK_GENERATOR} STREQUAL "DEB" )
   endif()
 endif()
 
+message(STATUS "DIST_PKG_SQLITE3       : ${DIST_PKG_SQLITE3}")
+message(STATUS "DIST_PKG_PCIIDS        : ${DIST_PKG_PCIIDS}")
+message(STATUS "DIST_PKG_USBIDS        : ${DIST_PKG_USBIDS}")
+message(STATUS "DIST_PKG_OUI           : ${DIST_PKG_OUI}")
 message(STATUS "OS_RELEASE_ID          : ${OS_RELEASE_ID}")
 message(STATUS "OS_RELEASE_PRETTY_NAME : ${OS_RELEASE_PRETTY_NAME}")
 message(STATUS "OS_RELEASE_TAG         : ${OS_RELEASE_TAG}")

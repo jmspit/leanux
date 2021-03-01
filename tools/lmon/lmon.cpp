@@ -182,24 +182,25 @@ namespace leanux {
             if ( screen ) {
               screen->Stop();
               delete screen;
-              std::cerr << "Oops:" << oops.getMessage() << std::endl;
-              std::flush( std::cerr );
               screen = 0;
             }
+            std::cerr << "Oops:" << oops.getMessage() << std::endl;
+            std::flush( std::cerr );
           }
           catch ( ... ) {
             std::cerr << "unhandled exception during handling of Oops: " << oops.getMessage() << std::endl;
+            std::flush( std::cerr );
           }
           return 1;
         }
         catch ( ... ) {
-          std::cerr << "unhandled exception" << std::endl;
-          std::flush( std::cerr );
           if ( screen ) {
             screen->Stop();
             delete screen;
             screen = 0;
           }
+          std::cerr << "unhandled exception" << std::endl;
+          std::flush( std::cerr );
           return 2;
         }
 

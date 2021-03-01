@@ -381,42 +381,31 @@ namespace leanux {
         int key = getch();
         if ( key == 'q' ) {
           stopped_ = true;
+          update_required = false;
         } else if ( key == KEY_RIGHT ) {
           history.rangeUp();
-          update_required = true;
         } else if ( key == KEY_RIGHT ) {
           history.rangeDown();
-          update_required = true;
         } else if ( key == KEY_HOME ) {
           history.rangeStart();
-          update_required = true;
         } else if ( key == KEY_END ) {
           history.rangeEnd();
-          update_required = true;
         } else if (key == '-' ) {
           cur_zoom = history.zoomOut();
-          update_required = true;
         } else if ( key == '+' ) {
           cur_zoom = history.zoomIn();
-          update_required = true;
         } else if ( key == 'h' ) {
           history.hourDown();
-          update_required = true;
         } else if ( key == 'H' ) {
           history.hourUp();
-          update_required = true;
         } else if ( key == 'd' ) {
           history.dayDown();
-          update_required = true;
         } else if ( key == 'D' ) {
           history.dayUp();
-          update_required = true;
         } else if ( key == 'w' ) {
           history.weekDown();
-          update_required = true;
         } else if ( key == 'W' ) {
           history.weekUp();
-          update_required = true;
         }
 
 

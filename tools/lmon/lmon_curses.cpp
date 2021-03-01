@@ -386,7 +386,7 @@ namespace leanux {
             update_required = false;
           } else if ( key == KEY_RIGHT ) {
             history.rangeUp();
-          } else if ( key == KEY_RIGHT ) {
+          } else if ( key == KEY_LEFT ) {
             history.rangeDown();
           } else if ( key == KEY_HOME ) {
             history.rangeStart();

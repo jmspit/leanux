@@ -761,6 +761,14 @@ namespace leanux {
     std::string MajorMinor::getIOScheduler() const {
       std::string devname  = MajorMinor::getNameByMajorMinor( *this );
       std::string path = "/sys/class/block/" + devname + "/queue/scheduler";
+      if ( !util::fileReadAccess( path) ) {
+        if ( isPartition() ) {
+          MajorMinor mm = MajorMinor::deriveWholeDisk(*this);
+          devname  = MajorMinor::getNameByMajorMinor( mm );
+          path = "/sys/class/block/" + devname + "/queue/scheduler";
+          if ( !util::fileReadAccess( path)  ) return "?";
+        } else return "?";
+      }
       std::string scheduler = util::fileReadString( path );
       size_t p1 = scheduler.find('[');
       size_t p2 = scheduler.find(']');

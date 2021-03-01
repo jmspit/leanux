@@ -378,7 +378,7 @@ namespace leanux {
 
         while ( !stopped_ ) {
 
-        char key = getch();
+        int key = getch();
         if ( key == 'q' ) {
           stopped_ = true;
         } else if ( key == KEY_RIGHT ) {
@@ -499,7 +499,7 @@ namespace leanux {
         while ( !stopped_ ) {
 
           // any recognized user input?
-          char key = getch();
+          int key = getch();
           if ( key == 'q' ) {
             stopped_ = true;
           } else if ( key == '+' ) {

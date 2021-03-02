@@ -231,6 +231,7 @@ namespace leanux {
         cbreak();
         noecho();
         timeout(0);
+        keypad( wmain_, TRUE );
         leaveok( wmain_, TRUE );
         if ( ioctl( 0, TIOCGWINSZ, &winsz_ ) == -1 ) throw Oops( __FILE__, __LINE__, errno );
         resize_term(winsz_.ws_row,winsz_.ws_col);
@@ -378,46 +379,36 @@ namespace leanux {
 
         while ( !stopped_ ) {
 
-        char key = getch();
-        if ( key == 'q' ) {
-          stopped_ = true;
-        } else if ( key == KEY_RIGHT ) {
-          history.rangeUp();
           update_required = true;
-        } else if ( key == KEY_RIGHT ) {
-          history.rangeDown();
-          update_required = true;
-        } else if ( key == KEY_HOME ) {
-          history.rangeStart();
-          update_required = true;
-        } else if ( key == KEY_END ) {
-          history.rangeEnd();
-          update_required = true;
-        } else if (key == '-' ) {
-          cur_zoom = history.zoomOut();
-          update_required = true;
-        } else if ( key == '+' ) {
-          cur_zoom = history.zoomIn();
-          update_required = true;
-        } else if ( key == 'h' ) {
-          history.hourDown();
-          update_required = true;
-        } else if ( key == 'H' ) {
-          history.hourUp();
-          update_required = true;
-        } else if ( key == 'd' ) {
-          history.dayDown();
-          update_required = true;
-        } else if ( key == 'D' ) {
-          history.dayUp();
-          update_required = true;
-        } else if ( key == 'w' ) {
-          history.weekDown();
-          update_required = true;
-        } else if ( key == 'W' ) {
-          history.weekUp();
-          update_required = true;
-        }
+          int key = getch();
+          if ( key == 'q' ) {
+            stopped_ = true;
+            update_required = false;
+          } else if ( key == KEY_RIGHT ) {
+            history.rangeUp();
+          } else if ( key == KEY_LEFT ) {
+            history.rangeDown();
+          } else if ( key == KEY_HOME ) {
+            history.rangeStart();
+          } else if ( key == KEY_END ) {
+            history.rangeEnd();
+          } else if (key == '-' ) {
+            cur_zoom = history.zoomOut();
+          } else if ( key == '+' ) {
+            cur_zoom = history.zoomIn();
+          } else if ( key == 'h' ) {
+            history.hourDown();
+          } else if ( key == 'H' ) {
+            history.hourUp();
+          } else if ( key == 'd' ) {
+            history.dayDown();
+          } else if ( key == 'D' ) {
+            history.dayUp();
+          } else if ( key == 'w' ) {
+            history.weekDown();
+          } else if ( key == 'W' ) {
+            history.weekUp();
+          }
 
 
           if ( update_required ) {
@@ -499,7 +490,7 @@ namespace leanux {
         while ( !stopped_ ) {
 
           // any recognized user input?
-          char key = getch();
+          int key = getch();
           if ( key == 'q' ) {
             stopped_ = true;
           } else if ( key == '+' ) {

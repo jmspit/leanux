@@ -9,15 +9,15 @@ The (C++) binaries produced by this repository are
 | component | purpose |
 |------|---------|
 | libleanux.so | Shared library backing the leanux C++ API, required by the below tools |
-| lard | daemon that logs performance and base configuration data to a SQLite database file |
+| [lard](man_lard.pdf) | daemon that logs performance and base configuration data to a SQLite database file |
 | [lmon](man_lmon.pdf) | ncurses (tty) based performance viewer, both real-time and browsing historic data from the lard daemon, with colors, dynamic screen resizing |
-| lrep | generates html reports on lard data |
-| lsys | command-line tool to retrieve sysfs info for administrative use |
-| lblk | command-line tool to retrieve block device and filesystem info for administrative use |
+| [lrep](man_lrep.pdf) | generates html reports on lard data |
+| [lsys](man_lsys.pdf) | command-line tool to retrieve sysfs info for administrative use |
+| [lblk](man_lblk.pdf) | command-line tool to retrieve block device and filesystem info for administrative use |
 | labbix | Zabbix disk discovery and disk performance statistics for GNU/Linux |
 
 See [leanux on github pages](https://jmspit.github.io/leanux) for more documentation. If you are on github pages now,
-you can view the doxygen code documentation as [here](doxygen/html/index.html).
+you can view the doxygen code documentation as [here](doxygen/html/index.html), and the links in the above table will link to pdf documents.
 ## Building from source
 
 Builds should work on any Linux host that satisfies

@@ -1,0 +1,16 @@
+digraph "leanux::tools::lrep::jsIdFromString"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="leanux::tools::lrep\l::jsIdFromString",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="deterministic transform of arbitray strings into valid javascript identifiers"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::tools::lrep\l::htmlCmdCPUDetail",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1tools_1_1lrep.html#abb2c4d60c9284405a71347cb64780517",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::tools::lrep\l::htmlCmdDetails",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lrep.html#a62c03f9d98087191a6d6473c7384fa74",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="leanux::tools::lrep\l::htmlCmdRSSDetail",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1tools_1_1lrep.html#a9434a7f41a9aef0ce48a762267da8797",tooltip=" "];
+  Node6 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

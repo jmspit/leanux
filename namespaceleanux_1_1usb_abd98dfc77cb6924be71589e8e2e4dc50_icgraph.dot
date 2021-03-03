@@ -1,0 +1,23 @@
+digraph "leanux::usb::init"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="leanux::usb::init",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="initialize usb namespace."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::init",height=0.2,width=0.4,color="black",URL="$namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30",tooltip="Initialize leanux, run checks to verify leanux is compatible with the runtime environment."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::tools::lmon\l::main",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lmon.html#a7f59af183bc55b66e3dc0844b473daaf",tooltip=" "];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="leanux::tools::labbix\l::main",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1labbix.html#a482626b839aaf80a44f973eed61b69a6",tooltip=" "];
+  Node2 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="leanux::tools::lard\l::main",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lard.html#aecb1bb340203cfe30357d494d4b2622e",tooltip="Entry point."];
+  Node2 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="leanux::tools::lsys\l::main",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lsys.html#aa2b4de7a80d63592f6207ce5951cf966",tooltip="Entry point."];
+  Node2 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="leanux::tools::lblk\l::main",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lblk.html#a7e4a52393fd43c98af0e5e16603b54df",tooltip="Entry point."];
+  Node2 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="leanux::tools::lrep\l::main",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436",tooltip=" "];
+}

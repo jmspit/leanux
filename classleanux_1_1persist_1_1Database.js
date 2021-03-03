@@ -1,0 +1,28 @@
+var classleanux_1_1persist_1_1Database =
+[
+    [ "Database", "classleanux_1_1persist_1_1Database.html#adf7ec7acbd4cbbe16458b46c3f92db94", null ],
+    [ "~Database", "classleanux_1_1persist_1_1Database.html#a512b88af38be1129dbb42e69362c076a", null ],
+    [ "begin", "classleanux_1_1persist_1_1Database.html#a4ff46a478b219a811b9fa6bede2642f4", null ],
+    [ "beginExclusive", "classleanux_1_1persist_1_1Database.html#a58328a067339c001f13305037fec1827", null ],
+    [ "beginImmediate", "classleanux_1_1persist_1_1Database.html#afe529cb079ee12a616a673d53722ca84", null ],
+    [ "checkPointPassive", "classleanux_1_1persist_1_1Database.html#af8d6960a23121f360d20fed62cff8703", null ],
+    [ "checkPointTruncate", "classleanux_1_1persist_1_1Database.html#acbad718a3c2f8d2364031d1d53ebd259", null ],
+    [ "commit", "classleanux_1_1persist_1_1Database.html#a3066d61c7bc4107a97f01b851d8c2228", null ],
+    [ "disableForeignKeys", "classleanux_1_1persist_1_1Database.html#a438b4b98cb5b69f48ecac8c76fc9b205", null ],
+    [ "enableForeignKeys", "classleanux_1_1persist_1_1Database.html#a7dcf864d5aec747cc37246bc31396e7e", null ],
+    [ "enableTriggers", "classleanux_1_1persist_1_1Database.html#a305deb672bcb248158493c2155e49509", null ],
+    [ "fileName", "classleanux_1_1persist_1_1Database.html#a295f9d0b2e58507a2e0a744d85931e99", null ],
+    [ "getDB", "classleanux_1_1persist_1_1Database.html#a8f9199764f380ef19480b03df221f04d", null ],
+    [ "getUserVersion", "classleanux_1_1persist_1_1Database.html#aec62932794968b44881a68c7d32be763", null ],
+    [ "lastInsertRowid", "classleanux_1_1persist_1_1Database.html#ad2d6eb77b4fe786579b5447fd1b692bf", null ],
+    [ "memHighWater", "classleanux_1_1persist_1_1Database.html#ab332dffc6b8319d1c43455b940fe15c1", null ],
+    [ "memUsed", "classleanux_1_1persist_1_1Database.html#a98617fd43f366b4292e05ff0b271815c", null ],
+    [ "release", "classleanux_1_1persist_1_1Database.html#a8047d1d24fd18198bc93b265c343f684", null ],
+    [ "releaseMemory", "classleanux_1_1persist_1_1Database.html#a00a437a1f8c69b4aaf109fb462b266a0", null ],
+    [ "rollback", "classleanux_1_1persist_1_1Database.html#a86d44b1ba272befd9c84c748a1e6a4bd", null ],
+    [ "rollback", "classleanux_1_1persist_1_1Database.html#a1325fcdf59bfaf6cab968a16ab20fc27", null ],
+    [ "savepoint", "classleanux_1_1persist_1_1Database.html#a82999a376d576a6bcc7a99d70b4aca92", null ],
+    [ "setUserVersion", "classleanux_1_1persist_1_1Database.html#a24f88f33e32348bc419ec32f0880b114", null ],
+    [ "softHeapLimit", "classleanux_1_1persist_1_1Database.html#ac9b11e7e59cfd3f38fbb4ce1ea6fed87", null ],
+    [ "database_", "classleanux_1_1persist_1_1Database.html#a2bc0160f2d4337dcd062cd0a50669ce9", null ]
+];

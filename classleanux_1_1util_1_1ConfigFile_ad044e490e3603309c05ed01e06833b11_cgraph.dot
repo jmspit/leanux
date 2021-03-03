@@ -1,0 +1,13 @@
+digraph "leanux::util::ConfigFile::setConfig"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="leanux::util::ConfigFile\l::setConfig",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="set the application name and config file name."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::util::ConfigFile\l::ConfigFile",height=0.2,width=0.4,color="black",URL="$classleanux_1_1util_1_1ConfigFile.html#a1f104838a15bec5db5c6e2afe287cabc",tooltip="Constructor, should not be called directly, use setConfig and getConfig to create the ConfigFile."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::util::ConfigFile\l::read",height=0.2,width=0.4,color="black",URL="$classleanux_1_1util_1_1ConfigFile.html#a0a9d268bdbb30ef4953e13c9cfc23826",tooltip="read and interpret the configuration file."];
+}

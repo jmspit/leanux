@@ -1,0 +1,17 @@
+digraph "leanux::sysdevice::USBInterface::getClass"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="leanux::sysdevice::\lUSBInterface::getClass",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Get the device class for this device."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::usb::getUSBHardware\lClassStr",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1usb.html#ae829acc56dd4d026e028bf61bf2e4b3a",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::usb::getUSBInterface\lHardwareClass",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1usb.html#ab6d5edb6d930414aa0d31dab795a0b00",tooltip=" "];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="leanux::util::fileReadAccess",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d",tooltip="Test if a file exists and can be read."];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="leanux::util::fileReadHex\lString",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4",tooltip="read the first data in the file as a hexadecimal string representation of a signed long."];
+}

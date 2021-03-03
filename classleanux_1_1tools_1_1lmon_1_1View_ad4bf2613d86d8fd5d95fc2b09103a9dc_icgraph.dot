@@ -1,0 +1,22 @@
+digraph "leanux::tools::lmon::View::hLine"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="leanux::tools::lmon\l::View::hLine",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Draw a horizontal line."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::tools::lmon\l::View::box",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1View.html#aaa8ca71eb57cb60dc0f909da68329a65",tooltip="Draw a box."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::tools::lmon\l::SysView::xrefresh",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1SysView.html#ad72b5ee6be63091f3d320a23721d5cb4",tooltip="refresh (redraw) the View."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="leanux::tools::lmon\l::Footer::xrefresh",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1Footer.html#af73d1c7e046da00be4bf464ec0871b73",tooltip="refresh (redraw) the Footer."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="leanux::tools::lmon\l::IOView::xrefresh",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1IOView.html#ad5d8db29927cc18e861cfa5ba48ecd94",tooltip="refresh (redraw) the View."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="leanux::tools::lmon\l::ProcessView::xrefresh",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1ProcessView.html#af3566e8ec176744fcd254c558de68eed",tooltip="Refresh/redraw the ProcessView."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="leanux::tools::lmon\l::NetView::xrefresh",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1NetView.html#a0e5c6aa931081924ece2bd2407dfc000",tooltip="Refresh/redraw the ProcessView."];
+}

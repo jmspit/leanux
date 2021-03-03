@@ -1,0 +1,19 @@
+digraph "leanux::sysdevice::PCIBus::getDescription"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="leanux::sysdevice::\lPCIBus::getDescription",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Get a human readable description of this SysDevice."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::pci::getPCIHardwareId",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1pci.html#a48810ffbe83e8a8e357edfa1181c33a5",tooltip="get PCIHardwareId for a PCI device path relative to /sys/devives/"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::util::fileReadHex\lString",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4",tooltip="read the first data in the file as a hexadecimal string representation of a signed long."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="leanux::pci::getPCIHardwareInfo",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1pci.html#ac5de5302fd54c5e26d2f3745877a750c",tooltip="Get PCI device info based on (vendor,device) function retrieves data from /usr/share/misc/pci...."];
+  Node4 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="leanux::pci::getPCIHardware\lClassString",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1pci.html#a757a53b4facb1212c1bf2aa90bea46a3",tooltip="Transform a PCI class code to class name."];
+  Node4 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="leanux::pci::getPCISubClass\lString",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1pci.html#a1697f5b7863d9051b766e856eca0e6cc",tooltip="Get the PCI subclass name for a PCI class code http://wiki.osdev.org/PCI#Class_Codes."];
+}

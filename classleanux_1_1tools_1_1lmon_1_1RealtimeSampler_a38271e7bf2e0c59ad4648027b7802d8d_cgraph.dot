@@ -1,0 +1,25 @@
+digraph "leanux::tools::lmon::RealtimeSampler::sampleXNetView"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="leanux::tools::lmon\l::RealtimeSampler::sampleXNetView",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::util::deltaTime",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1util.html#a4837f2d09bfda41e98223427201d04e2",tooltip="Return the deltaof two timevals in seconds."];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::net::getNetStat",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1net.html#ac78d924eb899ccfa62581ec1d13dc75b",tooltip="Get network device statistics from /proc/net/dev."];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="leanux::net::getNetStatDelta",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1net.html#a9fc17074128622edcc8a3c1746f2d03d",tooltip="Get the delta of two NetStatDeviceMap objects, sorted by using int operator<( const NetStat& n1,..."];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="leanux::net::getTCPConnection\lCounters",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1net.html#ae1bc6c94c0c1352bbad7abeb430dea86",tooltip="Return the number of established TCP connections grouped by (ip,port,uid)."];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="leanux::net::convertAF_INET",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1net.html#a1961711f7416e2fc1f75688e973b7305",tooltip="convert IPv4 network IP representation to human readable format."];
+  Node5 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="leanux::net::convertAF\l_INET6",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1net.html#af94467113568c21e1a32c0d5e842dab0",tooltip="convert IPv6 network IP representation to human readable format."];
+  Node5 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="leanux::net::enumTCP4Sockets",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1net.html#ac002a4fe839bdbd3d3405dac3c01f120",tooltip="Enumerate TCP4 sockets from /proc/net/tcp."];
+  Node5 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="leanux::net::enumTCP6Sockets",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1net.html#a33866249dbf7e15b43f35f422147f06e",tooltip="Enumerate TCP6 sockets from /proc/net/tcp6."];
+}

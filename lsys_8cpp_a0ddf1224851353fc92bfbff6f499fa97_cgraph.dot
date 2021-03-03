@@ -1,0 +1,26 @@
+digraph "main"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="main",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::tools::lsys\l::main",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1tools_1_1lsys.html#aa2b4de7a80d63592f6207ce5951cf966",tooltip="Entry point."];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::Oops::getMessage",height=0.2,width=0.4,color="black",URL="$classleanux_1_1Oops.html#a144d78069f0bb6388bbd1db6385418d2",tooltip="Get the Oops message."];
+  Node2 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="leanux::tools::lsys\l::getOptions",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lsys.html#ab0fe8f8e7762c9d51111c1b46e748606",tooltip="Transform command line arguments into options."];
+  Node2 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="leanux::init",height=0.2,width=0.4,color="red",URL="$namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30",tooltip="Initialize leanux, run checks to verify leanux is compatible with the runtime environment."];
+  Node2 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="leanux::tools::lsys\l::printHelp",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1tools_1_1lsys.html#a82e1aa33b1314510353184fde2139bd3",tooltip="Print command help."];
+  Node2 -> Node23 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="leanux::tools::lsys\l::registerField",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1tools_1_1lsys.html#a63a3075a34537c3d70f7f707fec3f2bd",tooltip=" "];
+  Node2 -> Node24 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="leanux::tools::lsys\l::registerType",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1tools_1_1lsys.html#a452f4a6f2d7eda5e24e8409f9167b03b",tooltip="register devices types and maintain mappings between type and string representation."];
+  Node2 -> Node25 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node25 [label="leanux::tools::lsys\l::runOptions",height=0.2,width=0.4,color="red",URL="$namespaceleanux_1_1tools_1_1lsys.html#a33a75c6955dcd3ac89c9a6f86a0a1337",tooltip="Run based on options."];
+  Node25 -> Node22 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

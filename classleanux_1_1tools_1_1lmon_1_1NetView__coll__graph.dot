@@ -1,0 +1,20 @@
+digraph "leanux::tools::lmon::NetView"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="leanux::tools::lmon\l::NetView",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="View of top network devices."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::tools::lmon\l::View",height=0.2,width=0.4,color="black",URL="$classleanux_1_1tools_1_1lmon_1_1View.html",tooltip="A reactangular area on the ncurses Screen as a window of information."];
+  Node3 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" sample_count_" ,fontname="Helvetica"];
+  Node3 [label="unsigned long",height=0.2,width=0.4,color="grey75",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" screen_" ,fontname="Helvetica"];
+  Node4 [label="leanux::tools::lmon\l::Screen",height=0.2,width=0.4,color="red",URL="$classleanux_1_1tools_1_1lmon_1_1Screen.html",tooltip="The curses screen."];
+  Node2 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" vfooter_\nvsys_\nvio_\nvprocess_\nvnetwork_\nvheader_" ,fontname="Helvetica"];
+  Node10 -> Node4 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" wmain_" ,fontname="Helvetica"];
+  Node10 [label="WINDOW *",height=0.2,width=0.4,color="grey75",tooltip=" "];
+  Node7 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" attr_bold_text_\nabsy_\nheight_\nabsx_\nattr_plot_element\l_\nattr_line_\nwidth_\nattr_normal\l_text_\nattr_alert_text_" ,fontname="Helvetica"];
+  Node7 [label="int",height=0.2,width=0.4,color="grey75",tooltip=" "];
+  Node10 -> Node2 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" window_" ,fontname="Helvetica"];
+}

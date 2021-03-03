@@ -1,0 +1,19 @@
+digraph "leanux::sysdevice::USBBus::getDisplayName"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="leanux::sysdevice::\lUSBBus::getDisplayName",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="leanux::sysdevice::\lSysDevice::getDisplayName",height=0.2,width=0.4,color="black",URL="$classleanux_1_1sysdevice_1_1SysDevice.html#a869141642aa173656c57a6509f0fb6e5",tooltip=" "];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="leanux::usb::getUSBHardwareId",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1usb.html#a40b22561354d4885b6abe9a59f952904",tooltip="Get the USBHardwareId from an USBDevicePath."];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="leanux::util::fileReadAccess",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d",tooltip="Test if a file exists and can be read."];
+  Node3 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="leanux::util::fileReadHex\lString",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4",tooltip="read the first data in the file as a hexadecimal string representation of a signed long."];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="leanux::usb::getUSBHardwareInfo",height=0.2,width=0.4,color="black",URL="$namespaceleanux_1_1usb.html#a72944e4549fc2c4adf4d01c2d467bb6a",tooltip="Translate an USBHardwareId into an USBHardwareInfo by using the system (/usr/share) usb...."];
+}

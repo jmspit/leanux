@@ -1,0 +1,12 @@
+<map id="leanux::tools::lard::ResSnap::storeSnap" name="leanux::tools::lard::ResSnap::storeSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,217,164,259"/>
+<area shape="rect" id="node2" href="$d9/d78/classleanux_1_1persist_1_1DML.html#a8df01a6d880515c22106e424ed342c81" title="Bind a double value to the bind at position." alt="" coords="258,5,413,47"/>
+<area shape="rect" id="node3" href="$d9/d78/classleanux_1_1persist_1_1DML.html#a66bfdf8da5f7d2c02bb5cb6f54515783" title="Execute." alt="" coords="258,71,413,112"/>
+<area shape="rect" id="node4" href="$dd/d42/namespaceleanux_1_1system.html#a3cdfe742d15c8f3d4d7c01be3f3b42c7" title="The number of user logins as reported by who." alt="" coords="223,137,447,163"/>
+<area shape="rect" id="node5" href="$dd/d42/namespaceleanux_1_1system.html#a9821718a0beca2213c2f294267255d59" title="The number of distinct users logged in." alt="" coords="227,188,444,229"/>
+<area shape="rect" id="node6" href="$dd/d42/namespaceleanux_1_1system.html#acf5450712deab2fd3ebe192a290c4bc6" title="Get the number of processes on the system." alt="" coords="212,254,459,281"/>
+<area shape="rect" id="node7" href="$dd/d42/namespaceleanux_1_1system.html#a0fcf2d5d45e7838be8424cf1eabeeb14" title="get the current and maximum number of open files." alt="" coords="228,305,443,331"/>
+<area shape="rect" id="node8" href="$dd/d42/namespaceleanux_1_1system.html#aa437aedfc8ba5b977baef289f25c5da3" title="get the used and free number of open inodes." alt="" coords="221,355,449,382"/>
+<area shape="rect" id="node9" href="$db/dff/classleanux_1_1persist_1_1Statement.html#a1b809c1b1d0e9d24af65e439c3893d74" title="Prepare a SQL statement." alt="" coords="238,407,433,448"/>
+<area shape="rect" id="node10" href="$db/dff/classleanux_1_1persist_1_1Statement.html#a5b31fb14297ad5c1c342cfc0d8f797de" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="507,407,701,448"/>
+</map>

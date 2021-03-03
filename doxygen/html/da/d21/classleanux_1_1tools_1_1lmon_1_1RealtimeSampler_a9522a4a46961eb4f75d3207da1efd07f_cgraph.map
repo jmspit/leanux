@@ -1,0 +1,36 @@
+<map id="leanux::tools::lmon::RealtimeSampler::sample" name="leanux::tools::lmon::RealtimeSampler::sample">
+<area shape="rect" id="node1" title="Sample a snapshot." alt="" coords="5,441,204,482"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ae43e18aacfceb09eb9bd70db9c67fc98" title=" " alt="" coords="259,355,513,397"/>
+<area shape="rect" id="node10" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a38271e7bf2e0c59ad4648027b7802d8d" title=" " alt="" coords="255,107,517,149"/>
+<area shape="rect" id="node14" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#af80582780bfa40a11a40e647f9657d0f" title=" " alt="" coords="252,527,520,569"/>
+<area shape="rect" id="node21" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="255,1110,517,1151"/>
+<area shape="rect" id="node3" href="$d5/d01/namespaceleanux_1_1block.html#aa7dafdc339a1159d4364e877a7453c03" title="create a delta of two DeviceStatsMaps." alt="" coords="594,326,789,367"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a4837f2d09bfda41e98223427201d04e2" title="Return the deltaof two timevals in seconds." alt="" coords="607,392,776,419"/>
+<area shape="rect" id="node5" href="$d5/d01/namespaceleanux_1_1block.html#afaee6721d578e4e9ccbebb7dea5919a6" title="Get a map of MajorMinor to MountInfo from /proc/mounts." alt="" coords="590,173,793,200"/>
+<area shape="rect" id="node6" href="$d5/d01/namespaceleanux_1_1block.html#a12e7b3a8ce8e601504f25c9c3e2fa7f0" title="get the MajorMinor for a device file or aliases to it, resolves the devicefile with realpath." alt="" coords="863,191,1061,233"/>
+<area shape="rect" id="node7" href="$d5/d01/namespaceleanux_1_1block.html#a0a3be314ae37f554ef89d7b5b30a8039" title="Used bytes over all mounted filesystems." alt="" coords="585,690,797,731"/>
+<area shape="rect" id="node8" href="$d5/d01/namespaceleanux_1_1block.html#ae227ed1fa83d91988072e335ea0f81e9" title="get block device statistics into a DeviceStatsMap." alt="" coords="606,275,777,301"/>
+<area shape="rect" id="node9" href="$dc/d32/namespaceleanux_1_1vmem.html#aabc162dbfa4e98a5d1bf2571ba58de88" title="Get a std::list of SwapInfo swap spaces." alt="" coords="589,756,794,783"/>
+<area shape="rect" id="node11" href="$d5/db8/namespaceleanux_1_1net.html#ac78d924eb899ccfa62581ec1d13dc75b" title="Get network device statistics from /proc/net/dev." alt="" coords="605,5,778,32"/>
+<area shape="rect" id="node12" href="$d5/db8/namespaceleanux_1_1net.html#a9fc17074128622edcc8a3c1746f2d03d" title="Get the delta of two NetStatDeviceMap objects, sorted by using int operator&lt;( const NetStat&amp; n1,..." alt="" coords="587,56,795,83"/>
+<area shape="rect" id="node13" href="$d5/db8/namespaceleanux_1_1net.html#ae1bc6c94c0c1352bbad7abeb430dea86" title="Return the number of established TCP connections grouped by (ip,port,uid)." alt="" coords="581,107,802,149"/>
+<area shape="rect" id="node15" href="$d9/d34/namespaceleanux_1_1process.html#a016ba417c40324fe090a55a67d3ca2a6" title="Get a delta of two ProcPidStatMap std::maps into the delta std::map." alt="" coords="595,559,788,601"/>
+<area shape="rect" id="node16" href="$d9/d34/namespaceleanux_1_1process.html#a385cafe09f0dc82ce8a830124665d69d" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="592,625,791,666"/>
+<area shape="rect" id="node17" href="$dd/d42/namespaceleanux_1_1system.html#acf5450712deab2fd3ebe192a290c4bc6" title="Get the number of processes on the system." alt="" coords="568,873,815,900"/>
+<area shape="rect" id="node18" href="$d9/d34/namespaceleanux_1_1process.html#a92d013dc3ef32fd9b987b410b1ad2edc" title="Get the pid&#39;s command line." alt="" coords="601,807,782,849"/>
+<area shape="rect" id="node19" href="$d9/d34/namespaceleanux_1_1process.html#a25f41d972bb92c8cbe982e0c74c68f7d" title="get the effective uid of a running process." alt="" coords="590,443,793,469"/>
+<area shape="rect" id="node20" href="$d8/df9/classleanux_1_1util_1_1Stopwatch.html#af09212ac0202c1b9ec52a554425d54b1" title="stop the Stopwatch." alt="" coords="606,494,777,535"/>
+<area shape="rect" id="node22" href="$da/da3/namespaceleanux_1_1cpu.html#aacae00e1b4ea43c5aa6e78e951937b51" title="Compute the deltas for two CPUStatMap std::maps into delta." alt="" coords="606,1412,777,1439"/>
+<area shape="rect" id="node23" href="$da/da3/namespaceleanux_1_1cpu.html#a59cf2af9830e859ca848f87c9d605d6f" title="Get CPU usage statistics from /proc/stat." alt="" coords="598,1463,785,1489"/>
+<area shape="rect" id="node24" href="$da/da3/namespaceleanux_1_1cpu.html#a31a23bc3cbd9990806ad11b532e6cb93" title="get the CPU topology." alt="" coords="586,1513,797,1540"/>
+<area shape="rect" id="node25" href="$da/da3/namespaceleanux_1_1cpu.html#aed13e7a256443ad29418d1fd83b27b8e" title="Sum the entries in all to derive the total." alt="" coords="599,1564,783,1591"/>
+<area shape="rect" id="node26" href="$da/da3/namespaceleanux_1_1cpu.html#a9f50740a011befb245de0dbfbbf6e4ca" title="Get the system load averages." alt="" coords="601,924,782,951"/>
+<area shape="rect" id="node27" href="$dd/d42/namespaceleanux_1_1system.html#a3cdfe742d15c8f3d4d7c01be3f3b42c7" title="The number of user logins as reported by who." alt="" coords="579,975,803,1001"/>
+<area shape="rect" id="node28" href="$dd/d42/namespaceleanux_1_1system.html#a9821718a0beca2213c2f294267255d59" title="The number of distinct users logged in." alt="" coords="583,1026,800,1067"/>
+<area shape="rect" id="node29" href="$dd/d42/namespaceleanux_1_1system.html#a0fcf2d5d45e7838be8424cf1eabeeb14" title="get the current and maximum number of open files." alt="" coords="584,1092,799,1119"/>
+<area shape="rect" id="node30" href="$dd/d42/namespaceleanux_1_1system.html#aa437aedfc8ba5b977baef289f25c5da3" title="get the used and free number of open inodes." alt="" coords="577,1143,805,1169"/>
+<area shape="rect" id="node31" href="$da/da3/namespaceleanux_1_1cpu.html#ac5901cd50a8f7e4263b2ecb9875a818d" title="Get the number of running and blocked processes." alt="" coords="596,1193,787,1220"/>
+<area shape="rect" id="node32" href="$dc/d32/namespaceleanux_1_1vmem.html#afaf001154952f8397853ca745110020e" title="get virtual memory statistics." alt="" coords="595,1244,787,1271"/>
+<area shape="rect" id="node33" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a85ae7434eb396ed84307a15724c790c0" title="create a (vertical) CPU bar string from the CPUStat for terminal&#45;based output." alt="" coords="618,1295,765,1337"/>
+<area shape="rect" id="node34" href="$da/da3/namespaceleanux_1_1cpu.html#ae4420cd18b5170e303f743d6c2e5a6ec" title="Scales the numbers in stat to the time interval dt times the number of processors,..." alt="" coords="577,1361,806,1388"/>
+</map>

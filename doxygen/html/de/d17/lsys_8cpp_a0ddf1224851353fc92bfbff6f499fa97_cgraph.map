@@ -1,0 +1,11 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,173,60,200"/>
+<area shape="rect" id="node2" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#aa2b4de7a80d63592f6207ce5951cf966" title="Entry point." alt="" coords="108,166,248,207"/>
+<area shape="rect" id="node3" href="$d8/d4a/classleanux_1_1Oops.html#a144d78069f0bb6388bbd1db6385418d2" title="Get the Oops message." alt="" coords="296,5,491,32"/>
+<area shape="rect" id="node4" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ab0fe8f8e7762c9d51111c1b46e748606" title="Transform command line arguments into options." alt="" coords="323,57,463,98"/>
+<area shape="rect" id="node5" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="346,123,441,149"/>
+<area shape="rect" id="node6" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a82e1aa33b1314510353184fde2139bd3" title="Print command help." alt="" coords="539,261,679,302"/>
+<area shape="rect" id="node7" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a63a3075a34537c3d70f7f707fec3f2bd" title=" " alt="" coords="323,225,463,266"/>
+<area shape="rect" id="node8" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a452f4a6f2d7eda5e24e8409f9167b03b" title="register devices types and maintain mappings between type and string representation." alt="" coords="323,290,463,331"/>
+<area shape="rect" id="node9" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a33a75c6955dcd3ac89c9a6f86a0a1337" title="Run based on options." alt="" coords="323,355,463,397"/>
+</map>

@@ -1,0 +1,118 @@
+<map id="leanux::tools::lard::mainLoop" name="leanux::tools::lard::mainLoop">
+<area shape="rect" id="node1" title=" " alt="" coords="5,3052,144,3093"/>
+<area shape="rect" id="node2" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a98a04e0c068c5083ad571ebc9b79d693" title=" " alt="" coords="217,2472,355,2513"/>
+<area shape="rect" id="node3" href="$d9/d78/classleanux_1_1persist_1_1DML.html#a8df01a6d880515c22106e424ed342c81" title="Bind a double value to the bind at position." alt="" coords="736,3618,891,3660"/>
+<area shape="rect" id="node4" href="$db/dff/classleanux_1_1persist_1_1Statement.html#a5b31fb14297ad5c1c342cfc0d8f797de" title="A statement handle can be explicitly closed without deleting the Statement object itself." alt="" coords="989,1874,1183,1916"/>
+<area shape="rect" id="node6" href="$d9/d78/classleanux_1_1persist_1_1DML.html#a66bfdf8da5f7d2c02bb5cb6f54515783" title="Execute." alt="" coords="736,3684,891,3725"/>
+<area shape="rect" id="node7" href="$db/dff/classleanux_1_1persist_1_1Statement.html#a1b809c1b1d0e9d24af65e439c3893d74" title="Prepare a SQL statement." alt="" coords="716,1488,911,1529"/>
+<area shape="rect" id="node9" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="730,2702,897,2744"/>
+<area shape="rect" id="node12" href="$d4/d2c/classleanux_1_1persist_1_1Query.html#a294e11c33a22761503c49418f5ca9815" title="Step the result list, end of list returns false." alt="" coords="731,2890,896,2932"/>
+<area shape="rect" id="node13" href="$d8/daf/classleanux_1_1persist_1_1Database.html#a4ff46a478b219a811b9fa6bede2642f4" title="Begin a transaction." alt="" coords="440,1688,628,1729"/>
+<area shape="rect" id="node15" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="211,1742,361,1768"/>
+<area shape="rect" id="node16" href="$d8/daf/classleanux_1_1persist_1_1Database.html#af8d6960a23121f360d20fed62cff8703" title="Issue a passive checpoint." alt="" coords="192,1793,380,1834"/>
+<area shape="rect" id="node17" href="$d8/daf/classleanux_1_1persist_1_1Database.html#acbad718a3c2f8d2364031d1d53ebd259" title="Issue a (WAL) truncate checpoint." alt="" coords="192,1858,380,1900"/>
+<area shape="rect" id="node18" href="$d8/daf/classleanux_1_1persist_1_1Database.html#a3066d61c7bc4107a97f01b851d8c2228" title="Commit a transaction." alt="" coords="440,1622,628,1664"/>
+<area shape="rect" id="node19" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a4f52f68eb8bc686294b04d3138d48740" title=" " alt="" coords="217,881,355,922"/>
+<area shape="rect" id="node38" href="$d8/daf/classleanux_1_1persist_1_1Database.html#a7dcf864d5aec747cc37246bc31396e7e" title="Enable foreign key constraints." alt="" coords="192,2041,380,2082"/>
+<area shape="rect" id="node39" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aee987aaaf44a4832b535ecf78065d963" title=" " alt="" coords="217,1924,355,1965"/>
+<area shape="rect" id="node43" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a0a3951f50023eb0f3b4f6722a5943436" title=" " alt="" coords="465,2578,603,2620"/>
+<area shape="rect" id="node44" href="$d8/df9/classleanux_1_1util_1_1Stopwatch.html#ab9f97034d61e99e7fb11e941eeba8768" title=" " alt="" coords="201,2237,371,2278"/>
+<area shape="rect" id="node45" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aae0c3891e3d5a8d391a7439602b92780" title="return the configuration parameter as an int." alt="" coords="730,2825,897,2866"/>
+<area shape="rect" id="node46" href="$d3/d88/classleanux_1_1tools_1_1lard_1_1TimeSnap.html#aedd4fcb44cc3e2919354c5a3137c66cd" title=" " alt="" coords="197,2354,375,2396"/>
+<area shape="rect" id="node47" href="$d8/daf/classleanux_1_1persist_1_1Database.html#aec62932794968b44881a68c7d32be763" title="get the current user_version pragma" alt="" coords="440,2024,628,2065"/>
+<area shape="rect" id="node48" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a9492d51a0046e33c7a4dda4229537548" title="set page_size and enable WAL mode." alt="" coords="465,2141,603,2182"/>
+<area shape="rect" id="node49" href="$d8/daf/classleanux_1_1persist_1_1Database.html#ab332dffc6b8319d1c43455b940fe15c1" title=" " alt="" coords="192,2537,380,2578"/>
+<area shape="rect" id="node50" href="$d8/daf/classleanux_1_1persist_1_1Database.html#a98617fd43f366b4292e05ff0b271815c" title=" " alt="" coords="192,2602,380,2644"/>
+<area shape="rect" id="node51" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a45d90387f852d7a71981b5d4ff93d8da" title=" " alt="" coords="217,2106,355,2148"/>
+<area shape="rect" id="node52" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#af293f8b5b80c0189b1dc1904fe94d9bf" title=" " alt="" coords="465,228,603,269"/>
+<area shape="rect" id="node53" href="$d8/db1/namespaceleanux_1_1util.html#af85d667f0a1e549c70b45f81159af980" title="Sleep seconds+nanoseconds." alt="" coords="465,3218,603,3244"/>
+<area shape="rect" id="node54" href="$d8/daf/classleanux_1_1persist_1_1Database.html#ac9b11e7e59cfd3f38fbb4ce1ea6fed87" title=" " alt="" coords="192,2837,380,2878"/>
+<area shape="rect" id="node55" href="$d8/df9/classleanux_1_1util_1_1Stopwatch.html#aedb04d3c9636011920f30111bab396c5" title="Start the Stopwatch." alt="" coords="201,2902,371,2944"/>
+<area shape="rect" id="node56" href="$d3/d88/classleanux_1_1tools_1_1lard_1_1TimeSnap.html#a625897f390c702ec2bcc5558e006deb8" title=" " alt="" coords="203,2968,369,3009"/>
+<area shape="rect" id="node57" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#aaa09ea465f8fc251716e47382551cf13" title=" " alt="" coords="213,4328,359,4369"/>
+<area shape="rect" id="node59" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#a18e1fbcdf89ec7537bc853b314657890" title=" " alt="" coords="207,3740,365,3781"/>
+<area shape="rect" id="node61" href="$d3/d40/classleanux_1_1tools_1_1lard_1_1SchedSnap.html#ad519ce292b396ea7b34eb8f98c3d76bd" title=" " alt="" coords="201,4001,371,4042"/>
+<area shape="rect" id="node64" href="$d2/de5/classleanux_1_1tools_1_1lard_1_1NetSnap.html#a856922288b7d4d63dd2f173ee7eb0dd3" title=" " alt="" coords="209,4197,363,4238"/>
+<area shape="rect" id="node66" href="$d5/d46/classleanux_1_1tools_1_1lard_1_1VMSnap.html#a37c5af9624501ff9094fcd956863bad0" title=" " alt="" coords="209,4626,363,4668"/>
+<area shape="rect" id="node68" href="$d4/d0e/classleanux_1_1tools_1_1lard_1_1ProcSnap.html#ab54043cba9664efa3321d9456c9bb3a0" title=" " alt="" coords="206,381,366,422"/>
+<area shape="rect" id="node70" href="$d4/d46/classleanux_1_1tools_1_1lard_1_1ResSnap.html#ad254ff88d977694c1cdc2aa2d374083e" title=" " alt="" coords="208,3338,364,3380"/>
+<area shape="rect" id="node71" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a934aedfb855a789ff7039b23112c4ae1" title=" " alt="" coords="199,4262,373,4304"/>
+<area shape="rect" id="node72" href="$d7/dff/classleanux_1_1tools_1_1lard_1_1TCPEstaSnap.html#afc5a7c4eac707faafcec542c48066d00" title=" " alt="" coords="194,3456,378,3497"/>
+<area shape="rect" id="node73" href="$d3/d88/classleanux_1_1tools_1_1lard_1_1TimeSnap.html#af46d912ab9b2059a7d963b26cf10e28d" title=" " alt="" coords="205,3521,367,3562"/>
+<area shape="rect" id="node74" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#ab020781eb6e152bf9b884a4000d7e923" title=" " alt="" coords="214,4393,358,4434"/>
+<area shape="rect" id="node75" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#af9c73b36a541b0eae3b06e491b9cdff0" title=" " alt="" coords="207,3805,365,3846"/>
+<area shape="rect" id="node76" href="$d3/d40/classleanux_1_1tools_1_1lard_1_1SchedSnap.html#aa6adf554028f38d4652a368f029a605d" title=" " alt="" coords="201,3870,371,3912"/>
+<area shape="rect" id="node77" href="$d2/de5/classleanux_1_1tools_1_1lard_1_1NetSnap.html#a7a429b2ea8298f49fbd0e0f9c70d7fc7" title=" " alt="" coords="209,4132,363,4173"/>
+<area shape="rect" id="node78" href="$d5/d46/classleanux_1_1tools_1_1lard_1_1VMSnap.html#ac8539527962d0d32339ea8e64820a1a4" title=" " alt="" coords="211,4692,361,4733"/>
+<area shape="rect" id="node79" href="$d4/d0e/classleanux_1_1tools_1_1lard_1_1ProcSnap.html#a2922f8c93498c97d1b47ec2e6b7d817d" title=" " alt="" coords="207,145,365,186"/>
+<area shape="rect" id="node80" href="$d4/d46/classleanux_1_1tools_1_1lard_1_1ResSnap.html#a1ab5935f077d0fba67e810019d62b307" title=" " alt="" coords="209,3936,363,3977"/>
+<area shape="rect" id="node81" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a03ffa5736036aaed951d16b51d181c29" title=" " alt="" coords="201,4458,371,4500"/>
+<area shape="rect" id="node85" href="$d7/dff/classleanux_1_1tools_1_1lard_1_1TCPEstaSnap.html#abbe910ed460e4e2ec2ead68edad2ae72" title=" " alt="" coords="195,4066,377,4108"/>
+<area shape="rect" id="node86" href="$d3/d88/classleanux_1_1tools_1_1lard_1_1TimeSnap.html#ae4186449701030aec1986be6c197ba24" title=" " alt="" coords="450,3530,618,3572"/>
+<area shape="rect" id="node88" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#acd9defb7ca62e96d5f76b04b3e365b41" title=" " alt="" coords="459,3334,609,3376"/>
+<area shape="rect" id="node90" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#a08144ea8cd0e5e5ff868278abc111f44" title=" " alt="" coords="453,4600,615,4641"/>
+<area shape="rect" id="node93" href="$d3/d40/classleanux_1_1tools_1_1lard_1_1SchedSnap.html#a2726e1f32a987d973afd8d5dcc1b96b1" title=" " alt="" coords="447,3698,621,3740"/>
+<area shape="rect" id="node94" href="$d2/de5/classleanux_1_1tools_1_1lard_1_1NetSnap.html#a6a04b1f2237b5fe9ac5f7be64721f23f" title=" " alt="" coords="455,3465,613,3506"/>
+<area shape="rect" id="node97" href="$d5/d46/classleanux_1_1tools_1_1lard_1_1VMSnap.html#ad7ebbd5cb631d19b7c1a08aeeb7e138b" title=" " alt="" coords="456,4432,612,4473"/>
+<area shape="rect" id="node100" href="$d4/d0e/classleanux_1_1tools_1_1lard_1_1ProcSnap.html#ab816bcbf8f8986599df48ee7131c10fb" title=" " alt="" coords="453,3050,615,3092"/>
+<area shape="rect" id="node105" href="$d4/d46/classleanux_1_1tools_1_1lard_1_1ResSnap.html#a03496036d673feae3ae05cd1106c2858" title=" " alt="" coords="455,4682,613,4724"/>
+<area shape="rect" id="node111" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a7288efb64fc31818416b8c52c4ba3a0d" title=" " alt="" coords="446,3400,622,3441"/>
+<area shape="rect" id="node112" href="$d7/dff/classleanux_1_1tools_1_1lard_1_1TCPEstaSnap.html#adc30b5d65eacc454cb653851f6180f8b" title=" " alt="" coords="441,3269,627,3310"/>
+<area shape="rect" id="node114" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a916cea2cf80aa0a17a8f96c8a7b19a8a" title=" " alt="" coords="217,2172,355,2213"/>
+<area shape="rect" id="node116" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a1836a03324cfc7e84a5563a59566d8aa" title=" " alt="" coords="215,2720,357,2761"/>
+<area shape="rect" id="node5" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a9249744b0576a17dd109b8fad44863d3" title=" " alt="" coords="465,2410,603,2452"/>
+<area shape="rect" id="node10" href="$d4/d2c/classleanux_1_1persist_1_1Query.html#ada37977ad924b728401fa1fb7506cd2e" title="Get long value from select list." alt="" coords="731,3269,896,3310"/>
+<area shape="rect" id="node11" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aece3326e1c10df9dcfb48f4c12967336" title="return the configuration parameter as a string." alt="" coords="1003,2796,1169,2837"/>
+<area shape="rect" id="node8" href="$db/dff/classleanux_1_1persist_1_1Statement.html#a4696481e678f7c7337c07c480ee985ec" title="Reset a SQL statement for rexecute or even re&#45;prepare." alt="" coords="716,620,911,661"/>
+<area shape="rect" id="node14" href="$dc/d43/classleanux_1_1persist_1_1DDL.html#ab2cd56bd7eff3f55c82a5386749a06fa" title="execute, throws Oops on error." alt="" coords="737,946,890,988"/>
+<area shape="rect" id="node20" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#af2ef8f47d2f418a7d47094fcee406ec0" title=" " alt="" coords="465,1142,603,1184"/>
+<area shape="rect" id="node21" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a83ef9ad4dc00e23816c0a6208d85aa9b" title=" " alt="" coords="457,750,611,792"/>
+<area shape="rect" id="node22" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#af1d9ed71437fe1246062c7d5dcde6eda" title=" " alt="" coords="465,1208,603,1249"/>
+<area shape="rect" id="node23" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aa7dd5685fe34fea5a779e517ccc48d8c" title=" " alt="" coords="463,816,605,857"/>
+<area shape="rect" id="node24" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#ad003cbae3a86514160367e8dbeccbecc" title=" " alt="" coords="445,1338,623,1380"/>
+<area shape="rect" id="node25" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a401c6c4b3e49ad213a0319c541efc3d6" title=" " alt="" coords="449,293,619,334"/>
+<area shape="rect" id="node26" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a15a017bdb0ea0ca666940ee78ef498bc" title=" " alt="" coords="457,358,611,400"/>
+<area shape="rect" id="node27" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a5737481af8c6777cf236fa22e124f383" title=" " alt="" coords="465,1012,603,1053"/>
+<area shape="rect" id="node28" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#ad7f56c0bcfab535ac513b5af00d622f7" title=" " alt="" coords="455,424,613,465"/>
+<area shape="rect" id="node29" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a69219ad1d3c059a04dc134e6a054b99e" title=" " alt="" coords="457,489,611,530"/>
+<area shape="rect" id="node30" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a436346c9cf993a22564e605574a2d0cd" title=" " alt="" coords="449,554,619,596"/>
+<area shape="rect" id="node31" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a232257ac3ea3a4467e6fb61264c7a83e" title=" " alt="" coords="451,620,617,661"/>
+<area shape="rect" id="node32" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#adcd2bb743c2378bf3f23e994bdafe4ce" title=" " alt="" coords="461,1404,607,1445"/>
+<area shape="rect" id="node33" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#ae637f097c60288ee33b8218f8e0295a5" title=" " alt="" coords="441,1273,627,1314"/>
+<area shape="rect" id="node34" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6621a1bc056c7712ecebb7b15255ff33" title=" " alt="" coords="459,881,609,922"/>
+<area shape="rect" id="node35" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aeb1455d1498381d103267cff530bebc3" title=" " alt="" coords="438,946,630,988"/>
+<area shape="rect" id="node36" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#ab2c2798337d6dc7df7462e269cacf5d8" title=" " alt="" coords="458,1077,610,1118"/>
+<area shape="rect" id="node37" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#afe7d06462ac7d35a5e16bbc4d39c57ba" title=" " alt="" coords="459,685,609,726"/>
+<area shape="rect" id="node40" href="$d4/d2c/classleanux_1_1persist_1_1Query.html#a86b5deec83f9cdf0c72f6caf503984d9" title="Get int value from select list." alt="" coords="731,1973,896,2014"/>
+<area shape="rect" id="node41" href="$d8/d4a/classleanux_1_1Oops.html#a144d78069f0bb6388bbd1db6385418d2" title="Get the Oops message." alt="" coords="437,1571,631,1598"/>
+<area shape="rect" id="node42" href="$d9/d34/namespaceleanux_1_1process.html#a6533e64a7e3e102f65df053802c83919" title="Get the ProcPidStat for the pid." alt="" coords="723,89,904,130"/>
+<area shape="rect" id="node58" href="$d5/d01/namespaceleanux_1_1block.html#ae227ed1fa83d91988072e335ea0f81e9" title="get block device statistics into a DeviceStatsMap." alt="" coords="449,4263,619,4290"/>
+<area shape="rect" id="node60" href="$da/da3/namespaceleanux_1_1cpu.html#a59cf2af9830e859ca848f87c9d605d6f" title="Get CPU usage statistics from /proc/stat." alt="" coords="441,3866,627,3892"/>
+<area shape="rect" id="node62" href="$da/da3/namespaceleanux_1_1cpu.html#a9f50740a011befb245de0dbfbbf6e4ca" title="Get the system load averages." alt="" coords="443,3998,625,4024"/>
+<area shape="rect" id="node63" href="$da/da3/namespaceleanux_1_1cpu.html#ac5901cd50a8f7e4263b2ecb9875a818d" title="Get the number of running and blocked processes." alt="" coords="439,3928,629,3955"/>
+<area shape="rect" id="node65" href="$d5/db8/namespaceleanux_1_1net.html#ac78d924eb899ccfa62581ec1d13dc75b" title="Get network device statistics from /proc/net/dev." alt="" coords="447,4172,621,4199"/>
+<area shape="rect" id="node67" href="$dc/d32/namespaceleanux_1_1vmem.html#afaf001154952f8397853ca745110020e" title="get virtual memory statistics." alt="" coords="438,4548,630,4575"/>
+<area shape="rect" id="node69" href="$d9/d34/namespaceleanux_1_1process.html#a385cafe09f0dc82ce8a830124665d69d" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="435,60,633,101"/>
+<area shape="rect" id="node82" href="$d5/d01/namespaceleanux_1_1block.html#afaee6721d578e4e9ccbebb7dea5919a6" title="Get a map of MajorMinor to MountInfo from /proc/mounts." alt="" coords="712,4316,915,4343"/>
+<area shape="rect" id="node84" href="$d5/d01/namespaceleanux_1_1block.html#a0a3be314ae37f554ef89d7b5b30a8039" title="Used bytes over all mounted filesystems." alt="" coords="428,4314,640,4356"/>
+<area shape="rect" id="node83" href="$d5/d01/namespaceleanux_1_1block.html#a12e7b3a8ce8e601504f25c9c3e2fa7f0" title="get the MajorMinor for a device file or aliases to it, resolves the devicefile with realpath." alt="" coords="987,3884,1185,3925"/>
+<area shape="rect" id="node87" href="$d8/daf/classleanux_1_1persist_1_1Database.html#ad2d6eb77b4fe786579b5447fd1b692bf" title="Get the rowid of the last inserted row." alt="" coords="719,3334,907,3376"/>
+<area shape="rect" id="node89" href="$d5/d01/namespaceleanux_1_1block.html#aa7dafdc339a1159d4364e877a7453c03" title="create a delta of two DeviceStatsMaps." alt="" coords="716,3400,911,3441"/>
+<area shape="rect" id="node91" href="$da/da3/namespaceleanux_1_1cpu.html#a35d1bf5dbb139fcebedd891244d36039" title="get the core id of the logical CPU from /sys/devices/system/cpu/cpuX/core_id." alt="" coords="716,4538,911,4564"/>
+<area shape="rect" id="node92" href="$da/da3/namespaceleanux_1_1cpu.html#aa3faebda296d39bfcaaccfe9a8398ec0" title="get the physical id of the logical CPU from /sys/devices/system/cpu/cpuX/physical_package_id." alt="" coords="704,4588,923,4615"/>
+<area shape="rect" id="node95" href="$d5/db8/namespaceleanux_1_1net.html#a6fd1c299c0eb06a5dece79bb60649d10" title="Get the device&#39;s MAC address." alt="" coords="688,3516,939,3543"/>
+<area shape="rect" id="node96" href="$d5/db8/namespaceleanux_1_1net.html#a29ff3c5a7e99221cc3bfe72405f72a08" title="Get the device sysfs path." alt="" coords="726,3567,901,3594"/>
+<area shape="rect" id="node98" href="$dd/d42/namespaceleanux_1_1system.html#a52dc747f7af9f66fabb1ccfd72c7c450" title="Get the system page size." alt="" coords="709,4266,918,4292"/>
+<area shape="rect" id="node99" href="$dc/d32/namespaceleanux_1_1vmem.html#aabc162dbfa4e98a5d1bf2571ba58de88" title="Get a std::list of SwapInfo swap spaces." alt="" coords="711,3904,916,3931"/>
+<area shape="rect" id="node101" href="$d9/d34/namespaceleanux_1_1process.html#a016ba417c40324fe090a55a67d3ca2a6" title="Get a delta of two ProcPidStatMap std::maps into the delta std::map." alt="" coords="717,3138,910,3180"/>
+<area shape="rect" id="node102" href="$d9/d34/namespaceleanux_1_1process.html#a92d013dc3ef32fd9b987b410b1ad2edc" title="Get the pid&#39;s command line." alt="" coords="723,3021,904,3062"/>
+<area shape="rect" id="node103" href="$d9/d34/namespaceleanux_1_1process.html#a25f41d972bb92c8cbe982e0c74c68f7d" title="get the effective uid of a running process." alt="" coords="712,3087,915,3114"/>
+<area shape="rect" id="node104" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#af62cc2be1bf08d122bd390f18a886fdc" title="return the configuration parameter as an int." alt="" coords="730,2956,897,2997"/>
+<area shape="rect" id="node106" href="$dd/d42/namespaceleanux_1_1system.html#a3cdfe742d15c8f3d4d7c01be3f3b42c7" title="The number of user logins as reported by who." alt="" coords="701,4740,925,4767"/>
+<area shape="rect" id="node107" href="$dd/d42/namespaceleanux_1_1system.html#a9821718a0beca2213c2f294267255d59" title="The number of distinct users logged in." alt="" coords="705,4792,922,4833"/>
+<area shape="rect" id="node108" href="$dd/d42/namespaceleanux_1_1system.html#acf5450712deab2fd3ebe192a290c4bc6" title="Get the number of processes on the system." alt="" coords="690,4858,937,4884"/>
+<area shape="rect" id="node109" href="$dd/d42/namespaceleanux_1_1system.html#a0fcf2d5d45e7838be8424cf1eabeeb14" title="get the current and maximum number of open files." alt="" coords="706,4639,921,4666"/>
+<area shape="rect" id="node110" href="$dd/d42/namespaceleanux_1_1system.html#aa437aedfc8ba5b977baef289f25c5da3" title="get the used and free number of open inodes." alt="" coords="699,4690,927,4716"/>
+<area shape="rect" id="node113" href="$d5/db8/namespaceleanux_1_1net.html#ae1bc6c94c0c1352bbad7abeb430dea86" title="Return the number of established TCP connections grouped by (ip,port,uid)." alt="" coords="703,3204,924,3245"/>
+<area shape="rect" id="node115" href="$d8/daf/classleanux_1_1persist_1_1Database.html#a24f88f33e32348bc419ec32f0880b114" title="set the user_version pragma" alt="" coords="440,1805,628,1846"/>
+</map>

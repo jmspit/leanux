@@ -1,0 +1,13 @@
+<map id="leanux::block::MajorMinor::getStats" name="leanux::block::MajorMinor::getStats">
+<area shape="rect" id="node1" title="get performance statistics for the block device specified by MajorMinor." alt="" coords="5,121,196,162"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aec5c9aa75e9cb579163989cece64adc7" title="Get SCSI iodone_cnt (number of SCSI IO completions)" alt="" coords="244,22,435,64"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab3f52da181b760aa9d9240c08beb8ae8" title="Get SCSI ioerr_cnt (number of SCSI IO errors)" alt="" coords="244,88,435,129"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0c501b00fcddef5167f8f4e4f98e3bdb" title="Get SCSI iorequest_cnt (number of SCSI IO requests)" alt="" coords="244,153,435,194"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a742f510de3aea2ec0a1eb112e3ca3c1e" title="return the full device path as it appears under /sys/devices/block" alt="" coords="244,277,435,318"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="487,44,669,85"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="721,182,912,224"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="483,212,673,253"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a08c4dd48259318cfd77067e866e05e84" title="get the device name for this MajorMinor." alt="" coords="483,277,673,318"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="483,342,673,384"/>
+<area shape="rect" id="node11" href="$d8/db1/namespaceleanux_1_1util.html#a9ae898fe02934e4905ef4665c2871158" title="Convert a path on a filesystem to the realpath if the path is a link." alt="" coords="500,408,656,435"/>
+</map>

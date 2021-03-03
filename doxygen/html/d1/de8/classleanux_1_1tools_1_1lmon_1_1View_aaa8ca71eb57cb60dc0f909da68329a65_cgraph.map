@@ -1,0 +1,5 @@
+<map id="leanux::tools::lmon::View::box" name="leanux::tools::lmon::View::box">
+<area shape="rect" id="node1" title="Draw a box." alt="" coords="5,39,152,80"/>
+<area shape="rect" id="node2" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad4bf2613d86d8fd5d95fc2b09103a9dc" title="Draw a horizontal line." alt="" coords="200,5,347,47"/>
+<area shape="rect" id="node3" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a625d1c34066c820a2d6711fb0563b426" title="Draw a vertical line." alt="" coords="200,71,347,112"/>
+</map>

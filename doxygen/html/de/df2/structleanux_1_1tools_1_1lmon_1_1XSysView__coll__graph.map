@@ -1,0 +1,17 @@
+<map id="leanux::tools::lmon::XSysView" name="leanux::tools::lmon::XSysView">
+<area shape="rect" id="node1" title="Data record for SysView display." alt="" coords="876,690,1023,731"/>
+<area shape="rect" id="node2" title=" " alt="" coords="584,351,721,393"/>
+<area shape="rect" id="node3" href="$da/da3/namespaceleanux_1_1cpu.html#d0/d5a/structleanux_1_1cpu_1_1CPUStat" title="CPU usage statistics from /proc/stat." alt="" coords="191,348,349,375"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,348,72,375"/>
+<area shape="rect" id="node11" href="$da/da3/namespaceleanux_1_1cpu.html#dd/d31/structleanux_1_1cpu_1_1LoadAvg" title="System load average &#45; the average number of processes on the run queue." alt="" coords="373,420,533,447"/>
+<area shape="rect" id="node5" title=" " alt="" coords="213,652,327,679"/>
+<area shape="rect" id="node13" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#d4/de6/structleanux_1_1tools_1_1lmon_1_1SnapRange" title=" " alt="" coords="579,690,726,731"/>
+<area shape="rect" id="node6" href="$da/da3/namespaceleanux_1_1cpu.html#d3/d90/structleanux_1_1cpu_1_1CPUTopology" title="CPU topology." alt="" coords="557,756,748,783"/>
+<area shape="rect" id="node7" title=" " alt="" coords="251,751,289,777"/>
+<area shape="rect" id="node8" title=" " alt="" coords="576,807,729,849"/>
+<area shape="rect" id="node9" title=" " alt="" coords="233,801,307,828"/>
+<area shape="rect" id="node10" title=" " alt="" coords="219,871,321,897"/>
+<area shape="rect" id="node12" title=" " alt="" coords="596,951,709,977"/>
+<area shape="rect" id="node14" title=" " alt="" coords="570,1001,735,1028"/>
+<area shape="rect" id="node15" title="STL class." alt="" coords="227,1001,313,1028"/>
+</map>

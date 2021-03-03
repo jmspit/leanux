@@ -1,0 +1,7 @@
+<map id="leanux::block::MajorMinor::getVGName" name="leanux::block::MajorMinor::getVGName">
+<area shape="rect" id="node1" title="Get the VG name the block device belongs to, or empty string if the device is not a LVM PV." alt="" coords="483,39,673,80"/>
+<area shape="rect" id="node2" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ac57ae7d9a91a4259052d4ae1da5a36a2" title="Write LVM details." alt="" coords="270,5,409,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6e82e367d0d6d6038391ac28c2e510c5" title="return the VG name the PV belongs to, or empty if the device is not a LVM PV." alt="" coords="244,71,435,112"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="31,5,170,47"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26a2363b1eea927b6ebb4aad44dea876" title="Get a pretty&#45;print description for the device." alt="" coords="5,71,196,112"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="leanux::usb::getUSBDeviceHardwareClass" name="leanux::usb::getUSBDeviceHardwareClass">
+<area shape="rect" id="node1" title=" " alt="" coords="400,71,599,112"/>
+<area shape="rect" id="node2" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html#a2408540d2d0fd3f215a860324b604961" title="Get the device class for this device." alt="" coords="193,5,352,47"/>
+<area shape="rect" id="node3" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html#a926a459be1a220ee0532040862efac46" title="Get the device class for this device." alt="" coords="199,71,346,112"/>
+<area shape="rect" id="node4" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="203,136,343,177"/>
+<area shape="rect" id="node5" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="5,136,145,177"/>
+</map>

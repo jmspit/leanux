@@ -1,0 +1,6 @@
+<map id="leanux::util::ConfigFile::ConfigFile" name="leanux::util::ConfigFile::ConfigFile">
+<area shape="rect" id="node1" title="Constructor, should not be called directly, use setConfig and getConfig to create the ConfigFile." alt="" coords="415,39,581,80"/>
+<area shape="rect" id="node2" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ad044e490e3603309c05ed01e06833b11" title="set the application name and config file name." alt="" coords="200,39,367,80"/>
+<area shape="rect" id="node3" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a7f59af183bc55b66e3dc0844b473daaf" title=" " alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node4" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aecb1bb340203cfe30357d494d4b2622e" title="Entry point." alt="" coords="9,71,148,112"/>
+</map>

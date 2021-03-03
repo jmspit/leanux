@@ -1,0 +1,7 @@
+<map id="leanux::cpu::getCPUInfo" name="leanux::cpu::getCPUInfo">
+<area shape="rect" id="node1" title="Get CPU info." alt="" coords="451,78,629,105"/>
+<area shape="rect" id="node2" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a5fd79b07f7441318e0a842b4b3024ee9" title="Construct a Footer." alt="" coords="224,5,371,47"/>
+<area shape="rect" id="node3" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa664245209dbbb081139c961a4c6d878" title="generate system details html." alt="" coords="220,71,375,112"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a792fec91ecc8ca43919fbab7e89cd840" title="Constructor." alt="" coords="192,137,403,193"/>
+<area shape="rect" id="node4" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="5,71,144,112"/>
+</map>

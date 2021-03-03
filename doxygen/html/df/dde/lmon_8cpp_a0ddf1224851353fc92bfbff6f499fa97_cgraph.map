@@ -1,0 +1,19 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title="lmon entry point." alt="" coords="5,414,60,441"/>
+<area shape="rect" id="node2" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a7f59af183bc55b66e3dc0844b473daaf" title=" " alt="" coords="108,407,255,448"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a7be94593ad2b942e9a47163e09839d88" title="declare the configuration paramater and set a hardcoded default." alt="" coords="327,5,493,47"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="309,71,511,98"/>
+<area shape="rect" id="node5" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="327,123,493,164"/>
+<area shape="rect" id="node6" href="$d8/d4a/classleanux_1_1Oops.html#a144d78069f0bb6388bbd1db6385418d2" title="Get the Oops message." alt="" coords="313,189,507,215"/>
+<area shape="rect" id="node7" href="$d8/db1/namespaceleanux_1_1util.html#a7929eea191b64631040f40891e20ab97" title="Return the config dir for the current user." alt="" coords="303,239,517,266"/>
+<area shape="rect" id="node8" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="363,290,457,317"/>
+<area shape="rect" id="node9" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#af9a7d2a8502671d378b18bb241adbb29" title=" " alt="" coords="337,341,483,383"/>
+<area shape="rect" id="node10" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a010f9459d506af3a4251ea0a644282bd" title="Run the Screen in history mode." alt="" coords="335,407,485,448"/>
+<area shape="rect" id="node11" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#aa3dfc925603031c15d1cd88405ca3c11" title="Run the Screen in realtime mode." alt="" coords="329,472,491,513"/>
+<area shape="rect" id="node12" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ad044e490e3603309c05ed01e06833b11" title="set the application name and config file name." alt="" coords="327,537,493,579"/>
+<area shape="rect" id="node13" href="$d9/d11/classleanux_1_1util_1_1Tracer.html#aa0f9d4ea1057730f331288be97102add" title="Initialize the singleton." alt="" coords="339,603,481,644"/>
+<area shape="rect" id="node14" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a0e5ec350e635a8a5cbda99cc700f83c7" title="handle signals such a CTRL&#45;C." alt="" coords="337,668,483,709"/>
+<area shape="rect" id="node15" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#aaf8d592184fafa6a7f80b66fa7e4caff" title="Stop the Screen." alt="" coords="565,697,712,739"/>
+<area shape="rect" id="node16" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a74b9d0f91075fc4d3f46a9e0e3213248" title=" " alt="" coords="337,785,483,827"/>
+<area shape="rect" id="node17" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a51029ba31414b49297e706fe40832a6f" title="write out the configuration file, including runtime modifications." alt="" coords="327,851,493,892"/>
+</map>

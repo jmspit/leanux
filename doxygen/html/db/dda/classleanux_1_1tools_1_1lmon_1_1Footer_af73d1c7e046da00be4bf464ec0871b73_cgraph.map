@@ -1,0 +1,5 @@
+<map id="leanux::tools::lmon::Footer::xrefresh" name="leanux::tools::lmon::Footer::xrefresh">
+<area shape="rect" id="node1" title="refresh (redraw) the Footer." alt="" coords="5,39,152,80"/>
+<area shape="rect" id="node2" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad4bf2613d86d8fd5d95fc2b09103a9dc" title="Draw a horizontal line." alt="" coords="200,5,347,47"/>
+<area shape="rect" id="node3" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a2f37f251e8f17c1e11536b368fd66ec8" title="Write text at x,y with display attrs." alt="" coords="200,71,347,112"/>
+</map>

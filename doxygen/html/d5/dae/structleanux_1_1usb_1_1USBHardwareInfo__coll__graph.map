@@ -1,0 +1,5 @@
+<map id="leanux::usb::USBHardwareInfo" name="leanux::usb::USBHardwareInfo">
+<area shape="rect" id="node1" title="human readable USBHardwareId translated through usb.ids." alt="" coords="5,200,225,227"/>
+<area shape="rect" id="node2" title="STL class." alt="" coords="72,96,159,123"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="46,5,185,47"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="leanux::net::getDeviceByIP" name="leanux::net::getDeviceByIP">
+<area shape="rect" id="node1" title="Return the device name configured with the given ip address." alt="" coords="5,64,204,91"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a1964b806f7bbed9be7d90cbadd12e75a" title="Enumerate network devices." alt="" coords="252,5,444,32"/>
+<area shape="rect" id="node3" href="$d5/db8/namespaceleanux_1_1net.html#a1263f722e81950eb9973fe13b3b924d4" title="Get a list of IP4 adresses assigned to the device." alt="" coords="253,57,443,98"/>
+<area shape="rect" id="node4" href="$d5/db8/namespaceleanux_1_1net.html#a7c381b1111743825c892ab901076314b" title="Get a list of IP6 adresses assigned to the device." alt="" coords="253,122,443,163"/>
+<area shape="rect" id="node5" href="$d5/db8/namespaceleanux_1_1net.html#af94467113568c21e1a32c0d5e842dab0" title="convert IPv6 network IP representation to human readable format." alt="" coords="492,122,661,163"/>
+</map>

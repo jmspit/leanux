@@ -1,0 +1,7 @@
+<map id="leanux::tools::lard::IOSnap::startSnap" name="leanux::tools::lard::IOSnap::startSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,71,152,112"/>
+<area shape="rect" id="node2" href="$d5/d01/namespaceleanux_1_1block.html#ae227ed1fa83d91988072e335ea0f81e9" title="get block device statistics into a DeviceStatsMap." alt="" coords="200,78,371,105"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aec5c9aa75e9cb579163989cece64adc7" title="Get SCSI iodone_cnt (number of SCSI IO completions)" alt="" coords="419,5,609,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab3f52da181b760aa9d9240c08beb8ae8" title="Get SCSI ioerr_cnt (number of SCSI IO errors)" alt="" coords="419,71,609,112"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0c501b00fcddef5167f8f4e4f98e3bdb" title="Get SCSI iorequest_cnt (number of SCSI IO requests)" alt="" coords="419,136,609,177"/>
+</map>

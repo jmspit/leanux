@@ -1,0 +1,9 @@
+<map id="leanux::sysdevice::treeDetect" name="leanux::sysdevice::treeDetect">
+<area shape="rect" id="node1" title="populates devices with the devices detected in path." alt="" coords="381,71,528,112"/>
+<area shape="rect" id="node2" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ade16c362a9900ba9267433bf57da42ce" title="Write disk details." alt="" coords="194,5,333,47"/>
+<area shape="rect" id="node4" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ab9b4bc8a1806ab977597271e15f34c11" title=" " alt="" coords="194,71,333,112"/>
+<area shape="rect" id="node6" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a33d815e2817f56776217177ef1016d8c" title=" " alt="" coords="193,136,333,177"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="6,5,145,47"/>
+<area shape="rect" id="node5" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="6,71,145,112"/>
+<area shape="rect" id="node7" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a33a75c6955dcd3ac89c9a6f86a0a1337" title="Run based on options." alt="" coords="5,136,145,177"/>
+</map>

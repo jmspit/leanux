@@ -1,0 +1,10 @@
+<map id="leanux::system::getUserHz" name="leanux::system::getUserHz">
+<area shape="rect" id="node1" title="Get the number of clock ticks per second." alt="" coords="551,177,749,203"/>
+<area shape="rect" id="node2" href="$da/da3/namespaceleanux_1_1cpu.html#a59cf2af9830e859ca848f87c9d605d6f" title="Get CPU usage statistics from /proc/stat." alt="" coords="316,111,503,138"/>
+<area shape="rect" id="node6" href="$d9/d34/namespaceleanux_1_1process.html#a6533e64a7e3e102f65df053802c83919" title="Get the ProcPidStat for the pid." alt="" coords="319,201,500,243"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="5,5,268,47"/>
+<area shape="rect" id="node4" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#a18e1fbcdf89ec7537bc853b314657890" title=" " alt="" coords="57,71,216,112"/>
+<area shape="rect" id="node5" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#af9c73b36a541b0eae3b06e491b9cdff0" title=" " alt="" coords="58,136,215,177"/>
+<area shape="rect" id="node7" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aee987aaaf44a4832b535ecf78065d963" title=" " alt="" coords="67,201,206,243"/>
+<area shape="rect" id="node8" href="$d9/d34/namespaceleanux_1_1process.html#a385cafe09f0dc82ce8a830124665d69d" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="37,267,236,308"/>
+</map>

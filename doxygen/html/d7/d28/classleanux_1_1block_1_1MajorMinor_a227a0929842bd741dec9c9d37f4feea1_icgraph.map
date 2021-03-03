@@ -1,0 +1,5 @@
+<map id="leanux::block::MajorMinor::getMDChunkSize" name="leanux::block::MajorMinor::getMDChunkSize">
+<area shape="rect" id="node1" title="Get the MD chunck size, valid for MetaDisk block devices." alt="" coords="379,5,569,47"/>
+<area shape="rect" id="node2" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a3ed79ca6c9f478be774a6d9f4a4cb016" title="Write MetaDisk details." alt="" coords="192,5,331,47"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="5,5,144,47"/>
+</map>

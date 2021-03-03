@@ -1,0 +1,4 @@
+<map id="leanux::sysdevice::SCSIDevice::getDescription" name="leanux::sysdevice::SCSIDevice::getDescription">
+<area shape="rect" id="node1" title="Get a human readable description of this SysDevice." alt="" coords="256,5,455,47"/>
+<area shape="rect" id="node2" href="$df/db8/classleanux_1_1sysdevice_1_1iSCSIDevice.html#a2f46ff48d80ee056fa13e72e9d791c82" title="Get a human readable description of this SysDevice." alt="" coords="5,5,208,47"/>
+</map>

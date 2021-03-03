@@ -1,0 +1,7 @@
+<map id="leanux::tools::lblk::detailDeviceMapper" name="leanux::tools::lblk::detailDeviceMapper">
+<area shape="rect" id="node1" title="Write device mapper details." alt="" coords="5,39,167,80"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0262599b45d4425a1841853e830a7c46" title="Get a descriptive string for the device type of the MajorMinor." alt="" coords="215,5,405,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a08c4dd48259318cfd77067e866e05e84" title="get the device name for this MajorMinor." alt="" coords="215,71,405,112"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad8b93c3f6fc290008c2025e5e3d42eb5" title="Get the DeviceClass for a MajorMinor." alt="" coords="453,5,644,47"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="453,71,644,112"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::tools::lard::ProcSnap::startSnap" name="leanux::tools::lard::ProcSnap::startSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,165,47"/>
+<area shape="rect" id="node2" href="$d9/d34/namespaceleanux_1_1process.html#a385cafe09f0dc82ce8a830124665d69d" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="213,5,412,47"/>
+<area shape="rect" id="node3" href="$d9/d34/namespaceleanux_1_1process.html#a6533e64a7e3e102f65df053802c83919" title="Get the ProcPidStat for the pid." alt="" coords="460,5,641,47"/>
+</map>

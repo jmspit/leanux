@@ -1,0 +1,4 @@
+<map id="leanux::block::getFileMajorMinor" name="leanux::block::getFileMajorMinor">
+<area shape="rect" id="node1" title="get the MajorMinor for a device file or aliases to it, resolves the devicefile with realpath." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a9ae898fe02934e4905ef4665c2871158" title="Convert a path on a filesystem to the realpath if the path is a link." alt="" coords="252,13,408,39"/>
+</map>

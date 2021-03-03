@@ -1,0 +1,7 @@
+<map id="leanux::block::getATALinkSpeed" name="leanux::block::getATALinkSpeed">
+<area shape="rect" id="node1" title="Get the ATA port link speed." alt="" coords="456,71,645,112"/>
+<area shape="rect" id="node2" href="$d1/d9d/classleanux_1_1sysdevice_1_1ATAPort.html#aa4999781a141405074f4f7aecb1a5702" title="Get a human readable description of this SysDevice." alt="" coords="213,5,388,47"/>
+<area shape="rect" id="node3" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="231,71,371,112"/>
+<area shape="rect" id="node5" href="$d1/d9d/classleanux_1_1sysdevice_1_1ATAPort.html#a726d252b0be10fe77bfd10bf12421ed3" title=" " alt="" coords="193,136,408,177"/>
+<area shape="rect" id="node4" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="5,71,145,112"/>
+</map>

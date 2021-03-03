@@ -1,0 +1,18 @@
+<map id="leanux::sysdevice::BlockDevice::getMajorMinor" name="leanux::sysdevice::BlockDevice::getMajorMinor">
+<area shape="rect" id="node1" title=" " alt="" coords="809,392,1016,433"/>
+<area shape="rect" id="node2" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#ac4b9e0008260b83d9c20f8cad7a43ac6" title="Get a human readable description of this SysDevice." alt="" coords="529,5,735,47"/>
+<area shape="rect" id="node4" href="$df/db8/classleanux_1_1sysdevice_1_1iSCSIDevice.html#a2f46ff48d80ee056fa13e72e9d791c82" title="Get a human readable description of this SysDevice." alt="" coords="5,35,208,76"/>
+<area shape="rect" id="node5" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#a575120cf630a3eb5e31b493a9260786f" title=" " alt="" coords="522,123,742,164"/>
+<area shape="rect" id="node6" href="$d6/d19/classleanux_1_1sysdevice_1_1BlockPartition.html#ad6e352ab7210d8d47ad2d59478cf31d8" title=" " alt="" coords="517,188,747,229"/>
+<area shape="rect" id="node7" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="562,253,702,295"/>
+<area shape="rect" id="node9" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#a591c377c1807e5c333738d24ec3e88ef" title=" " alt="" coords="509,319,755,360"/>
+<area shape="rect" id="node10" href="$d6/d19/classleanux_1_1sysdevice_1_1BlockPartition.html#ab0933694a58d1f25eb9158f219cf13bb" title=" " alt="" coords="534,385,730,441"/>
+<area shape="rect" id="node11" href="$d2/d7d/classleanux_1_1sysdevice_1_1NVMeDevice.html#ad7e8752666421aa75de8fd7de9a50269" title=" " alt="" coords="507,465,757,507"/>
+<area shape="rect" id="node12" href="$d2/d73/classleanux_1_1sysdevice_1_1NVMePartition.html#acc2f959ca131c3f4fea3cdf2dcaa3ee7" title=" " alt="" coords="533,531,731,587"/>
+<area shape="rect" id="node13" href="$dc/dfa/classleanux_1_1sysdevice_1_1MapperDevice.html#ac1c473120b391ef8c039deba490885c2" title=" " alt="" coords="503,612,761,653"/>
+<area shape="rect" id="node14" href="$de/dd2/classleanux_1_1sysdevice_1_1LoopbackDevice.html#a78a94f35dbb27bf85ffea19b19ab6e9e" title=" " alt="" coords="525,678,739,734"/>
+<area shape="rect" id="node15" href="$dd/d47/classleanux_1_1sysdevice_1_1RamDiskDevice.html#a096f69feac55c9c0c004fa8003f3f5a0" title=" " alt="" coords="527,758,737,814"/>
+<area shape="rect" id="node16" href="$dd/d1b/classleanux_1_1sysdevice_1_1MDDevice.html#a25f52dff392b1266aeb201b46a41fa0d" title=" " alt="" coords="516,839,748,880"/>
+<area shape="rect" id="node3" href="$dd/df8/classleanux_1_1sysdevice_1_1SCSIDevice.html#a7cc63ea1acf3422fb2f3d61a88e59bec" title="Get a human readable description of this SysDevice." alt="" coords="256,5,455,47"/>
+<area shape="rect" id="node8" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="285,253,425,295"/>
+</map>

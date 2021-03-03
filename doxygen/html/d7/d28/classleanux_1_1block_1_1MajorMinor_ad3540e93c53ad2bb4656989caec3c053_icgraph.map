@@ -1,0 +1,6 @@
+<map id="leanux::block::MajorMinor::getRPM" name="leanux::block::MajorMinor::getRPM">
+<area shape="rect" id="node1" title="Get the rotation speed of a device." alt="" coords="431,39,621,80"/>
+<area shape="rect" id="node2" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ade16c362a9900ba9267433bf57da42ce" title="Write disk details." alt="" coords="218,5,357,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a45b4368a923265b0b2df91226bb5e898" title="Get a descriptive string of the rotational nature of the disk,." alt="" coords="192,71,383,112"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="5,5,144,47"/>
+</map>

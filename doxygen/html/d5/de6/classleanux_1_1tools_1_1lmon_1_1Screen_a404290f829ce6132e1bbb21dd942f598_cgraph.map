@@ -1,0 +1,9 @@
+<map id="leanux::tools::lmon::Screen::~Screen" name="leanux::tools::lmon::Screen::~Screen">
+<area shape="rect" id="node1" title="Destructor." alt="" coords="5,136,152,177"/>
+<area shape="rect" id="node2" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="202,5,369,47"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a0a9d268bdbb30ef4953e13c9cfc23826" title="read and interpret the configuration file." alt="" coords="202,71,369,112"/>
+<area shape="rect" id="node4" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#ac959680f08e2adf792fd060fe4171113" title="Deinitialize and stop the ncurses Screen." alt="" coords="200,136,371,177"/>
+<area shape="rect" id="node5" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ae6cf7d025a02a7b114c60adca7618ec9" title="Set the configuration parameter to an int value." alt="" coords="202,201,369,243"/>
+<area shape="rect" id="node6" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a51029ba31414b49297e706fe40832a6f" title="write out the configuration file, including runtime modifications." alt="" coords="202,267,369,308"/>
+<area shape="rect" id="node7" href="$d8/db1/namespaceleanux_1_1util.html#a3b691a56e21c20628e956b8ec995d53f" title=" " alt="" coords="419,274,577,301"/>
+</map>

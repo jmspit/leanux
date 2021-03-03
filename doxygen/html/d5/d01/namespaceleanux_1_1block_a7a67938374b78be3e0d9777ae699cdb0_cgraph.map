@@ -1,0 +1,4 @@
+<map id="leanux::block::getAttachedWholeDisks" name="leanux::block::getAttachedWholeDisks">
+<area shape="rect" id="node1" title="Get the number of attached whole disks." alt="" coords="5,5,201,47"/>
+<area shape="rect" id="node2" href="$d5/d01/namespaceleanux_1_1block.html#ac08a21002b48cb1bbfaf8d77b4aac5f6" title="get a list of whole disks (exclude partitions)." alt="" coords="249,5,444,47"/>
+</map>

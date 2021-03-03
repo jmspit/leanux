@@ -1,0 +1,6 @@
+<map id="leanux::tools::lmon::Screen::initTerminal" name="leanux::tools::lmon::Screen::initTerminal">
+<area shape="rect" id="node1" title="Initialize and start the ncurses Screen." alt="" coords="5,39,164,80"/>
+<area shape="rect" id="node2" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#aff7f53f61a567297f5cfd9a4ee880e51" title="setup the Palette." alt="" coords="212,39,359,80"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="407,5,573,47"/>
+<area shape="rect" id="node4" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ac0a26e361b745b7e933134618c9fad97" title="return the configuration parameter as a RGB struct." alt="" coords="407,71,573,112"/>
+</map>

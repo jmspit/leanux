@@ -1,0 +1,4 @@
+<map id="leanux::net::enumTCP4Sockets" name="leanux::net::enumTCP4Sockets">
+<area shape="rect" id="node1" title="Enumerate TCP4 sockets from /proc/net/tcp." alt="" coords="5,5,228,32"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a492762fd6165b208b70e89b4d75eb1ac" title="parse a TCP4 std::string from /proc/net/tcp." alt="" coords="276,5,475,32"/>
+</map>

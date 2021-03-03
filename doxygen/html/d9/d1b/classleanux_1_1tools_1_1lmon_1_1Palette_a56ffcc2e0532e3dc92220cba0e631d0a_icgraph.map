@@ -1,0 +1,6 @@
+<map id="leanux::tools::lmon::Palette::getColorText" name="leanux::tools::lmon::Palette::getColorText">
+<area shape="rect" id="node1" title="get normal text color." alt="" coords="453,39,619,80"/>
+<area shape="rect" id="node2" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#a01702243a446d6a32114b87b8c4d399b" title="Get ncurses display attributes depending on the type of CPU chararcter." alt="" coords="200,5,405,47"/>
+<area shape="rect" id="node4" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a1d79fb91685ffcecf4d9fe9cbdd01700" title="The constructor specifies location and size of the View on the Screen." alt="" coords="229,71,376,112"/>
+<area shape="rect" id="node3" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#ad72b5ee6be63091f3d320a23721d5cb4" title="refresh (redraw) the View." alt="" coords="5,5,152,47"/>
+</map>

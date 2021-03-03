@@ -1,0 +1,10 @@
+<map id="leanux::block::getStats" name="leanux::block::getStats">
+<area shape="rect" id="node1" title="get block device statistics into a DeviceStatsMap." alt="" coords="555,143,725,170"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ae43e18aacfceb09eb9bd70db9c67fc98" title=" " alt="" coords="252,5,507,47"/>
+<area shape="rect" id="node4" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#aaa09ea465f8fc251716e47382551cf13" title=" " alt="" coords="306,71,453,112"/>
+<area shape="rect" id="node6" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a934aedfb855a789ff7039b23112c4ae1" title=" " alt="" coords="293,136,466,177"/>
+<area shape="rect" id="node7" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#ab020781eb6e152bf9b884a4000d7e923" title=" " alt="" coords="307,201,451,243"/>
+<area shape="rect" id="node8" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a03ffa5736036aaed951d16b51d181c29" title=" " alt="" coords="294,267,465,308"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node5" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,168,174,209"/>
+</map>

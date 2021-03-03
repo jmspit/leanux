@@ -1,0 +1,16 @@
+<map id="leanux::tools::lmon::IOView::xrefresh" name="leanux::tools::lmon::IOView::xrefresh">
+<area shape="rect" id="node1" title="refresh (redraw) the View." alt="" coords="5,311,152,353"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="233,5,384,32"/>
+<area shape="rect" id="node3" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a60717c2d5607a21a597210033e17ddca" title="get blocked process color." alt="" coords="200,57,417,98"/>
+<area shape="rect" id="node4" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="225,122,392,163"/>
+<area shape="rect" id="node5" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aae0c3891e3d5a8d391a7439602b92780" title="return the configuration parameter as an int." alt="" coords="225,187,392,229"/>
+<area shape="rect" id="node7" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad4bf2613d86d8fd5d95fc2b09103a9dc" title="Draw a horizontal line." alt="" coords="235,253,382,294"/>
+<area shape="rect" id="node8" href="$d8/db1/namespaceleanux_1_1util.html#a0c9555d36d9264d1f0cd246c8ba6da28" title="Convert a double (real number) to a pretty print string." alt="" coords="233,319,385,345"/>
+<area shape="rect" id="node9" href="$d8/db1/namespaceleanux_1_1util.html#a803c31fd9467bc62367bc248846c3242" title="Shorten a string by replacing characters from the middle with three filler charachters." alt="" coords="213,369,404,396"/>
+<area shape="rect" id="node10" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a2f37f251e8f17c1e11536b368fd66ec8" title="Write text at x,y with display attrs." alt="" coords="235,421,382,462"/>
+<area shape="rect" id="node11" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad1a03b681b72a1c8918838816c4080ca" title="Draw text right&#45;adjusted and progress x with w+1." alt="" coords="218,486,399,527"/>
+<area shape="rect" id="node12" href="$d8/db1/namespaceleanux_1_1util.html#a377ec19addd5d3ca3ecee9a2591f6458" title="convert a time duration in seconds to a pretty print string." alt="" coords="220,552,397,579"/>
+<area shape="rect" id="node14" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a625d1c34066c820a2d6711fb0563b426" title="Draw a vertical line." alt="" coords="235,603,382,645"/>
+<area shape="rect" id="node6" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aece3326e1c10df9dcfb48f4c12967336" title="return the configuration parameter as a string." alt="" coords="477,187,644,229"/>
+<area shape="rect" id="node13" href="$d8/db1/namespaceleanux_1_1util.html#a5178387ce32054e1c460c69b44d8219b" title="convert a time duration in microseconds to a pretty print string." alt="" coords="465,552,656,579"/>
+</map>

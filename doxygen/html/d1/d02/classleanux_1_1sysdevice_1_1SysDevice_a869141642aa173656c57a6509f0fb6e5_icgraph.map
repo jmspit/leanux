@@ -1,0 +1,7 @@
+<map id="leanux::sysdevice::SysDevice::getDisplayName" name="leanux::sysdevice::SysDevice::getDisplayName">
+<area shape="rect" id="node1" title=" " alt="" coords="264,104,471,145"/>
+<area shape="rect" id="node2" href="$d8/dcd/classleanux_1_1sysdevice_1_1PCIDevice.html#a1c5f78d7c4338387d91faddca98f5028" title=" " alt="" coords="8,5,213,47"/>
+<area shape="rect" id="node3" href="$d9/d99/classleanux_1_1sysdevice_1_1PCIBus.html#a9873b111948df2dbc4e24097555718f3" title=" " alt="" coords="19,71,203,112"/>
+<area shape="rect" id="node4" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html#ae149cb6875a14576a714b0428690835f" title=" " alt="" coords="5,136,216,177"/>
+<area shape="rect" id="node5" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html#a35036f66ae9bf3fdb008825432cd601b" title=" " alt="" coords="15,201,206,243"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="leanux::block::MajorMinor::getATAPort" name="leanux::block::MajorMinor::getATAPort">
+<area shape="rect" id="node1" title="Get the ATA port for the block MajorMinor." alt="" coords="5,104,196,145"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a742f510de3aea2ec0a1eb112e3ca3c1e" title="return the full device path as it appears under /sys/devices/block" alt="" coords="244,104,435,145"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="483,5,673,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a08c4dd48259318cfd77067e866e05e84" title="get the device name for this MajorMinor." alt="" coords="483,71,673,112"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="483,136,673,177"/>
+<area shape="rect" id="node6" href="$d8/db1/namespaceleanux_1_1util.html#a9ae898fe02934e4905ef4665c2871158" title="Convert a path on a filesystem to the realpath if the path is a link." alt="" coords="500,202,656,229"/>
+</map>

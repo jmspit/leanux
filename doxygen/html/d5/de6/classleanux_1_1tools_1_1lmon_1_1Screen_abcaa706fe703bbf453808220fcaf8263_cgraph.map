@@ -1,0 +1,22 @@
+<map id="leanux::tools::lmon::Screen::screenResize" name="leanux::tools::lmon::Screen::screenResize">
+<area shape="rect" id="node1" title="Recalculate the window sizes." alt="" coords="5,356,173,397"/>
+<area shape="rect" id="node2" href="$dc/d7e/classleanux_1_1tools_1_1lmon_1_1Header.html#a1beddf0bef3e55d270812602cd0e93a2" title="The minimum height (lines) required by the Header." alt="" coords="252,5,425,47"/>
+<area shape="rect" id="node3" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#abad3864ba66912f8525c091c5dba942d" title="The minimum height (lines) required by the Footer." alt="" coords="523,100,690,141"/>
+<area shape="rect" id="node4" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#a3e0d9a195160e00130c5347f6ae1bc8d" title="The minimum height (lines) required by the Footer." alt="" coords="249,188,429,229"/>
+<area shape="rect" id="node5" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a9cfd6542a5437edf7c232fc7d05fbb72" title="The minimum height (lines) required by the Footer." alt="" coords="521,232,692,273"/>
+<area shape="rect" id="node8" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#aadb09337fff2490e352bb77acbeee408" title="Get the minimal height for the ProcessView." alt="" coords="235,487,442,528"/>
+<area shape="rect" id="node9" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#ae72888be780638aca574db129155547e" title="Get the minimal height for the NetView." alt="" coords="517,297,697,339"/>
+<area shape="rect" id="node10" href="$dc/d7e/classleanux_1_1tools_1_1lmon_1_1Header.html#a199f43a8cf926331e86bab97c330fb11" title="provide the optimal height for the Header." alt="" coords="238,552,439,593"/>
+<area shape="rect" id="node11" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a7c1891d364cf4a57478de9794a3e95c2" title="provide the optimal height for the Header." alt="" coords="241,71,436,112"/>
+<area shape="rect" id="node12" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#a16d370b31789cd9e2c4ed48928d22576" title="provide the optimal height for the Header." alt="" coords="235,617,443,659"/>
+<area shape="rect" id="node13" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a466bf2f2261b917b31ae2664ec8fbed0" title="provide the optimal height for the Header." alt="" coords="239,421,438,463"/>
+<area shape="rect" id="node17" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#a1d115b56591aeb2e4a4883011afab0ed" title="provide the optimal height for the ProcessView, for this View as many as it can get." alt="" coords="221,683,456,724"/>
+<area shape="rect" id="node18" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a90d83dccb33390f86d92374070075b29" title="provide the optimal height for the NetView," alt="" coords="235,356,443,397"/>
+<area shape="rect" id="node20" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a1db7ade4b920adb1f8a9b0f00c3c4322" title="Resize the View." alt="" coords="265,748,412,789"/>
+<area shape="rect" id="node6" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="757,297,924,339"/>
+<area shape="rect" id="node7" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aae0c3891e3d5a8d391a7439602b92780" title="return the configuration parameter as an int." alt="" coords="757,232,924,273"/>
+<area shape="rect" id="node14" href="$d5/d01/namespaceleanux_1_1block.html#afaee6721d578e4e9ccbebb7dea5919a6" title="Get a map of MajorMinor to MountInfo from /proc/mounts." alt="" coords="505,465,708,491"/>
+<area shape="rect" id="node15" href="$d5/d01/namespaceleanux_1_1block.html#a7a67938374b78be3e0d9777ae699cdb0" title="Get the number of attached whole disks." alt="" coords="509,516,705,557"/>
+<area shape="rect" id="node16" href="$dc/d32/namespaceleanux_1_1vmem.html#aabc162dbfa4e98a5d1bf2571ba58de88" title="Get a std::list of SwapInfo swap spaces." alt="" coords="504,582,709,609"/>
+<area shape="rect" id="node19" href="$d5/db8/namespaceleanux_1_1net.html#ac78d924eb899ccfa62581ec1d13dc75b" title="Get network device statistics from /proc/net/dev." alt="" coords="520,363,693,390"/>
+</map>

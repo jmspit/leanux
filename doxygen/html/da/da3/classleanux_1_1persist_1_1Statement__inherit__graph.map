@@ -1,0 +1,6 @@
+<map id="leanux::persist::Statement" name="leanux::persist::Statement">
+<area shape="rect" id="node1" title="Generic SQL Statement." alt="" coords="74,5,269,32"/>
+<area shape="rect" id="node2" href="$dc/d43/classleanux_1_1persist_1_1DDL.html" title="Data Definition Language, SQL that takes no parameters, returns no data such as CREATE TABLE." alt="" coords="5,80,159,107"/>
+<area shape="rect" id="node3" href="$d9/d78/classleanux_1_1persist_1_1DML.html" title="Data Modification Language statements can take bind values." alt="" coords="183,80,338,107"/>
+<area shape="rect" id="node4" href="$d4/d2c/classleanux_1_1persist_1_1Query.html" title="Queries can take bind values and return select lists." alt="" coords="178,155,343,181"/>
+</map>

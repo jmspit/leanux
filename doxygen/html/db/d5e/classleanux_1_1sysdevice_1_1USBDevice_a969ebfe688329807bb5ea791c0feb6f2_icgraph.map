@@ -1,0 +1,6 @@
+<map id="leanux::sysdevice::USBDevice::accept" name="leanux::sysdevice::USBDevice::accept">
+<area shape="rect" id="node1" title="http://www.makelinux.net/ldd3/chp&#45;13&#45;sect&#45;2" alt="" coords="395,39,541,80"/>
+<area shape="rect" id="node2" href="$d3/d83/namespaceleanux_1_1sysdevice.html#aa76385cfb36c36d3f55f25dfacc1346b" title="Return the leaf SysDevice detected in path." alt="" coords="200,39,347,80"/>
+<area shape="rect" id="node3" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="9,5,149,47"/>
+<area shape="rect" id="node4" href="$d3/d83/namespaceleanux_1_1sysdevice.html#aa57ce9a4a0b2dd6fcdb6102854cc8292" title="populates devices with the devices detected in path." alt="" coords="5,71,152,112"/>
+</map>

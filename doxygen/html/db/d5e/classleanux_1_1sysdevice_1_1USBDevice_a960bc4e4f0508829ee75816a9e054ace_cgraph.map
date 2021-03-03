@@ -1,0 +1,7 @@
+<map id="leanux::sysdevice::USBDevice::getDescription" name="leanux::sysdevice::USBDevice::getDescription">
+<area shape="rect" id="node1" title="Get a human readable description of this SysDevice." alt="" coords="5,53,203,94"/>
+<area shape="rect" id="node2" href="$d5/d9c/namespaceleanux_1_1usb.html#a40b22561354d4885b6abe9a59f952904" title="Get the USBHardwareId from an USBDevicePath." alt="" coords="257,35,485,61"/>
+<area shape="rect" id="node5" href="$d5/d9c/namespaceleanux_1_1usb.html#a72944e4549fc2c4adf4d01c2d467bb6a" title="Translate an USBHardwareId into an USBHardwareInfo by using the system (/usr/share) usb...." alt="" coords="251,85,492,112"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="540,5,741,32"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="549,57,732,98"/>
+</map>

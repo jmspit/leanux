@@ -1,0 +1,14 @@
+<map id="leanux::block::MajorMinor::getStats" name="leanux::block::MajorMinor::getStats">
+<area shape="rect" id="node1" title="get performance statistics for the block device specified by MajorMinor." alt="" coords="411,267,601,308"/>
+<area shape="rect" id="node2" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aea87f0c72ad32fa0b12a485e8f265e3a" title=" " alt="" coords="208,71,363,112"/>
+<area shape="rect" id="node4" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aa6367c0ce0a9370f9b5b0b2d805f3768" title=" " alt="" coords="208,136,363,177"/>
+<area shape="rect" id="node5" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="215,5,355,47"/>
+<area shape="rect" id="node7" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a4ed156d3dd393c88023d89cb3de4f327" title=" " alt="" coords="208,201,363,243"/>
+<area shape="rect" id="node8" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a5119e01f3f750e313aa39b2091560502" title=" " alt="" coords="208,267,363,308"/>
+<area shape="rect" id="node9" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a2a148cecfe8dcf3c00e0bb19f57044f3" title=" " alt="" coords="208,332,363,373"/>
+<area shape="rect" id="node10" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aac6bd9b75ac1a266cc601b0245013aa8" title=" " alt="" coords="208,397,363,439"/>
+<area shape="rect" id="node11" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#ae7137e2b91a00754bf3f74b6cc7be8f0" title=" " alt="" coords="208,463,363,504"/>
+<area shape="rect" id="node12" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a89bf8cba18d6ec80534e7fbef8b19496" title=" " alt="" coords="208,528,363,569"/>
+<area shape="rect" id="node3" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a482626b839aaf80a44f973eed61b69a6" title=" " alt="" coords="5,300,160,341"/>
+<area shape="rect" id="node6" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="13,5,153,47"/>
+</map>

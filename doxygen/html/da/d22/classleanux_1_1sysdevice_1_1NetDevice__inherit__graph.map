@@ -1,0 +1,6 @@
+<map id="leanux::sysdevice::NetDevice" name="leanux::sysdevice::NetDevice">
+<area shape="rect" id="node1" title="Generic networking device." alt="" coords="91,95,237,136"/>
+<area shape="rect" id="node3" href="$d9/d1e/classleanux_1_1sysdevice_1_1VirtioNetDevice.html" title="Say yes to virtio net devices." alt="" coords="5,184,152,225"/>
+<area shape="rect" id="node4" href="$de/d36/classleanux_1_1sysdevice_1_1VirtualNetDevice.html" title="Virtual networking device." alt="" coords="176,184,323,225"/>
+<area shape="rect" id="node2" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html" title="Generic SysDevice, utility class for device detection from a SysDevicePath." alt="" coords="91,5,237,47"/>
+</map>

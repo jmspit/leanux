@@ -1,0 +1,6 @@
+<map id="leanux::tools::lmon::View::textOutMoveXRA" name="leanux::tools::lmon::View::textOutMoveXRA">
+<area shape="rect" id="node1" title="Draw text right&#45;adjusted and progress x with w+1." alt="" coords="227,71,408,112"/>
+<area shape="rect" id="node2" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#ad5d8db29927cc18e861cfa5ba48ecd94" title="refresh (redraw) the View." alt="" coords="19,5,165,47"/>
+<area shape="rect" id="node3" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#af3566e8ec176744fcd254c558de68eed" title="Refresh/redraw the ProcessView." alt="" coords="5,71,179,112"/>
+<area shape="rect" id="node4" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a0e5c6aa931081924ece2bd2407dfc000" title="Refresh/redraw the ProcessView." alt="" coords="19,136,165,177"/>
+</map>

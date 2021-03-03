@@ -1,0 +1,17 @@
+<map id="leanux::block::MajorMinor::getClass" name="leanux::block::MajorMinor::getClass">
+<area shape="rect" id="node1" title="Get the DeviceClass for a MajorMinor." alt="" coords="5,370,196,411"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a211f6f6595c83289600887d41d394742" title="return the device dm uuid (or an empty string if not a dm device)" alt="" coords="244,49,435,90"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aedaa770034a3bc139513e7a9aaa5c7f4" title="Get the LV name the block device belongs to, or empty string if the device is not a LVM PV." alt="" coords="244,559,435,601"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7e5217cefada330c0b412a4cc0e8ba8a" title="Get the major." alt="" coords="244,625,435,666"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a59e3fe2f1a574b79bad1fe48a2334c27" title="determine if the MajorMinor represents a bcache disk." alt="" coords="485,107,675,149"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a546aa9297e382543cb031126190bc8c9" title="determine if the major represents an IDE disk." alt="" coords="485,421,675,462"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a852aa9e7ee1c107c95cd27ad47b5cf86" title="determine if the MajorMinor represents an MMC disk." alt="" coords="485,173,675,214"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab248c720a63908f9e3ef78ed23536de8" title="determine if the MajorMinor represents a NVMe disk." alt="" coords="485,238,675,279"/>
+<area shape="rect" id="node12" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="244,341,435,382"/>
+<area shape="rect" id="node13" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6c5b98f8ffc7b8904754ecfe33407e8c" title="determine if the major represents a SCSI disk." alt="" coords="485,486,675,527"/>
+<area shape="rect" id="node14" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aaa91d26165ff4b7a32cfe052e72463cc" title="determine if the MajorMinor represents a virtio disk." alt="" coords="485,551,675,593"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="483,5,677,32"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="725,238,916,279"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7ef43192321c82d296575f35b69c52d4" title="Get the udev path for the device." alt="" coords="485,617,675,658"/>
+<area shape="rect" id="node15" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a464bd4b85ec6d88f850ef7d76e950f44" title="Default constructor." alt="" coords="485,355,675,397"/>
+</map>

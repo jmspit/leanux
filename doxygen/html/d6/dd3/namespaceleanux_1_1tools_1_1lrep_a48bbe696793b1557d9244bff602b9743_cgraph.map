@@ -1,0 +1,5 @@
+<map id="leanux::tools::lrep::resolveCacheIP" name="leanux::tools::lrep::resolveCacheIP">
+<area shape="rect" id="node1" title="get from cache or DNS request on cache miss" alt="" coords="5,5,144,47"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a63180a19841a83de5f17eca4c4e055dd" title="Try to resolve an IPv4 or IPv6 address." alt="" coords="192,13,355,39"/>
+<area shape="rect" id="node3" href="$d5/db8/namespaceleanux_1_1net.html#a4d819c0ea81827dfcdb02363905d94e9" title="Determine the type of IP address." alt="" coords="403,13,592,39"/>
+</map>

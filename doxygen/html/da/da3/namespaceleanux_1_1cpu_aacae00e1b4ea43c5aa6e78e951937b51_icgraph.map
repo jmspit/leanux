@@ -1,0 +1,5 @@
+<map id="leanux::cpu::deltaStats" name="leanux::cpu::deltaStats">
+<area shape="rect" id="node1" title="Compute the deltas for two CPUStatMap std::maps into delta." alt="" coords="563,13,733,39"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="252,5,515,47"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,5,204,47"/>
+</map>

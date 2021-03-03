@@ -1,0 +1,5 @@
+<map id="leanux::tools::lblk::listAllDevices" name="leanux::tools::lblk::listAllDevices">
+<area shape="rect" id="node1" title="Table listing all devices." alt="" coords="5,23,144,65"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="220,5,371,32"/>
+<area shape="rect" id="node3" href="$d5/d01/namespaceleanux_1_1block.html#a3864dabca95b6bfede27af2bbe4e2f60" title="get a list of all block devices" alt="" coords="192,56,399,83"/>
+</map>

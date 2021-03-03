@@ -1,0 +1,4 @@
+<map id="leanux::net::findUDP4SocketByINode" name="leanux::net::findUDP4SocketByINode">
+<area shape="rect" id="node1" title="Search for a UDP4 socket by inode number." alt="" coords="5,5,212,47"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a09c37a4bc9d14f6edc9ab0df90fc8bc0" title="parse a line from /proc/net/udp." alt="" coords="260,13,463,39"/>
+</map>

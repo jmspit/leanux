@@ -1,0 +1,8 @@
+<map id="leanux::block::getStats" name="leanux::block::getStats">
+<area shape="rect" id="node1" title="get block device statistics into a DeviceStatsMap." alt="" coords="5,78,176,105"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aec5c9aa75e9cb579163989cece64adc7" title="Get SCSI iodone_cnt (number of SCSI IO completions)" alt="" coords="224,5,415,47"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab3f52da181b760aa9d9240c08beb8ae8" title="Get SCSI ioerr_cnt (number of SCSI IO errors)" alt="" coords="224,71,415,112"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0c501b00fcddef5167f8f4e4f98e3bdb" title="Get SCSI iorequest_cnt (number of SCSI IO requests)" alt="" coords="224,136,415,177"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="467,39,649,80"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="463,104,653,145"/>
+</map>

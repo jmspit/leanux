@@ -1,0 +1,9 @@
+<map id="leanux::net::getDeviceIP4Addresses" name="leanux::net::getDeviceIP4Addresses">
+<area shape="rect" id="node1" title="Get a list of IP4 adresses assigned to the device." alt="" coords="475,90,664,131"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a68c41b642109410b979396878c9fec22" title="Return the device name configured with the given ip address." alt="" coords="211,5,409,32"/>
+<area shape="rect" id="node3" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="240,57,380,98"/>
+<area shape="rect" id="node5" href="$dc/d23/classleanux_1_1sysdevice_1_1NetDevice.html#a1debae3dd366106e7b0f90018c503b9e" title=" " alt="" coords="193,122,427,163"/>
+<area shape="rect" id="node6" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa664245209dbbb081139c961a4c6d878" title="generate system details html." alt="" coords="233,187,387,229"/>
+<area shape="rect" id="node4" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="5,57,145,98"/>
+<area shape="rect" id="node7" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="6,187,145,229"/>
+</map>

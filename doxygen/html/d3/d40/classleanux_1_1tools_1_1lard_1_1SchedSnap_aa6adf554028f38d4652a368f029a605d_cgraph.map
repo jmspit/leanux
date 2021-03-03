@@ -1,0 +1,5 @@
+<map id="leanux::tools::lard::SchedSnap::stopSnap" name="leanux::tools::lard::SchedSnap::stopSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,23,175,65"/>
+<area shape="rect" id="node2" href="$da/da3/namespaceleanux_1_1cpu.html#a9f50740a011befb245de0dbfbbf6e4ca" title="Get the system load averages." alt="" coords="227,5,409,32"/>
+<area shape="rect" id="node3" href="$da/da3/namespaceleanux_1_1cpu.html#ac5901cd50a8f7e4263b2ecb9875a818d" title="Get the number of running and blocked processes." alt="" coords="223,56,413,83"/>
+</map>

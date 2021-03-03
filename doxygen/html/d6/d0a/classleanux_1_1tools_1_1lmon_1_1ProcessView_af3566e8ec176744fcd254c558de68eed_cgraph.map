@@ -1,0 +1,12 @@
+<map id="leanux::tools::lmon::ProcessView::xrefresh" name="leanux::tools::lmon::ProcessView::xrefresh">
+<area shape="rect" id="node1" title="Refresh/redraw the ProcessView." alt="" coords="5,231,179,273"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="261,5,412,32"/>
+<area shape="rect" id="node3" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a60717c2d5607a21a597210033e17ddca" title="get blocked process color." alt="" coords="228,57,445,98"/>
+<area shape="rect" id="node4" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#afcf64f0a46c92aaf04abf7567afd7861" title="get running process color." alt="" coords="227,122,446,163"/>
+<area shape="rect" id="node5" href="$dd/d42/namespaceleanux_1_1system.html#a52dc747f7af9f66fabb1ccfd72c7c450" title="Get the system page size." alt="" coords="232,188,441,215"/>
+<area shape="rect" id="node6" href="$dd/d42/namespaceleanux_1_1system.html#a15a1517cb994968027d406402a588157" title="Get username from a uid." alt="" coords="227,239,447,265"/>
+<area shape="rect" id="node7" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad4bf2613d86d8fd5d95fc2b09103a9dc" title="Draw a horizontal line." alt="" coords="263,290,410,331"/>
+<area shape="rect" id="node8" href="$d8/db1/namespaceleanux_1_1util.html#a0c9555d36d9264d1f0cd246c8ba6da28" title="Convert a double (real number) to a pretty print string." alt="" coords="261,356,413,383"/>
+<area shape="rect" id="node9" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a2f37f251e8f17c1e11536b368fd66ec8" title="Write text at x,y with display attrs." alt="" coords="263,407,410,449"/>
+<area shape="rect" id="node10" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad1a03b681b72a1c8918838816c4080ca" title="Draw text right&#45;adjusted and progress x with w+1." alt="" coords="246,473,427,514"/>
+</map>

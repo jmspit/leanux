@@ -1,0 +1,4 @@
+<map id="leanux::block::getATAPortName" name="leanux::block::getATAPortName">
+<area shape="rect" id="node1" title="return the ata port name from the device path" alt="" coords="268,13,495,39"/>
+<area shape="rect" id="node2" href="$d1/d9d/classleanux_1_1sysdevice_1_1ATAPort.html#a726d252b0be10fe77bfd10bf12421ed3" title=" " alt="" coords="5,5,220,47"/>
+</map>

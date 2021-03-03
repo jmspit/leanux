@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::RealtimeSampler::RealtimeSampler" name="leanux::tools::lmon::RealtimeSampler::RealtimeSampler">
+<area shape="rect" id="node1" title="Constructor." alt="" coords="5,41,216,97"/>
+<area shape="rect" id="node2" href="$da/da3/namespaceleanux_1_1cpu.html#a704d21d69d40fe49b1cf8f2b77fd5664" title="Get CPU info." alt="" coords="279,5,458,32"/>
+<area shape="rect" id="node3" href="$dd/d42/namespaceleanux_1_1system.html#a52dc747f7af9f66fabb1ccfd72c7c450" title="Get the system page size." alt="" coords="264,56,473,83"/>
+<area shape="rect" id="node4" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="269,107,468,149"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ae43e18aacfceb09eb9bd70db9c67fc98" title=" " alt="" coords="528,9,783,50"/>
+<area shape="rect" id="node6" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a38271e7bf2e0c59ad4648027b7802d8d" title=" " alt="" coords="524,74,787,115"/>
+<area shape="rect" id="node7" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#af80582780bfa40a11a40e647f9657d0f" title=" " alt="" coords="521,139,789,181"/>
+<area shape="rect" id="node8" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="524,205,787,246"/>
+</map>

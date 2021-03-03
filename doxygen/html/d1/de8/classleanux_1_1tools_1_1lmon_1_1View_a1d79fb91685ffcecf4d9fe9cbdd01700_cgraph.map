@@ -1,0 +1,8 @@
+<map id="leanux::tools::lmon::View::View" name="leanux::tools::lmon::View::View">
+<area shape="rect" id="node1" title="The constructor specifies location and size of the View on the Screen." alt="" coords="5,136,152,177"/>
+<area shape="rect" id="node2" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a60717c2d5607a21a597210033e17ddca" title="get blocked process color." alt="" coords="201,5,418,47"/>
+<area shape="rect" id="node3" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#abe740173ec1c90116776456d9cfd388f" title="get bold text color." alt="" coords="212,71,407,112"/>
+<area shape="rect" id="node4" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a152f70ca80f5291a75d935070b2ec93b" title="get normal text color." alt="" coords="227,136,392,177"/>
+<area shape="rect" id="node5" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#afcf64f0a46c92aaf04abf7567afd7861" title="get running process color." alt="" coords="200,201,419,243"/>
+<area shape="rect" id="node6" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a56ffcc2e0532e3dc92220cba0e631d0a" title="get normal text color." alt="" coords="227,267,392,308"/>
+</map>

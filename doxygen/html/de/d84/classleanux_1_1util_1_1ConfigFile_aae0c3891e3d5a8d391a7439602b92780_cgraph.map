@@ -1,0 +1,4 @@
+<map id="leanux::util::ConfigFile::getIntValue" name="leanux::util::ConfigFile::getIntValue">
+<area shape="rect" id="node1" title="return the configuration parameter as an int." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aece3326e1c10df9dcfb48f4c12967336" title="return the configuration parameter as a string." alt="" coords="220,5,387,47"/>
+</map>

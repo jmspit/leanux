@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::ProcessView" name="leanux::tools::lmon::ProcessView">
+<area shape="rect" id="node1" title="View of top processes." alt="" coords="440,419,587,460"/>
+<area shape="rect" id="node2" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html" title="A reactangular area on the ncurses Screen as a window of information." alt="" coords="128,241,275,283"/>
+<area shape="rect" id="node4" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html" title="The curses screen." alt="" coords="43,419,189,460"/>
+<area shape="rect" id="node3" title=" " alt="" coords="127,5,241,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,5,99,32"/>
+<area shape="rect" id="node6" title=" " alt="" coords="366,5,405,32"/>
+<area shape="rect" id="node7" title=" " alt="" coords="576,249,643,275"/>
+<area shape="rect" id="node8" title=" " alt="" coords="703,249,753,275"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::block::MajorMinor::getFSType" name="leanux::block::MajorMinor::getFSType">
+<area shape="rect" id="node1" title="Get the filesystem type of the block device." alt="" coords="431,5,621,47"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26a2363b1eea927b6ebb4aad44dea876" title="Get a pretty&#45;print description for the device." alt="" coords="192,5,383,47"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a3ed79ca6c9f478be774a6d9f4a4cb016" title="Write MetaDisk details." alt="" coords="5,5,144,47"/>
+</map>

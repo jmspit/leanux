@@ -1,0 +1,11 @@
+<map id="leanux::vmem::getSwapInfo" name="leanux::vmem::getSwapInfo">
+<area shape="rect" id="node1" title="Get a std::list of SwapInfo swap spaces." alt="" coords="563,143,768,170"/>
+<area shape="rect" id="node2" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a466bf2f2261b917b31ae2664ec8fbed0" title="provide the optimal height for the Header." alt="" coords="284,5,483,47"/>
+<area shape="rect" id="node4" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ae43e18aacfceb09eb9bd70db9c67fc98" title=" " alt="" coords="256,71,511,112"/>
+<area shape="rect" id="node6" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="252,136,515,177"/>
+<area shape="rect" id="node7" href="$d5/d46/classleanux_1_1tools_1_1lard_1_1VMSnap.html#ad7ebbd5cb631d19b7c1a08aeeb7e138b" title=" " alt="" coords="305,201,461,243"/>
+<area shape="rect" id="node9" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a7288efb64fc31818416b8c52c4ba3a0d" title=" " alt="" coords="295,267,471,308"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#abcaa706fe703bbf453808220fcaf8263" title="Recalculate the window sizes." alt="" coords="21,5,189,47"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,103,204,144"/>
+<area shape="rect" id="node8" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,233,174,275"/>
+</map>

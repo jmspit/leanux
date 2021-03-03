@@ -1,0 +1,4 @@
+<map id="leanux::vmem::getDirtyBackgroundBytes" name="leanux::vmem::getDirtyBackgroundBytes">
+<area shape="rect" id="node1" title="get /proc/sys/vm/dirty_background_bytes" alt="" coords="5,5,260,47"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a1e9a1206d94b2f96e8e0c6adc4e4cd12" title="read the first data in the file as a string representation of a unsigned long." alt="" coords="308,13,481,39"/>
+</map>

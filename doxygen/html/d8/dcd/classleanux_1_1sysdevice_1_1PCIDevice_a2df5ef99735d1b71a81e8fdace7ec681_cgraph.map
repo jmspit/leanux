@@ -1,0 +1,8 @@
+<map id="leanux::sysdevice::PCIDevice::getClass" name="leanux::sysdevice::PCIDevice::getClass">
+<area shape="rect" id="node1" title="Get the device class for this device." alt="" coords="5,45,157,87"/>
+<area shape="rect" id="node2" href="$de/d5d/namespaceleanux_1_1pci.html#a48810ffbe83e8a8e357edfa1181c33a5" title="get PCIHardwareId for a PCI device path relative to /sys/devives/" alt="" coords="211,21,430,47"/>
+<area shape="rect" id="node4" href="$de/d5d/namespaceleanux_1_1pci.html#ac5de5302fd54c5e26d2f3745877a750c" title="Get PCI device info based on (vendor,device) function retrieves data from /usr/share/misc/pci...." alt="" coords="205,78,436,105"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="496,5,679,47"/>
+<area shape="rect" id="node5" href="$de/d5d/namespaceleanux_1_1pci.html#a757a53b4facb1212c1bf2aa90bea46a3" title="Transform a PCI class code to class name." alt="" coords="484,71,691,112"/>
+<area shape="rect" id="node6" href="$de/d5d/namespaceleanux_1_1pci.html#a1697f5b7863d9051b766e856eca0e6cc" title="Get the PCI subclass name for a PCI class code http://wiki.osdev.org/PCI#Class_Codes." alt="" coords="486,136,689,177"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="leanux::block::MajorMinor::getAliases" name="leanux::block::MajorMinor::getAliases">
+<area shape="rect" id="node1" title="get a list of device aliases, returned as full paths." alt="" coords="5,39,196,80"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a8fa26dbc85f683ed73fcec3a2db42821" title="return the MajorMinor dev_t." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7ef43192321c82d296575f35b69c52d4" title="Get the udev path for the device." alt="" coords="244,71,435,112"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="483,71,673,112"/>
+</map>

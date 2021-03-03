@@ -1,0 +1,5 @@
+<map id="leanux::block::MajorMinor::getSerial" name="leanux::block::MajorMinor::getSerial">
+<area shape="rect" id="node1" title="Get the serial number for the device." alt="" coords="431,5,621,47"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a52999f02212469e3e0e74760d7637470" title="Retrieve a string identifying a disk on a best&#45;efffort basis." alt="" coords="192,5,383,47"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ac57ae7d9a91a4259052d4ae1da5a36a2" title="Write LVM details." alt="" coords="5,5,144,47"/>
+</map>

@@ -1,0 +1,23 @@
+<map id="leanux::tools::lmon::RealtimeSampler::sampleXSysView" name="leanux::tools::lmon::RealtimeSampler::sampleXSysView">
+<area shape="rect" id="node1" title=" " alt="" coords="5,427,268,469"/>
+<area shape="rect" id="node2" href="$da/da3/namespaceleanux_1_1cpu.html#aacae00e1b4ea43c5aa6e78e951937b51" title="Compute the deltas for two CPUStatMap std::maps into delta." alt="" coords="354,5,525,32"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a4837f2d09bfda41e98223427201d04e2" title="Return the deltaof two timevals in seconds." alt="" coords="355,56,524,83"/>
+<area shape="rect" id="node4" href="$da/da3/namespaceleanux_1_1cpu.html#a59cf2af9830e859ca848f87c9d605d6f" title="Get CPU usage statistics from /proc/stat." alt="" coords="346,107,533,133"/>
+<area shape="rect" id="node6" href="$da/da3/namespaceleanux_1_1cpu.html#a31a23bc3cbd9990806ad11b532e6cb93" title="get the CPU topology." alt="" coords="334,157,545,184"/>
+<area shape="rect" id="node8" href="$da/da3/namespaceleanux_1_1cpu.html#aed13e7a256443ad29418d1fd83b27b8e" title="Sum the entries in all to derive the total." alt="" coords="347,208,531,235"/>
+<area shape="rect" id="node9" href="$da/da3/namespaceleanux_1_1cpu.html#a9f50740a011befb245de0dbfbbf6e4ca" title="Get the system load averages." alt="" coords="349,259,530,285"/>
+<area shape="rect" id="node10" href="$d5/d01/namespaceleanux_1_1block.html#a0a3be314ae37f554ef89d7b5b30a8039" title="Used bytes over all mounted filesystems." alt="" coords="333,310,545,351"/>
+<area shape="rect" id="node11" href="$dd/d42/namespaceleanux_1_1system.html#a3cdfe742d15c8f3d4d7c01be3f3b42c7" title="The number of user logins as reported by who." alt="" coords="327,376,551,403"/>
+<area shape="rect" id="node12" href="$dd/d42/namespaceleanux_1_1system.html#a9821718a0beca2213c2f294267255d59" title="The number of distinct users logged in." alt="" coords="331,427,548,469"/>
+<area shape="rect" id="node13" href="$dd/d42/namespaceleanux_1_1system.html#acf5450712deab2fd3ebe192a290c4bc6" title="Get the number of processes on the system." alt="" coords="316,493,563,520"/>
+<area shape="rect" id="node14" href="$dd/d42/namespaceleanux_1_1system.html#a0fcf2d5d45e7838be8424cf1eabeeb14" title="get the current and maximum number of open files." alt="" coords="332,544,547,571"/>
+<area shape="rect" id="node15" href="$dd/d42/namespaceleanux_1_1system.html#aa437aedfc8ba5b977baef289f25c5da3" title="get the used and free number of open inodes." alt="" coords="325,595,553,621"/>
+<area shape="rect" id="node16" href="$da/da3/namespaceleanux_1_1cpu.html#ac5901cd50a8f7e4263b2ecb9875a818d" title="Get the number of running and blocked processes." alt="" coords="344,645,535,672"/>
+<area shape="rect" id="node17" href="$dc/d32/namespaceleanux_1_1vmem.html#aabc162dbfa4e98a5d1bf2571ba58de88" title="Get a std::list of SwapInfo swap spaces." alt="" coords="337,696,542,723"/>
+<area shape="rect" id="node18" href="$dc/d32/namespaceleanux_1_1vmem.html#afaf001154952f8397853ca745110020e" title="get virtual memory statistics." alt="" coords="343,747,535,773"/>
+<area shape="rect" id="node19" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a85ae7434eb396ed84307a15724c790c0" title="create a (vertical) CPU bar string from the CPUStat for terminal&#45;based output." alt="" coords="366,798,513,839"/>
+<area shape="rect" id="node21" href="$da/da3/namespaceleanux_1_1cpu.html#ae4420cd18b5170e303f743d6c2e5a6ec" title="Scales the numbers in stat to the time interval dt times the number of processors,..." alt="" coords="325,864,554,891"/>
+<area shape="rect" id="node5" href="$dd/d42/namespaceleanux_1_1system.html#abb67aa26c6ef63b4ad7b4194f1a8d774" title="Get the number of clock ticks per second." alt="" coords="611,107,809,133"/>
+<area shape="rect" id="node7" href="$d8/db1/namespaceleanux_1_1util.html#a1e9a1206d94b2f96e8e0c6adc4e4cd12" title="read the first data in the file as a string representation of a unsigned long." alt="" coords="623,157,797,184"/>
+<area shape="rect" id="node20" href="$da/da3/namespaceleanux_1_1cpu.html#a3b1bbe660ecf384b94d5915f3d90e2b7" title="Compute the total amount of CPU time in stat." alt="" coords="613,798,807,839"/>
+</map>

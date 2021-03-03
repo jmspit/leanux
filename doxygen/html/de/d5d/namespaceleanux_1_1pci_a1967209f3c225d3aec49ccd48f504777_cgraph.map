@@ -1,0 +1,6 @@
+<map id="leanux::pci::enumPCIATAPorts" name="leanux::pci::enumPCIATAPorts">
+<area shape="rect" id="node1" title="Enumerate ata ports for a given PCI device." alt="" coords="5,42,221,69"/>
+<area shape="rect" id="node2" href="$de/d5d/namespaceleanux_1_1pci.html#aab3769d433d88dded538fd64400409ff" title="Transform a PCI class code to a PCIHardwareClass." alt="" coords="275,5,482,47"/>
+<area shape="rect" id="node3" href="$de/d5d/namespaceleanux_1_1pci.html#a48810ffbe83e8a8e357edfa1181c33a5" title="get PCIHardwareId for a PCI device path relative to /sys/devives/" alt="" coords="269,71,488,98"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="536,64,719,105"/>
+</map>

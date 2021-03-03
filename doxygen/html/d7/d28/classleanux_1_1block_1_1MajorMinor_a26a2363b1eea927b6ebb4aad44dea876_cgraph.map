@@ -1,0 +1,31 @@
+<map id="leanux::block::MajorMinor::getDescription" name="leanux::block::MajorMinor::getDescription">
+<area shape="rect" id="node1" title="Get a pretty&#45;print description for the device." alt="" coords="5,551,196,592"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad8b93c3f6fc290008c2025e5e3d42eb5" title="Get the DeviceClass for a MajorMinor." alt="" coords="489,476,679,517"/>
+<area shape="rect" id="node16" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ac55fb06648c92ded4eacf29800faef83" title="return the device dm name (or an empty string if not a dm device)" alt="" coords="733,83,924,124"/>
+<area shape="rect" id="node17" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a723e203bbbb94b23e9d593b1cf744884" title="Get the filesystem type of the block device." alt="" coords="244,996,435,1037"/>
+<area shape="rect" id="node18" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6e82e367d0d6d6038391ac28c2e510c5" title="return the VG name the PV belongs to, or empty if the device is not a LVM PV." alt="" coords="244,795,435,836"/>
+<area shape="rect" id="node23" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a9d52932765ff17fd522e88807308b63c" title="Get the number of members in the MetaDisk or zero if not a MetaDisk." alt="" coords="244,207,435,248"/>
+<area shape="rect" id="node25" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a2c3df5e91a598e9078ed6682f2485e85" title="Get the device MetaDisk RAID level or empty if the device is not an MetaDisk." alt="" coords="733,17,924,59"/>
+<area shape="rect" id="node26" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6360a7c70665f9615ddb4682f96866b1" title="get MountInfo on devices with a mounted filesystem." alt="" coords="244,884,435,925"/>
+<area shape="rect" id="node28" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a322147b2e87ccbb0b5ffa42b18d03b4e" title="get the host:channel:target:lun addess for the device." alt="" coords="244,607,435,648"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a211f6f6595c83289600887d41d394742" title="return the device dm uuid (or an empty string if not a dm device)" alt="" coords="733,148,924,189"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aedaa770034a3bc139513e7a9aaa5c7f4" title="Get the LV name the block device belongs to, or empty string if the device is not a LVM PV." alt="" coords="733,812,924,853"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7e5217cefada330c0b412a4cc0e8ba8a" title="Get the major." alt="" coords="733,265,924,307"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a59e3fe2f1a574b79bad1fe48a2334c27" title="determine if the MajorMinor represents a bcache disk." alt="" coords="974,331,1165,372"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a546aa9297e382543cb031126190bc8c9" title="determine if the major represents an IDE disk." alt="" coords="974,265,1165,307"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a852aa9e7ee1c107c95cd27ad47b5cf86" title="determine if the MajorMinor represents an MMC disk." alt="" coords="974,461,1165,503"/>
+<area shape="rect" id="node12" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab248c720a63908f9e3ef78ed23536de8" title="determine if the MajorMinor represents a NVMe disk." alt="" coords="974,579,1165,620"/>
+<area shape="rect" id="node13" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="733,535,924,576"/>
+<area shape="rect" id="node14" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6c5b98f8ffc7b8904754ecfe33407e8c" title="determine if the major represents a SCSI disk." alt="" coords="974,396,1165,437"/>
+<area shape="rect" id="node15" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aaa91d26165ff4b7a32cfe052e72463cc" title="determine if the MajorMinor represents a virtio disk." alt="" coords="974,644,1165,685"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="972,62,1167,89"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="1215,491,1405,532"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7ef43192321c82d296575f35b69c52d4" title="Get the udev path for the device." alt="" coords="974,841,1165,883"/>
+<area shape="rect" id="node19" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#af09033a9db9d908d1132bbab667a0801" title="Get a list of devices holding (using) the device m." alt="" coords="489,729,679,771"/>
+<area shape="rect" id="node20" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a3f7315088bb27e09449e3c2542b65958" title="Get the MajorMinor for the device name." alt="" coords="489,795,679,836"/>
+<area shape="rect" id="node21" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0843f4cee97fda4733b1579fb7544727" title="Get the VG name the block device belongs to, or empty string if the device is not a LVM PV." alt="" coords="489,860,679,901"/>
+<area shape="rect" id="node22" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26905a16bdd3e525abb2ada713f80704" title="Test MajorMinor validity." alt="" coords="733,940,924,981"/>
+<area shape="rect" id="node24" href="$d8/db1/namespaceleanux_1_1util.html#a1e9a1206d94b2f96e8e0c6adc4e4cd12" title="read the first data in the file as a string representation of a unsigned long." alt="" coords="497,163,671,190"/>
+<area shape="rect" id="node27" href="$d5/d01/namespaceleanux_1_1block.html#afaee6721d578e4e9ccbebb7dea5919a6" title="Get a map of MajorMinor to MountInfo from /proc/mounts." alt="" coords="483,977,685,1003"/>
+<area shape="rect" id="node29" href="$d8/db1/namespaceleanux_1_1util.html#adb3739607a9ec74d79fbebf4d45dd766" title="Find subdirectories, first match is returned, if any." alt="" coords="511,614,657,641"/>
+</map>

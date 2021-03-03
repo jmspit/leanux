@@ -1,0 +1,9 @@
+<map id="leanux::tools::lmon::View" name="leanux::tools::lmon::View">
+<area shape="rect" id="node1" title="A reactangular area on the ncurses Screen as a window of information." alt="" coords="5,169,152,211"/>
+<area shape="rect" id="node2" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html" title="The lmon Footer is a View shown at the bottom." alt="" coords="200,5,347,47"/>
+<area shape="rect" id="node3" href="$dc/d7e/classleanux_1_1tools_1_1lmon_1_1Header.html" title="The lmon Header is a View shown at the top." alt="" coords="200,71,347,112"/>
+<area shape="rect" id="node4" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html" title="IO view." alt="" coords="200,136,347,177"/>
+<area shape="rect" id="node5" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html" title="View of top network devices." alt="" coords="200,201,347,243"/>
+<area shape="rect" id="node6" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html" title="View of top processes." alt="" coords="200,267,347,308"/>
+<area shape="rect" id="node7" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html" title="System view." alt="" coords="200,332,347,373"/>
+</map>

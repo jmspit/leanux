@@ -1,0 +1,5 @@
+<map id="leanux::net::whatAF_INET" name="leanux::net::whatAF_INET">
+<area shape="rect" id="node1" title="Determine the type of IP address." alt="" coords="403,13,592,39"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a63180a19841a83de5f17eca4c4e055dd" title="Try to resolve an IPv4 or IPv6 address." alt="" coords="192,13,355,39"/>
+<area shape="rect" id="node3" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a48bbe696793b1557d9244bff602b9743" title="get from cache or DNS request on cache miss" alt="" coords="5,5,144,47"/>
+</map>

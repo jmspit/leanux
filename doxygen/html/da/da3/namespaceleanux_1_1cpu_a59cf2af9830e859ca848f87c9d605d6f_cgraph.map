@@ -1,0 +1,4 @@
+<map id="leanux::cpu::getCPUStats" name="leanux::cpu::getCPUStats">
+<area shape="rect" id="node1" title="Get CPU usage statistics from /proc/stat." alt="" coords="5,5,192,32"/>
+<area shape="rect" id="node2" href="$dd/d42/namespaceleanux_1_1system.html#abb67aa26c6ef63b4ad7b4194f1a8d774" title="Get the number of clock ticks per second." alt="" coords="240,5,439,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::sysdevice::RamDiskDevice" name="leanux::sysdevice::RamDiskDevice">
+<area shape="rect" id="node1" title="Say yes to ramdisk devices." alt="" coords="5,184,152,225"/>
+<area shape="rect" id="node2" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html" title="Generic block device." alt="" coords="5,95,152,136"/>
+<area shape="rect" id="node3" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html" title="Generic SysDevice, utility class for device detection from a SysDevicePath." alt="" coords="5,5,152,47"/>
+</map>

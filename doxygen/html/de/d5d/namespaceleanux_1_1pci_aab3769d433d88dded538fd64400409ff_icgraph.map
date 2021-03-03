@@ -1,0 +1,5 @@
+<map id="leanux::pci::getPCIHardwareClass" name="leanux::pci::getPCIHardwareClass">
+<area shape="rect" id="node1" title="Transform a PCI class code to a PCIHardwareClass." alt="" coords="508,23,715,65"/>
+<area shape="rect" id="node2" href="$de/d5d/namespaceleanux_1_1pci.html#a1967209f3c225d3aec49ccd48f504777" title="Enumerate ata ports for a given PCI device." alt="" coords="244,5,460,32"/>
+<area shape="rect" id="node3" href="$de/d5d/namespaceleanux_1_1pci.html#a40970cc37923958a06a10118e3dac9f9" title="return a device path relative to /sys/devices to the PCI device providing the ATA port." alt="" coords="5,23,196,65"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="leanux::block::MajorMinor::getDMName" name="leanux::block::MajorMinor::getDMName">
+<area shape="rect" id="node1" title="return the device dm name (or an empty string if not a dm device)" alt="" coords="617,39,808,80"/>
+<area shape="rect" id="node2" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ac57ae7d9a91a4259052d4ae1da5a36a2" title="Write LVM details." alt="" coords="192,5,331,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26a2363b1eea927b6ebb4aad44dea876" title="Get a pretty&#45;print description for the device." alt="" coords="379,68,569,109"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="5,39,144,80"/>
+<area shape="rect" id="node5" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a3ed79ca6c9f478be774a6d9f4a4cb016" title="Write MetaDisk details." alt="" coords="192,71,331,112"/>
+</map>

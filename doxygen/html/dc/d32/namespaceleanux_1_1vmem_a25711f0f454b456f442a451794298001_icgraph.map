@@ -1,0 +1,4 @@
+<map id="leanux::vmem::getDirtyBytes" name="leanux::vmem::getDirtyBytes">
+<area shape="rect" id="node1" title="get /proc/sys/vm/dirty_bytes" alt="" coords="287,5,501,32"/>
+<area shape="rect" id="node2" href="$dc/d32/namespaceleanux_1_1vmem.html#ab18065f52780cb0cbf8c13ce06bb3d8d" title=" " alt="" coords="5,5,239,32"/>
+</map>

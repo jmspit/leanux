@@ -1,0 +1,10 @@
+<map id="leanux::block::enumDevices" name="leanux::block::enumDevices">
+<area shape="rect" id="node1" title="get a list of all block devices" alt="" coords="633,113,840,139"/>
+<area shape="rect" id="node2" href="$d5/d01/namespaceleanux_1_1block.html#a3f0d238d9d613580fd7c45d72331275f" title="get a list of LVM physical volumes" alt="" coords="379,17,585,43"/>
+<area shape="rect" id="node5" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa664245209dbbb081139c961a4c6d878" title="generate system details html." alt="" coords="405,73,559,115"/>
+<area shape="rect" id="node7" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aa88fa87379ec2528ee3627e5bb9953d0" title="Table listing all devices." alt="" coords="192,136,331,177"/>
+<area shape="rect" id="node8" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a434f492d6d8b6e1e69c1200e6d66180a" title="Table listing all MetaDisks." alt="" coords="413,193,551,235"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a3ad2e43162ca1213c491e96d5d2a5a9c" title="Table listing LVM devices." alt="" coords="192,5,331,47"/>
+<area shape="rect" id="node4" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="5,136,144,177"/>
+<area shape="rect" id="node6" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="192,71,331,112"/>
+</map>

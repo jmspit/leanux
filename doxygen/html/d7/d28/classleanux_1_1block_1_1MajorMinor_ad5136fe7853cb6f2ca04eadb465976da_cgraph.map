@@ -1,0 +1,12 @@
+<map id="leanux::block::MajorMinor::isPartition" name="leanux::block::MajorMinor::isPartition">
+<area shape="rect" id="node1" title=" " alt="" coords="5,198,196,239"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="483,185,673,226"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a464bd4b85ec6d88f850ef7d76e950f44" title="Default constructor." alt="" coords="960,110,1151,151"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a59e3fe2f1a574b79bad1fe48a2334c27" title="determine if the MajorMinor represents a bcache disk." alt="" coords="244,99,435,141"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a546aa9297e382543cb031126190bc8c9" title="determine if the major represents an IDE disk." alt="" coords="244,165,435,206"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a852aa9e7ee1c107c95cd27ad47b5cf86" title="determine if the MajorMinor represents an MMC disk." alt="" coords="244,230,435,271"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab248c720a63908f9e3ef78ed23536de8" title="determine if the MajorMinor represents a NVMe disk." alt="" coords="244,295,435,337"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6c5b98f8ffc7b8904754ecfe33407e8c" title="determine if the major represents a SCSI disk." alt="" coords="244,361,435,402"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aaa91d26165ff4b7a32cfe052e72463cc" title="determine if the MajorMinor represents a virtio disk." alt="" coords="244,426,435,467"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a4d83c063088eb618533f31e2cc78b2f3" title="(re)build the cached mapping between device names and MajorMinor numbers." alt="" coords="721,139,912,181"/>
+</map>

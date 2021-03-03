@@ -1,0 +1,5 @@
+<map id="leanux::tools::lmon::NetView::getMinHeight" name="leanux::tools::lmon::NetView::getMinHeight">
+<area shape="rect" id="node1" title="Get the minimal height for the NetView." alt="" coords="477,35,657,76"/>
+<area shape="rect" id="node2" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a90d83dccb33390f86d92374070075b29" title="provide the optimal height for the NetView," alt="" coords="221,5,429,47"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#abcaa706fe703bbf453808220fcaf8263" title="Recalculate the window sizes." alt="" coords="5,35,173,76"/>
+</map>

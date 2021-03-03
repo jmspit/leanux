@@ -1,0 +1,17 @@
+<map id="leanux::sysdevice::NetDevice::getPropertyValueList" name="leanux::sysdevice::NetDevice::getPropertyValueList">
+<area shape="rect" id="node1" title=" " alt="" coords="5,261,239,302"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a94118db8a190951c9a8b057a895a8710" title="Get the device speed in Mb/s." alt="" coords="305,5,519,32"/>
+<area shape="rect" id="node3" href="$d5/db8/namespaceleanux_1_1net.html#a5b7ce34f5a8e17c27903bb628ee9d697" title="Get the duplex mode of the device." alt="" coords="305,56,519,83"/>
+<area shape="rect" id="node4" href="$d5/db8/namespaceleanux_1_1net.html#a1263f722e81950eb9973fe13b3b924d4" title="Get a list of IP4 adresses assigned to the device." alt="" coords="317,107,507,149"/>
+<area shape="rect" id="node5" href="$d5/db8/namespaceleanux_1_1net.html#a7c381b1111743825c892ab901076314b" title="Get a list of IP6 adresses assigned to the device." alt="" coords="317,173,507,214"/>
+<area shape="rect" id="node7" href="$d5/db8/namespaceleanux_1_1net.html#a6fd1c299c0eb06a5dece79bb60649d10" title="Get the device&#39;s MAC address." alt="" coords="287,239,537,265"/>
+<area shape="rect" id="node8" href="$d5/db8/namespaceleanux_1_1net.html#a40e87ec67bc4685b34fe879cb484a4e4" title="Get a network device&#39;s operating state." alt="" coords="312,290,512,331"/>
+<area shape="rect" id="node9" href="$d5/db8/namespaceleanux_1_1net.html#a217767e4b9c2a86c4e9d06937c15bc9a" title="Get the device speed in Mb/s." alt="" coords="307,356,517,383"/>
+<area shape="rect" id="node10" href="$d5/db8/namespaceleanux_1_1net.html#a569381dfafc9569570eb19cc8853085b" title=" " alt="" coords="323,407,501,433"/>
+<area shape="rect" id="node11" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html#ae45d4c50b05a48b480911a1aaeaeacc1" title=" " alt="" coords="295,458,529,499"/>
+<area shape="rect" id="node15" href="$d8/db1/namespaceleanux_1_1util.html#aa27945944eed716a41f6128b7cefe97e" title="returns the leaf of the tree &#45; that string after the last &#39;/&#39;" alt="" coords="339,524,485,551"/>
+<area shape="rect" id="node6" href="$d5/db8/namespaceleanux_1_1net.html#af94467113568c21e1a32c0d5e842dab0" title="convert IPv6 network IP representation to human readable format." alt="" coords="585,173,755,214"/>
+<area shape="rect" id="node12" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html#af93bf56dfb812cdfa443dcfaffcbbb25" title="Get the device class for this device." alt="" coords="593,393,747,434"/>
+<area shape="rect" id="node13" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html#af7a1af7a4b7729e150cceed395e4425b" title="Get the driver for this device." alt="" coords="591,458,749,499"/>
+<area shape="rect" id="node14" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html#a899968c4a70ecad67694f6850cf730fd" title="Get a string representation for the SysDeviceType." alt="" coords="587,523,753,565"/>
+</map>

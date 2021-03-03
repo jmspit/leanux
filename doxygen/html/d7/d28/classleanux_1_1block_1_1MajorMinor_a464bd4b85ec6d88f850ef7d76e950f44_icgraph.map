@@ -1,0 +1,11 @@
+<map id="leanux::block::MajorMinor::MajorMinor" name="leanux::block::MajorMinor::MajorMinor">
+<area shape="rect" id="node1" title="Default constructor." alt="" coords="741,224,932,265"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a4d83c063088eb618533f31e2cc78b2f3" title="(re)build the cached mapping between device names and MajorMinor numbers." alt="" coords="503,161,693,202"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="5,30,196,72"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5d99ca38ec1da09595471284c8f0781" title="Get the raid disks participating in the MD array specified my MajorMinor." alt="" coords="5,188,196,229"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="5,308,196,349"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adbc85a06dc6d8aa13cb646b63d6c4d41" title="Get the DeviceFile for the MajorMinor, such as &#39;/dev/sda&#39;." alt="" coords="244,96,455,137"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a1eacb57963e0a088ef493d4cd23ea650" title=" " alt="" coords="244,226,455,268"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a3f7315088bb27e09449e3c2542b65958" title="Get the MajorMinor for the device name." alt="" coords="254,30,445,72"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="254,161,445,202"/>
+</map>

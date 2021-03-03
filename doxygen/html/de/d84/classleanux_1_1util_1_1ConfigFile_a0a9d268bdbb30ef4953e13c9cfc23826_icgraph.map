@@ -1,0 +1,6 @@
+<map id="leanux::util::ConfigFile::read" name="leanux::util::ConfigFile::read">
+<area shape="rect" id="node1" title="read and interpret the configuration file." alt="" coords="435,39,601,80"/>
+<area shape="rect" id="node2" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a1f104838a15bec5db5c6e2afe287cabc" title="Constructor, should not be called directly, use setConfig and getConfig to create the ConfigFile." alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node4" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a404290f829ce6132e1bbb21dd942f598" title="Destructor." alt="" coords="230,71,377,112"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ad044e490e3603309c05ed01e06833b11" title="set the application name and config file name." alt="" coords="5,5,172,47"/>
+</map>

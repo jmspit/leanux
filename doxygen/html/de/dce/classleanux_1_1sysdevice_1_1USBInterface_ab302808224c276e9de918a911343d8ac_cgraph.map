@@ -1,0 +1,7 @@
+<map id="leanux::sysdevice::USBInterface::getClass" name="leanux::sysdevice::USBInterface::getClass">
+<area shape="rect" id="node1" title="Get the device class for this device." alt="" coords="5,39,176,80"/>
+<area shape="rect" id="node2" href="$d5/d9c/namespaceleanux_1_1usb.html#ae829acc56dd4d026e028bf61bf2e4b3a" title=" " alt="" coords="224,5,440,47"/>
+<area shape="rect" id="node3" href="$d5/d9c/namespaceleanux_1_1usb.html#ab6d5edb6d930414aa0d31dab795a0b00" title=" " alt="" coords="227,71,437,112"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="488,49,689,75"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="497,100,680,141"/>
+</map>

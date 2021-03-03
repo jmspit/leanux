@@ -1,0 +1,5 @@
+<map id="leanux::block::MajorMinor::isNVMeDisk" name="leanux::block::MajorMinor::isNVMeDisk">
+<area shape="rect" id="node1" title="determine if the MajorMinor represents a NVMe disk." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a4d83c063088eb618533f31e2cc78b2f3" title="(re)build the cached mapping between device names and MajorMinor numbers." alt="" coords="483,5,673,47"/>
+</map>

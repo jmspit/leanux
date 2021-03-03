@@ -1,0 +1,4 @@
+<map id="leanux::pci::enumPCIATAPorts" name="leanux::pci::enumPCIATAPorts">
+<area shape="rect" id="node1" title="Enumerate ata ports for a given PCI device." alt="" coords="244,13,460,39"/>
+<area shape="rect" id="node2" href="$de/d5d/namespaceleanux_1_1pci.html#a40970cc37923958a06a10118e3dac9f9" title="return a device path relative to /sys/devices to the PCI device providing the ATA port." alt="" coords="5,5,196,47"/>
+</map>

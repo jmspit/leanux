@@ -1,0 +1,9 @@
+<map id="leanux::tools::lmon::View::textOut" name="leanux::tools::lmon::View::textOut">
+<area shape="rect" id="node1" title="Write text at x,y with display attrs." alt="" coords="227,169,373,211"/>
+<area shape="rect" id="node2" href="$dc/d7e/classleanux_1_1tools_1_1lmon_1_1Header.html#a0bf159560092c7e60e8c5ece7dd87bf0" title="Draw the header, with msg right aligned at right top." alt="" coords="19,5,165,47"/>
+<area shape="rect" id="node3" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#af73d1c7e046da00be4bf464ec0871b73" title="refresh (redraw) the Footer." alt="" coords="19,71,165,112"/>
+<area shape="rect" id="node4" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#ad72b5ee6be63091f3d320a23721d5cb4" title="refresh (redraw) the View." alt="" coords="19,136,165,177"/>
+<area shape="rect" id="node5" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#ad5d8db29927cc18e861cfa5ba48ecd94" title="refresh (redraw) the View." alt="" coords="19,201,165,243"/>
+<area shape="rect" id="node6" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#af3566e8ec176744fcd254c558de68eed" title="Refresh/redraw the ProcessView." alt="" coords="5,267,179,308"/>
+<area shape="rect" id="node7" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a0e5c6aa931081924ece2bd2407dfc000" title="Refresh/redraw the ProcessView." alt="" coords="19,332,165,373"/>
+</map>

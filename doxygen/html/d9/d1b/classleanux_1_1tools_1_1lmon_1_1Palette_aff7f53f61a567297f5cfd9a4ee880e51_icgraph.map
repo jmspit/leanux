@@ -1,0 +1,5 @@
+<map id="leanux::tools::lmon::Palette::setup" name="leanux::tools::lmon::Palette::setup">
+<area shape="rect" id="node1" title="setup the Palette." alt="" coords="407,5,553,47"/>
+<area shape="rect" id="node2" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5384c2d32ae6862fa3d1fa0531915d72" title="Initialize and start the ncurses Screen." alt="" coords="200,5,359,47"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5fceabd599c083204cf4fc2014694403" title="Constructor." alt="" coords="5,5,152,47"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="leanux::net::getDeviceSpeed" name="leanux::net::getDeviceSpeed">
+<area shape="rect" id="node1" title="Get the device speed in Mb/s." alt="" coords="475,46,684,73"/>
+<area shape="rect" id="node2" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="240,5,380,47"/>
+<area shape="rect" id="node4" href="$dc/d23/classleanux_1_1sysdevice_1_1NetDevice.html#a1debae3dd366106e7b0f90018c503b9e" title=" " alt="" coords="193,71,427,112"/>
+<area shape="rect" id="node3" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="5,5,145,47"/>
+</map>

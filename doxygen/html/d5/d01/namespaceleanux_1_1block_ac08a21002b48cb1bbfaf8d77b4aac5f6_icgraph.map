@@ -1,0 +1,25 @@
+<map id="leanux::block::enumWholeDisks" name="leanux::block::enumWholeDisks">
+<area shape="rect" id="node1" title="get a list of whole disks (exclude partitions)." alt="" coords="699,628,893,669"/>
+<area shape="rect" id="node2" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a7c4d8e1b83d12c98c203c40580d1d450" title="generate the JSON zabbix expects." alt="" coords="475,116,630,157"/>
+<area shape="rect" id="node4" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a6a00f41ee62469522591d31c13035a0c" title=" " alt="" coords="475,308,630,349"/>
+<area shape="rect" id="node13" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a5fd79b07f7441318e0a842b4b3024ee9" title="Construct a Footer." alt="" coords="234,686,381,728"/>
+<area shape="rect" id="node14" href="$d5/d01/namespaceleanux_1_1block.html#ad1f8b6bad222a975b5885a0fff510848" title="total attached storage." alt="" coords="455,628,651,669"/>
+<area shape="rect" id="node15" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa664245209dbbb081139c961a4c6d878" title="generate system details html." alt="" coords="230,621,385,662"/>
+<area shape="rect" id="node17" href="$d5/d01/namespaceleanux_1_1block.html#a7a67938374b78be3e0d9777ae699cdb0" title="Get the number of attached whole disks." alt="" coords="455,810,651,852"/>
+<area shape="rect" id="node19" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ab9b4bc8a1806ab977597271e15f34c11" title=" " alt="" coords="483,745,622,786"/>
+<area shape="rect" id="node20" href="$d5/d01/namespaceleanux_1_1block.html#a927d958ef9b9b66a13c32754e91d0c7d" title="Initialize the block API." alt="" coords="483,526,622,552"/>
+<area shape="rect" id="node22" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a73d92bf0717d3dece131f9cf718de164" title="Table listing all disks." alt="" coords="483,876,622,917"/>
+<area shape="rect" id="node3" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a482626b839aaf80a44f973eed61b69a6" title=" " alt="" coords="5,276,160,317"/>
+<area shape="rect" id="node5" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aea87f0c72ad32fa0b12a485e8f265e3a" title=" " alt="" coords="230,504,385,545"/>
+<area shape="rect" id="node6" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aa6367c0ce0a9370f9b5b0b2d805f3768" title=" " alt="" coords="230,46,385,88"/>
+<area shape="rect" id="node7" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a4ed156d3dd393c88023d89cb3de4f327" title=" " alt="" coords="230,112,385,153"/>
+<area shape="rect" id="node8" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a5119e01f3f750e313aa39b2091560502" title=" " alt="" coords="230,177,385,218"/>
+<area shape="rect" id="node9" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a2a148cecfe8dcf3c00e0bb19f57044f3" title=" " alt="" coords="230,242,385,284"/>
+<area shape="rect" id="node10" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aac6bd9b75ac1a266cc601b0245013aa8" title=" " alt="" coords="230,308,385,349"/>
+<area shape="rect" id="node11" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#ae7137e2b91a00754bf3f74b6cc7be8f0" title=" " alt="" coords="230,373,385,414"/>
+<area shape="rect" id="node12" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a89bf8cba18d6ec80534e7fbef8b19496" title=" " alt="" coords="230,438,385,480"/>
+<area shape="rect" id="node16" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="13,621,152,662"/>
+<area shape="rect" id="node18" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a466bf2f2261b917b31ae2664ec8fbed0" title="provide the optimal height for the Header." alt="" coords="208,810,407,852"/>
+<area shape="rect" id="node21" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="260,570,355,596"/>
+<area shape="rect" id="node23" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="238,876,377,917"/>
+</map>

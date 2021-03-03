@@ -1,0 +1,8 @@
+<map id="leanux::tools::lblk::listAllDisks" name="leanux::tools::lblk::listAllDisks">
+<area shape="rect" id="node1" title="Table listing all disks." alt="" coords="5,86,144,127"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="214,5,365,32"/>
+<area shape="rect" id="node3" href="$d5/d01/namespaceleanux_1_1block.html#ac08a21002b48cb1bbfaf8d77b4aac5f6" title="get a list of whole disks (exclude partitions)." alt="" coords="192,57,387,98"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a0c9555d36d9264d1f0cd246c8ba6da28" title="Convert a double (real number) to a pretty print string." alt="" coords="213,123,365,149"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a377ec19addd5d3ca3ecee9a2591f6458" title="convert a time duration in seconds to a pretty print string." alt="" coords="201,173,378,200"/>
+<area shape="rect" id="node6" href="$d8/db1/namespaceleanux_1_1util.html#a5178387ce32054e1c460c69b44d8219b" title="convert a time duration in microseconds to a pretty print string." alt="" coords="435,173,625,200"/>
+</map>

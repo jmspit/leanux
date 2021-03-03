@@ -1,0 +1,6 @@
+<map id="leanux::block::MajorMinor::getDMUUID" name="leanux::block::MajorMinor::getDMUUID">
+<area shape="rect" id="node1" title="return the device dm uuid (or an empty string if not a dm device)" alt="" coords="5,27,196,69"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="244,5,439,32"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="246,57,437,98"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a4d83c063088eb618533f31e2cc78b2f3" title="(re)build the cached mapping between device names and MajorMinor numbers." alt="" coords="487,57,677,98"/>
+</map>

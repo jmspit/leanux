@@ -1,0 +1,10 @@
+<map id="leanux::process::ProcPidStat" name="leanux::process::ProcPidStat">
+<area shape="rect" id="node1" title="Process details and statistics as in /proc/[pid]/stat." alt="" coords="183,332,390,359"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,96,72,123"/>
+<area shape="rect" id="node3" title=" " alt="" coords="145,96,196,123"/>
+<area shape="rect" id="node4" title=" " alt="" coords="221,96,259,123"/>
+<area shape="rect" id="node5" title=" " alt="" coords="303,96,358,123"/>
+<area shape="rect" id="node6" title="STL class." alt="" coords="382,96,469,123"/>
+<area shape="rect" id="node7" title="STL class." alt="" coords="356,5,495,47"/>
+<area shape="rect" id="node8" title=" " alt="" coords="493,96,544,123"/>
+</map>

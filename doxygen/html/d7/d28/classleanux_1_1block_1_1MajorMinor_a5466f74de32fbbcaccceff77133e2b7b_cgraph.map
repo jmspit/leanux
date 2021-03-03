@@ -1,0 +1,14 @@
+<map id="leanux::block::MajorMinor::getSlaves" name="leanux::block::MajorMinor::getSlaves">
+<area shape="rect" id="node1" title="Get a list of devices slave to the device m." alt="" coords="5,308,196,350"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="244,308,435,350"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="721,178,912,219"/>
+<area shape="rect" id="node12" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="244,243,435,284"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a3f7315088bb27e09449e3c2542b65958" title="Get the MajorMinor for the device name." alt="" coords="483,556,673,598"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a59e3fe2f1a574b79bad1fe48a2334c27" title="determine if the MajorMinor represents a bcache disk." alt="" coords="483,47,673,88"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a546aa9297e382543cb031126190bc8c9" title="determine if the major represents an IDE disk." alt="" coords="483,308,673,350"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a852aa9e7ee1c107c95cd27ad47b5cf86" title="determine if the MajorMinor represents an MMC disk." alt="" coords="483,112,673,154"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab248c720a63908f9e3ef78ed23536de8" title="determine if the MajorMinor represents a NVMe disk." alt="" coords="483,178,673,219"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6c5b98f8ffc7b8904754ecfe33407e8c" title="determine if the major represents a SCSI disk." alt="" coords="483,374,673,415"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aaa91d26165ff4b7a32cfe052e72463cc" title="determine if the MajorMinor represents a virtio disk." alt="" coords="483,243,673,284"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a464bd4b85ec6d88f850ef7d76e950f44" title="Default constructor." alt="" coords="483,439,673,480"/>
+</map>

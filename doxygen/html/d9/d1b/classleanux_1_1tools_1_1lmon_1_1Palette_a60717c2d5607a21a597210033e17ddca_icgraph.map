@@ -1,0 +1,7 @@
+<map id="leanux::tools::lmon::Palette::getColorBlockedProc" name="leanux::tools::lmon::Palette::getColorBlockedProc">
+<area shape="rect" id="node1" title="get blocked process color." alt="" coords="227,104,444,145"/>
+<area shape="rect" id="node2" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a5fd79b07f7441318e0a842b4b3024ee9" title="Construct a Footer." alt="" coords="19,5,165,47"/>
+<area shape="rect" id="node3" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a1d79fb91685ffcecf4d9fe9cbdd01700" title="The constructor specifies location and size of the View on the Screen." alt="" coords="19,71,165,112"/>
+<area shape="rect" id="node4" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#ad5d8db29927cc18e861cfa5ba48ecd94" title="refresh (redraw) the View." alt="" coords="19,136,165,177"/>
+<area shape="rect" id="node5" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#af3566e8ec176744fcd254c558de68eed" title="Refresh/redraw the ProcessView." alt="" coords="5,201,179,243"/>
+</map>

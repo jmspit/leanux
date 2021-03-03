@@ -1,0 +1,6 @@
+<map id="leanux::block::MajorMinor::getSCSIIODone" name="leanux::block::MajorMinor::getSCSIIODone">
+<area shape="rect" id="node1" title="Get SCSI iodone_cnt (number of SCSI IO completions)" alt="" coords="5,39,196,80"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="248,5,431,47"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="244,71,435,112"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a4d83c063088eb618533f31e2cc78b2f3" title="(re)build the cached mapping between device names and MajorMinor numbers." alt="" coords="483,71,673,112"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="leanux::tools::lmon::NetView::getOptimalHeight" name="leanux::tools::lmon::NetView::getOptimalHeight">
+<area shape="rect" id="node1" title="provide the optimal height for the NetView," alt="" coords="5,68,213,109"/>
+<area shape="rect" id="node2" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#ae72888be780638aca574db129155547e" title="Get the minimal height for the NetView." alt="" coords="261,39,441,80"/>
+<area shape="rect" id="node5" href="$d5/db8/namespaceleanux_1_1net.html#ac78d924eb899ccfa62581ec1d13dc75b" title="Get network device statistics from /proc/net/dev." alt="" coords="265,105,438,131"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="489,5,656,47"/>
+<area shape="rect" id="node4" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aae0c3891e3d5a8d391a7439602b92780" title="return the configuration parameter as an int." alt="" coords="489,71,656,112"/>
+</map>

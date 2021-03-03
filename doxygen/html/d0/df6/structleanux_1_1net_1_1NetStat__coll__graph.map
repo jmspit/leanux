@@ -1,0 +1,6 @@
+<map id="leanux::net::NetStat" name="leanux::net::NetStat">
+<area shape="rect" id="node1" title="Network device statistics as in /proc/net/dev." alt="" coords="45,332,197,359"/>
+<area shape="rect" id="node2" title="STL class." alt="" coords="31,96,118,123"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="5,5,144,47"/>
+<area shape="rect" id="node4" title=" " alt="" coords="143,96,193,123"/>
+</map>

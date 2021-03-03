@@ -1,0 +1,4 @@
+<map id="leanux::net::findTCP4SocketByINode" name="leanux::net::findTCP4SocketByINode">
+<area shape="rect" id="node1" title="Search for a TCP4 socket by inode number." alt="" coords="5,5,208,47"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a492762fd6165b208b70e89b4d75eb1ac" title="parse a TCP4 std::string from /proc/net/tcp." alt="" coords="256,13,455,39"/>
+</map>

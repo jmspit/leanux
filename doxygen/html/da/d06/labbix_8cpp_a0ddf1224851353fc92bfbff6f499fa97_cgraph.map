@@ -1,0 +1,15 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,339,60,366"/>
+<area shape="rect" id="node2" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a482626b839aaf80a44f973eed61b69a6" title=" " alt="" coords="108,332,263,373"/>
+<area shape="rect" id="node3" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a7c4d8e1b83d12c98c203c40580d1d450" title="generate the JSON zabbix expects." alt="" coords="311,5,465,47"/>
+<area shape="rect" id="node4" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aea87f0c72ad32fa0b12a485e8f265e3a" title=" " alt="" coords="311,71,465,112"/>
+<area shape="rect" id="node5" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aa6367c0ce0a9370f9b5b0b2d805f3768" title=" " alt="" coords="311,136,465,177"/>
+<area shape="rect" id="node6" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a4ed156d3dd393c88023d89cb3de4f327" title=" " alt="" coords="311,201,465,243"/>
+<area shape="rect" id="node7" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a5119e01f3f750e313aa39b2091560502" title=" " alt="" coords="311,267,465,308"/>
+<area shape="rect" id="node8" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a2a148cecfe8dcf3c00e0bb19f57044f3" title=" " alt="" coords="311,332,465,373"/>
+<area shape="rect" id="node9" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aac6bd9b75ac1a266cc601b0245013aa8" title=" " alt="" coords="311,397,465,439"/>
+<area shape="rect" id="node10" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#ae7137e2b91a00754bf3f74b6cc7be8f0" title=" " alt="" coords="311,463,465,504"/>
+<area shape="rect" id="node11" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a89bf8cba18d6ec80534e7fbef8b19496" title=" " alt="" coords="311,528,465,569"/>
+<area shape="rect" id="node12" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="341,594,435,621"/>
+<area shape="rect" id="node13" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#aa9560a2d58ad47ea7d4a006c6cc6f92e" title=" " alt="" coords="311,645,465,687"/>
+</map>

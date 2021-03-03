@@ -1,0 +1,10 @@
+<map id="leanux::block::MajorMinor::getMajor" name="leanux::block::MajorMinor::getMajor">
+<area shape="rect" id="node1" title="Get the major." alt="" coords="483,201,673,243"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad8b93c3f6fc290008c2025e5e3d42eb5" title="Get the DeviceClass for a MajorMinor." alt="" coords="244,136,435,177"/>
+<area shape="rect" id="node6" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="31,201,170,243"/>
+<area shape="rect" id="node7" href="$d5/d01/namespaceleanux_1_1block.html#a927d958ef9b9b66a13c32754e91d0c7d" title="Initialize the block API." alt="" coords="270,263,409,290"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0262599b45d4425a1841853e830a7c46" title="Get a descriptive string for the device type of the MajorMinor." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26a2363b1eea927b6ebb4aad44dea876" title="Get a pretty&#45;print description for the device." alt="" coords="5,71,196,112"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a52999f02212469e3e0e74760d7637470" title="Retrieve a string identifying a disk on a best&#45;efffort basis." alt="" coords="5,136,196,177"/>
+<area shape="rect" id="node8" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="53,267,148,294"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="leanux::block::MajorMinor::deriveWholeDisk" name="leanux::block::MajorMinor::deriveWholeDisk">
+<area shape="rect" id="node1" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="5,267,196,308"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a3f7315088bb27e09449e3c2542b65958" title="Get the MajorMinor for the device name." alt="" coords="483,376,673,417"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a464bd4b85ec6d88f850ef7d76e950f44" title="Default constructor." alt="" coords="960,435,1151,476"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="483,169,673,211"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a59e3fe2f1a574b79bad1fe48a2334c27" title="determine if the MajorMinor represents a bcache disk." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a546aa9297e382543cb031126190bc8c9" title="determine if the major represents an IDE disk." alt="" coords="244,267,435,308"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a852aa9e7ee1c107c95cd27ad47b5cf86" title="determine if the MajorMinor represents an MMC disk." alt="" coords="244,71,435,112"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab248c720a63908f9e3ef78ed23536de8" title="determine if the MajorMinor represents a NVMe disk." alt="" coords="244,136,435,177"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6c5b98f8ffc7b8904754ecfe33407e8c" title="determine if the major represents a SCSI disk." alt="" coords="244,435,435,476"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aaa91d26165ff4b7a32cfe052e72463cc" title="determine if the MajorMinor represents a virtio disk." alt="" coords="244,201,435,243"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a4d83c063088eb618533f31e2cc78b2f3" title="(re)build the cached mapping between device names and MajorMinor numbers." alt="" coords="721,376,912,417"/>
+</map>

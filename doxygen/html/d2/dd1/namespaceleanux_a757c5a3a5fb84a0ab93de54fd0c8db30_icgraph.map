@@ -1,0 +1,15 @@
+<map id="leanux::init" name="leanux::init">
+<area shape="rect" id="node1" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="311,177,405,203"/>
+<area shape="rect" id="node2" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a7f59af183bc55b66e3dc0844b473daaf" title=" " alt="" coords="112,5,259,47"/>
+<area shape="rect" id="node4" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a482626b839aaf80a44f973eed61b69a6" title=" " alt="" coords="108,71,263,112"/>
+<area shape="rect" id="node6" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aecb1bb340203cfe30357d494d4b2622e" title="Entry point." alt="" coords="116,136,255,177"/>
+<area shape="rect" id="node8" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#aa2b4de7a80d63592f6207ce5951cf966" title="Entry point." alt="" coords="115,201,255,243"/>
+<area shape="rect" id="node10" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a7e4a52393fd43c98af0e5e16603b54df" title="Entry point." alt="" coords="116,267,255,308"/>
+<area shape="rect" id="node12" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="116,332,255,373"/>
+<area shape="rect" id="node3" href="$df/dde/lmon_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title="lmon entry point." alt="" coords="5,13,60,39"/>
+<area shape="rect" id="node5" href="$da/d06/labbix_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,78,60,105"/>
+<area shape="rect" id="node7" href="$da/de9/lar_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,143,60,170"/>
+<area shape="rect" id="node9" href="$de/d17/lsys_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,209,60,235"/>
+<area shape="rect" id="node11" href="$d9/d3a/lblk_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,274,60,301"/>
+<area shape="rect" id="node13" href="$dd/d15/lrep_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,339,60,366"/>
+</map>

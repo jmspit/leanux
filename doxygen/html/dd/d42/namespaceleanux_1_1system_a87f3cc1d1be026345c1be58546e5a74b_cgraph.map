@@ -1,0 +1,10 @@
+<map id="leanux::system::getDistribution" name="leanux::system::getDistribution">
+<area shape="rect" id="node1" title="Detect the GNU/Linux distribution." alt="" coords="5,180,232,207"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="313,5,515,32"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="317,56,511,83"/>
+<area shape="rect" id="node4" href="$dd/d42/namespaceleanux_1_1system.html#aed132a8f45eaf49bface294263301b1b" title="Read the DISTRIB_DESCRIPTION from /etc/lsb&#45;release." alt="" coords="297,107,531,149"/>
+<area shape="rect" id="node5" href="$dd/d42/namespaceleanux_1_1system.html#ad8234be7a364508d2c6a6f107a3631a1" title="Read the DISTRIB_ID from /etc/lsb&#45;release." alt="" coords="297,173,531,214"/>
+<area shape="rect" id="node6" href="$dd/d42/namespaceleanux_1_1system.html#a09df94941748f400e8851f4580d55b4c" title="Read the ID from /etc/os&#45;release." alt="" coords="299,238,529,279"/>
+<area shape="rect" id="node7" href="$dd/d42/namespaceleanux_1_1system.html#ab4e7b5d36c918f7655be2fc23056c1c2" title="Read the NAME from /etc/os&#45;release." alt="" coords="280,304,548,331"/>
+<area shape="rect" id="node8" href="$dd/d42/namespaceleanux_1_1system.html#a06b51abf1e4d492f1c75f47a1bbff1f3" title="Read the VERSION from /etc/os&#45;release." alt="" coords="299,355,529,397"/>
+</map>

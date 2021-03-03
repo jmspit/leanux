@@ -1,0 +1,34 @@
+<map id="leanux::tools::lblk::detailLVM" name="leanux::tools::lblk::detailLVM">
+<area shape="rect" id="node1" title="Write LVM details." alt="" coords="5,689,144,730"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="212,5,363,32"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a53428887ee9d78196b265e624087ce2b" title="get a list of device aliases, returned as full paths." alt="" coords="192,57,383,98"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0262599b45d4425a1841853e830a7c46" title="Get a descriptive string for the device type of the MajorMinor." alt="" coords="192,321,383,362"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aedaa770034a3bc139513e7a9aaa5c7f4" title="Get the LV name the block device belongs to, or empty string if the device is not a LVM PV." alt="" coords="669,201,860,242"/>
+<area shape="rect" id="node13" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a36d573036d3feb947a0e8212a5f6b750" title="get the devicefile for this MajorMinor." alt="" coords="192,1102,383,1143"/>
+<area shape="rect" id="node14" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a52999f02212469e3e0e74760d7637470" title="Retrieve a string identifying a disk on a best&#45;efffort basis." alt="" coords="192,409,383,450"/>
+<area shape="rect" id="node19" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ac55fb06648c92ded4eacf29800faef83" title="return the device dm name (or an empty string if not a dm device)" alt="" coords="669,514,860,555"/>
+<area shape="rect" id="node20" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aefbe4f5de2bcdf31cfb0ece97e8e12e7" title="get the IO scheduler (elevator) configured for the device." alt="" coords="669,579,860,621"/>
+<area shape="rect" id="node22" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7e67ba12dcc01b5690e58b252f3c7019" title="get the maximum IO size the hardware device reports to support." alt="" coords="669,1139,860,1181"/>
+<area shape="rect" id="node24" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a28ee6f7ffa63a9a24c296e96f9a50a8b" title="get the maximum IO size configured to the device." alt="" coords="669,878,860,919"/>
+<area shape="rect" id="node25" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aba4faaf6914fd4c4f02840b297e1de36" title="get the minimum IO size the device supports." alt="" coords="669,943,860,985"/>
+<area shape="rect" id="node26" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a08c4dd48259318cfd77067e866e05e84" title="get the device name for this MajorMinor." alt="" coords="913,681,1104,722"/>
+<area shape="rect" id="node27" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a80d3a92692140016ab3973ace30d65c2" title="get the read&#45;ahead size for the device" alt="" coords="669,813,860,854"/>
+<area shape="rect" id="node28" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a89962016f65109842c3941fa188eae95" title="get the device sector size." alt="" coords="669,1009,860,1050"/>
+<area shape="rect" id="node29" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ac2eb74dd60914d3e34e73fd0c7125de8" title="Return the size (capacity) of the device in bytes." alt="" coords="669,1074,860,1115"/>
+<area shape="rect" id="node30" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a742f510de3aea2ec0a1eb112e3ca3c1e" title="return the full device path as it appears under /sys/devices/block" alt="" coords="669,747,860,789"/>
+<area shape="rect" id="node32" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0843f4cee97fda4733b1579fb7544727" title="Get the VG name the block device belongs to, or empty string if the device is not a LVM PV." alt="" coords="431,117,621,158"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a8fa26dbc85f683ed73fcec3a2db42821" title="return the MajorMinor dev_t." alt="" coords="431,51,621,93"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7ef43192321c82d296575f35b69c52d4" title="Get the udev path for the device." alt="" coords="913,143,1104,185"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="1157,649,1348,690"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad8b93c3f6fc290008c2025e5e3d42eb5" title="Get the DeviceClass for a MajorMinor." alt="" coords="431,299,621,341"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a211f6f6595c83289600887d41d394742" title="return the device dm uuid (or an empty string if not a dm device)" alt="" coords="669,331,860,373"/>
+<area shape="rect" id="node12" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="913,615,1104,657"/>
+<area shape="rect" id="node10" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="911,361,1106,388"/>
+<area shape="rect" id="node15" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ae38226ce52162353e6fd5d77fd610442" title="Get the device MetaDisk name or empty if the device is not an MetaDisk." alt="" coords="431,234,621,275"/>
+<area shape="rect" id="node16" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ac25722522d86fe9a2ecbd2528a15561a" title="Get the serial number for the device." alt="" coords="669,266,860,307"/>
+<area shape="rect" id="node18" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aab3feb649c83cb299c1a4175873b3f74" title="Some block devices do not have a WWN, so there is no guarentee a WWN exists." alt="" coords="669,397,860,438"/>
+<area shape="rect" id="node17" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="908,412,1109,439"/>
+<area shape="rect" id="node21" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="913,798,1104,839"/>
+<area shape="rect" id="node23" href="$d8/db1/namespaceleanux_1_1util.html#a1e9a1206d94b2f96e8e0c6adc4e4cd12" title="read the first data in the file as a string representation of a unsigned long." alt="" coords="922,1016,1095,1043"/>
+<area shape="rect" id="node31" href="$d8/db1/namespaceleanux_1_1util.html#a9ae898fe02934e4905ef4665c2871158" title="Convert a path on a filesystem to the realpath if the path is a link." alt="" coords="931,747,1087,773"/>
+</map>

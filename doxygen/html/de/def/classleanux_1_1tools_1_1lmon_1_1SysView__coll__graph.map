@@ -1,0 +1,8 @@
+<map id="leanux::tools::lmon::SysView" name="leanux::tools::lmon::SysView">
+<area shape="rect" id="node1" title="System view." alt="" coords="185,419,332,460"/>
+<area shape="rect" id="node2" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html" title="A reactangular area on the ncurses Screen as a window of information." alt="" coords="116,241,263,283"/>
+<area shape="rect" id="node4" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html" title="The curses screen." alt="" coords="11,419,157,460"/>
+<area shape="rect" id="node3" title=" " alt="" coords="127,5,241,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,5,99,32"/>
+<area shape="rect" id="node6" title=" " alt="" coords="298,5,337,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::block::modeFromMajorMinor" name="leanux::block::modeFromMajorMinor">
+<area shape="rect" id="node1" title="Detect the udevMode from the given MajorMinor and udev_path." alt="" coords="335,5,559,47"/>
+<area shape="rect" id="node2" href="$d5/d01/namespaceleanux_1_1block.html#a927d958ef9b9b66a13c32754e91d0c7d" title="Initialize the block API." alt="" coords="148,13,287,39"/>
+<area shape="rect" id="node3" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="5,13,100,39"/>
+</map>

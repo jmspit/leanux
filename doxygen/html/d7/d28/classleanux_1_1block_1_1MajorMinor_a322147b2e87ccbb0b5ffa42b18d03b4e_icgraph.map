@@ -1,0 +1,6 @@
+<map id="leanux::block::MajorMinor::getSCSIHCTL" name="leanux::block::MajorMinor::getSCSIHCTL">
+<area shape="rect" id="node1" title="get the host:channel:target:lun addess for the device." alt="" coords="431,39,621,80"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a45064f081756fce365d620aba5e73481" title="get the SCSI disk caching mode (write back/write through)." alt="" coords="192,5,383,47"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26a2363b1eea927b6ebb4aad44dea876" title="Get a pretty&#45;print description for the device." alt="" coords="192,71,383,112"/>
+<area shape="rect" id="node4" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a3ed79ca6c9f478be774a6d9f4a4cb016" title="Write MetaDisk details." alt="" coords="5,71,144,112"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::sysdevice::SysDevice::matchSysDeviceType" name="leanux::sysdevice::SysDevice::matchSysDeviceType">
+<area shape="rect" id="node1" title="test if this SysDevice is of type t." alt="" coords="381,5,619,47"/>
+<area shape="rect" id="node2" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="193,5,333,47"/>
+<area shape="rect" id="node3" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a33a75c6955dcd3ac89c9a6f86a0a1337" title="Run based on options." alt="" coords="5,5,145,47"/>
+</map>

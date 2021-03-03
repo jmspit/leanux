@@ -1,0 +1,6 @@
+<map id="leanux::sysdevice::SCSIHost" name="leanux::sysdevice::SCSIHost">
+<area shape="rect" id="node1" title="Say yes to SCSI hosts." alt="" coords="128,200,275,241"/>
+<area shape="rect" id="node2" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html" title="Generic SysDevice, utility class for device detection from a SysDevicePath." alt="" coords="68,109,215,151"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="189,5,275,32"/>
+</map>

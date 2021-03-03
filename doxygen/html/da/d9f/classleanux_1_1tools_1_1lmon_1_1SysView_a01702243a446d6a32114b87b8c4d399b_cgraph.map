@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::SysView::attrFromCPUChar" name="leanux::tools::lmon::SysView::attrFromCPUChar">
+<area shape="rect" id="node1" title="Get ncurses display attributes depending on the type of CPU chararcter." alt="" coords="5,201,211,243"/>
+<area shape="rect" id="node2" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#abcc1d443c427ea0fb12c091d50beca7b" title="get iowait color." alt="" coords="262,5,470,47"/>
+<area shape="rect" id="node3" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a8f435fa57b81b36b8abc7ce50e8b3d94" title="get irq color." alt="" coords="272,71,460,112"/>
+<area shape="rect" id="node4" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a5f264f21e7c12361c5795ddf3bd40316" title="get nice cpu color." alt="" coords="269,136,463,177"/>
+<area shape="rect" id="node5" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a514e98a0145d9fcb8d076539560515b6" title="get softirq color." alt="" coords="259,201,473,243"/>
+<area shape="rect" id="node6" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a53c5c7a5af2f20e612813be65b318c50" title="get system cpu color." alt="" coords="259,267,473,308"/>
+<area shape="rect" id="node7" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a56ffcc2e0532e3dc92220cba0e631d0a" title="get normal text color." alt="" coords="283,332,449,373"/>
+<area shape="rect" id="node8" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a986c0cb7317865070b13d5fe3ffe7494" title="get user cpu color." alt="" coords="269,397,463,439"/>
+</map>

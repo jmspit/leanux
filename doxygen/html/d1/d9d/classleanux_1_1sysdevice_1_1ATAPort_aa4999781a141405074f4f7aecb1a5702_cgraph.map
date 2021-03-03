@@ -1,0 +1,7 @@
+<map id="leanux::sysdevice::ATAPort::getDescription" name="leanux::sysdevice::ATAPort::getDescription">
+<area shape="rect" id="node1" title="Get a human readable description of this SysDevice." alt="" coords="5,35,180,76"/>
+<area shape="rect" id="node2" href="$d5/d01/namespaceleanux_1_1block.html#ab20a8824019f463ba684c0cfadfd7117" title="Get the ATA port link speed." alt="" coords="241,5,430,47"/>
+<area shape="rect" id="node4" href="$d5/d01/namespaceleanux_1_1block.html#a2fd6c671acf6577de8e98ae661e6894d" title="Get the ATA port link." alt="" coords="228,71,443,98"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="491,13,685,39"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#adb3739607a9ec74d79fbebf4d45dd766" title="Find subdirectories, first match is returned, if any." alt="" coords="515,71,661,98"/>
+</map>

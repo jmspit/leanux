@@ -1,0 +1,5 @@
+<map id="leanux::block::MajorMinor::getHolders" name="leanux::block::MajorMinor::getHolders">
+<area shape="rect" id="node1" title="Get a list of devices holding (using) the device m." alt="" coords="483,5,673,47"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6e82e367d0d6d6038391ac28c2e510c5" title="return the VG name the PV belongs to, or empty if the device is not a LVM PV." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26a2363b1eea927b6ebb4aad44dea876" title="Get a pretty&#45;print description for the device." alt="" coords="5,5,196,47"/>
+</map>

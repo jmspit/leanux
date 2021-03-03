@@ -1,0 +1,27 @@
+var classleanux_1_1tools_1_1lmon_1_1Palette =
+[
+    [ "Palette", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a7c5ebbc85045c796a0e59a18bc56ff01", null ],
+    [ "getColorBlockedProc", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a60717c2d5607a21a597210033e17ddca", null ],
+    [ "getColorBoldText", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#abe740173ec1c90116776456d9cfd388f", null ],
+    [ "getColorIOWaitCPU", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#abcc1d443c427ea0fb12c091d50beca7b", null ],
+    [ "getColorIRQCPU", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a8f435fa57b81b36b8abc7ce50e8b3d94", null ],
+    [ "getColorLine", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a152f70ca80f5291a75d935070b2ec93b", null ],
+    [ "getColorNiceCPU", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a5f264f21e7c12361c5795ddf3bd40316", null ],
+    [ "getColorRunningProc", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#afcf64f0a46c92aaf04abf7567afd7861", null ],
+    [ "getColorSoftIRQCPU", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a514e98a0145d9fcb8d076539560515b6", null ],
+    [ "getColorSystemCPU", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a53c5c7a5af2f20e612813be65b318c50", null ],
+    [ "getColorText", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a56ffcc2e0532e3dc92220cba0e631d0a", null ],
+    [ "getColorUserCPU", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a986c0cb7317865070b13d5fe3ffe7494", null ],
+    [ "setup", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#aff7f53f61a567297f5cfd9a4ee880e51", null ],
+    [ "idx_color_blocked_proc_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a3349197177aaf6b6ebd89fddc212698a", null ],
+    [ "idx_color_bold_text_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#ae8375de453ae9f351a80bf588adb5500", null ],
+    [ "idx_color_line_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a39427757f7d39da48da2a782ddb63c7d", null ],
+    [ "idx_color_running_proc_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a919c7369d98b10b6e187df97ee53ea27", null ],
+    [ "idx_color_text_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#ad36edb26681ea55a64b7db4114735479", null ],
+    [ "idx_iowait_mode_cpu_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#adf142a736aed4cbe3e55b485b9dff3d1", null ],
+    [ "idx_irq_mode_cpu_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#ac4ac6af535c732da4a5bd5feeb6ea36c", null ],
+    [ "idx_nice_mode_cpu_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a9183109c8e6d1fff325552b909465d5c", null ],
+    [ "idx_softirq_mode_cpu_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#ac6e86a49e6b3ff5c1c006309963f93e6", null ],
+    [ "idx_system_mode_cpu_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#ab3f651316840ee936ed1584f534808b2", null ],
+    [ "idx_user_mode_cpu_", "d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a35f55a83c567eb1cab4d042edc72b593", null ]
+];

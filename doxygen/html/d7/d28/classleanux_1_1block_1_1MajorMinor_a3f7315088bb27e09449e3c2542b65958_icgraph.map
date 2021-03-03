@@ -1,0 +1,20 @@
+<map id="leanux::block::MajorMinor::getMajorMinorByName" name="leanux::block::MajorMinor::getMajorMinorByName">
+<area shape="rect" id="node1" title="Get the MajorMinor for the device name." alt="" coords="908,352,1099,393"/>
+<area shape="rect" id="node2" href="$d6/d19/classleanux_1_1sysdevice_1_1BlockPartition.html#a66d61b5a78be267835e09b8d9e4c405f" title="Return true if the SysDevice recognizes itself in the trailing part of path." alt="" coords="683,23,846,64"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="669,381,860,423"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a6e82e367d0d6d6038391ac28c2e510c5" title="return the VG name the PV belongs to, or empty if the device is not a LVM PV." alt="" coords="192,612,383,653"/>
+<area shape="rect" id="node15" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a514a93d2172ba20b92f77ba1062d822c" title="Write the tree of slaves beneath and including mm, append to tab, starting with level." alt="" coords="457,136,595,177"/>
+<area shape="rect" id="node17" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a2c15ffbda4dc6a336718fafe080e56fc" title="do smart things with user input for device name so that we are not overly picky in user specified dev..." alt="" coords="695,580,834,621"/>
+<area shape="rect" id="node18" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a0ce6fe01f37dc9d73d699030825432be" title="Write the tree of holders above and including mm, append to tab, starting with level." alt="" coords="457,71,595,112"/>
+<area shape="rect" id="node3" href="$d3/d83/namespaceleanux_1_1sysdevice.html#aa76385cfb36c36d3f55f25dfacc1346b" title="Return the leaf SysDevice detected in path." alt="" coords="453,5,599,47"/>
+<area shape="rect" id="node5" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ade16c362a9900ba9267433bf57da42ce" title="Write disk details." alt="" coords="218,463,357,504"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#af09033a9db9d908d1132bbab667a0801" title="Get a list of devices holding (using) the device m." alt="" coords="431,580,621,621"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aefbe4f5de2bcdf31cfb0ece97e8e12e7" title="get the IO scheduler (elevator) configured for the device." alt="" coords="431,645,621,687"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a80d3a92692140016ab3973ace30d65c2" title="get the read&#45;ahead size for the device" alt="" coords="431,201,621,243"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ae8569c67c7ab725af5c89e8e01011a7b" title="Chech if a disk is mechanical or solid state." alt="" coords="431,267,621,308"/>
+<area shape="rect" id="node12" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a89962016f65109842c3941fa188eae95" title="get the device sector size." alt="" coords="431,332,621,373"/>
+<area shape="rect" id="node13" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5466f74de32fbbcaccceff77133e2b7b" title="Get a list of devices slave to the device m." alt="" coords="431,397,621,439"/>
+<area shape="rect" id="node14" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a742f510de3aea2ec0a1eb112e3ca3c1e" title="return the full device path as it appears under /sys/devices/block" alt="" coords="431,463,621,504"/>
+<area shape="rect" id="node6" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="5,193,144,235"/>
+<area shape="rect" id="node16" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a3ad2e43162ca1213c491e96d5d2a5a9c" title="Table listing LVM devices." alt="" coords="218,135,357,176"/>
+</map>

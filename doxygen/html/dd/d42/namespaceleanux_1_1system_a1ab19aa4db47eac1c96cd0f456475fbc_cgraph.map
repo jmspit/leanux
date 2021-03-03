@@ -1,0 +1,5 @@
+<map id="leanux::system::getChassisType" name="leanux::system::getChassisType">
+<area shape="rect" id="node1" title="Get the system chassis type." alt="" coords="5,31,236,57"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="284,5,485,32"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#aff0a888cebf58e4cf942fc3dc681aac8" title="read the first data in the file as a string representation of a signed int." alt="" coords="298,56,471,83"/>
+</map>

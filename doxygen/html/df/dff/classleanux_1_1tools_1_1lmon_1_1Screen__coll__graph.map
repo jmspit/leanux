@@ -1,0 +1,11 @@
+<map id="leanux::tools::lmon::Screen" name="leanux::tools::lmon::Screen">
+<area shape="rect" id="node1" title="The curses screen." alt="" coords="576,365,723,406"/>
+<area shape="rect" id="node2" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html" title="A reactangular area on the ncurses Screen as a window of information." alt="" coords="873,219,1020,261"/>
+<area shape="rect" id="node3" title=" " alt="" coords="593,124,706,151"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,339,44,365"/>
+<area shape="rect" id="node7" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html" title="The Palette provides reasonable colors within terminal capabilities, hiding the details of such capab..." alt="" coords="239,394,385,435"/>
+<area shape="rect" id="node5" title=" " alt="" coords="265,247,359,273"/>
+<area shape="rect" id="node6" title=" " alt="" coords="256,527,368,553"/>
+<area shape="rect" id="node8" title=" " alt="" coords="287,327,337,353"/>
+<area shape="rect" id="node9" title=" " alt="" coords="261,476,363,503"/>
+</map>

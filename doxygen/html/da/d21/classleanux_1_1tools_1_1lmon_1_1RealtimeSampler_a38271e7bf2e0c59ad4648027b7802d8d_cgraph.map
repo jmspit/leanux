@@ -1,0 +1,11 @@
+<map id="leanux::tools::lmon::RealtimeSampler::sampleXNetView" name="leanux::tools::lmon::RealtimeSampler::sampleXNetView">
+<area shape="rect" id="node1" title=" " alt="" coords="5,74,268,115"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a4837f2d09bfda41e98223427201d04e2" title="Return the deltaof two timevals in seconds." alt="" coords="342,5,511,32"/>
+<area shape="rect" id="node3" href="$d5/db8/namespaceleanux_1_1net.html#ac78d924eb899ccfa62581ec1d13dc75b" title="Get network device statistics from /proc/net/dev." alt="" coords="340,56,513,83"/>
+<area shape="rect" id="node4" href="$d5/db8/namespaceleanux_1_1net.html#a9fc17074128622edcc8a3c1746f2d03d" title="Get the delta of two NetStatDeviceMap objects, sorted by using int operator&lt;( const NetStat&amp; n1,..." alt="" coords="323,107,531,133"/>
+<area shape="rect" id="node5" href="$d5/db8/namespaceleanux_1_1net.html#ae1bc6c94c0c1352bbad7abeb430dea86" title="Return the number of established TCP connections grouped by (ip,port,uid)." alt="" coords="316,158,537,199"/>
+<area shape="rect" id="node6" href="$d5/db8/namespaceleanux_1_1net.html#a1961711f7416e2fc1f75688e973b7305" title="convert IPv4 network IP representation to human readable format." alt="" coords="593,77,800,104"/>
+<area shape="rect" id="node7" href="$d5/db8/namespaceleanux_1_1net.html#af94467113568c21e1a32c0d5e842dab0" title="convert IPv6 network IP representation to human readable format." alt="" coords="612,129,781,170"/>
+<area shape="rect" id="node8" href="$d5/db8/namespaceleanux_1_1net.html#ac002a4fe839bdbd3d3405dac3c01f120" title="Enumerate TCP4 sockets from /proc/net/tcp." alt="" coords="585,195,808,221"/>
+<area shape="rect" id="node9" href="$d5/db8/namespaceleanux_1_1net.html#a33866249dbf7e15b43f35f422147f06e" title="Enumerate TCP6 sockets from /proc/net/tcp6." alt="" coords="585,245,808,272"/>
+</map>

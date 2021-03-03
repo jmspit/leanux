@@ -1,0 +1,9 @@
+<map id="leanux::net::getTCPConnectionCounters" name="leanux::net::getTCPConnectionCounters">
+<area shape="rect" id="node1" title="Return the number of established TCP connections grouped by (ip,port,uid)." alt="" coords="5,86,227,127"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a1961711f7416e2fc1f75688e973b7305" title="convert IPv4 network IP representation to human readable format." alt="" coords="283,5,489,32"/>
+<area shape="rect" id="node3" href="$d5/db8/namespaceleanux_1_1net.html#af94467113568c21e1a32c0d5e842dab0" title="convert IPv6 network IP representation to human readable format." alt="" coords="301,57,471,98"/>
+<area shape="rect" id="node4" href="$d5/db8/namespaceleanux_1_1net.html#ac002a4fe839bdbd3d3405dac3c01f120" title="Enumerate TCP4 sockets from /proc/net/tcp." alt="" coords="275,123,497,149"/>
+<area shape="rect" id="node6" href="$d5/db8/namespaceleanux_1_1net.html#a33866249dbf7e15b43f35f422147f06e" title="Enumerate TCP6 sockets from /proc/net/tcp6." alt="" coords="275,173,497,200"/>
+<area shape="rect" id="node5" href="$d5/db8/namespaceleanux_1_1net.html#a492762fd6165b208b70e89b4d75eb1ac" title="parse a TCP4 std::string from /proc/net/tcp." alt="" coords="545,123,744,149"/>
+<area shape="rect" id="node7" href="$d5/db8/namespaceleanux_1_1net.html#a0b65187eb737b32bfa86bb4dc28af394" title="parse a TCP6 std::string from /proc/net/tcp." alt="" coords="545,173,744,200"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="leanux::tools::lmon::Footer::Footer" name="leanux::tools::lmon::Footer::Footer">
+<area shape="rect" id="node1" title="Construct a Footer." alt="" coords="5,363,152,405"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="240,5,391,32"/>
+<area shape="rect" id="node3" href="$d5/d01/namespaceleanux_1_1block.html#ac08a21002b48cb1bbfaf8d77b4aac5f6" title="get a list of whole disks (exclude partitions)." alt="" coords="515,158,710,199"/>
+<area shape="rect" id="node4" href="$dd/d42/namespaceleanux_1_1system.html#a75bb60404aa2da1f0593ffeca7a085d8" title="Get the system architecture." alt="" coords="200,107,431,133"/>
+<area shape="rect" id="node5" href="$d5/d01/namespaceleanux_1_1block.html#ad1f8b6bad222a975b5885a0fff510848" title="total attached storage." alt="" coords="217,158,413,199"/>
+<area shape="rect" id="node6" href="$dd/d42/namespaceleanux_1_1system.html#a166614bb486e675664d9198252b369e8" title="Get the name of the system board." alt="" coords="201,224,429,251"/>
+<area shape="rect" id="node8" href="$dd/d42/namespaceleanux_1_1system.html#a932c997ac7eb8d186eb7b895be98f8b6" title="Get the vendor of the system board." alt="" coords="221,275,410,317"/>
+<area shape="rect" id="node9" href="$dd/d42/namespaceleanux_1_1system.html#a4353472fef02fbaaf6a6051f19323a1f" title="Get the system chassis type as a std::string." alt="" coords="215,641,416,682"/>
+<area shape="rect" id="node12" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a60717c2d5607a21a597210033e17ddca" title="get blocked process color." alt="" coords="207,393,424,434"/>
+<area shape="rect" id="node13" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a5f264f21e7c12361c5795ddf3bd40316" title="get nice cpu color." alt="" coords="218,458,413,499"/>
+<area shape="rect" id="node14" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#a53c5c7a5af2f20e612813be65b318c50" title="get system cpu color." alt="" coords="208,523,423,565"/>
+<area shape="rect" id="node15" href="$da/da3/namespaceleanux_1_1cpu.html#a704d21d69d40fe49b1cf8f2b77fd5664" title="Get CPU info." alt="" coords="226,589,405,616"/>
+<area shape="rect" id="node16" href="$dd/d42/namespaceleanux_1_1system.html#a87f3cc1d1be026345c1be58546e5a74b" title="Detect the GNU/Linux distribution." alt="" coords="202,341,429,368"/>
+<area shape="rect" id="node22" href="$dd/d42/namespaceleanux_1_1system.html#a019837e625c4eedcc1e09de84a56d5b8" title="Get the kernel version." alt="" coords="219,706,411,747"/>
+<area shape="rect" id="node23" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a4e4b0e9f23175b894f01493d9caefde8" title="Report a Message." alt="" coords="227,771,403,813"/>
+<area shape="rect" id="node7" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="515,225,710,252"/>
+<area shape="rect" id="node10" href="$dd/d42/namespaceleanux_1_1system.html#a1ab19aa4db47eac1c96cd0f456475fbc" title="Get the system chassis type." alt="" coords="497,645,728,672"/>
+<area shape="rect" id="node11" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="795,463,996,489"/>
+<area shape="rect" id="node17" href="$dd/d42/namespaceleanux_1_1system.html#aed132a8f45eaf49bface294263301b1b" title="Read the DISTRIB_DESCRIPTION from /etc/lsb&#45;release." alt="" coords="495,510,730,551"/>
+<area shape="rect" id="node18" href="$dd/d42/namespaceleanux_1_1system.html#ad8234be7a364508d2c6a6f107a3631a1" title="Read the DISTRIB_ID from /etc/lsb&#45;release." alt="" coords="495,575,730,617"/>
+<area shape="rect" id="node19" href="$dd/d42/namespaceleanux_1_1system.html#a09df94941748f400e8851f4580d55b4c" title="Read the ID from /etc/os&#45;release." alt="" coords="498,327,727,369"/>
+<area shape="rect" id="node20" href="$dd/d42/namespaceleanux_1_1system.html#ab4e7b5d36c918f7655be2fc23056c1c2" title="Read the NAME from /etc/os&#45;release." alt="" coords="479,393,747,420"/>
+<area shape="rect" id="node21" href="$dd/d42/namespaceleanux_1_1system.html#a06b51abf1e4d492f1c75f47a1bbff1f3" title="Read the VERSION from /etc/os&#45;release." alt="" coords="498,445,727,486"/>
+</map>

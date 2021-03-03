@@ -1,0 +1,5 @@
+<map id="leanux::block::MajorMinor::getFSUsage" name="leanux::block::MajorMinor::getFSUsage">
+<area shape="rect" id="node1" title="Get the usage type of the block device." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7ef43192321c82d296575f35b69c52d4" title="Get the udev path for the device." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="483,5,673,47"/>
+</map>

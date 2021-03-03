@@ -1,0 +1,6 @@
+<map id="leanux::sysdevice::iSCSIDevice" name="leanux::sysdevice::iSCSIDevice">
+<area shape="rect" id="node1" title="Say yes to iSCSI devices." alt="" coords="85,200,232,241"/>
+<area shape="rect" id="node2" href="$dd/df8/classleanux_1_1sysdevice_1_1SCSIDevice.html" title="Say yes to SCSI devices." alt="" coords="25,109,172,151"/>
+<area shape="rect" id="node3" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html" title="Generic block device." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="177,13,263,39"/>
+</map>

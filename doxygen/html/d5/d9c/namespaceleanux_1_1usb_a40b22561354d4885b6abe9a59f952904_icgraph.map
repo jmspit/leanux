@@ -1,0 +1,13 @@
+<map id="leanux::usb::getUSBHardwareId" name="leanux::usb::getUSBHardwareId">
+<area shape="rect" id="node1" title="Get the USBHardwareId from an USBDevicePath." alt="" coords="479,274,707,301"/>
+<area shape="rect" id="node2" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html#a2408540d2d0fd3f215a860324b604961" title="Get the device class for this device." alt="" coords="233,5,391,47"/>
+<area shape="rect" id="node3" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html#a926a459be1a220ee0532040862efac46" title="Get the device class for this device." alt="" coords="239,71,385,112"/>
+<area shape="rect" id="node4" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html#a960bc4e4f0508829ee75816a9e054ace" title="Get a human readable description of this SysDevice." alt="" coords="213,136,411,177"/>
+<area shape="rect" id="node5" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html#aed156094cacba5726b198c9f6894d017" title="Get a human readable description of this SysDevice." alt="" coords="224,201,400,243"/>
+<area shape="rect" id="node6" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html#ae149cb6875a14576a714b0428690835f" title=" " alt="" coords="207,267,417,308"/>
+<area shape="rect" id="node7" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html#a35036f66ae9bf3fdb008825432cd601b" title=" " alt="" coords="217,332,407,373"/>
+<area shape="rect" id="node8" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="242,397,382,439"/>
+<area shape="rect" id="node10" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html#aa7074d6382d3ef77a36a7454dbf99f1e" title=" " alt="" coords="193,463,431,504"/>
+<area shape="rect" id="node11" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html#aa244ae7511e6792b74236c20634b895f" title=" " alt="" coords="204,528,420,569"/>
+<area shape="rect" id="node9" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="5,397,145,439"/>
+</map>

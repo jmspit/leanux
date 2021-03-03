@@ -1,0 +1,4 @@
+<map id="leanux::block::operator&lt;&lt;" name="leanux::block::operator&lt;&lt;">
+<area shape="rect" id="node1" title="Write MajorMinor to stream as a string, eg {8,0} is written as &#39;8:0&#39;." alt="" coords="5,13,200,39"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a8fa26dbc85f683ed73fcec3a2db42821" title="return the MajorMinor dev_t." alt="" coords="248,5,439,47"/>
+</map>

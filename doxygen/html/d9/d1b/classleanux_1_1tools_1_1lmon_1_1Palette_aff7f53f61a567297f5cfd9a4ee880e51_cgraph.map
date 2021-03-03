@@ -1,0 +1,6 @@
+<map id="leanux::tools::lmon::Palette::setup" name="leanux::tools::lmon::Palette::setup">
+<area shape="rect" id="node1" title="setup the Palette." alt="" coords="5,39,152,80"/>
+<area shape="rect" id="node2" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a8cef175948cd9727c732de3a605c99ba" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="200,5,367,47"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ac0a26e361b745b7e933134618c9fad97" title="return the configuration parameter as a RGB struct." alt="" coords="200,71,367,112"/>
+<area shape="rect" id="node4" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aece3326e1c10df9dcfb48f4c12967336" title="return the configuration parameter as a string." alt="" coords="415,71,581,112"/>
+</map>

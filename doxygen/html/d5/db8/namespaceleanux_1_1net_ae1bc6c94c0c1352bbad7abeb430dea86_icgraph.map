@@ -1,0 +1,7 @@
+<map id="leanux::net::getTCPConnectionCounters" name="leanux::net::getTCPConnectionCounters">
+<area shape="rect" id="node1" title="Return the number of established TCP connections grouped by (ip,port,uid)." alt="" coords="563,39,784,80"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a38271e7bf2e0c59ad4648027b7802d8d" title=" " alt="" coords="252,5,515,47"/>
+<area shape="rect" id="node4" href="$d7/dff/classleanux_1_1tools_1_1lard_1_1TCPEstaSnap.html#adc30b5d65eacc454cb653851f6180f8b" title=" " alt="" coords="290,71,477,112"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node5" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,71,174,112"/>
+</map>

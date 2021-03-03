@@ -1,0 +1,5 @@
+<map id="leanux::usb::getUSBHardwareId" name="leanux::usb::getUSBHardwareId">
+<area shape="rect" id="node1" title="Get the USBHardwareId from an USBDevicePath." alt="" coords="5,35,233,61"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="281,5,483,32"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="291,57,473,98"/>
+</map>

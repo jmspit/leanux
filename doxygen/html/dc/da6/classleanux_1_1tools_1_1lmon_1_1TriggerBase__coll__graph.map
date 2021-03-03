@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::TriggerBase" name="leanux::tools::lmon::TriggerBase">
+<area shape="rect" id="node1" title=" " alt="" coords="527,107,673,148"/>
+<area shape="rect" id="node2" title=" " alt="" coords="274,49,414,75"/>
+<area shape="rect" id="node3" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#d3/d8b/structleanux_1_1tools_1_1lmon_1_1Signal" title=" " alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node4" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#dc/dc9/structleanux_1_1tools_1_1lmon_1_1TriggerContext" title=" " alt="" coords="271,136,417,177"/>
+<area shape="rect" id="node5" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#db/d0a/structleanux_1_1tools_1_1lmon_1_1XSysView" title="Data record for SysView display." alt="" coords="5,71,152,112"/>
+<area shape="rect" id="node6" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#d4/d83/structleanux_1_1tools_1_1lmon_1_1XProcView" title=" " alt="" coords="5,136,152,177"/>
+<area shape="rect" id="node7" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#db/ddd/structleanux_1_1tools_1_1lmon_1_1XIOView" title="Data record for IOView display." alt="" coords="5,201,152,243"/>
+<area shape="rect" id="node8" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#db/d56/structleanux_1_1tools_1_1lmon_1_1XNetView" title="Data record for NetView display." alt="" coords="5,267,152,308"/>
+</map>

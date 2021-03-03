@@ -1,0 +1,4 @@
+<map id="leanux::tools::lmon::makeCPUBar" name="leanux::tools::lmon::makeCPUBar">
+<area shape="rect" id="node1" title="create a (vertical) CPU bar string from the CPUStat for terminal&#45;based output." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$da/da3/namespaceleanux_1_1cpu.html#a3b1bbe660ecf384b94d5915f3d90e2b7" title="Compute the total amount of CPU time in stat." alt="" coords="200,5,395,47"/>
+</map>

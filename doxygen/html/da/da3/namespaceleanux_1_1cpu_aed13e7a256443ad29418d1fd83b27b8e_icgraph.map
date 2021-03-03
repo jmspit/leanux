@@ -1,0 +1,7 @@
+<map id="leanux::cpu::getCPUTotal" name="leanux::cpu::getCPUTotal">
+<area shape="rect" id="node1" title="Sum the entries in all to derive the total." alt="" coords="563,46,747,73"/>
+<area shape="rect" id="node2" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#acbcc292d0de07d7c9da5badf017577d4" title=" " alt="" coords="279,5,488,47"/>
+<area shape="rect" id="node4" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="252,71,515,112"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a010f9459d506af3a4251ea0a644282bd" title="Run the Screen in history mode." alt="" coords="29,5,180,47"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,71,204,112"/>
+</map>

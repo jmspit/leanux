@@ -1,0 +1,5 @@
+<map id="leanux::tools::lard::CPUSnap::stopSnap" name="leanux::tools::lard::CPUSnap::stopSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,163,47"/>
+<area shape="rect" id="node2" href="$da/da3/namespaceleanux_1_1cpu.html#a59cf2af9830e859ca848f87c9d605d6f" title="Get CPU usage statistics from /proc/stat." alt="" coords="211,13,397,39"/>
+<area shape="rect" id="node3" href="$dd/d42/namespaceleanux_1_1system.html#abb67aa26c6ef63b4ad7b4194f1a8d774" title="Get the number of clock ticks per second." alt="" coords="445,13,644,39"/>
+</map>

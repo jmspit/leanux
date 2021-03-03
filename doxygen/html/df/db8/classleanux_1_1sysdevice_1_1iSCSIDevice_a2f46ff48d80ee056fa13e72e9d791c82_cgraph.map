@@ -1,0 +1,13 @@
+<map id="leanux::sysdevice::iSCSIDevice::getDescription" name="leanux::sysdevice::iSCSIDevice::getDescription">
+<area shape="rect" id="node1" title="Get a human readable description of this SysDevice." alt="" coords="5,140,208,181"/>
+<area shape="rect" id="node2" href="$dd/df8/classleanux_1_1sysdevice_1_1SCSIDevice.html#a7cc63ea1acf3422fb2f3d61a88e59bec" title="Get a human readable description of this SysDevice." alt="" coords="256,5,455,47"/>
+<area shape="rect" id="node4" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#aaed715a73aad1b5f05aaad7906c9ea57" title=" " alt="" coords="765,35,971,76"/>
+<area shape="rect" id="node7" href="$df/db8/classleanux_1_1sysdevice_1_1iSCSIDevice.html#ac27f2f46cf0bc8ae4f42a2186b6a24fb" title=" " alt="" coords="757,165,979,207"/>
+<area shape="rect" id="node9" href="$df/db8/classleanux_1_1sysdevice_1_1iSCSIDevice.html#a4c1ab2cc14e938926e001bedf257113a" title=" " alt="" coords="771,100,965,141"/>
+<area shape="rect" id="node10" href="$df/db8/classleanux_1_1sysdevice_1_1iSCSIDevice.html#ac3de0ea047730902b7044e567aaa90cd" title=" " alt="" coords="771,231,965,272"/>
+<area shape="rect" id="node11" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26905a16bdd3e525abb2ada713f80704" title="Test MajorMinor validity." alt="" coords="260,275,451,316"/>
+<area shape="rect" id="node3" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#ac4b9e0008260b83d9c20f8cad7a43ac6" title="Get a human readable description of this SysDevice." alt="" coords="503,5,709,47"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="1027,169,1228,195"/>
+<area shape="rect" id="node6" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="1030,111,1225,138"/>
+<area shape="rect" id="node8" href="$d8/db1/namespaceleanux_1_1util.html#adb3739607a9ec74d79fbebf4d45dd766" title="Find subdirectories, first match is returned, if any." alt="" coords="1054,226,1201,253"/>
+</map>

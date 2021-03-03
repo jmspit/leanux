@@ -1,0 +1,5 @@
+<map id="leanux::util::ConfigFile::getRGBValue" name="leanux::util::ConfigFile::getRGBValue">
+<area shape="rect" id="node1" title="return the configuration parameter as a RGB struct." alt="" coords="407,5,573,47"/>
+<area shape="rect" id="node2" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#aff7f53f61a567297f5cfd9a4ee880e51" title="setup the Palette." alt="" coords="212,5,359,47"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5384c2d32ae6862fa3d1fa0531915d72" title="Initialize and start the ncurses Screen." alt="" coords="5,5,164,47"/>
+</map>

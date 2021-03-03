@@ -1,0 +1,4 @@
+<map id="leanux::tools::lmon::Screen::initTerminal" name="leanux::tools::lmon::Screen::initTerminal">
+<area shape="rect" id="node1" title="Initialize and start the ncurses Screen." alt="" coords="200,5,359,47"/>
+<area shape="rect" id="node2" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5fceabd599c083204cf4fc2014694403" title="Constructor." alt="" coords="5,5,152,47"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::persist::Query" name="leanux::persist::Query">
+<area shape="rect" id="node1" title="Queries can take bind values and return select lists." alt="" coords="20,155,185,181"/>
+<area shape="rect" id="node2" href="$d9/d78/classleanux_1_1persist_1_1DML.html" title="Data Modification Language statements can take bind values." alt="" coords="25,80,180,107"/>
+<area shape="rect" id="node3" href="$db/dff/classleanux_1_1persist_1_1Statement.html" title="Generic SQL Statement." alt="" coords="5,5,200,32"/>
+</map>

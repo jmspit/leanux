@@ -1,0 +1,8 @@
+<map id="leanux::process::getProcUid" name="leanux::process::getProcUid">
+<area shape="rect" id="node1" title="get the effective uid of a running process." alt="" coords="568,78,771,105"/>
+<area shape="rect" id="node2" href="$d9/d34/namespaceleanux_1_1process.html#a670ad342b1dd7423a5882b43e31b72c0" title="return all pids with specified uid." alt="" coords="294,5,478,47"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#af80582780bfa40a11a40e647f9657d0f" title=" " alt="" coords="252,71,520,112"/>
+<area shape="rect" id="node5" href="$d4/d0e/classleanux_1_1tools_1_1lard_1_1ProcSnap.html#ab816bcbf8f8986599df48ee7131c10fb" title=" " alt="" coords="305,136,467,177"/>
+<area shape="rect" id="node4" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node6" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,136,174,177"/>
+</map>

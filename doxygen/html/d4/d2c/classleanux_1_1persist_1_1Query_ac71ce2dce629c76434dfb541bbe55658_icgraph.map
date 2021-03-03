@@ -1,0 +1,61 @@
+<map id="leanux::persist::Query::getDouble" name="leanux::persist::Query::getDouble">
+<area shape="rect" id="node1" title="Get double value from select list." alt="" coords="964,1280,1129,1321"/>
+<area shape="rect" id="node2" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a76b43314c06c7ebc928aa9c1448810af" title=" " alt="" coords="729,5,876,47"/>
+<area shape="rect" id="node5" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a75263236d13fdcc59c689a786fbbe206" title=" " alt="" coords="727,659,878,700"/>
+<area shape="rect" id="node7" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ab1d2f5453117f911f8be1d4f007c0b44" title=" " alt="" coords="730,71,875,112"/>
+<area shape="rect" id="node8" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ae81e4f9ede43a1f4a8b3c2e52c00d079" title=" " alt="" coords="727,1480,879,1521"/>
+<area shape="rect" id="node9" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a7089a3b392a50f9d117e6b9b094541a7" title=" " alt="" coords="465,1513,603,1555"/>
+<area shape="rect" id="node10" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ab9b4bc8a1806ab977597271e15f34c11" title=" " alt="" coords="216,1513,355,1555"/>
+<area shape="rect" id="node11" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#abad2b6f5948db845d19de780c247b1e2" title=" " alt="" coords="728,1545,877,1587"/>
+<area shape="rect" id="node12" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#adb0859f7ac8b3974df8ab5ec28c4fdf0" title=" " alt="" coords="727,724,879,765"/>
+<area shape="rect" id="node13" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a7a24982fda5a3975701030dd816c3c35" title=" " alt="" coords="725,1611,881,1652"/>
+<area shape="rect" id="node14" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a574dcb88be57722dab332520ff5b8549" title=" " alt="" coords="721,789,885,831"/>
+<area shape="rect" id="node15" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a0984db36446f2f5246232e17b8ce1746" title=" " alt="" coords="724,136,881,177"/>
+<area shape="rect" id="node16" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#af02efdac93604c1f4aa0dae4fc79036b" title=" " alt="" coords="721,855,885,896"/>
+<area shape="rect" id="node17" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a9799ec789df8eb1823efa657fd3dcf7d" title=" " alt="" coords="733,201,872,243"/>
+<area shape="rect" id="node18" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a852574edee0a6707c6636e20c1788879" title=" " alt="" coords="719,920,886,961"/>
+<area shape="rect" id="node19" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a553791a4debbc1cfdda4a3ad85392269" title=" " alt="" coords="709,985,897,1027"/>
+<area shape="rect" id="node20" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a7988a0240d41f5fa5d9d46b7b404dd30" title=" " alt="" coords="719,1051,886,1092"/>
+<area shape="rect" id="node21" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a5c5511f149a1eb32976220ae173689ed" title=" " alt="" coords="721,267,885,308"/>
+<area shape="rect" id="node22" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a2ee44b4b822c35e073680a0ba009a331" title=" " alt="" coords="721,1116,884,1157"/>
+<area shape="rect" id="node23" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ade6717549f68d3afc101be46a59d4348" title=" " alt="" coords="713,332,892,373"/>
+<area shape="rect" id="node24" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#abb105274c50a277438a21f4c73e1d381" title=" " alt="" coords="710,1181,895,1223"/>
+<area shape="rect" id="node25" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ad20c11d51522dd9480766869e451ca22" title=" " alt="" coords="711,397,894,439"/>
+<area shape="rect" id="node26" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#afea1d8a7ccefd494266833dd4ecfa33d" title=" " alt="" coords="708,1247,897,1288"/>
+<area shape="rect" id="node27" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a5680eca9a8d5b8847d71189fe007f222" title="setup the chart in jschart and return the html div element" alt="" coords="715,463,890,504"/>
+<area shape="rect" id="node28" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a7983053c5915fb29e807fe32e512dde8" title=" " alt="" coords="729,528,876,569"/>
+<area shape="rect" id="node29" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a00f904ece18db20da222e857c11a949b" title=" " alt="" coords="733,593,872,635"/>
+<area shape="rect" id="node30" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a5be7aab598d304230985d4715f9b3554" title=" " alt="" coords="731,1312,875,1353"/>
+<area shape="rect" id="node31" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a6656a495a4ca4ba5314a1247dc47615e" title="compute totals into snaptotals." alt="" coords="216,1631,355,1672"/>
+<area shape="rect" id="node32" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a2098b7d6c8b5a08a4f392f8510df8e91" title=" " alt="" coords="733,1728,872,1769"/>
+<area shape="rect" id="node34" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#abbb333976f55d722d27af8dad0ba6ff1" title=" " alt="" coords="733,1793,872,1835"/>
+<area shape="rect" id="node35" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#aa23605988e12e4307cadd2facd79ebd8" title=" " alt="" coords="434,2156,634,2197"/>
+<area shape="rect" id="node37" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a908ffa6779f01a0d374139856c5395c4" title=" " alt="" coords="429,2221,639,2263"/>
+<area shape="rect" id="node38" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a9a004d58071bc3b2064686742b49b80a" title=" " alt="" coords="427,2287,641,2328"/>
+<area shape="rect" id="node39" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#acbcc292d0de07d7c9da5badf017577d4" title=" " alt="" coords="429,2352,639,2393"/>
+<area shape="rect" id="node40" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#aa3deeb2cd3e963efe871d19289a1457d" title=" " alt="" coords="689,2389,916,2431"/>
+<area shape="rect" id="node41" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#abb2c4d60c9284405a71347cb64780517" title=" " alt="" coords="725,1989,881,2031"/>
+<area shape="rect" id="node43" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a9434a7f41a9aef0ce48a762267da8797" title=" " alt="" coords="725,2055,880,2096"/>
+<area shape="rect" id="node44" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a8a9e58dc9034002621d2b57d4a51aad9" title=" " alt="" coords="727,2120,878,2161"/>
+<area shape="rect" id="node45" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#acfb722a2139dd3ac2c083f88cfb90831" title=" " alt="" coords="733,1859,872,1900"/>
+<area shape="rect" id="node46" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a75cd64e14d85060e8dc784918f43fbd7" title=" " alt="" coords="733,1924,872,1965"/>
+<area shape="rect" id="node47" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a1ec352b33775f8da5ea9a32ca1a4cd0c" title=" " alt="" coords="698,2744,907,2785"/>
+<area shape="rect" id="node3" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#ae8f0cfa4040dda0d19fe047d8a186a59" title=" " alt="" coords="453,332,615,373"/>
+<area shape="rect" id="node4" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="5,1553,144,1595"/>
+<area shape="rect" id="node6" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a6f351b4134bb9689630c092625774c9d" title=" " alt="" coords="465,1019,603,1060"/>
+<area shape="rect" id="node33" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a7a328698816eedc4a2a99dc61d79cfd5" title=" " alt="" coords="465,1793,603,1835"/>
+<area shape="rect" id="node36" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a010f9459d506af3a4251ea0a644282bd" title="Run the Screen in history mode." alt="" coords="210,2581,361,2623"/>
+<area shape="rect" id="node42" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#a62c03f9d98087191a6d6473c7384fa74" title=" " alt="" coords="465,2021,603,2063"/>
+<area shape="rect" id="node48" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#abbb0f0248af6b10fa46957148cd61bb1" title=" " alt="" coords="447,2417,621,2459"/>
+<area shape="rect" id="node49" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a2248617d682e0af0e7f2bfc76f7c4bde" title=" " alt="" coords="457,2483,611,2524"/>
+<area shape="rect" id="node50" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a0e50738d2a673a6b539cb33b0c03ef74" title=" " alt="" coords="445,2548,623,2589"/>
+<area shape="rect" id="node51" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#aa3ed9afac22ff0c13e5aee6d9e73789e" title=" " alt="" coords="455,2613,613,2655"/>
+<area shape="rect" id="node52" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a577cf0b864133c7e296c4ec1f389099e" title=" " alt="" coords="192,3093,379,3135"/>
+<area shape="rect" id="node53" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a29f82085fafd7a4b2d932721a5156e02" title=" " alt="" coords="441,2679,627,2720"/>
+<area shape="rect" id="node54" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a89c5b4e1aea91cbbe983475535e64c32" title=" " alt="" coords="447,2744,621,2785"/>
+<area shape="rect" id="node55" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#a4d332725ca42cfad561c91328c3d682d" title=" " alt="" coords="444,2809,624,2851"/>
+<area shape="rect" id="node56" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#ab1097623530fb774e9375980fbb8f326" title=" " alt="" coords="451,2875,617,2916"/>
+<area shape="rect" id="node57" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#aafd1a1a978d28fd53c8a473071cc64b4" title="Sets the current time selection into the lard data." alt="" coords="449,3123,619,3164"/>
+<area shape="rect" id="node58" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#ac2757f570c6bdacb51542f518d20f7c8" title=" " alt="" coords="442,2940,626,2981"/>
+<area shape="rect" id="node59" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#ab189cc20c695e58eea23f77b780da309" title=" " alt="" coords="451,3005,617,3047"/>
+</map>

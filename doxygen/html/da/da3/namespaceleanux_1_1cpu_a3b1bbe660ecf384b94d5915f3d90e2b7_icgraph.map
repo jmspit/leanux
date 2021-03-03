@@ -1,0 +1,8 @@
+<map id="leanux::cpu::getCPUUsageTotal" name="leanux::cpu::getCPUUsageTotal">
+<area shape="rect" id="node1" title="Compute the total amount of CPU time in stat." alt="" coords="573,39,768,80"/>
+<area shape="rect" id="node2" href="$d7/d6a/classleanux_1_1tools_1_1lmon_1_1LardHistory.html#acbcc292d0de07d7c9da5badf017577d4" title=" " alt="" coords="316,5,525,47"/>
+<area shape="rect" id="node4" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a85ae7434eb396ed84307a15724c790c0" title="create a (vertical) CPU bar string from the CPUStat for terminal&#45;based output." alt="" coords="347,71,494,112"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a010f9459d506af3a4251ea0a644282bd" title="Run the Screen in history mode." alt="" coords="61,5,212,47"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="5,71,268,112"/>
+<area shape="rect" id="node6" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#ad72b5ee6be63091f3d320a23721d5cb4" title="refresh (redraw) the View." alt="" coords="63,136,210,177"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="leanux::tools::lrep::htmlSnapDetails" name="leanux::tools::lrep::htmlSnapDetails">
+<area shape="rect" id="node1" title=" " alt="" coords="5,49,144,90"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="220,5,371,32"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a2ad50fb3feb828504bf9c9a597ee9c43" title=" " alt="" coords="192,56,399,83"/>
+<area shape="rect" id="node4" href="$d8/db1/namespaceleanux_1_1util.html#a377ec19addd5d3ca3ecee9a2591f6458" title="convert a time duration in seconds to a pretty print string." alt="" coords="207,107,384,133"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a5178387ce32054e1c460c69b44d8219b" title="convert a time duration in microseconds to a pretty print string." alt="" coords="447,107,637,133"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::usb::getUSBDeviceHardwareClass" name="leanux::usb::getUSBDeviceHardwareClass">
+<area shape="rect" id="node1" title=" " alt="" coords="5,27,204,69"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a6421ca2c46c56eebe1a486c6a498ce7d" title="Test if a file exists and can be read." alt="" coords="252,5,453,32"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a7efa8c5cecc9bb8beada58ee60fa71c4" title="read the first data in the file as a hexadecimal string representation of a signed long." alt="" coords="261,57,444,98"/>
+</map>

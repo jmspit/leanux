@@ -1,0 +1,26 @@
+<map id="leanux::util::ConfigFile::getConfig" name="leanux::util::ConfigFile::getConfig">
+<area shape="rect" id="node1" title="Get the ConfigurationFile object for the appname, or construct one if it does not exist." alt="" coords="900,577,1067,619"/>
+<area shape="rect" id="node2" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a98a04e0c068c5083ad571ebc9b79d693" title=" " alt="" coords="693,871,831,912"/>
+<area shape="rect" id="node3" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="451,479,589,520"/>
+<area shape="rect" id="node4" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aecb1bb340203cfe30357d494d4b2622e" title="Entry point." alt="" coords="215,181,353,223"/>
+<area shape="rect" id="node5" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aee987aaaf44a4832b535ecf78065d963" title=" " alt="" coords="693,283,831,324"/>
+<area shape="rect" id="node6" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a9cfd6542a5437edf7c232fc7d05fbb72" title="The minimum height (lines) required by the Footer." alt="" coords="435,871,605,912"/>
+<area shape="rect" id="node8" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5fceabd599c083204cf4fc2014694403" title="Constructor." alt="" coords="5,64,152,105"/>
+<area shape="rect" id="node9" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#ae72888be780638aca574db129155547e" title="Get the minimal height for the NetView." alt="" coords="672,988,852,1029"/>
+<area shape="rect" id="node11" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a466bf2f2261b917b31ae2664ec8fbed0" title="provide the optimal height for the Header." alt="" coords="421,1053,619,1095"/>
+<area shape="rect" id="node12" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a9492d51a0046e33c7a4dda4229537548" title="set page_size and enable WAL mode." alt="" coords="693,348,831,389"/>
+<area shape="rect" id="node13" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#af056336c72314eb796c2815eec0d218b" title=" " alt="" coords="449,123,591,164"/>
+<area shape="rect" id="node14" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a7f59af183bc55b66e3dc0844b473daaf" title=" " alt="" coords="689,609,835,651"/>
+<area shape="rect" id="node15" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#aff7f53f61a567297f5cfd9a4ee880e51" title="setup the Palette." alt="" coords="689,5,835,47"/>
+<area shape="rect" id="node17" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a45d90387f852d7a71981b5d4ff93d8da" title=" " alt="" coords="693,413,831,455"/>
+<area shape="rect" id="node18" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#acd9defb7ca62e96d5f76b04b3e365b41" title=" " alt="" coords="687,479,837,520"/>
+<area shape="rect" id="node19" href="$d4/d0e/classleanux_1_1tools_1_1lard_1_1ProcSnap.html#ab816bcbf8f8986599df48ee7131c10fb" title=" " alt="" coords="681,544,843,585"/>
+<area shape="rect" id="node20" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a7288efb64fc31818416b8c52c4ba3a0d" title=" " alt="" coords="674,675,850,716"/>
+<area shape="rect" id="node21" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a916cea2cf80aa0a17a8f96c8a7b19a8a" title=" " alt="" coords="693,740,831,781"/>
+<area shape="rect" id="node22" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a1836a03324cfc7e84a5563a59566d8aa" title=" " alt="" coords="691,805,833,847"/>
+<area shape="rect" id="node23" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#ad5d8db29927cc18e861cfa5ba48ecd94" title="refresh (redraw) the View." alt="" coords="689,1105,835,1147"/>
+<area shape="rect" id="node24" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a404290f829ce6132e1bbb21dd942f598" title="Destructor." alt="" coords="689,1171,835,1212"/>
+<area shape="rect" id="node7" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#abcaa706fe703bbf453808220fcaf8263" title="Recalculate the window sizes." alt="" coords="200,929,368,971"/>
+<area shape="rect" id="node10" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a90d83dccb33390f86d92374070075b29" title="provide the optimal height for the NetView," alt="" coords="416,988,624,1029"/>
+<area shape="rect" id="node16" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5384c2d32ae6862fa3d1fa0531915d72" title="Initialize and start the ncurses Screen." alt="" coords="205,5,363,47"/>
+</map>

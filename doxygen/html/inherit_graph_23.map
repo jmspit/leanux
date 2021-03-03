@@ -1,0 +1,6 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$db/dff/classleanux_1_1persist_1_1Statement.html" title="Generic SQL Statement." alt="" coords="5,31,200,57"/>
+<area shape="rect" id="node2" href="$dc/d43/classleanux_1_1persist_1_1DDL.html" title="Data Definition Language, SQL that takes no parameters, returns no data such as CREATE TABLE." alt="" coords="249,5,402,32"/>
+<area shape="rect" id="node3" href="$d9/d78/classleanux_1_1persist_1_1DML.html" title="Data Modification Language statements can take bind values." alt="" coords="248,56,403,83"/>
+<area shape="rect" id="node4" href="$d4/d2c/classleanux_1_1persist_1_1Query.html" title="Queries can take bind values and return select lists." alt="" coords="451,56,616,83"/>
+</map>

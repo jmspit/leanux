@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::Header" name="leanux::tools::lmon::Header">
+<area shape="rect" id="node1" title="The lmon Header is a View shown at the top." alt="" coords="244,433,391,475"/>
+<area shape="rect" id="node2" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html" title="A reactangular area on the ncurses Screen as a window of information." alt="" coords="128,256,275,297"/>
+<area shape="rect" id="node4" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html" title="The curses screen." alt="" coords="43,433,189,475"/>
+<area shape="rect" id="node3" title=" " alt="" coords="127,13,241,39"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,13,99,39"/>
+<area shape="rect" id="node6" title=" " alt="" coords="298,13,337,39"/>
+<area shape="rect" id="node7" title="STL class." alt="" coords="355,263,442,290"/>
+<area shape="rect" id="node8" title="STL class." alt="" coords="385,5,524,47"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="leanux::process::getAllProcPidStat" name="leanux::process::getAllProcPidStat">
+<area shape="rect" id="node1" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="5,23,204,65"/>
+<area shape="rect" id="node2" href="$d9/d34/namespaceleanux_1_1process.html#a6533e64a7e3e102f65df053802c83919" title="Get the ProcPidStat for the pid." alt="" coords="252,23,433,65"/>
+<area shape="rect" id="node3" href="$dd/d42/namespaceleanux_1_1system.html#abb67aa26c6ef63b4ad7b4194f1a8d774" title="Get the number of clock ticks per second." alt="" coords="481,5,680,32"/>
+<area shape="rect" id="node4" href="$d9/d34/namespaceleanux_1_1process.html#ae296bd326d85ba028518123373e431ce" title="get the current kernel channel waited on by the process." alt="" coords="481,56,680,83"/>
+</map>

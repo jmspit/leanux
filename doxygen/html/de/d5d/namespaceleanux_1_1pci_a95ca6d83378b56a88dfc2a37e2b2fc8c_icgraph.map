@@ -1,0 +1,6 @@
+<map id="leanux::pci::enumPCIDevicePaths" name="leanux::pci::enumPCIDevicePaths">
+<area shape="rect" id="node1" title="get PCI device paths relative to /sys/devices/" alt="" coords="244,71,448,112"/>
+<area shape="rect" id="node2" href="$de/d5d/namespaceleanux_1_1pci.html#a40970cc37923958a06a10118e3dac9f9" title="return a device path relative to /sys/devices to the PCI device providing the ATA port." alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node3" href="$de/d5d/namespaceleanux_1_1pci.html#ac20fe85adfa5c85d69820d5a083bdf5f" title="return a device path relative to /sys/devices to the PCI device assigned the irq" alt="" coords="5,71,196,112"/>
+<area shape="rect" id="node4" href="$de/d5d/namespaceleanux_1_1pci.html#ad4d22d6399146c941bc1c82bb94fa1b6" title=" " alt="" coords="11,137,190,163"/>
+</map>

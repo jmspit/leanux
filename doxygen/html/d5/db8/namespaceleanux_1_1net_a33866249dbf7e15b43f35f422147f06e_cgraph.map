@@ -1,0 +1,4 @@
+<map id="leanux::net::enumTCP6Sockets" name="leanux::net::enumTCP6Sockets">
+<area shape="rect" id="node1" title="Enumerate TCP6 sockets from /proc/net/tcp6." alt="" coords="5,5,228,32"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#a0b65187eb737b32bfa86bb4dc28af394" title="parse a TCP6 std::string from /proc/net/tcp." alt="" coords="276,5,475,32"/>
+</map>

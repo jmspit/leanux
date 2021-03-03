@@ -1,0 +1,11 @@
+<map id="leanux::tools::lmon::RealtimeSampler::sampleXProcView" name="leanux::tools::lmon::RealtimeSampler::sampleXProcView">
+<area shape="rect" id="node1" title=" " alt="" coords="5,181,273,223"/>
+<area shape="rect" id="node2" href="$d9/d34/namespaceleanux_1_1process.html#a016ba417c40324fe090a55a67d3ca2a6" title="Get a delta of two ProcPidStatMap std::maps into the delta std::map." alt="" coords="348,5,541,47"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a4837f2d09bfda41e98223427201d04e2" title="Return the deltaof two timevals in seconds." alt="" coords="360,71,529,98"/>
+<area shape="rect" id="node4" href="$d9/d34/namespaceleanux_1_1process.html#a385cafe09f0dc82ce8a830124665d69d" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="345,123,544,164"/>
+<area shape="rect" id="node6" href="$dd/d42/namespaceleanux_1_1system.html#acf5450712deab2fd3ebe192a290c4bc6" title="Get the number of processes on the system." alt="" coords="321,189,568,215"/>
+<area shape="rect" id="node7" href="$d9/d34/namespaceleanux_1_1process.html#a92d013dc3ef32fd9b987b410b1ad2edc" title="Get the pid&#39;s command line." alt="" coords="354,240,535,281"/>
+<area shape="rect" id="node8" href="$d9/d34/namespaceleanux_1_1process.html#a25f41d972bb92c8cbe982e0c74c68f7d" title="get the effective uid of a running process." alt="" coords="343,306,546,333"/>
+<area shape="rect" id="node9" href="$d8/df9/classleanux_1_1util_1_1Stopwatch.html#af09212ac0202c1b9ec52a554425d54b1" title="stop the Stopwatch." alt="" coords="359,357,530,399"/>
+<area shape="rect" id="node5" href="$d9/d34/namespaceleanux_1_1process.html#a6533e64a7e3e102f65df053802c83919" title="Get the ProcPidStat for the pid." alt="" coords="616,123,797,164"/>
+</map>

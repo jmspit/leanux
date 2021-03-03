@@ -1,0 +1,8 @@
+<map id="leanux::block::MajorMinor::getModel" name="leanux::block::MajorMinor::getModel">
+<area shape="rect" id="node1" title="Get the model for the device." alt="" coords="520,71,711,112"/>
+<area shape="rect" id="node2" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#ac4b9e0008260b83d9c20f8cad7a43ac6" title="Get a human readable description of this SysDevice." alt="" coords="259,5,465,47"/>
+<area shape="rect" id="node4" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#a575120cf630a3eb5e31b493a9260786f" title=" " alt="" coords="252,71,472,112"/>
+<area shape="rect" id="node5" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="292,136,432,177"/>
+<area shape="rect" id="node3" href="$dd/df8/classleanux_1_1sysdevice_1_1SCSIDevice.html#a7cc63ea1acf3422fb2f3d61a88e59bec" title="Get a human readable description of this SysDevice." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node6" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="35,136,175,177"/>
+</map>

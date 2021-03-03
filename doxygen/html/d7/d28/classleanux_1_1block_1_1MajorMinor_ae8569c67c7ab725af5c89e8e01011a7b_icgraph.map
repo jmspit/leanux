@@ -1,0 +1,4 @@
+<map id="leanux::block::MajorMinor::getRotational" name="leanux::block::MajorMinor::getRotational">
+<area shape="rect" id="node1" title="Chech if a disk is mechanical or solid state." alt="" coords="244,5,435,47"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a45b4368a923265b0b2df91226bb5e898" title="Get a descriptive string of the rotational nature of the disk,." alt="" coords="5,5,196,47"/>
+</map>

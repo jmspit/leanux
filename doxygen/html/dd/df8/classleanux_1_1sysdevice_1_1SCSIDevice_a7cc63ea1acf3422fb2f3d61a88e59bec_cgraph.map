@@ -1,0 +1,6 @@
+<map id="leanux::sysdevice::SCSIDevice::getDescription" name="leanux::sysdevice::SCSIDevice::getDescription">
+<area shape="rect" id="node1" title="Get a human readable description of this SysDevice." alt="" coords="5,39,204,80"/>
+<area shape="rect" id="node2" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#ac4b9e0008260b83d9c20f8cad7a43ac6" title="Get a human readable description of this SysDevice." alt="" coords="252,39,459,80"/>
+<area shape="rect" id="node3" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html#aaed715a73aad1b5f05aaad7906c9ea57" title=" " alt="" coords="507,5,713,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ac3ebc9c959e865aba4a933e92da45674" title="Get the model for the device." alt="" coords="515,71,705,112"/>
+</map>

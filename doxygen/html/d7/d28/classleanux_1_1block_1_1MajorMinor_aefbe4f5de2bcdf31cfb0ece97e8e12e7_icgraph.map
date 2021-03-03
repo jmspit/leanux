@@ -1,0 +1,7 @@
+<map id="leanux::block::MajorMinor::getIOScheduler" name="leanux::block::MajorMinor::getIOScheduler">
+<area shape="rect" id="node1" title="get the IO scheduler (elevator) configured for the device." alt="" coords="381,39,572,80"/>
+<area shape="rect" id="node2" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#ac57ae7d9a91a4259052d4ae1da5a36a2" title="Write LVM details." alt="" coords="194,5,333,47"/>
+<area shape="rect" id="node4" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="193,71,333,112"/>
+<area shape="rect" id="node3" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#aafee1346a1081bfa4f7470f921cd66b8" title="Direct output run from options." alt="" coords="6,5,145,47"/>
+<area shape="rect" id="node5" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="5,71,145,112"/>
+</map>

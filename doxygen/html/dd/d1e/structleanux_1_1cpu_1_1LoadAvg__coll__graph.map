@@ -1,0 +1,4 @@
+<map id="leanux::cpu::LoadAvg" name="leanux::cpu::LoadAvg">
+<area shape="rect" id="node1" title="System load average &#45; the average number of processes on the run queue." alt="" coords="5,124,165,151"/>
+<area shape="rect" id="node2" title=" " alt="" coords="52,5,119,32"/>
+</map>

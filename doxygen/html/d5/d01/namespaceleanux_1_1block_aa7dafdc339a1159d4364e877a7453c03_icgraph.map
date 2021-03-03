@@ -1,0 +1,8 @@
+<map id="leanux::block::deltaDeviceStats" name="leanux::block::deltaDeviceStats">
+<area shape="rect" id="node1" title="create a delta of two DeviceStatsMaps." alt="" coords="555,71,749,112"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ae43e18aacfceb09eb9bd70db9c67fc98" title=" " alt="" coords="252,5,507,47"/>
+<area shape="rect" id="node4" href="$d8/d77/classleanux_1_1tools_1_1lard_1_1IOSnap.html#acd9defb7ca62e96d5f76b04b3e365b41" title=" " alt="" coords="305,71,454,112"/>
+<area shape="rect" id="node6" href="$d0/db5/classleanux_1_1tools_1_1lard_1_1MountSnap.html#a7288efb64fc31818416b8c52c4ba3a0d" title=" " alt="" coords="291,136,467,177"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node5" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,103,174,144"/>
+</map>

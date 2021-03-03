@@ -1,0 +1,4 @@
+<map id="leanux::net::getDeviceIP6Addresses" name="leanux::net::getDeviceIP6Addresses">
+<area shape="rect" id="node1" title="Get a list of IP6 adresses assigned to the device." alt="" coords="5,5,195,47"/>
+<area shape="rect" id="node2" href="$d5/db8/namespaceleanux_1_1net.html#af94467113568c21e1a32c0d5e842dab0" title="convert IPv6 network IP representation to human readable format." alt="" coords="243,5,412,47"/>
+</map>

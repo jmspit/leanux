@@ -1,0 +1,6 @@
+<map id="leanux::process::getWChan" name="leanux::process::getWChan">
+<area shape="rect" id="node1" title="get the current kernel channel waited on by the process." alt="" coords="481,46,680,73"/>
+<area shape="rect" id="node2" href="$d9/d34/namespaceleanux_1_1process.html#a6533e64a7e3e102f65df053802c83919" title="Get the ProcPidStat for the pid." alt="" coords="252,39,433,80"/>
+<area shape="rect" id="node3" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aee987aaaf44a4832b535ecf78065d963" title=" " alt="" coords="35,5,174,47"/>
+<area shape="rect" id="node4" href="$d9/d34/namespaceleanux_1_1process.html#a385cafe09f0dc82ce8a830124665d69d" title="Get a snapshot of all pids (seen as /proc/PID) into a std::map keyed by pid_t." alt="" coords="5,71,204,112"/>
+</map>

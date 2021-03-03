@@ -1,0 +1,4 @@
+<map id="leanux::usb::USBHardwareId" name="leanux::usb::USBHardwareId">
+<area shape="rect" id="node1" title="Indentifies hardware (documented in usb.ids)." alt="" coords="5,109,212,136"/>
+<area shape="rect" id="node2" title=" " alt="" coords="89,5,128,32"/>
+</map>

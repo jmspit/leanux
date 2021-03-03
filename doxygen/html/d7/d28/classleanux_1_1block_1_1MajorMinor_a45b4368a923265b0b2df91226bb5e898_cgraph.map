@@ -1,0 +1,10 @@
+<map id="leanux::block::MajorMinor::getRotationalStr" name="leanux::block::MajorMinor::getRotationalStr">
+<area shape="rect" id="node1" title="Get a descriptive string of the rotational nature of the disk,." alt="" coords="5,177,196,219"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ae8569c67c7ab725af5c89e8e01011a7b" title="Chech if a disk is mechanical or solid state." alt="" coords="244,115,435,156"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad3540e93c53ad2bb4656989caec3c053" title="Get the rotation speed of a device." alt="" coords="244,209,435,251"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="485,5,675,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="725,119,916,160"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="483,122,677,149"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ad5136fe7853cb6f2ca04eadb465976da" title=" " alt="" coords="485,173,675,215"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a7ef43192321c82d296575f35b69c52d4" title="Get the udev path for the device." alt="" coords="485,239,675,280"/>
+</map>

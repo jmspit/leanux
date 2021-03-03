@@ -1,0 +1,33 @@
+<map id="leanux::tools::lmon::Screen::runRealtime" name="leanux::tools::lmon::Screen::runRealtime">
+<area shape="rect" id="node1" title="Run the Screen in realtime mode." alt="" coords="5,456,168,497"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a4837f2d09bfda41e98223427201d04e2" title="Return the deltaof two timevals in seconds." alt="" coords="827,143,996,170"/>
+<area shape="rect" id="node3" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a4371f35535c3f1ab38f15ab859564535" title=" " alt="" coords="263,136,410,177"/>
+<area shape="rect" id="node4" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ac0c7f3e65aea45de36741dd5510ddf2c" title=" " alt="" coords="223,201,450,243"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a4df640a19f56bc06544f1c00b5c39e93" title=" " alt="" coords="219,267,455,308"/>
+<area shape="rect" id="node6" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9e270be66affd839c97e76f33c29f283" title=" " alt="" coords="216,332,457,373"/>
+<area shape="rect" id="node7" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8b5a5cc3be8632153e11fb821c9f5d62" title="Return snapshot XSysView data." alt="" coords="219,397,455,439"/>
+<area shape="rect" id="node8" href="$d8/db1/namespaceleanux_1_1util.html#a64591c1e5e2afd7e676c51c08d3cf315" title="Return current local time in ISO format; YYYY&#45;MM&#45;DD HH24:MI:SS." alt="" coords="217,463,456,490"/>
+<area shape="rect" id="node9" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a18131fa25bef61ad877c098e63123ffd" title="Report a message." alt="" coords="247,515,426,556"/>
+<area shape="rect" id="node10" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#abbe50859f7736656b8c3d436d22ab1f7" title=" " alt="" coords="217,580,456,621"/>
+<area shape="rect" id="node11" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="237,71,436,112"/>
+<area shape="rect" id="node16" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#abcaa706fe703bbf453808220fcaf8263" title="Recalculate the window sizes." alt="" coords="253,860,421,901"/>
+<area shape="rect" id="node30" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#ade4a264f94dde2214ccd39db699f7f0a" title="Determine if terminal size has changed." alt="" coords="254,925,419,967"/>
+<area shape="rect" id="node31" href="$d8/db1/namespaceleanux_1_1util.html#af85d667f0a1e549c70b45f81159af980" title="Sleep seconds+nanoseconds." alt="" coords="267,991,406,1018"/>
+<area shape="rect" id="node12" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#ae43e18aacfceb09eb9bd70db9c67fc98" title=" " alt="" coords="512,71,767,112"/>
+<area shape="rect" id="node13" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a38271e7bf2e0c59ad4648027b7802d8d" title=" " alt="" coords="508,136,771,177"/>
+<area shape="rect" id="node14" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#af80582780bfa40a11a40e647f9657d0f" title=" " alt="" coords="505,201,773,243"/>
+<area shape="rect" id="node15" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="508,5,771,47"/>
+<area shape="rect" id="node17" href="$dc/d7e/classleanux_1_1tools_1_1lmon_1_1Header.html#a1beddf0bef3e55d270812602cd0e93a2" title="The minimum height (lines) required by the Header." alt="" coords="553,892,726,933"/>
+<area shape="rect" id="node18" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#abad3864ba66912f8525c091c5dba942d" title="The minimum height (lines) required by the Footer." alt="" coords="828,1267,995,1308"/>
+<area shape="rect" id="node19" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#a3e0d9a195160e00130c5347f6ae1bc8d" title="The minimum height (lines) required by the Footer." alt="" coords="549,1009,729,1051"/>
+<area shape="rect" id="node20" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a9cfd6542a5437edf7c232fc7d05fbb72" title="The minimum height (lines) required by the Footer." alt="" coords="554,1075,725,1116"/>
+<area shape="rect" id="node21" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#aadb09337fff2490e352bb77acbeee408" title="Get the minimal height for the ProcessView." alt="" coords="536,1140,743,1181"/>
+<area shape="rect" id="node22" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#ae72888be780638aca574db129155547e" title="Get the minimal height for the NetView." alt="" coords="821,856,1001,897"/>
+<area shape="rect" id="node23" href="$dc/d7e/classleanux_1_1tools_1_1lmon_1_1Header.html#a199f43a8cf926331e86bab97c330fb11" title="provide the optimal height for the Header." alt="" coords="539,1271,740,1312"/>
+<area shape="rect" id="node24" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a7c1891d364cf4a57478de9794a3e95c2" title="provide the optimal height for the Header." alt="" coords="542,1205,737,1247"/>
+<area shape="rect" id="node25" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#a16d370b31789cd9e2c4ed48928d22576" title="provide the optimal height for the Header." alt="" coords="535,565,743,607"/>
+<area shape="rect" id="node26" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a466bf2f2261b917b31ae2664ec8fbed0" title="provide the optimal height for the Header." alt="" coords="540,631,739,672"/>
+<area shape="rect" id="node27" href="$d6/d0a/classleanux_1_1tools_1_1lmon_1_1ProcessView.html#a1d115b56591aeb2e4a4883011afab0ed" title="provide the optimal height for the ProcessView, for this View as many as it can get." alt="" coords="522,696,757,737"/>
+<area shape="rect" id="node28" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a90d83dccb33390f86d92374070075b29" title="provide the optimal height for the NetView," alt="" coords="535,761,743,803"/>
+<area shape="rect" id="node29" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a1db7ade4b920adb1f8a9b0f00c3c4322" title="Resize the View." alt="" coords="566,827,713,868"/>
+</map>

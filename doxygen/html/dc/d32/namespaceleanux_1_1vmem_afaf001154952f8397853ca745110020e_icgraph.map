@@ -1,0 +1,10 @@
+<map id="leanux::vmem::getVMStat" name="leanux::vmem::getVMStat">
+<area shape="rect" id="node1" title="get virtual memory statistics." alt="" coords="563,111,755,138"/>
+<area shape="rect" id="node2" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa664245209dbbb081139c961a4c6d878" title="generate system details html." alt="" coords="306,5,461,47"/>
+<area shape="rect" id="node4" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="252,71,515,112"/>
+<area shape="rect" id="node6" href="$d5/d46/classleanux_1_1tools_1_1lard_1_1VMSnap.html#a37c5af9624501ff9094fcd956863bad0" title=" " alt="" coords="307,136,460,177"/>
+<area shape="rect" id="node8" href="$d5/d46/classleanux_1_1tools_1_1lard_1_1VMSnap.html#ac8539527962d0d32339ea8e64820a1a4" title=" " alt="" coords="308,201,459,243"/>
+<area shape="rect" id="node3" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="35,5,174,47"/>
+<area shape="rect" id="node5" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,71,204,112"/>
+<area shape="rect" id="node7" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,168,174,209"/>
+</map>

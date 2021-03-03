@@ -1,0 +1,7 @@
+<map id="leanux::tools::lmon::IOView::getSectorSize" name="leanux::tools::lmon::IOView::getSectorSize">
+<area shape="rect" id="node1" title="Get sector size through sector_size_cache_." alt="" coords="5,64,177,105"/>
+<area shape="rect" id="node2" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a89962016f65109842c3941fa188eae95" title="get the device sector size." alt="" coords="225,64,416,105"/>
+<area shape="rect" id="node3" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a5771b2baf04dd79e61c5bcd3f4ec532c" title="Derive the MajorMinor of the whole disk holding a partition." alt="" coords="464,5,655,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#adc3f437e329318ee21bddbbebaeb740e" title="Get the DeviceName for the MajorMinor." alt="" coords="703,35,893,76"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a1e9a1206d94b2f96e8e0c6adc4e4cd12" title="read the first data in the file as a string representation of a unsigned long." alt="" coords="473,122,646,149"/>
+</map>

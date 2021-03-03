@@ -1,0 +1,12 @@
+<map id="leanux::net::getNetStat" name="leanux::net::getNetStat">
+<area shape="rect" id="node1" title="Get network device statistics from /proc/net/dev." alt="" coords="563,143,736,170"/>
+<area shape="rect" id="node2" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#a4a56050ff78d8c77b6a699ff6d5aea50" title="get named field attributes for the SysDevice." alt="" coords="313,5,453,47"/>
+<area shape="rect" id="node4" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#a90d83dccb33390f86d92374070075b29" title="provide the optimal height for the NetView," alt="" coords="279,71,487,112"/>
+<area shape="rect" id="node6" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a38271e7bf2e0c59ad4648027b7802d8d" title=" " alt="" coords="252,136,515,177"/>
+<area shape="rect" id="node8" href="$d2/de5/classleanux_1_1tools_1_1lard_1_1NetSnap.html#a856922288b7d4d63dd2f173ee7eb0dd3" title=" " alt="" coords="306,201,461,243"/>
+<area shape="rect" id="node10" href="$d2/de5/classleanux_1_1tools_1_1lard_1_1NetSnap.html#a7a429b2ea8298f49fbd0e0f9c70d7fc7" title=" " alt="" coords="307,267,460,308"/>
+<area shape="rect" id="node3" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#ad858cdc5736e1be415f25fdaec024b58" title="list devices, filtered if opt_t is set." alt="" coords="35,5,175,47"/>
+<area shape="rect" id="node5" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#abcaa706fe703bbf453808220fcaf8263" title="Recalculate the window sizes." alt="" coords="21,71,189,112"/>
+<area shape="rect" id="node7" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,136,204,177"/>
+<area shape="rect" id="node9" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,233,174,275"/>
+</map>

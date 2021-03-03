@@ -1,0 +1,5 @@
+<map id="leanux::net::getNetStatDelta" name="leanux::net::getNetStatDelta">
+<area shape="rect" id="node1" title="Get the delta of two NetStatDeviceMap objects, sorted by using int operator&lt;( const NetStat&amp; n1,..." alt="" coords="563,13,771,39"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a38271e7bf2e0c59ad4648027b7802d8d" title=" " alt="" coords="252,5,515,47"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,5,204,47"/>
+</map>

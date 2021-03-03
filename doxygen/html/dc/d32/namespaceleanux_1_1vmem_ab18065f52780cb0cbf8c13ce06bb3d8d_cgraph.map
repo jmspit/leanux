@@ -1,0 +1,6 @@
+<map id="leanux::vmem::getDirtyPressure" name="leanux::vmem::getDirtyPressure">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,239,57"/>
+<area shape="rect" id="node2" href="$dc/d32/namespaceleanux_1_1vmem.html#a25711f0f454b456f442a451794298001" title="get /proc/sys/vm/dirty_bytes" alt="" coords="287,5,501,32"/>
+<area shape="rect" id="node4" href="$dc/d32/namespaceleanux_1_1vmem.html#a1b7142681779765cd488132dd2cdff37" title="get /proc/sys/vm/dirty_ratio" alt="" coords="289,56,499,83"/>
+<area shape="rect" id="node3" href="$d8/db1/namespaceleanux_1_1util.html#a1e9a1206d94b2f96e8e0c6adc4e4cd12" title="read the first data in the file as a string representation of a unsigned long." alt="" coords="549,31,723,57"/>
+</map>

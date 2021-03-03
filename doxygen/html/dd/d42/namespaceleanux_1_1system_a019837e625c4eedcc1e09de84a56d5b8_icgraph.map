@@ -1,0 +1,12 @@
+<map id="leanux::system::getKernelVersion" name="leanux::system::getKernelVersion">
+<area shape="rect" id="node1" title="Get the kernel version." alt="" coords="411,71,603,112"/>
+<area shape="rect" id="node2" href="$db/dda/classleanux_1_1tools_1_1lmon_1_1Footer.html#a5fd79b07f7441318e0a842b4b3024ee9" title="Construct a Footer." alt="" coords="212,5,359,47"/>
+<area shape="rect" id="node3" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa664245209dbbb081139c961a4c6d878" title="generate system details html." alt="" coords="208,71,363,112"/>
+<area shape="rect" id="node5" href="$d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment." alt="" coords="238,173,333,199"/>
+<area shape="rect" id="node4" href="$d6/dd3/namespaceleanux_1_1tools_1_1lrep.html#aa0e1422d8d75831ea3801ffa728bf436" title=" " alt="" coords="13,35,152,76"/>
+<area shape="rect" id="node6" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#a7f59af183bc55b66e3dc0844b473daaf" title=" " alt="" coords="9,100,156,141"/>
+<area shape="rect" id="node7" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a482626b839aaf80a44f973eed61b69a6" title=" " alt="" coords="5,165,160,207"/>
+<area shape="rect" id="node8" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#aecb1bb340203cfe30357d494d4b2622e" title="Entry point." alt="" coords="13,231,152,272"/>
+<area shape="rect" id="node9" href="$d9/d1f/namespaceleanux_1_1tools_1_1lsys.html#aa2b4de7a80d63592f6207ce5951cf966" title="Entry point." alt="" coords="13,296,153,337"/>
+<area shape="rect" id="node10" href="$d5/d1b/namespaceleanux_1_1tools_1_1lblk.html#a7e4a52393fd43c98af0e5e16603b54df" title="Entry point." alt="" coords="13,361,152,403"/>
+</map>

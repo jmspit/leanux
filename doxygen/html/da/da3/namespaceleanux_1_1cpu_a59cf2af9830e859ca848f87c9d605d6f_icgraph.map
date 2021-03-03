@@ -1,0 +1,8 @@
+<map id="leanux::cpu::getCPUStats" name="leanux::cpu::getCPUStats">
+<area shape="rect" id="node1" title="Get CPU usage statistics from /proc/stat." alt="" coords="563,78,749,105"/>
+<area shape="rect" id="node2" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a8de42eb5d528bfa157565a81a16ae5bd" title=" " alt="" coords="252,5,515,47"/>
+<area shape="rect" id="node4" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#a18e1fbcdf89ec7537bc853b314657890" title=" " alt="" coords="304,71,463,112"/>
+<area shape="rect" id="node6" href="$d5/d03/classleanux_1_1tools_1_1lard_1_1CPUSnap.html#af9c73b36a541b0eae3b06e491b9cdff0" title=" " alt="" coords="305,136,462,177"/>
+<area shape="rect" id="node3" href="$da/d21/classleanux_1_1tools_1_1lmon_1_1RealtimeSampler.html#a9522a4a46961eb4f75d3207da1efd07f" title="Sample a snapshot." alt="" coords="5,5,204,47"/>
+<area shape="rect" id="node5" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="35,103,174,144"/>
+</map>

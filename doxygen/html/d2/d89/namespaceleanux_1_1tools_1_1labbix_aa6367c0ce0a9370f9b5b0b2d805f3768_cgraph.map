@@ -1,0 +1,11 @@
+<map id="leanux::tools::labbix::getIOs" name="leanux::tools::labbix::getIOs">
+<area shape="rect" id="node1" title=" " alt="" coords="5,136,160,177"/>
+<area shape="rect" id="node2" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a6a00f41ee62469522591d31c13035a0c" title=" " alt="" coords="226,71,381,112"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a314abee5e9b9cc4c609d54e61103863a" title="get performance statistics for the block device specified by MajorMinor." alt="" coords="208,201,399,243"/>
+<area shape="rect" id="node3" href="$d5/d01/namespaceleanux_1_1block.html#ac08a21002b48cb1bbfaf8d77b4aac5f6" title="get a list of whole disks (exclude partitions)." alt="" coords="447,5,641,47"/>
+<area shape="rect" id="node4" href="$d2/d89/namespaceleanux_1_1tools_1_1labbix.html#a1a520e8210d7e2d3fad08b31e5e4db4d" title=" " alt="" coords="467,71,621,112"/>
+<area shape="rect" id="node6" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aec5c9aa75e9cb579163989cece64adc7" title="Get SCSI iodone_cnt (number of SCSI IO completions)" alt="" coords="449,136,639,177"/>
+<area shape="rect" id="node7" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab3f52da181b760aa9d9240c08beb8ae8" title="Get SCSI ioerr_cnt (number of SCSI IO errors)" alt="" coords="449,201,639,243"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0c501b00fcddef5167f8f4e4f98e3bdb" title="Get SCSI iorequest_cnt (number of SCSI IO requests)" alt="" coords="449,267,639,308"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a742f510de3aea2ec0a1eb112e3ca3c1e" title="return the full device path as it appears under /sys/devices/block" alt="" coords="449,332,639,373"/>
+</map>

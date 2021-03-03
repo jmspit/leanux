@@ -1,0 +1,35 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d1/d02/classleanux_1_1sysdevice_1_1SysDevice.html" title="Generic SysDevice, utility class for device detection from a SysDevicePath." alt="" coords="5,1083,152,1124"/>
+<area shape="rect" id="node2" href="$d1/d9d/classleanux_1_1sysdevice_1_1ATAPort.html" title="Say yes to (S)ATA ports." alt="" coords="202,332,349,373"/>
+<area shape="rect" id="node3" href="$d2/d31/classleanux_1_1sysdevice_1_1BlockDevice.html" title="Generic block device." alt="" coords="202,397,349,439"/>
+<area shape="rect" id="node16" href="$dd/dff/classleanux_1_1sysdevice_1_1BusDevice.html" title="Generic bus device." alt="" coords="202,756,349,797"/>
+<area shape="rect" id="node19" href="$dc/d23/classleanux_1_1sysdevice_1_1NetDevice.html" title="Generic networking device." alt="" coords="202,821,349,863"/>
+<area shape="rect" id="node22" href="$d8/dcd/classleanux_1_1sysdevice_1_1PCIDevice.html" title="Say yes to PCI devices." alt="" coords="202,887,349,928"/>
+<area shape="rect" id="node23" href="$d3/d94/classleanux_1_1sysdevice_1_1SASEndDevice.html" title="Say yes to SAS end devices." alt="" coords="202,952,349,993"/>
+<area shape="rect" id="node24" href="$d8/d96/classleanux_1_1sysdevice_1_1SASPort.html" title="Say yes to SAS ports." alt="" coords="202,1017,349,1059"/>
+<area shape="rect" id="node25" href="$da/df5/classleanux_1_1sysdevice_1_1SCSIHost.html" title="Say yes to SCSI hosts." alt="" coords="202,1083,349,1124"/>
+<area shape="rect" id="node26" href="$d9/d3e/classleanux_1_1sysdevice_1_1SCSIRPort.html" title="Say yes to SCSI rport." alt="" coords="202,1148,349,1189"/>
+<area shape="rect" id="node27" href="$d6/d90/classleanux_1_1sysdevice_1_1SCSIVPort.html" title="Say yes to SCSI vport." alt="" coords="202,1213,349,1255"/>
+<area shape="rect" id="node28" href="$d0/d8c/classleanux_1_1sysdevice_1_1UnknownSysDevice.html" title="Always says yes, so last resort, eats entire path." alt="" coords="200,1279,351,1320"/>
+<area shape="rect" id="node29" href="$db/d5e/classleanux_1_1sysdevice_1_1USBDevice.html" title="Say yes to USB devices." alt="" coords="202,1344,349,1385"/>
+<area shape="rect" id="node31" href="$d9/d6a/classleanux_1_1sysdevice_1_1VirtualBlockRoot.html" title="Virtual block root." alt="" coords="202,1409,349,1451"/>
+<area shape="rect" id="node32" href="$de/dec/classleanux_1_1sysdevice_1_1VirtualNetRoot.html" title="Virtual net root." alt="" coords="202,1475,349,1516"/>
+<area shape="rect" id="node33" href="$d3/d40/classleanux_1_1sysdevice_1_1VirtualRoot.html" title="Virtual root." alt="" coords="202,1540,349,1581"/>
+<area shape="rect" id="node4" href="$df/ddb/classleanux_1_1sysdevice_1_1BCacheDevice.html" title="Say yes to bcache devices." alt="" coords="399,5,545,47"/>
+<area shape="rect" id="node5" href="$d6/d19/classleanux_1_1sysdevice_1_1BlockPartition.html" title="Generic block device partition." alt="" coords="399,71,545,112"/>
+<area shape="rect" id="node6" href="$de/dd2/classleanux_1_1sysdevice_1_1LoopbackDevice.html" title="Say yes to loopback devices." alt="" coords="399,136,545,177"/>
+<area shape="rect" id="node7" href="$dc/dfa/classleanux_1_1sysdevice_1_1MapperDevice.html" title="Say yes to devicemapper devices." alt="" coords="399,201,545,243"/>
+<area shape="rect" id="node8" href="$dd/d1b/classleanux_1_1sysdevice_1_1MDDevice.html" title="Say yes to metadisk devices." alt="" coords="399,267,545,308"/>
+<area shape="rect" id="node9" href="$d8/d7a/classleanux_1_1sysdevice_1_1MMCDevice.html" title="Say yes to MMC devices." alt="" coords="399,332,545,373"/>
+<area shape="rect" id="node10" href="$d2/d7d/classleanux_1_1sysdevice_1_1NVMeDevice.html" title="Say yes to NVMe devices." alt="" coords="399,397,545,439"/>
+<area shape="rect" id="node11" href="$d2/d73/classleanux_1_1sysdevice_1_1NVMePartition.html" title="Say yes to partitions on NVMe devices." alt="" coords="399,463,545,504"/>
+<area shape="rect" id="node12" href="$dd/d47/classleanux_1_1sysdevice_1_1RamDiskDevice.html" title="Say yes to ramdisk devices." alt="" coords="399,528,545,569"/>
+<area shape="rect" id="node13" href="$dd/df8/classleanux_1_1sysdevice_1_1SCSIDevice.html" title="Say yes to SCSI devices." alt="" coords="399,593,545,635"/>
+<area shape="rect" id="node15" href="$da/d56/classleanux_1_1sysdevice_1_1VirtioBlockDevice.html" title="Say yes to virtio block devices." alt="" coords="399,659,545,700"/>
+<area shape="rect" id="node14" href="$df/db8/classleanux_1_1sysdevice_1_1iSCSIDevice.html" title="Say yes to iSCSI devices." alt="" coords="593,593,740,635"/>
+<area shape="rect" id="node17" href="$d9/d99/classleanux_1_1sysdevice_1_1PCIBus.html" title="Say yes to PCI busses." alt="" coords="399,724,545,765"/>
+<area shape="rect" id="node18" href="$dc/d51/classleanux_1_1sysdevice_1_1USBBus.html" title="Say yes to USB busses." alt="" coords="399,789,545,831"/>
+<area shape="rect" id="node20" href="$d9/d1e/classleanux_1_1sysdevice_1_1VirtioNetDevice.html" title="Say yes to virtio net devices." alt="" coords="399,855,545,896"/>
+<area shape="rect" id="node21" href="$de/d36/classleanux_1_1sysdevice_1_1VirtualNetDevice.html" title="Virtual networking device." alt="" coords="399,920,545,961"/>
+<area shape="rect" id="node30" href="$de/dce/classleanux_1_1sysdevice_1_1USBInterface.html" title="Say yes to USB configurations (operation mode an USB device)." alt="" coords="399,1344,545,1385"/>
+</map>

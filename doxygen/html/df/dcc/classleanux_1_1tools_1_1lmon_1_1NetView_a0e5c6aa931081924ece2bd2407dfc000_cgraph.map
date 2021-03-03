@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::NetView::xrefresh" name="leanux::tools::lmon::NetView::xrefresh">
+<area shape="rect" id="node1" title="Refresh/redraw the ProcessView." alt="" coords="5,166,152,207"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a979843e3d99f053101f902ec38985833" title="convert a byte value to pretty print string." alt="" coords="235,5,385,32"/>
+<area shape="rect" id="node3" href="$dd/d42/namespaceleanux_1_1system.html#a15a1517cb994968027d406402a588157" title="Get username from a uid." alt="" coords="200,56,420,83"/>
+<area shape="rect" id="node4" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad4bf2613d86d8fd5d95fc2b09103a9dc" title="Draw a horizontal line." alt="" coords="237,107,383,149"/>
+<area shape="rect" id="node5" href="$d8/db1/namespaceleanux_1_1util.html#a0c9555d36d9264d1f0cd246c8ba6da28" title="Convert a double (real number) to a pretty print string." alt="" coords="234,173,386,200"/>
+<area shape="rect" id="node6" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a2f37f251e8f17c1e11536b368fd66ec8" title="Write text at x,y with display attrs." alt="" coords="237,225,383,266"/>
+<area shape="rect" id="node7" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#ad1a03b681b72a1c8918838816c4080ca" title="Draw text right&#45;adjusted and progress x with w+1." alt="" coords="219,290,401,331"/>
+<area shape="rect" id="node8" href="$d1/de8/classleanux_1_1tools_1_1lmon_1_1View.html#a625d1c34066c820a2d6711fb0563b426" title="Draw a vertical line." alt="" coords="237,355,383,397"/>
+</map>

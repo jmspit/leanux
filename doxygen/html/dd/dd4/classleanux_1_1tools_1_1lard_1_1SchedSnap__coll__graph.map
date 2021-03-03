@@ -1,0 +1,9 @@
+<map id="leanux::tools::lard::SchedSnap" name="leanux::tools::lard::SchedSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="184,243,323,284"/>
+<area shape="rect" id="node2" href="$db/dc1/classleanux_1_1tools_1_1lard_1_1Snapshot.html" title=" " alt="" coords="5,124,144,165"/>
+<area shape="rect" id="node3" href="$da/da3/namespaceleanux_1_1cpu.html#db/d9d/structleanux_1_1cpu_1_1SchedInfo" title="CPU scheduler info." alt="" coords="169,131,338,158"/>
+<area shape="rect" id="node4" title=" " alt="" coords="191,5,230,32"/>
+<area shape="rect" id="node5" title=" " alt="" coords="269,5,320,32"/>
+<area shape="rect" id="node6" href="$da/da3/namespaceleanux_1_1cpu.html#dd/d31/structleanux_1_1cpu_1_1LoadAvg" title="System load average &#45; the average number of processes on the run queue." alt="" coords="363,131,523,158"/>
+<area shape="rect" id="node7" title=" " alt="" coords="409,5,476,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::tools::lmon::Palette::getColorUserCPU" name="leanux::tools::lmon::Palette::getColorUserCPU">
+<area shape="rect" id="node1" title="get user cpu color." alt="" coords="453,5,648,47"/>
+<area shape="rect" id="node2" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#a01702243a446d6a32114b87b8c4d399b" title="Get ncurses display attributes depending on the type of CPU chararcter." alt="" coords="200,5,405,47"/>
+<area shape="rect" id="node3" href="$da/d9f/classleanux_1_1tools_1_1lmon_1_1SysView.html#ad72b5ee6be63091f3d320a23721d5cb4" title="refresh (redraw) the View." alt="" coords="5,5,152,47"/>
+</map>

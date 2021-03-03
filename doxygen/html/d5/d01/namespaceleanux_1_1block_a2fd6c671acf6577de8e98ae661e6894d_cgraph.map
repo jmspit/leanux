@@ -1,0 +1,4 @@
+<map id="leanux::block::getATAPortLink" name="leanux::block::getATAPortLink">
+<area shape="rect" id="node1" title="Get the ATA port link." alt="" coords="5,5,220,32"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#adb3739607a9ec74d79fbebf4d45dd766" title="Find subdirectories, first match is returned, if any." alt="" coords="268,5,415,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="leanux::block::getAttachedWholeDisks" name="leanux::block::getAttachedWholeDisks">
+<area shape="rect" id="node1" title="Get the number of attached whole disks." alt="" coords="468,5,664,47"/>
+<area shape="rect" id="node2" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a466bf2f2261b917b31ae2664ec8fbed0" title="provide the optimal height for the Header." alt="" coords="221,5,420,47"/>
+<area shape="rect" id="node3" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#abcaa706fe703bbf453808220fcaf8263" title="Recalculate the window sizes." alt="" coords="5,5,173,47"/>
+</map>

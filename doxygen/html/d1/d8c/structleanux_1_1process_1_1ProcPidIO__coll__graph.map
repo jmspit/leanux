@@ -1,0 +1,4 @@
+<map id="leanux::process::ProcPidIO" name="leanux::process::ProcPidIO">
+<area shape="rect" id="node1" title="Process IO details from /proc/pid/io." alt="" coords="5,197,200,224"/>
+<area shape="rect" id="node2" title=" " alt="" coords="77,5,128,32"/>
+</map>

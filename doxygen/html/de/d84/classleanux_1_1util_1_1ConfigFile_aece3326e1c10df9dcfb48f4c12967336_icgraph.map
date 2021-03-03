@@ -1,0 +1,16 @@
+<map id="leanux::util::ConfigFile::getValue" name="leanux::util::ConfigFile::getValue">
+<area shape="rect" id="node1" title="return the configuration parameter as a string." alt="" coords="635,397,801,438"/>
+<area shape="rect" id="node2" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a98a04e0c068c5083ad571ebc9b79d693" title=" " alt="" coords="434,55,573,97"/>
+<area shape="rect" id="node4" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#aae0c3891e3d5a8d391a7439602b92780" title="return the configuration parameter as an int." alt="" coords="420,241,587,282"/>
+<area shape="rect" id="node11" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#ac0a26e361b745b7e933134618c9fad97" title="return the configuration parameter as a RGB struct." alt="" coords="420,462,587,503"/>
+<area shape="rect" id="node13" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#af62cc2be1bf08d122bd390f18a886fdc" title="return the configuration parameter as an int." alt="" coords="420,397,587,438"/>
+<area shape="rect" id="node14" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a9492d51a0046e33c7a4dda4229537548" title="set page_size and enable WAL mode." alt="" coords="434,527,573,569"/>
+<area shape="rect" id="node3" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a6de74bbef1d571bf7eb000e62900a11d" title=" " alt="" coords="5,273,144,314"/>
+<area shape="rect" id="node5" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#a9cfd6542a5437edf7c232fc7d05fbb72" title="The minimum height (lines) required by the Footer." alt="" coords="197,77,367,118"/>
+<area shape="rect" id="node6" href="$df/dcc/classleanux_1_1tools_1_1lmon_1_1NetView.html#ae72888be780638aca574db129155547e" title="Get the minimal height for the NetView." alt="" coords="192,142,372,183"/>
+<area shape="rect" id="node7" href="$d5/de6/classleanux_1_1tools_1_1lmon_1_1Screen.html#a5fceabd599c083204cf4fc2014694403" title="Constructor." alt="" coords="209,207,355,249"/>
+<area shape="rect" id="node8" href="$d4/d62/namespaceleanux_1_1tools_1_1lard.html#a45d90387f852d7a71981b5d4ff93d8da" title=" " alt="" coords="213,273,351,314"/>
+<area shape="rect" id="node9" href="$d4/d0e/classleanux_1_1tools_1_1lard_1_1ProcSnap.html#ab816bcbf8f8986599df48ee7131c10fb" title=" " alt="" coords="201,403,363,445"/>
+<area shape="rect" id="node10" href="$d8/d7f/classleanux_1_1tools_1_1lmon_1_1IOView.html#ad5d8db29927cc18e861cfa5ba48ecd94" title="refresh (redraw) the View." alt="" coords="209,338,355,379"/>
+<area shape="rect" id="node12" href="$d9/d1b/classleanux_1_1tools_1_1lmon_1_1Palette.html#aff7f53f61a567297f5cfd9a4ee880e51" title="setup the Palette." alt="" coords="209,469,355,510"/>
+</map>

@@ -1,0 +1,10 @@
+<map id="leanux::tools::lmon::LardHistory" name="leanux::tools::lmon::LardHistory">
+<area shape="rect" id="node1" title=" " alt="" coords="672,133,819,174"/>
+<area shape="rect" id="node2" title=" " alt="" coords="350,67,414,93"/>
+<area shape="rect" id="node3" href="$d8/daf/classleanux_1_1persist_1_1Database.html" title="A STL friendly wrapper around a sqlite3 database." alt="" coords="288,117,476,144"/>
+<area shape="rect" id="node4" title=" " alt="" coords="46,117,123,144"/>
+<area shape="rect" id="node5" title=" " alt="" coords="284,168,480,224"/>
+<area shape="rect" id="node6" href="$da/dbe/namespaceleanux_1_1tools_1_1lmon.html#d4/de6/structleanux_1_1tools_1_1lmon_1_1SnapRange" title=" " alt="" coords="11,173,158,214"/>
+<area shape="rect" id="node7" href="$da/da3/namespaceleanux_1_1cpu.html#d0/d5a/structleanux_1_1cpu_1_1CPUStat" title="CPU usage statistics from /proc/stat." alt="" coords="5,239,164,265"/>
+<area shape="rect" id="node8" title=" " alt="" coords="357,311,407,337"/>
+</map>

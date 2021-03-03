@@ -1,0 +1,5 @@
+<map id="leanux::util::ConfigFile::setConfig" name="leanux::util::ConfigFile::setConfig">
+<area shape="rect" id="node1" title="set the application name and config file name." alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node2" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a1f104838a15bec5db5c6e2afe287cabc" title="Constructor, should not be called directly, use setConfig and getConfig to create the ConfigFile." alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node3" href="$de/d84/classleanux_1_1util_1_1ConfigFile.html#a0a9d268bdbb30ef4953e13c9cfc23826" title="read and interpret the configuration file." alt="" coords="435,5,601,47"/>
+</map>

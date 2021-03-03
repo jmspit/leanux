@@ -1,0 +1,12 @@
+<map id="leanux::tools::lard::MountSnap::stopSnap" name="leanux::tools::lard::MountSnap::stopSnap">
+<area shape="rect" id="node1" title=" " alt="" coords="5,167,176,208"/>
+<area shape="rect" id="node2" href="$d5/d01/namespaceleanux_1_1block.html#afaee6721d578e4e9ccbebb7dea5919a6" title="Get a map of MajorMinor to MountInfo from /proc/mounts." alt="" coords="229,113,431,139"/>
+<area shape="rect" id="node6" href="$d5/d01/namespaceleanux_1_1block.html#a0a3be314ae37f554ef89d7b5b30a8039" title="Used bytes over all mounted filesystems." alt="" coords="224,167,436,208"/>
+<area shape="rect" id="node7" href="$d5/d01/namespaceleanux_1_1block.html#ae227ed1fa83d91988072e335ea0f81e9" title="get block device statistics into a DeviceStatsMap." alt="" coords="245,239,415,266"/>
+<area shape="rect" id="node3" href="$d5/d01/namespaceleanux_1_1block.html#a12e7b3a8ce8e601504f25c9c3e2fa7f0" title="get the MajorMinor for a device file or aliases to it, resolves the devicefile with realpath." alt="" coords="484,5,683,47"/>
+<area shape="rect" id="node4" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a08c4dd48259318cfd77067e866e05e84" title="get the device name for this MajorMinor." alt="" coords="488,71,679,112"/>
+<area shape="rect" id="node5" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a26905a16bdd3e525abb2ada713f80704" title="Test MajorMinor validity." alt="" coords="488,136,679,177"/>
+<area shape="rect" id="node8" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#aec5c9aa75e9cb579163989cece64adc7" title="Get SCSI iodone_cnt (number of SCSI IO completions)" alt="" coords="488,201,679,243"/>
+<area shape="rect" id="node9" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#ab3f52da181b760aa9d9240c08beb8ae8" title="Get SCSI ioerr_cnt (number of SCSI IO errors)" alt="" coords="488,267,679,308"/>
+<area shape="rect" id="node10" href="$d7/d28/classleanux_1_1block_1_1MajorMinor.html#a0c501b00fcddef5167f8f4e4f98e3bdb" title="Get SCSI iorequest_cnt (number of SCSI IO requests)" alt="" coords="488,332,679,373"/>
+</map>

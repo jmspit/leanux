@@ -1,0 +1,4 @@
+<map id="leanux::system::getBoardName" name="leanux::system::getBoardName">
+<area shape="rect" id="node1" title="Get the name of the system board." alt="" coords="5,5,233,32"/>
+<area shape="rect" id="node2" href="$d8/db1/namespaceleanux_1_1util.html#a57bfd49353610b3d0b6d121b264c676e" title="read the file as a single string." alt="" coords="281,5,476,32"/>
+</map>

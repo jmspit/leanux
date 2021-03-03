@@ -2,20 +2,22 @@
 
 Leanux is a C++ API to Linux performance and configuration data and includes a few tools utilizing this API.
 
-The C++ API eases access to system configuration data provided by the `/sysfs` pseudo filesystem, so including CPUs, block devices, network devices and so on. Additionally, the C++ API exposes performance data from the `/proc` pseudo fillesystem.
+The C++ API eases access to system configuration data provided by the `/sys` pseudo filesystem, so including CPUs, block devices, network devices and so on. Additionally, the C++ API exposes performance data from the `/proc` pseudo fillesystem.
 
 The (C++) binaries produced by this repository are
 
 | component | purpose |
 |------|---------|
 | libleanux.so | Shared library backing the leanux C++ API, required by the below tools |
-| [lard](https://www.o-rho.com/leanux/lard) | daemon that logs performance and base configuration data to a SQLite database file |
-| [lmon](doc/lmon.md) | ncurses (tty) based performance viewer, both real-time and browsing historic data from the lard daemon, with colors, dynamic screen resizing |
-| [lrep](https://www.o-rho.com/leanux/lrep) | generates html reports on lard data |
-| [lsys](https://www.o-rho.com/leanux/lsys) | command-line tool to retrieve sysfs info for administrative use |
-| [lblk](https://www.o-rho.com/leanux/lblk) | command-line tool to retrieve block device and filesystem info for administrative use |
-| [labbix](https://www.o-rho.com/leanux/labbix) | Zabbix disk discovery and disk performance statistics for GNU/Linux |
+| [lard](man_lard.pdf) | daemon that logs performance and base configuration data to a SQLite database file |
+| [lmon](man_lmon.pdf) | ncurses (tty) based performance viewer, both real-time and browsing historic data from the lard daemon, with colors, dynamic screen resizing |
+| [lrep](man_lrep.pdf) | generates html reports on lard data |
+| [lsys](man_lsys.pdf) | command-line tool to retrieve sysfs info for administrative use |
+| [lblk](man_lblk.pdf) | command-line tool to retrieve block device and filesystem info for administrative use |
+| labbix | Zabbix disk discovery and disk performance statistics for GNU/Linux |
 
+See [leanux on github pages](https://jmspit.github.io/leanux) for more documentation. If you are on github pages now,
+you can view the doxygen code documentation as [here](doxygen/html/index.html), and the links in the above table will link to pdf documents.
 ## Building from source
 
 Builds should work on any Linux host that satisfies

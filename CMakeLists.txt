@@ -11,18 +11,17 @@ execute_process(
     OUTPUT_VARIABLE GIT_TAG
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
-message( STATUS "GIT_TAG              : ${GIT_TAG}")
 
-include( cmake/MunkeiVersionFromGit.cmake )
+if( GIT_TAG MATCHES "^v(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)(-[.0-9A-Za-z-]+).*$" )
+  set( ${PROJECT}_VERSION_MAJOR "${CMAKE_MATCH_1}" )
+  set( ${PROJECT}_VERSION_MINOR "${CMAKE_MATCH_2}" )
+  set( ${PROJECT}_VERSION_PATCH "${CMAKE_MATCH_3}" )
+  set( ${PROJECT}_VERSION_SNAP  "${CMAKE_MATCH_4}" )
+else()
+  message( STATUS "Git tag not valid [${git_tag}]" )
+endif()
 
-version_from_git(
-  LOG       ON
-  TIMESTAMP "%Y%m%d%H%M%S"
-)
-
-set( ${PROJECT}_VERSION_MAJOR "${VERSION_MAJOR}" )
-set( ${PROJECT}_VERSION_MINOR "${VERSION_MINOR}" )
-set( ${PROJECT}_VERSION_PATCH "${VERSION_PATCH}" )
+message( STATUS "GIT_TAG                : ${GIT_TAG}")
 
 # options
 option(EXAMPLE_TEST "set to ON to build examples and tests" "OFF")
@@ -46,8 +45,8 @@ message( STATUS "CMAKE_CXX_COMPILER     : ${CMAKE_CXX_COMPILER}")
 message( STATUS "CMAKE_HOST_SYSTEM      : ${CMAKE_HOST_SYSTEM}")
 message( STATUS "CMAKE_VERSION          : ${CMAKE_VERSION}")
 
-set(${PROJECTUC}_VERSION_STR "${SEMVER}")
-set(${PROJECT}_VERSION_STR "${SEMVER}")
+set(${PROJECTUC}_VERSION_STR "${GIT_TAG}")
+set(${PROJECT}_VERSION_STR "${GIT_TAG}")
 message( STATUS "${PROJECTUC} BUILD VERSION   : ${${PROJECTUC}_VERSION_STR}")
 set(${PROJECT}_LIB_NAME "${PROJECT}-${${PROJECT}_VERSION_STR}")
 message( STATUS "examples and tests     : ${EXAMPLE_TEST}")
@@ -410,10 +409,21 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT}-config.hpp.in ${CMAKE_CURR
 # Doxygen source code documentation
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
+execute_process( COMMAND mkdir -p ${CMAKE_CURRENT_BINARY_DIR}/doc/doxygen )
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/README.md ${CMAKE_CURRENT_BINARY_DIR}/doc @ONLY)
+configure_file(${CMAKE_CURRENT_BINARY_DIR}/lmon.1 ${CMAKE_CURRENT_BINARY_DIR}/doc @ONLY)
+
+
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT}.doxygen ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mainpage.dox.in ${CMAKE_CURRENT_BINARY_DIR}/mainpage.dox @ONLY)
 add_custom_target(doc
 ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
+COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lmon.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lmon.pdf
+COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lsys.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lsys.pdf
+COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lblk.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lblk.pdf
+COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lard.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lard.pdf
+COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lrep.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lrep.pdf
 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 COMMENT "Generating API documentation with Doxygen" VERBATIM
 )

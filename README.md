@@ -16,7 +16,8 @@ The (C++) binaries produced by this repository are
 | lblk | command-line tool to retrieve block device and filesystem info for administrative use |
 | labbix | Zabbix disk discovery and disk performance statistics for GNU/Linux |
 
-See [leanux on github pages](https://jmspit.github.io/leanux) for more and source code documentation.
+See [leanux on github pages](https://jmspit.github.io/leanux) for more documentation. If you are on github pages now,
+you can view the doxygen code documentation as [here](doxygen/html/index.html).
 ## Building from source
 
 Builds should work on any Linux host that satisfies

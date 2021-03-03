@@ -419,11 +419,11 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT}.doxygen ${CMAKE_CURRENT_BI
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mainpage.dox.in ${CMAKE_CURRENT_BINARY_DIR}/mainpage.dox @ONLY)
 add_custom_target(doc
 ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lmon/lmon.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lmon.txt
-COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lsys/lsys.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lsys.txt
-COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lblk/lblk.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lblk.txt
-COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/lard.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lard.txt
-COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lrep/lrep.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lrep.txt
+COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lmon/lmon.1 | groff -Tascii -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lmon.txt
+COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lsys/lsys.1 | groff -Tascii-man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lsys.txt
+COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lblk/lblk.1 | groff -Tascii -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lblk.txt
+COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lard/lard.1 | groff -Tascii -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lard.txt
+COMMAND cat ${CMAKE_CURRENT_SOURCE_DIR}/tools/lrep/lrep.1 | groff -Tascii -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lrep.txt
 WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 COMMENT "Generating API documentation with Doxygen" VERBATIM
 )

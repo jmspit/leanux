@@ -12,8 +12,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Install doxygen
-        run: sudo apt-get -f install doxygen graphviz groff gropdf
+      - name: Install doxygen graphiz and groff
+        run: sudo apt-get -f install doxygen graphviz groff
 
 
       - name: Create Build Environment

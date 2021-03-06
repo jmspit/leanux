@@ -1,3 +1,5 @@
+https://github.com/jmspit/leanux/actions/workflows/build/badge.svg
+
 # leanux
 
 Leanux is a C++ API to Linux performance and configuration data and includes a few tools utilizing this API.

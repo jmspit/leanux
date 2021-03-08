@@ -52,6 +52,35 @@ jobs:
             echo ::set-output name=prerelease::true
         fi
 
+    - name: Get previous release tag
+      id: get_previous_release
+      uses: oprypin/find-latest-tag@v1
+      with:
+        repository: jmspit/leanux.git
+        releases-only: true
+        regex: '^v\d+\.\d+\.\d+$'
+      run: echo "Previous release ${{ steps.get_previous_release.outputs.tag }}"
+
+    - name: Get release changelog
+      id: get_release_changelog
+      if: steps.check-tag.outputs.prerelease == 'false'
+      run:
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %an %t %s')"
+        CHANGELOG="${CHANGELOG//'%'/'%25'}"
+        CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
+        CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+        echo "::set-output name=changelog::$(echo "$CHANGELOG")"
+
+    - name: Get pre-release changelog
+      id: get_release_changelog
+      if: steps.check-tag.outputs.prerelease == 'true'
+      run:
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag }}..HEAD --date=short --pretty=format:'  - %h %cd %an %t %s')"
+        CHANGELOG="${CHANGELOG//'%'/'%25'}"
+        CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
+        CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+        echo "::set-output name=changelog::$(echo "$CHANGELOG")"
+
     - name: Create release
       id: create_release
       if: steps.check-tag.outputs.prerelease == 'false'
@@ -61,7 +90,12 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: Release ${{ github.ref }}
+        body: |
+          Release ${{ github.ref }}
+
+          Changes since ${{ steps.get_previous_release.outputs.tag }}:
+
+          $${steps.get_release_changelog.outputs.changelog}
         draft: false
         prerelease: false
 
@@ -74,7 +108,12 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: Release ${{ github.ref }}
+        body: |
+          Release ${{ github.ref }}
+
+          Changes since ${{ steps.get_previous_release.outputs.tag }}:
+
+          $${steps.get_release_changelog.outputs.changelog}
         draft: false
         prerelease: true
 

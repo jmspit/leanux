@@ -54,15 +54,17 @@ jobs:
 
     - name: Get previous release tag
       id: get_previous_release
-      run:
-        export LATEST_RELEASE_TAG="$(curl --silent 'https://api.github.com/repos/jmspit/leanux/releases/latest' | jq -r .tag_name)"
-        echo "::set-output name=tag::$(echo "$LATEST_RELEASE_TAG")"
+      uses: InsonusK/get-latest-release@v1.0.1
+      with:
+        myToken: ${{ github.token }}
+        exclude_types: "prerelease|draft"
+        view_top: 1
 
     - name: Get release changelog
       id: get_release_changelog
       if: steps.check-tag.outputs.prerelease == 'false'
       run:
-        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %an %t %s')"
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %an %t %s')"
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
         CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
@@ -72,7 +74,7 @@ jobs:
       id: get_prerelease_changelog
       if: steps.check-tag.outputs.prerelease == 'true'
       run:
-        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag }}..HEAD --date=short --pretty=format:'  - %h %cd %an %t %s')"
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --date=short --pretty=format:'  - %h %cd %an %t %s')"
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
         CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
@@ -90,7 +92,7 @@ jobs:
         body: |
           Release ${{ github.ref }}
 
-          Changes since ${{ steps.get_previous_release.outputs.tag }}:
+          Changes since ${{ steps.get_previous_release.outputs.tag_name }}:
 
           $${steps.get_release_changelog.outputs.changelog}
         draft: false
@@ -108,7 +110,7 @@ jobs:
         body: |
           Release ${{ github.ref }}
 
-          Changes since ${{ steps.get_previous_release.outputs.tag }}:
+          Changes since ${{ steps.get_previous_release.outputs.tag_name }}:
 
           $${steps.get_prerelease_changelog.outputs.changelog}
         draft: false

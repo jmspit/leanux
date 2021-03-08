@@ -16,7 +16,7 @@ jobs:
 
     - name: Install git
       run: |
-        apt-get install -y git
+        sudo apt-get install -y git
         git --version
         git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1
 

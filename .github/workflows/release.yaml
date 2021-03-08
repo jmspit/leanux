@@ -71,7 +71,7 @@ jobs:
         echo "::set-output name=changelog::$(echo "$CHANGELOG")"
 
     - name: Get pre-release changelog
-      id: get_release_changelog
+      id: get_prerelease_changelog
       if: steps.check-tag.outputs.prerelease == 'true'
       run:
         export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag }}..HEAD --date=short --pretty=format:'  - %h %cd %an %t %s')"
@@ -112,7 +112,7 @@ jobs:
 
           Changes since ${{ steps.get_previous_release.outputs.tag }}:
 
-          $${steps.get_release_changelog.outputs.changelog}
+          $${steps.get_prerelease_changelog.outputs.changelog}
         draft: false
         prerelease: true
 

@@ -28,7 +28,7 @@ var NAVTREE =
     [ "Namespaces", "index.html#system_section", null ],
     [ "Building the source", "index.html#build_section", null ],
     [ "More info", "index.html#more_info_section", null ],
-    [ "leanux", "d0/d30/md_README.html", null ],
+    [ "README", "d0/d30/md_README.html", null ],
     [ "Requiring root access", "d2/d30/root_access.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],

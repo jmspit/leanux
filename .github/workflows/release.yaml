@@ -59,7 +59,6 @@ jobs:
         repository: jmspit/leanux.git
         releases-only: true
         regex: '^v\d+\.\d+\.\d+$'
-      run: echo "Previous release ${{ steps.get_previous_release.outputs.tag }}"
 
     - name: Get release changelog
       id: get_release_changelog
@@ -79,6 +78,7 @@ jobs:
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
         CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+        echo "::set-output name=changelog::$(echo "$CHANGELOG")"
 
     - name: Create release
       id: create_release

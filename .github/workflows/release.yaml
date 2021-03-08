@@ -79,7 +79,6 @@ jobs:
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
         CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
-        echo "::set-output name=changelog::$(echo "$CHANGELOG")"
 
     - name: Create release
       id: create_release

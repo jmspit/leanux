@@ -416,7 +416,6 @@ configure_file(${CMAKE_CURRENT_BINARY_DIR}/lmon.1 ${CMAKE_CURRENT_BINARY_DIR}/do
 
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${PROJECT}.doxygen ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/mainpage.dox.in ${CMAKE_CURRENT_BINARY_DIR}/mainpage.dox @ONLY)
 add_custom_target(doc
 ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
 COMMAND cat ${CMAKE_CURRENT_BINARY_DIR}/lmon.1 | groff -Tpdf -man > ${CMAKE_CURRENT_BINARY_DIR}/doc/man_lmon.pdf

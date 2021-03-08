@@ -57,6 +57,7 @@ jobs:
       run: |
         export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1)
         echo "::set-output name=tag_name::$(echo "$LATEST_RELEASE_TAG")"
+        echo "previous release ${LATEST_RELEASE_TAG}"
 
     - name: Get release changelog
       id: get_release_changelog
@@ -92,7 +93,7 @@ jobs:
 
           Changes since ${{ steps.get_previous_release.outputs.tag_name }}:
 
-          $${steps.get_release_changelog.outputs.changelog}
+          ${{ steps.get_release_changelog.outputs.changelog }}
         draft: false
         prerelease: false
 
@@ -110,7 +111,7 @@ jobs:
 
           Changes since ${{ steps.get_previous_release.outputs.tag_name }}:
 
-          $${steps.get_prerelease_changelog.outputs.changelog}
+          ${{ steps.get_prerelease_changelog.outputs.changelog }}
         draft: false
         prerelease: true
 

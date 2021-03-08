@@ -54,16 +54,14 @@ jobs:
 
     - name: Get previous release tag
       id: get_previous_release
-      uses: InsonusK/get-latest-release@v1.0.1
-      with:
-        myToken: ${{ github.token }}
-        exclude_types: "prerelease|draft"
-        view_top: 1
+      run: |
+        export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1)
+        echo "::set-output name=tag_name::$(echo "$LATEST_RELEASE_TAG")"
 
     - name: Get release changelog
       id: get_release_changelog
       if: steps.check-tag.outputs.prerelease == 'false'
-      run:
+      run: |
         export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %an %t %s')"
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
@@ -73,7 +71,7 @@ jobs:
     - name: Get pre-release changelog
       id: get_prerelease_changelog
       if: steps.check-tag.outputs.prerelease == 'true'
-      run:
+      run: |
         export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --date=short --pretty=format:'  - %h %cd %an %t %s')"
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"

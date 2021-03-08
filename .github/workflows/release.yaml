@@ -68,7 +68,11 @@ jobs:
     - name: Get previous release tag
       id: get_previous_release
       run: |
-        export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1)
+        if [ "${{ steps.check-tag.outputs.prerelease }}" == "true" ]; then
+          export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n1)
+        else
+          export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1)
+        fi
         echo "::set-output name=tag_name::$(echo "$LATEST_RELEASE_TAG")"
         echo "previous release ${LATEST_RELEASE_TAG}"
 

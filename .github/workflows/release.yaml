@@ -18,7 +18,6 @@ jobs:
       run: |
         sudo apt-get install -y git
         git --version
-        git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1
 
     - uses: actions/checkout@v2.2.0
       with:
@@ -80,7 +79,7 @@ jobs:
       id: get_release_changelog
       if: steps.check-tag.outputs.prerelease == 'false'
       run: |
-        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %an %t %s')"
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %an %s')"
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
         CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
@@ -90,7 +89,7 @@ jobs:
       id: get_prerelease_changelog
       if: steps.check-tag.outputs.prerelease == 'true'
       run: |
-        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --date=short --pretty=format:'  - %h %cd %an %t %s')"
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --date=short --pretty=format:'  - %h %cd %an %s')"
         CHANGELOG="${CHANGELOG//'%'/'%25'}"
         CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
         CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"

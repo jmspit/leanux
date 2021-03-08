@@ -54,11 +54,9 @@ jobs:
 
     - name: Get previous release tag
       id: get_previous_release
-      uses: oprypin/find-latest-tag@v1
-      with:
-        repository: https://github.com/jmspit/leanux.git
-        releases-only: true
-        regex: '^v\d+\.\d+\.\d+$'
+      run:
+        export LATEST_RELEASE_TAG="$(curl --silent 'https://api.github.com/repos/jmspit/leanux/releases/latest' | jq -r .tag_name)"
+        echo "::set-output name=tag::$(echo "$LATEST_RELEASE_TAG")"
 
     - name: Get release changelog
       id: get_release_changelog

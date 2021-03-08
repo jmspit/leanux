@@ -13,7 +13,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+    - name: Install git
+      run: |
+        sudo apt-get install -y git
+        git --version
+
     - uses: actions/checkout@v2.2.0
+      with:
+        fetch-depth: 0
+
+    - name: List git tags
+      run: |
+        git --no-pager tag
 
     - name: Dump GitHub context
       env:
@@ -52,6 +64,37 @@ jobs:
             echo ::set-output name=prerelease::true
         fi
 
+    - name: Get previous release tag
+      id: get_previous_release
+      run: |
+        if [ "${{ steps.check-tag.outputs.prerelease }}" == "true" ]; then
+          export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n1)
+        else
+          export LATEST_RELEASE_TAG=$(git --no-pager tag | grep -P 'v[\d]+.[\d]+.[\d]+$' | tail -n2 | head -n1)
+        fi
+        echo "::set-output name=tag_name::$(echo "$LATEST_RELEASE_TAG")"
+        echo "previous release ${LATEST_RELEASE_TAG}"
+
+    - name: Get release changelog
+      id: get_release_changelog
+      if: steps.check-tag.outputs.prerelease == 'false'
+      run: |
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --first-parent --merges --date=short --pretty=format:'  - %h %cd %s')"
+        CHANGELOG="${CHANGELOG//'%'/'%25'}"
+        CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
+        CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+        echo "::set-output name=changelog::$(echo "$CHANGELOG")"
+
+    - name: Get pre-release changelog
+      id: get_prerelease_changelog
+      if: steps.check-tag.outputs.prerelease == 'true'
+      run: |
+        export CHANGELOG="$(git --no-pager log ${{ steps.get_previous_release.outputs.tag_name }}..HEAD --date=short --pretty=format:'  - %h %cd %s')"
+        CHANGELOG="${CHANGELOG//'%'/'%25'}"
+        CHANGELOG="${CHANGELOG//$'\n'/'%0A'}"
+        CHANGELOG="${CHANGELOG//$'\r'/'%0D'}"
+        echo "::set-output name=changelog::$(echo "$CHANGELOG")"
+
     - name: Create release
       id: create_release
       if: steps.check-tag.outputs.prerelease == 'false'
@@ -61,7 +104,12 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: Release ${{ github.ref }}
+        body: |
+          Release ${{ github.ref }}
+
+          Changes since ${{ steps.get_previous_release.outputs.tag_name }}:
+
+          ${{ steps.get_release_changelog.outputs.changelog }}
         draft: false
         prerelease: false
 
@@ -74,7 +122,12 @@ jobs:
       with:
         tag_name: ${{ github.ref }}
         release_name: Release ${{ github.ref }}
-        body: Release ${{ github.ref }}
+        body: |
+          Release ${{ github.ref }}
+
+          Changes since ${{ steps.get_previous_release.outputs.tag_name }}:
+
+          ${{ steps.get_prerelease_changelog.outputs.changelog }}
         draft: false
         prerelease: true
 

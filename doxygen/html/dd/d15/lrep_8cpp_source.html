@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">leanux
-   &#160;<span id="projectnumber">2.0.0-2-g747a0a3</span>
+   &#160;<span id="projectnumber">2.0.0-10-gad70852</span>
    </div>
    <div id="projectbrief">leanux - GNU/Linux performance tools and C++ API</div>
   </td>
@@ -3053,7 +3053,7 @@ $(document).ready(function(){initNavTree('dd/d15/lrep_8cpp_source.html','../../'
 <div class="line"><a name="l03045"></a><span class="lineno"> 3045</span>&#160;        <a class="code" href="../../d4/d2c/classleanux_1_1persist_1_1Query.html">persist::Query</a> qry(db);</div>
 <div class="line"><a name="l03046"></a><span class="lineno"> 3046</span>&#160;        qry.<a class="code" href="../../db/dff/classleanux_1_1persist_1_1Statement.html#a1b809c1b1d0e9d24af65e439c3893d74">prepare</a>( <span class="stringliteral">&quot;select sub.istop, avg(sub.srss) from ( &quot;</span></div>
 <div class="line"><a name="l03047"></a><span class="lineno"> 3047</span>&#160;           <span class="stringliteral">&quot;select istop, ifnull(srss,0) srss from snapshot &quot;</span></div>
-<div class="line"><a name="l03048"></a><span class="lineno"> 3048</span>&#160;           <span class="stringliteral">&quot; left outer join (select snapshot,cmd.cmd,sum(rss) srss from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname &quot;</span></div>
+<div class="line"><a name="l03048"></a><span class="lineno"> 3048</span>&#160;           <span class="stringliteral">&quot; left outer join (select snapshot,cmd.cmd,avg(rss) srss from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname &quot;</span></div>
 <div class="line"><a name="l03049"></a><span class="lineno"> 3049</span>&#160;           <span class="stringliteral">&quot;                  and procstat.snapshot&gt;=:from and procstat.snapshot&lt;=:to group by snapshot,cmd.cmd) procstat on snapshot.id=procstat.snapshot &quot;</span></div>
 <div class="line"><a name="l03050"></a><span class="lineno"> 3050</span>&#160;         <span class="stringliteral">&quot; where snapshot.id&gt;=:from and snapshot.id&lt;=:to &quot;</span></div>
 <div class="line"><a name="l03051"></a><span class="lineno"> 3051</span>&#160;         <span class="stringliteral">&quot;) sub &quot;</span></div>
@@ -3627,7 +3627,7 @@ $(document).ready(function(){initNavTree('dd/d15/lrep_8cpp_source.html','../../'
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_4eeb864c4eec08c7d6b9d3b0352cfdde.html">tools</a></li><li class="navelem"><a class="el" href="../../dir_b96566f931e51e81257bef2ecb4d2da2.html">lrep</a></li><li class="navelem"><a class="el" href="../../dd/d15/lrep_8cpp.html">lrep.cpp</a></li>
-    <li class="footer">Generated on Sun Mar 13 2022 15:24:36 for leanux by
+    <li class="footer">Generated on Sun Mar 13 2022 22:14:36 for leanux by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

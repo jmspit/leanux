@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">leanux
-   &#160;<span id="projectnumber">2.0.0-2-g747a0a3</span>
+   &#160;<span id="projectnumber">2.0.0-10-gad70852</span>
    </div>
    <div id="projectbrief">leanux - GNU/Linux performance tools and C++ API</div>
   </td>
@@ -65,76 +65,59 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">leanux Documentation</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="intro_section"></a>
-Introduction</h1>
-<p>leanux - GNU/Linux performance tools and C++ API.</p>
-<p>leanux only reports on performance and configuration data, it provides no functionality that could change the system configuration.</p>
-<p>Most functionality can be invoked without root privileges, but the are <a class="el" href="d2/d30/root_access.html">a few exceptions </a>.</p>
-<p>This document is the C++ API documentation. Refer to <a href="https://jmspit.github.io/leanux">https://jmspit.github.io/leanux</a> for information such as build instructions, tool description and precompiled package downloads.</p>
-<h1><a class="anchor" id="using_section"></a>
-Using leanux</h1>
-<p>The first call to leanux must be <a class="el" href="d2/dd1/namespaceleanux.html#a757c5a3a5fb84a0ab93de54fd0c8db30" title="Initialize leanux, run checks to verify leanux is compatible with the runtime environment.">leanux::init()</a>, failing to do so will cause erroneous results.</p>
-<p>Refer to the <a href="examples.html" class="el">examples</a> for demonstrations on how to use the code, or check the source code fro the <a class="el" href="d3/dd9/namespaceleanux_1_1tools.html">leanux::tools</a>.</p>
-<h1><a class="anchor" id="system_section"></a>
-Namespaces</h1>
-<p>The <a class="el" href="d2/dd1/namespaceleanux.html" title="Linux performance and configuration API.">leanux</a> namespace contains several subnamespaces</p>
+<div class="textblock"><p><a href="https://github.com/jmspit/leanux/actions/workflows/build/badge.svg">https://github.com/jmspit/leanux/actions/workflows/build/badge.svg</a></p>
+<h1>leanux</h1>
+<p>Leanux is a C++ API to Linux performance and configuration data and includes a few tools utilizing this API.</p>
+<p>The C++ API eases access to system configuration data provided by the <code>/sys</code> pseudo filesystem, so including CPUs, block devices, network devices and so on. Additionally, the C++ API exposes performance data from the <code>/proc</code> pseudo fillesystem.</p>
+<p>The (C++) binaries produced by this repository are</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">namespace </th><th class="markdownTableHeadNone">contains  </th></tr>
+<th class="markdownTableHeadNone">component </th><th class="markdownTableHeadNone">purpose  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d5/d01/namespaceleanux_1_1block.html" title="block device API.">leanux::block</a> </td><td class="markdownTableBodyNone">access to block device configuration and performance data  </td></tr>
+<td class="markdownTableBodyNone">libleanux.so </td><td class="markdownTableBodyNone">Shared library backing the leanux C++ API, required by the below tools  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="da/da3/namespaceleanux_1_1cpu.html" title="CPU configuration and performance API.">leanux::cpu</a> </td><td class="markdownTableBodyNone">accress to cpu configuration and performance data  </td></tr>
+<td class="markdownTableBodyNone"><a href="man_lard.pdf">lard</a> </td><td class="markdownTableBodyNone">daemon that logs performance and base configuration data to a SQLite database file  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d5/db8/namespaceleanux_1_1net.html" title="network configuration and performance API.">leanux::net</a> </td><td class="markdownTableBodyNone">accress to network configuration and performance data  </td></tr>
+<td class="markdownTableBodyNone"><a href="man_lmon.pdf">lmon</a> </td><td class="markdownTableBodyNone">ncurses (tty) based performance viewer, both real-time and browsing historic data from the lard daemon, with colors, dynamic screen resizing  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="de/d5d/namespaceleanux_1_1pci.html">leanux::pci</a> </td><td class="markdownTableBodyNone">accress to pci configuration and performance data  </td></tr>
+<td class="markdownTableBodyNone"><a href="man_lrep.pdf">lrep</a> </td><td class="markdownTableBodyNone">generates html reports on lard data  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d2/d13/namespaceleanux_1_1persist.html" title="Persistent SQL storage, uses the great sqlite3.">leanux::persist</a> </td><td class="markdownTableBodyNone">library around SQLite3, which is used as storage backend by lard  </td></tr>
+<td class="markdownTableBodyNone"><a href="man_lsys.pdf">lsys</a> </td><td class="markdownTableBodyNone">command-line tool to retrieve sysfs info for administrative use  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="d9/d34/namespaceleanux_1_1process.html" title="Process configuration and performance API.">leanux::process</a> </td><td class="markdownTableBodyNone">accress to process operation and performance data  </td></tr>
+<td class="markdownTableBodyNone"><a href="man_lblk.pdf">lblk</a> </td><td class="markdownTableBodyNone">command-line tool to retrieve block device and filesystem info for administrative use  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d3/d83/namespaceleanux_1_1sysdevice.html" title="system device API.">leanux::sysdevice</a> </td><td class="markdownTableBodyNone">access to device (/sys/devices) configuration and performance data  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="dd/d42/namespaceleanux_1_1system.html" title="System / kernel detail API.">leanux::system</a> </td><td class="markdownTableBodyNone">access to system configuration and operation data  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d3/dd9/namespaceleanux_1_1tools.html">leanux::tools</a> </td><td class="markdownTableBodyNone">contains several tools that use the leanux library  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="d5/d9c/namespaceleanux_1_1usb.html">leanux::usb</a> </td><td class="markdownTableBodyNone">access to usb configuration and operation data  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d8/db1/namespaceleanux_1_1util.html" title="Utility classes and functions.">leanux::util</a> </td><td class="markdownTableBodyNone">utility clases and functions  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="dc/d32/namespaceleanux_1_1vmem.html" title="virtual memory API">leanux::vmem</a> </td><td class="markdownTableBodyNone">access to (virtual) memory configuration and operation data  </td></tr>
+<td class="markdownTableBodyNone">labbix </td><td class="markdownTableBodyNone">Zabbix disk discovery and disk performance statistics for GNU/Linux  </td></tr>
 </table>
-<p>The tools are </p><table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">tool </th><th class="markdownTableHeadNone">description  </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="da/dbe/namespaceleanux_1_1tools_1_1lmon.html">leanux::tools::lmon</a> </td><td class="markdownTableBodyNone">ncurses based realtime and historical performance viewer  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="d4/d62/namespaceleanux_1_1tools_1_1lard.html">leanux::tools::lard</a> </td><td class="markdownTableBodyNone">daemon that logs performance data to a sqlite database  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d6/dd3/namespaceleanux_1_1tools_1_1lrep.html">leanux::tools::lrep</a> </td><td class="markdownTableBodyNone">generate HTML reports with javascript Google charts from a lard database  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="d5/d1b/namespaceleanux_1_1tools_1_1lblk.html">leanux::tools::lblk</a> </td><td class="markdownTableBodyNone">show block device configuration and performance  </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="d9/d1f/namespaceleanux_1_1tools_1_1lsys.html">leanux::tools::lsys</a> </td><td class="markdownTableBodyNone">show system device configuration  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="d2/d89/namespaceleanux_1_1tools_1_1labbix.html">leanux::tools::labbix</a> </td><td class="markdownTableBodyNone">GNU/Linux Zabbix UserParameter disk monitoring extension  </td></tr>
-</table>
-<h1><a class="anchor" id="build_section"></a>
-Building the source</h1>
-<p>Follow the build instructions at <a href="https://jmspit.github.io/leanux">https://jmspit.github.io/leanux</a>.</p>
-<h1><a class="anchor" id="more_info_section"></a>
-More info</h1>
-<p>See <a href="https://jmspit.github.io/leanux">https://jmspit.github.io/leanux</a> for more information or <a href="https://github.com/jmspit/leanux/issues">https://github.com/jmspit/leanux/issues</a> to report bugs. </p>
-</div></div><!-- PageDoc -->
+<p>See <a href="https://jmspit.github.io/leanux">leanux on github pages</a> for more documentation. If you are on github pages now, you can view the doxygen code documentation as <a href="doxygen/html/index.html">here</a>, and the links in the above table will link to pdf documents. </p><h2>Building from source</h2>
+<p>Builds should work on any Linux host that satisfies</p>
+<p>The build depends on</p>
+<ul>
+<li>A C++ toolchain with c++11 capability</li>
+<li>sqlite3 development headers</li>
+<li>ncurses development headers</li>
+</ul>
+<p>Download a <a href="https://github.com/jmspit/leanux/releases">release</a></p>
+<div class="fragment"><div class="line">$ tar zxvf leanux-1.0.5-snapshot.tar.gz</div>
+<div class="line">$ cd leanux-1.0.5-snapshot</div>
+</div><!-- fragment --><p>Or clone the master branch</p>
+<div class="fragment"><div class="line">$ git clone git@github.com:jmspit/leanux.git</div>
+<div class="line">$ cd leanux</div>
+</div><!-- fragment --><p>Or clone a specific release <a href="https://github.com/jmspit/leanux/tags">tag</a> or <a href="https://github.com/jmspit/leanux/branches">branch</a></p>
+<div class="fragment"><div class="line">$ git clone git@github.com:jmspit/leanux.git</div>
+<div class="line">$ cd leanux</div>
+<div class="line">$ git checkout development</div>
+</div><!-- fragment --><p>In any case, to build a Release build</p>
+<div class="fragment"><div class="line">$ mkdir build</div>
+<div class="line">$ cd build</div>
+<div class="line">$ cmake ..</div>
+<div class="line">$ cmake --build . --config Release</div>
+</div><!-- fragment --> </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Sun Mar 13 2022 15:24:37 for leanux by
+    <li class="footer">Generated on Sun Mar 13 2022 22:14:37 for leanux by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">leanux
-   &#160;<span id="projectnumber">v1.0.9-1-gdf65296</span>
+   &#160;<span id="projectnumber">2.0.0-2-g747a0a3</span>
    </div>
    <div id="projectbrief">leanux - GNU/Linux performance tools and C++ API</div>
   </td>
@@ -230,7 +230,7 @@ $(document).ready(function(){initNavTree('dd/d84/net_8cpp_source.html','../../')
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;      getifaddrs (&amp;ifap);</div>
 <div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;      <span class="keywordflow">for</span> (ifa = ifap; ifa; ifa = ifa-&gt;ifa_next) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">if</span> (ifa-&gt;ifa_addr-&gt;sa_family==AF_INET) {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        <span class="keywordflow">if</span> (ifa-&gt;ifa_addr &amp;&amp; ifa-&gt;ifa_addr-&gt;sa_family==AF_INET) {</div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;          sa = (<span class="keyword">struct </span>sockaddr_in *) ifa-&gt;ifa_addr;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;          addr = inet_ntoa(sa-&gt;sin_addr);</div>
 <div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;          <span class="keywordflow">if</span> ( ifa-&gt;ifa_name == device ) {</div>
@@ -826,7 +826,7 @@ $(document).ready(function(){initNavTree('dd/d84/net_8cpp_source.html','../../')
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="../../dir_97aefd0d527b934f1d99a682da8fe6a9.html">lib</a></li><li class="navelem"><a class="el" href="../../dd/d84/net_8cpp.html">net.cpp</a></li>
-    <li class="footer">Generated on Sun Mar 13 2022 10:48:56 for leanux by
+    <li class="footer">Generated on Sun Mar 13 2022 15:24:35 for leanux by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -3045,7 +3045,7 @@ namespace leanux {
         persist::Query qry(db);
         qry.prepare( "select sub.istop, avg(sub.srss) from ( "
            "select istop, ifnull(srss,0) srss from snapshot "
-           " left outer join (select snapshot,cmd.cmd,sum(rss) srss from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
+           " left outer join (select snapshot,cmd.cmd,avg(rss) srss from procstat, cmd where procstat.cmd=cmd.id and cmd.cmd=:cmdname "
            "                  and procstat.snapshot>=:from and procstat.snapshot<=:to group by snapshot,cmd.cmd) procstat on snapshot.id=procstat.snapshot "
          " where snapshot.id>=:from and snapshot.id<=:to "
          ") sub "

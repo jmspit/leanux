@@ -647,7 +647,7 @@ namespace leanux {
         html << "<tr><th class='right'>report time range</th><td>" <<  util::TimeStrSec( snaprange.time_max-snaprange.time_min ) << "</td></tr>" << endl;
         html << "<tr><th class='right'>interval average</th><td>" <<  util::TimeStrSec( (double)(snaprange.time_max-snaprange.time_min)/(double)(snaprange.snap_count) ) << "</td></tr>" << endl;
         html << "<tr><th class='right'>timeline bucket</th><td>" <<  util::TimeStrSec(snaprange.timeline_bucket) << "</td></tr>" << endl;
-        html << "<tr><th class='right'>average snapshot size</th><td>" <<  util::ByteStr( st.st_blocks * 512 / snaprange.snaps_in_db, 2 ) << "</td></tr>" << endl;
+        html << "<tr><th class='right'>average snapshot size</th><td>" <<  util::ByteStr( (double)st.st_blocks * 512.0 / snaprange.snaps_in_db, 2 ) << "</td></tr>" << endl;
         html << "</table>" << endl;
         free( resolvedpath );
       }

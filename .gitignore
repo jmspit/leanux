@@ -1,3 +1,4 @@
 build
 osrelease.txt
 .vscode
+.cache

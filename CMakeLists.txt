@@ -12,16 +12,20 @@ execute_process(
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )
 
-if( GIT_TAG MATCHES "^v(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)(-[.0-9A-Za-z-]+).*$" )
+if( GIT_TAG MATCHES "^v?(0|[1-9][0-9]*)[.](0|[1-9][0-9]*)[.](0|[1-9][0-9]*)-?([.0-9A-Za-z-]*)$" )
   set( ${PROJECT}_VERSION_MAJOR "${CMAKE_MATCH_1}" )
   set( ${PROJECT}_VERSION_MINOR "${CMAKE_MATCH_2}" )
   set( ${PROJECT}_VERSION_PATCH "${CMAKE_MATCH_3}" )
   set( ${PROJECT}_VERSION_SNAP  "${CMAKE_MATCH_4}" )
 else()
-  message( STATUS "Git tag not valid [${git_tag}]" )
+  message( STATUS "Git tag not valid [${GIT_TAG}]" )
 endif()
 
 message( STATUS "GIT_TAG                : ${GIT_TAG}")
+message( STATUS "MAJOR                  : ${${PROJECT}_VERSION_MAJOR}")
+message( STATUS "MINOR                  : ${${PROJECT}_VERSION_MINOR}")
+message( STATUS "PATCH                  : ${${PROJECT}_VERSION_PATCH}")
+message( STATUS "SNAP                   : ${${PROJECT}_VERSION_SNAP}")
 
 # options
 option(EXAMPLE_TEST "set to ON to build examples and tests" "OFF")
@@ -61,7 +65,7 @@ set( ${PROJECTUC}_BUG_URL "${${PROJECTUC}_SOFTWARE_REPO}/issues" )
 set( ${PROJECTUC}_SHORT_DESC "${PROJECT} - GNU/Linux performance tools and C++ API" )
 set( ${PROJECTUC}_WEBSITE "https://jmspit.github.io/${PROJECT}" )
 set( ${PROJECTUC}_SRC_URI_BASE "${${PROJECTUC}_SOFTWARE_REPO}/archive" )
-set( ${PROJECTUC}_SRC_URI "${${PROJECTUC}_SRC_URI_BASE}/v${${PROJECT}_VERSION_STR}.tar.gz")
+set( ${PROJECTUC}_SRC_URI "${${PROJECTUC}_SRC_URI_BASE}/${${PROJECT}_VERSION_STR}.tar.gz")
 
 message( STATUS "${PROJECTUC}_MAINTAINER_NAME : ${${PROJECTUC}_MAINTAINER_NAME}")
 message( STATUS "${PROJECTUC}_MAINTAINER_EMAIL: ${${PROJECTUC}_MAINTAINER_EMAIL}")

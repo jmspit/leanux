@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -3320,7 +3320,7 @@ namespace leanux {
                 sw2.stop();
                 cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                html << "<p class=\"foot\">This report is generated with lrep, part of the <a href=\"https://www.o-rho.com/leanux\">leanux</a> toolkit.</p>" << endl;
+                html << "<p class=\"foot\">This report is generated with lrep, part of the <a href=\"https://github.com/jmspit/leanux/leanux\">leanux</a> toolkit.</p>" << endl;
 
                 // write the html document
                 cout << "writing doc ..." << flush;

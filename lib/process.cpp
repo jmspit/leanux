@@ -69,9 +69,15 @@
           if ( !(isdigit( s[p] ) || s[p] == ' ' ) ) {
             if ( s[p] != '(' ) throw Oops( __FILE__, __LINE__, "parse failure on " + path.str() ); else {
               //here begins the 'cmd' field
-              for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ')')); q++ ) {
-                stat.comm += s[q];
+              q = p+1;
+              while (q<s.length()) {
+                stat.comm += s[q++];
+                if ( s[q-1] == ')' && s[q] == ' ') break;
               }
+              stat.comm[stat.comm.length()-1] = 0;
+              // for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ' ')); q++ ) {
+              //   stat.comm += s[q];
+              // }
               p = q+2;
               break;
             }

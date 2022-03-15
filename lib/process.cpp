@@ -70,15 +70,18 @@
             if ( s[p] != '(' ) throw Oops( __FILE__, __LINE__, "parse failure on " + path.str() ); else {
               //here begins the 'cmd' field
               q = p+1;
+              int b = 1;
               while (q<s.length()) {
+                if ( s[q] == '(' ) b++;
+                else if ( s[q] == ')' ) b--;
+                if ( b == 0 && s[q] == ' ') break;
                 stat.comm += s[q++];
-                if ( s[q-1] == ')' && s[q] == ' ') break;
               }
               stat.comm[stat.comm.length()-1] = 0;
               // for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ' ')); q++ ) {
               //   stat.comm += s[q];
               // }
-              p = q+2;
+              p = q+1;
               break;
             }
           }

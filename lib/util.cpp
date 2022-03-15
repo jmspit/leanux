@@ -178,8 +178,7 @@ namespace leanux {
       std::string suffix;
       if ( isnan( bytes ) ) {
         strncat( bytestrbuf, "nan", bytestr_max_width );
-      } else
-      if ( bytes != 0.0 ) {
+      } else if ( bytes != 0.0 ) {
         // the order of the number
         double baseorder = floor( log( fabs(bytes) )/base_1024_log );
         // the scale multiplier
@@ -198,10 +197,7 @@ namespace leanux {
 
         if ( scale < 0 ) {
           suffix = "";
-           if ( prec-1 < 0 )
-            snprintf( format, 20, "%%.0%%s" );
-          else
-            snprintf( format, 20, "%%.%if%%s", prec-1 );
+           if ( prec-1 < 0 ) snprintf( format, 20, "%%.0%%s" ); else snprintf( format, 20, "%%.%if%%s", prec-1 );
           scale = 0;
         }
         else if ( scale < 1 ) suffix = "";
@@ -269,8 +265,7 @@ namespace leanux {
       std::string suffix;
       if ( isnan( num ) ) {
         strncat( numstrbuf, "nan", sizeof(numstrbuf)-1 );
-      } else
-      if ( num != 0.0 ) {
+      } else if ( num != 0.0 ) {
         // the order of the number
         double baseorder = floor( log10( fabs(num) ) );
         // the scale multiplier, 3=k=1E3, 6=M=1E6, 9=G=1E9, 12=T=1E12

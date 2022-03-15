@@ -75,9 +75,9 @@
                 if ( s[q] == '(' ) b++;
                 else if ( s[q] == ')' ) b--;
                 if ( b == 0 && s[q] == ' ') break;
-                stat.comm += s[q++];
+                if ( !(b == 0 && s[q] == ')') ) stat.comm += s[q];
+                q++;
               }
-              stat.comm[stat.comm.length()-1] = 0;
               // for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ' ')); q++ ) {
               //   stat.comm += s[q];
               // }

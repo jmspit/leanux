@@ -1242,7 +1242,7 @@ namespace leanux {
         const int width_pgrp = 6;
         const int width_q = 2;
         const int width_user = 8;
-        const int width_comm = 16;
+        const int width_comm = 15;
         const int width_time = 6;
         const int width_utime = 6;
         const int width_stime = 6;

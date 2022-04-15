@@ -1059,7 +1059,7 @@ namespace leanux {
         stringstream js;
         persist::Query qry(db);
         qry.prepare( "select tcpkey.ip, tcpkey.port, sum(esta)*1.0/cnt.num esta from tcpserverstat, tcpkey, (select count(1) num "
-                     " from snapshot where id>=:from and id <=:to) cnt where tcpserverstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 10;" );
+                     " from snapshot where id>=:from and id <=:to) cnt where tcpserverstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 20;" );
         qry.bind( 1, snaprange.snap_min );
         qry.bind( 2, snaprange.snap_max );
         int iter = 0;
@@ -1122,7 +1122,7 @@ namespace leanux {
         stringstream js;
         persist::Query qry(db);
         qry.prepare( "select tcpkey.ip, tcpkey.port, sum(esta)*1.0/cnt.num esta from tcpclientstat, tcpkey, (select count(1) num "
-                     " from snapshot where id>=:from and id <=:to) cnt where tcpclientstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 10;" );
+                     " from snapshot where id>=:from and id <=:to) cnt where tcpclientstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 20;" );
         qry.bind( 1, snaprange.snap_min );
         qry.bind( 2, snaprange.snap_max );
         int iter = 0;

@@ -71,11 +71,11 @@
               //here begins the 'cmd' field
               q = p+1;
               int b = 1;
-              while (q<s.length()) {
+              while (q<p+129) {
                 if ( s[q] == '(' ) b++;
                 else if ( s[q] == ')' ) b--;
+                if ( b != 0 && stat.comm.length() < 15 ) stat.comm += s[q];
                 if ( b == 0 && s[q] == ' ') break;
-                if ( !(b == 0 && s[q] == ')') ) stat.comm += s[q];
                 q++;
               }
               // for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ' ')); q++ ) {
@@ -86,6 +86,11 @@
             }
           }
         }
+        #ifdef TRACEON
+        std::stringstream ss;
+        ss << "parsed cmd name >" << stat.comm << "< continue at >" << s.substr(p) << "<";
+        TRACE( ss );
+        #endif
         unsigned long utime;
         unsigned long stime;
         unsigned long cutime;

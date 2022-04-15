@@ -48,6 +48,9 @@
 
 namespace leanux {
 
+  /** maximum length of a process name, includes the '\0' terminator */
+  #define CMD_NAME_MAX 16
+
   /**
    * \example example_process.cpp
    * leanux::process example 1.

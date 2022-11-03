@@ -433,8 +433,8 @@ namespace leanux {
           const sysdevice::NetDevice* net_device = dynamic_cast<const sysdevice::NetDevice*>(leaf);
           if ( net_device ) {
             std::string device = util::leafDir( net_device->getPath() );
-            net::NetStatDeviceMap stats;
-            net::getNetStat( stats );
+            net::NetDeviceStatDeviceMap stats;
+            net::getNetDeviceStat( stats );
             std::stringstream ss;
             ss << util::ByteStr( stats[device].rx_bytes, 3 );
             return ss.str();
@@ -529,8 +529,8 @@ namespace leanux {
           const sysdevice::NetDevice* net_device = dynamic_cast<const sysdevice::NetDevice*>(leaf);
           if ( net_device ) {
             std::string device = util::leafDir( net_device->getPath() );
-            net::NetStatDeviceMap stats;
-            net::getNetStat( stats );
+            net::NetDeviceStatDeviceMap stats;
+            net::getNetDeviceStat( stats );
             std::stringstream ss;
             ss << util::ByteStr( stats[device].tx_bytes, 3 );
             return ss.str();

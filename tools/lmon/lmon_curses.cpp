@@ -1364,8 +1364,8 @@ namespace leanux {
       }
 
       int NetView::getOptimalHeight() {
-        net::NetStatDeviceMap stat;
-        net::getNetStat( stat );
+        net::NetDeviceStatDeviceMap stat;
+        net::getNetDeviceStat( stat );
         return std::max( (size_t)getMinHeight(), stat.size()+3 );
       }
 
@@ -1414,7 +1414,7 @@ namespace leanux {
           double s_tx_bytes = 0.0;
           double s_rx_packets = 0.0;
           double s_tx_packets = 0.0;
-          for ( net::NetStatDeviceVector::const_iterator i = data.delta.begin(); i != data.delta.end(); i++, y++ ) {
+          for ( net::NetDeviceStatDeviceVector::const_iterator i = data.delta.begin(); i != data.delta.end(); i++, y++ ) {
             if ( y < height_ ) {
               x = 0;
               textOutMoveXRA( x, y, device_width, attr_normal_text_, (*i).device );

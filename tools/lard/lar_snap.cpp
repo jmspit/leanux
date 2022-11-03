@@ -261,16 +261,16 @@ namespace leanux {
 
 
       void NetSnap::startSnap() {
-        net::getNetStat( stat1_ );
+        net::getNetDeviceStat( stat1_ );
       }
 
       void NetSnap::stopSnap() {
-        net::getNetStat( stat2_ );
+        net::getNetDeviceStat( stat2_ );
       }
 
       long NetSnap::storeSnap( const persist::Database &db, long snapid, double seconds ) {
-        for ( net::NetStatDeviceMap::const_iterator s2 = stat2_.begin(); s2 != stat2_.end(); ++s2 ) {
-          net::NetStatDeviceMap::const_iterator s1 = stat1_.find(s2->first);
+        for ( net::NetDeviceStatDeviceMap::const_iterator s2 = stat2_.begin(); s2 != stat2_.end(); ++s2 ) {
+          net::NetDeviceStatDeviceMap::const_iterator s1 = stat1_.find(s2->first);
           if ( s1 != stat1_.end() ) {
             std::string mac = net::getDeviceMACAddress( s1->first );
             std::string syspath = net::getSysPath( s1->first );
@@ -737,6 +737,454 @@ namespace leanux {
           dml.execute();
           qry.reset();
         }
+        return 0;
+      }
+      
+      void TCPSnap::startSnap() {
+        getTCPStatNetstat( stat1_ );
+        getTCPStatSnmp( stat1_ );
+      }
+      
+      void TCPSnap::stopSnap() {
+        getTCPStatNetstat( stat2_ );
+        getTCPStatSnmp( stat2_ );
+        diffSnap();
+      }
+      
+      #define DIFFDO(x) diff_.x = stat2_.x - stat1_.x
+      
+      void TCPSnap::diffSnap() {
+        DIFFDO(RtoAlgorithm);
+        DIFFDO(RtoMin);
+        DIFFDO(RtoMax);
+        DIFFDO(MaxConn);
+        DIFFDO(ActiveOpens);
+        DIFFDO(PassiveOpens);
+        DIFFDO(AttemptFails);
+        DIFFDO(EstabResets);
+        DIFFDO(CurrEstab);
+        DIFFDO(InSegs);
+        DIFFDO(OutSegs);
+        DIFFDO(RetransSegs);
+        DIFFDO(InErrs);
+        DIFFDO(OutRsts);
+        DIFFDO(InCsumErrors);        
+        DIFFDO(SyncookiesSent);
+        DIFFDO(SyncookiesRecv);
+        DIFFDO(SyncookiesFailed);
+        DIFFDO(EmbryonicRsts);
+        DIFFDO(PruneCalled);
+        DIFFDO(RcvPruned);
+        DIFFDO(OfoPruned);
+        DIFFDO(OutOfWindowIcmps);
+        DIFFDO(LockDroppedIcmps);
+        DIFFDO(ArpFilter);
+        DIFFDO(TW);
+        DIFFDO(TWRecycled);
+        DIFFDO(TWKilled);
+        DIFFDO(PAWSActive);
+        DIFFDO(PAWSEstab);
+        DIFFDO(DelayedACKs);
+        DIFFDO(DelayedACKLocked);
+        DIFFDO(DelayedACKLost);
+        DIFFDO(ListenOverflows);
+        DIFFDO(ListenDrops);
+        DIFFDO(TCPHPHits);
+        DIFFDO(TCPPureAcks);
+        DIFFDO(TCPHPAcks);
+        DIFFDO(TCPRenoRecovery);
+        DIFFDO(TCPSackRecovery);
+        DIFFDO(TCPSACKReneging);
+        DIFFDO(TCPSACKReorder);
+        DIFFDO(TCPRenoReorder);
+        DIFFDO(TCPTSReorder);
+        DIFFDO(TCPFullUndo);
+        DIFFDO(TCPPartialUndo);
+        DIFFDO(TCPDSACKUndo);
+        DIFFDO(TCPLossUndo);
+        DIFFDO(TCPLostRetransmit);
+        DIFFDO(TCPRenoFailures);
+        DIFFDO(TCPSackFailures);
+        DIFFDO(TCPLossFailures);
+        DIFFDO(TCPFastRetrans);
+        DIFFDO(TCPSlowStartRetrans);
+        DIFFDO(TCPTimeouts);
+        DIFFDO(TCPLossProbes);
+        DIFFDO(TCPLossProbeRecovery);
+        DIFFDO(TCPRenoRecoveryFail);
+        DIFFDO(TCPSackRecoveryFail);
+        DIFFDO(TCPRcvCollapsed);
+        DIFFDO(TCPBacklogCoalesce);
+        DIFFDO(TCPDSACKOldSent);
+        DIFFDO(TCPDSACKOfoSent);
+        DIFFDO(TCPDSACKRecv);
+        DIFFDO(TCPDSACKOfoRecv);
+        DIFFDO(TCPAbortOnData);
+        DIFFDO(TCPAbortOnClose);
+        DIFFDO(TCPAbortOnMemory);
+        DIFFDO(TCPAbortOnTimeout);
+        DIFFDO(TCPAbortOnLinger);
+        DIFFDO(TCPAbortFailed);
+        DIFFDO(TCPMemoryPressures);
+        DIFFDO(TCPMemoryPressuresChrono);
+        DIFFDO(TCPSACKDiscard);
+        DIFFDO(TCPDSACKIgnoredOld);
+        DIFFDO(TCPDSACKIgnoredNoUndo);
+        DIFFDO(TCPSpuriousRTOs);
+        DIFFDO(TCPMD5NotFound);
+        DIFFDO(TCPMD5Unexpected);
+        DIFFDO(TCPMD5Failure);
+        DIFFDO(TCPSackShifted);
+        DIFFDO(TCPSackMerged);
+        DIFFDO(TCPSackShiftFallback);
+        DIFFDO(TCPBacklogDrop);
+        DIFFDO(PFMemallocDrop);
+        DIFFDO(TCPMinTTLDrop);
+        DIFFDO(TCPDeferAcceptDrop);
+        DIFFDO(IPReversePathFilter);
+        DIFFDO(TCPTimeWaitOverflow);
+        DIFFDO(TCPReqQFullDoCookies);
+        DIFFDO(TCPReqQFullDrop);
+        DIFFDO(TCPRetransFail);
+        DIFFDO(TCPRcvCoalesce);
+        DIFFDO(TCPOFOQueue);
+        DIFFDO(TCPOFODrop);
+        DIFFDO(TCPOFOMerge);
+        DIFFDO(TCPChallengeACK);
+        DIFFDO(TCPSYNChallenge);
+        DIFFDO(TCPFastOpenActive);
+        DIFFDO(TCPFastOpenActiveFail);
+        DIFFDO(TCPFastOpenPassive);
+        DIFFDO(TCPFastOpenPassiveFail);
+        DIFFDO(TCPFastOpenListenOverflow);
+        DIFFDO(TCPFastOpenCookieReqd);
+        DIFFDO(TCPFastOpenBlackhole);
+        DIFFDO(TCPSpuriousRtxHostQueues);
+        DIFFDO(BusyPollRxPackets);
+        DIFFDO(TCPAutoCorking);
+        DIFFDO(TCPFromZeroWindowAdv);
+        DIFFDO(TCPToZeroWindowAdv);
+        DIFFDO(TCPWantZeroWindowAdv);
+        DIFFDO(TCPSynRetrans);
+        DIFFDO(TCPOrigDataSent);
+        DIFFDO(TCPHystartTrainDetect);
+        DIFFDO(TCPHystartTrainCwnd);
+        DIFFDO(TCPHystartDelayDetect);
+        DIFFDO(TCPHystartDelayCwnd);
+        DIFFDO(TCPACKSkippedSynRecv);
+        DIFFDO(TCPACKSkippedPAWS);
+        DIFFDO(TCPACKSkippedSeq);
+        DIFFDO(TCPACKSkippedFinWait2);
+        DIFFDO(TCPACKSkippedTimeWait);
+        DIFFDO(TCPACKSkippedChallenge);
+        DIFFDO(TCPWinProbe);
+        DIFFDO(TCPKeepAlive);
+        DIFFDO(TCPMTUPFail);
+        DIFFDO(TCPMTUPSuccess);
+        DIFFDO(TCPDelivered);
+        DIFFDO(TCPDeliveredCE);
+        DIFFDO(TCPAckCompressed);
+        DIFFDO(TCPZeroWindowDrop);
+        DIFFDO(TCPRcvQDrop);
+        DIFFDO(TCPWqueueTooBig);
+        DIFFDO(TCPFastOpenPassiveAltKey);
+        DIFFDO(TcpTimeoutRehash);
+        DIFFDO(TcpDuplicateDataRehash);
+        DIFFDO(TCPDSACKRecvSegs);
+        DIFFDO(TCPDSACKIgnoredDubious);
+        DIFFDO(TCPMigrateReqSuccess);
+        DIFFDO(TCPMigrateReqFailure);
+      }      
+      
+      long TCPSnap::storeSnap( const persist::Database &db, long snapid, double seconds ) {
+        persist::DML dml(db);
+        dml.prepare( 
+          "INSERT INTO tcpstat values("
+          ":snapid,"
+          ":RtoAlgorithm,"
+          ":RtoMin,"
+          ":RtoMax,"
+          ":MaxConn,"
+          ":ActiveOpens,"
+          ":PassiveOpens,"
+          ":AttemptFails,"
+          ":EstabResets,"
+          ":CurrEstab,"
+          ":InSegs,"
+          ":OutSegs,"
+          ":RetransSegs,"
+          ":InErrs,"
+          ":OutRsts,"
+          ":InCsumErrors,"
+          ":SyncookiesSent,"
+          ":SyncookiesRecv,"
+          ":SyncookiesFailed,"
+          ":EmbryonicRsts,"
+          ":PruneCalled,"
+          ":RcvPruned,"
+          ":OfoPruned,"
+          ":OutOfWindowIcmps,"
+          ":LockDroppedIcmps,"
+          ":ArpFilter,"
+          ":TW,"
+          ":TWRecycled,"
+          ":TWKilled,"
+          ":PAWSActive,"
+          ":PAWSEstab,"
+          ":DelayedACKs,"
+          ":DelayedACKLocked,"
+          ":DelayedACKLost,"
+          ":ListenOverflows,"
+          ":ListenDrops,"
+          ":TCPHPHits,"
+          ":TCPPureAcks,"
+          ":TCPHPAcks,"
+          ":TCPRenoRecovery,"
+          ":TCPSackRecovery,"
+          ":TCPSACKReneging,"
+          ":TCPSACKReorder,"
+          ":TCPRenoReorder,"
+          ":TCPTSReorder,"
+          ":TCPFullUndo,"
+          ":TCPPartialUndo,"
+          ":TCPDSACKUndo,"
+          ":TCPLossUndo,"
+          ":TCPLostRetransmit,"
+          ":TCPRenoFailures,"
+          ":TCPSackFailures,"
+          ":TCPLossFailures,"
+          ":TCPFastRetrans,"
+          ":TCPSlowStartRetrans,"
+          ":TCPTimeouts,"
+          ":TCPLossProbes,"
+          ":TCPLossProbeRecovery,"
+          ":TCPRenoRecoveryFail,"
+          ":TCPSackRecoveryFail,"
+          ":TCPRcvCollapsed,"
+          ":TCPBacklogCoalesce,"
+          ":TCPDSACKOldSent,"
+          ":TCPDSACKOfoSent,"
+          ":TCPDSACKRecv,"
+          ":TCPDSACKOfoRecv,"
+          ":TCPAbortOnData,"
+          ":TCPAbortOnClose,"
+          ":TCPAbortOnMemory,"
+          ":TCPAbortOnTimeout,"
+          ":TCPAbortOnLinger,"
+          ":TCPAbortFailed,"
+          ":TCPMemoryPressures,"
+          ":TCPMemoryPressuresChrono,"
+          ":TCPSACKDiscard,"
+          ":TCPDSACKIgnoredOld,"
+          ":TCPDSACKIgnoredNoUndo,"
+          ":TCPSpuriousRTOs,"
+          ":TCPMD5NotFound,"
+          ":TCPMD5Unexpected,"
+          ":TCPMD5Failure,"
+          ":TCPSackShifted,"
+          ":TCPSackMerged,"
+          ":TCPSackShiftFallback,"
+          ":TCPBacklogDrop,"
+          ":PFMemallocDrop,"
+          ":TCPMinTTLDrop,"
+          ":TCPDeferAcceptDrop,"
+          ":IPReversePathFilter,"
+          ":TCPTimeWaitOverflow,"
+          ":TCPReqQFullDoCookies,"
+          ":TCPReqQFullDrop,"
+          ":TCPRetransFail,"
+          ":TCPRcvCoalesce,"
+          ":TCPOFOQueue,"
+          ":TCPOFODrop,"
+          ":TCPOFOMerge,"
+          ":TCPChallengeACK,"
+          ":TCPSYNChallenge,"
+          ":TCPFastOpenActive,"
+          ":TCPFastOpenActiveFail,"
+          ":TCPFastOpenPassive,"
+          ":TCPFastOpenPassiveFail,"
+          ":TCPFastOpenListenOverflow,"
+          ":TCPFastOpenCookieReqd,"
+          ":TCPFastOpenBlackhole,"
+          ":TCPSpuriousRtxHostQueues,"
+          ":BusyPollRxPackets,"
+          ":TCPAutoCorking,"
+          ":TCPFromZeroWindowAdv,"
+          ":TCPToZeroWindowAdv,"
+          ":TCPWantZeroWindowAdv,"
+          ":TCPSynRetrans,"
+          ":TCPOrigDataSent,"
+          ":TCPHystartTrainDetect,"
+          ":TCPHystartTrainCwnd,"
+          ":TCPHystartDelayDetect,"
+          ":TCPHystartDelayCwnd,"
+          ":TCPACKSkippedSynRecv,"
+          ":TCPACKSkippedPAWS,"
+          ":TCPACKSkippedSeq,"
+          ":TCPACKSkippedFinWait2,"
+          ":TCPACKSkippedTimeWait,"
+          ":TCPACKSkippedChallenge,"
+          ":TCPWinProbe,"
+          ":TCPKeepAlive,"
+          ":TCPMTUPFail,"
+          ":TCPMTUPSuccess,"
+          ":TCPDelivered,"
+          ":TCPDeliveredCE,"
+          ":TCPAckCompressed,"
+          ":TCPZeroWindowDrop,"
+          ":TCPRcvQDrop,"
+          ":TCPWqueueTooBig,"
+          ":TCPFastOpenPassiveAltKey,"
+          ":TcpTimeoutRehash,"
+          ":TcpDuplicateDataRehash,"
+          ":TCPDSACKRecvSegs,"
+          ":TCPDSACKIgnoredDubious,"
+          ":TCPMigrateReqSuccess,"
+          ":TCPMigrateReqFailure)"
+        );
+        int c= 1;
+        dml.bind( c++, snapid );
+        dml.bind( c++, diff_.RtoAlgorithm );
+        dml.bind( c++, diff_.RtoMin );
+        dml.bind( c++, diff_.RtoMax );
+        dml.bind( c++, diff_.MaxConn );
+        dml.bind( c++, diff_.ActiveOpens );
+        dml.bind( c++, diff_.PassiveOpens );
+        dml.bind( c++, diff_.AttemptFails );
+        dml.bind( c++, diff_.EstabResets );
+        dml.bind( c++, diff_.CurrEstab );
+        dml.bind( c++, diff_.InSegs );
+        dml.bind( c++, diff_.OutSegs );
+        dml.bind( c++, diff_.RetransSegs );
+        dml.bind( c++, diff_.InErrs );
+        dml.bind( c++, diff_.OutRsts );
+        dml.bind( c++, diff_.InCsumErrors );
+        dml.bind( c++, diff_.SyncookiesSent );
+        dml.bind( c++, diff_.SyncookiesRecv );
+        dml.bind( c++, diff_.SyncookiesFailed );
+        dml.bind( c++, diff_.EmbryonicRsts );
+        dml.bind( c++, diff_.PruneCalled );
+        dml.bind( c++, diff_.RcvPruned );
+        dml.bind( c++, diff_.OfoPruned );
+        dml.bind( c++, diff_.OutOfWindowIcmps );
+        dml.bind( c++, diff_.LockDroppedIcmps );
+        dml.bind( c++, diff_.ArpFilter );
+        dml.bind( c++, diff_.TW );
+        dml.bind( c++, diff_.TWRecycled );
+        dml.bind( c++, diff_.TWKilled );
+        dml.bind( c++, diff_.PAWSActive );
+        dml.bind( c++, diff_.PAWSEstab );
+        dml.bind( c++, diff_.DelayedACKs );
+        dml.bind( c++, diff_.DelayedACKLocked );
+        dml.bind( c++, diff_.DelayedACKLost );
+        dml.bind( c++, diff_.ListenOverflows );
+        dml.bind( c++, diff_.ListenDrops );
+        dml.bind( c++, diff_.TCPHPHits );
+        dml.bind( c++, diff_.TCPPureAcks );
+        dml.bind( c++, diff_.TCPHPAcks );
+        dml.bind( c++, diff_.TCPRenoRecovery );
+        dml.bind( c++, diff_.TCPSackRecovery );
+        dml.bind( c++, diff_.TCPSACKReneging );
+        dml.bind( c++, diff_.TCPSACKReorder );
+        dml.bind( c++, diff_.TCPRenoReorder );
+        dml.bind( c++, diff_.TCPTSReorder );
+        dml.bind( c++, diff_.TCPFullUndo );
+        dml.bind( c++, diff_.TCPPartialUndo );
+        dml.bind( c++, diff_.TCPDSACKUndo );
+        dml.bind( c++, diff_.TCPLossUndo );
+        dml.bind( c++, diff_.TCPLostRetransmit );
+        dml.bind( c++, diff_.TCPRenoFailures );
+        dml.bind( c++, diff_.TCPSackFailures );
+        dml.bind( c++, diff_.TCPLossFailures );
+        dml.bind( c++, diff_.TCPFastRetrans );
+        dml.bind( c++, diff_.TCPSlowStartRetrans );
+        dml.bind( c++, diff_.TCPTimeouts );
+        dml.bind( c++, diff_.TCPLossProbes );
+        dml.bind( c++, diff_.TCPLossProbeRecovery );
+        dml.bind( c++, diff_.TCPRenoRecoveryFail );
+        dml.bind( c++, diff_.TCPSackRecoveryFail );
+        dml.bind( c++, diff_.TCPRcvCollapsed );
+        dml.bind( c++, diff_.TCPBacklogCoalesce );
+        dml.bind( c++, diff_.TCPDSACKOldSent );
+        dml.bind( c++, diff_.TCPDSACKOfoSent );
+        dml.bind( c++, diff_.TCPDSACKRecv );
+        dml.bind( c++, diff_.TCPDSACKOfoRecv );
+        dml.bind( c++, diff_.TCPAbortOnData );
+        dml.bind( c++, diff_.TCPAbortOnClose );
+        dml.bind( c++, diff_.TCPAbortOnMemory );
+        dml.bind( c++, diff_.TCPAbortOnTimeout );
+        dml.bind( c++, diff_.TCPAbortOnLinger );
+        dml.bind( c++, diff_.TCPAbortFailed );
+        dml.bind( c++, diff_.TCPMemoryPressures );
+        dml.bind( c++, diff_.TCPMemoryPressuresChrono );
+        dml.bind( c++, diff_.TCPSACKDiscard );
+        dml.bind( c++, diff_.TCPDSACKIgnoredOld );
+        dml.bind( c++, diff_.TCPDSACKIgnoredNoUndo );
+        dml.bind( c++, diff_.TCPSpuriousRTOs );
+        dml.bind( c++, diff_.TCPMD5NotFound );
+        dml.bind( c++, diff_.TCPMD5Unexpected );
+        dml.bind( c++, diff_.TCPMD5Failure );
+        dml.bind( c++, diff_.TCPSackShifted );
+        dml.bind( c++, diff_.TCPSackMerged );
+        dml.bind( c++, diff_.TCPSackShiftFallback );
+        dml.bind( c++, diff_.TCPBacklogDrop );
+        dml.bind( c++, diff_.PFMemallocDrop );
+        dml.bind( c++, diff_.TCPMinTTLDrop );
+        dml.bind( c++, diff_.TCPDeferAcceptDrop );
+        dml.bind( c++, diff_.IPReversePathFilter );
+        dml.bind( c++, diff_.TCPTimeWaitOverflow );
+        dml.bind( c++, diff_.TCPReqQFullDoCookies );
+        dml.bind( c++, diff_.TCPReqQFullDrop );
+        dml.bind( c++, diff_.TCPRetransFail );
+        dml.bind( c++, diff_.TCPRcvCoalesce );
+        dml.bind( c++, diff_.TCPOFOQueue );
+        dml.bind( c++, diff_.TCPOFODrop );
+        dml.bind( c++, diff_.TCPOFOMerge );
+        dml.bind( c++, diff_.TCPChallengeACK );
+        dml.bind( c++, diff_.TCPSYNChallenge );
+        dml.bind( c++, diff_.TCPFastOpenActive );
+        dml.bind( c++, diff_.TCPFastOpenActiveFail );
+        dml.bind( c++, diff_.TCPFastOpenPassive );
+        dml.bind( c++, diff_.TCPFastOpenPassiveFail );
+        dml.bind( c++, diff_.TCPFastOpenListenOverflow );
+        dml.bind( c++, diff_.TCPFastOpenCookieReqd );
+        dml.bind( c++, diff_.TCPFastOpenBlackhole );
+        dml.bind( c++, diff_.TCPSpuriousRtxHostQueues );
+        dml.bind( c++, diff_.BusyPollRxPackets );
+        dml.bind( c++, diff_.TCPAutoCorking );
+        dml.bind( c++, diff_.TCPFromZeroWindowAdv );
+        dml.bind( c++, diff_.TCPToZeroWindowAdv );
+        dml.bind( c++, diff_.TCPWantZeroWindowAdv );
+        dml.bind( c++, diff_.TCPSynRetrans );
+        dml.bind( c++, diff_.TCPOrigDataSent );
+        dml.bind( c++, diff_.TCPHystartTrainDetect );
+        dml.bind( c++, diff_.TCPHystartTrainCwnd );
+        dml.bind( c++, diff_.TCPHystartDelayDetect );
+        dml.bind( c++, diff_.TCPHystartDelayCwnd );
+        dml.bind( c++, diff_.TCPACKSkippedSynRecv );
+        dml.bind( c++, diff_.TCPACKSkippedPAWS );
+        dml.bind( c++, diff_.TCPACKSkippedSeq );
+        dml.bind( c++, diff_.TCPACKSkippedFinWait2 );
+        dml.bind( c++, diff_.TCPACKSkippedTimeWait );
+        dml.bind( c++, diff_.TCPACKSkippedChallenge );
+        dml.bind( c++, diff_.TCPWinProbe );
+        dml.bind( c++, diff_.TCPKeepAlive );
+        dml.bind( c++, diff_.TCPMTUPFail );
+        dml.bind( c++, diff_.TCPMTUPSuccess );
+        dml.bind( c++, diff_.TCPDelivered );
+        dml.bind( c++, diff_.TCPDeliveredCE );
+        dml.bind( c++, diff_.TCPAckCompressed );
+        dml.bind( c++, diff_.TCPZeroWindowDrop );
+        dml.bind( c++, diff_.TCPRcvQDrop );
+        dml.bind( c++, diff_.TCPWqueueTooBig );
+        dml.bind( c++, diff_.TCPFastOpenPassiveAltKey );
+        dml.bind( c++, diff_.TcpTimeoutRehash );
+        dml.bind( c++, diff_.TcpDuplicateDataRehash );
+        dml.bind( c++, diff_.TCPDSACKRecvSegs );
+        dml.bind( c++, diff_.TCPDSACKIgnoredDubious );
+        dml.bind( c++, diff_.TCPMigrateReqSuccess );
+        dml.bind( c++, diff_.TCPMigrateReqFailure );
+        dml.execute();
         return 0;
       }
 

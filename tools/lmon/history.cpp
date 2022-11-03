@@ -376,7 +376,7 @@ namespace leanux {
         qnetstat.bind( 2, snap_end_ );
         netview.delta.clear();
         while ( qnetstat.step() ) {
-          net::NetStat stat;
+          net::NetDeviceStat stat;
           stat.device = qnetstat.getText(0);
           stat.rx_bytes = qnetstat.getDouble(1);
           stat.tx_bytes = qnetstat.getDouble(2);

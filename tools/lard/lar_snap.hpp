@@ -136,8 +136,8 @@ namespace leanux {
           virtual void stopSnap();
           virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
         protected:
-          net::NetStatDeviceMap stat1_;
-          net::NetStatDeviceMap stat2_;
+          net::NetDeviceStatDeviceMap stat1_;
+          net::NetDeviceStatDeviceMap stat2_;
       };
 
       class VMSnap : public Snapshot {
@@ -203,6 +203,21 @@ namespace leanux {
           virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
         protected:
       };
+      
+      class TCPSnap : public Snapshot {
+        public:
+          TCPSnap() : Snapshot() {};
+          virtual ~TCPSnap() {};
+
+          virtual void startSnap();
+          virtual void stopSnap();
+          virtual void diffSnap();
+          virtual long storeSnap( const persist::Database &db, long snapid, double seconds );
+        protected:
+          net::TCPStat stat1_;
+          net::TCPStat stat2_;
+          net::TCPStat diff_;
+      };      
 
     }; // namespace lard
   }; // namespace tools

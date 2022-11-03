@@ -45,6 +45,8 @@
 #include <sstream>
 #include <fstream>
 #include <set>
+#include <cstdlib>
+#include <syslog.h>
 
 #include <string.h>
 #include <sys/socket.h>
@@ -523,7 +525,7 @@ namespace leanux {
       return os;
     }
 
-    void getNetStat( NetStatDeviceMap &stats ) {
+    void getNetDeviceStat( NetDeviceStatDeviceMap &stats ) {
       stats.clear();
       std::ifstream ifs( "/proc/net/dev" );
       if ( ! ifs.good() ) throw Oops( __FILE__, __LINE__, "unable to read /proc/net/dev" );
@@ -531,7 +533,7 @@ namespace leanux {
         std::string s;
         char dev_buf[128];
         getline( ifs, s );
-        NetStat ns;
+        NetDeviceStat ns;
         int r = sscanf( s.c_str(), "%128s %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu %lu",
                                    dev_buf,
                                    &ns.rx_bytes,
@@ -555,11 +557,11 @@ namespace leanux {
       }
     }
 
-    void getNetStatDelta( const NetStatDeviceMap& snap1, const NetStatDeviceMap& snap2, NetStatDeviceVector& delta ) {
+    void getNetDeviceStatDelta( const NetDeviceStatDeviceMap& snap1, const NetDeviceStatDeviceMap& snap2, NetDeviceStatDeviceVector& delta ) {
       delta.clear();
-      for ( NetStatDeviceMap::const_iterator s2 = snap2.begin(); s2 != snap2.end(); ++s2 ) {
-        NetStatDeviceMap::const_iterator s1 = snap1.find( s2->first );
-        NetStat d;
+      for ( NetDeviceStatDeviceMap::const_iterator s2 = snap2.begin(); s2 != snap2.end(); ++s2 ) {
+        NetDeviceStatDeviceMap::const_iterator s1 = snap1.find( s2->first );
+        NetDeviceStat d;
         d.device = s2->first;
         if ( s1 != snap1.end() ) {
           d.rx_bytes = s2->second.rx_bytes - s1->second.rx_bytes;
@@ -654,6 +656,353 @@ namespace leanux {
         clients.push_back( TCPKeyCounter( i->first, i->second ) );
       }
       clients.sort();
+    }
+    
+      
+    std::vector<std::string> ProcNetDeviceStatNames = {
+        "SyncookiesSent",
+        "SyncookiesRecv",
+        "SyncookiesFailed",
+        "EmbryonicRsts",
+        "PruneCalled",
+        "RcvPruned",
+        "OfoPruned",
+        "OutOfWindowIcmps",
+        "LockDroppedIcmps",
+        "ArpFilter",
+        "TW",
+        "TWRecycled",
+        "TWKilled",
+        "PAWSActive",
+        "PAWSEstab",
+        "DelayedACKs",
+        "DelayedACKLocked",
+        "DelayedACKLost",
+        "ListenOverflows",
+        "ListenDrops",
+        "TCPHPHits",
+        "TCPPureAcks",
+        "TCPHPAcks",
+        "TCPRenoRecovery",
+        "TCPSackRecovery",
+        "TCPSACKReneging",
+        "TCPSACKReorder",
+        "TCPRenoReorder",
+        "TCPTSReorder",
+        "TCPFullUndo",
+        "TCPPartialUndo",
+        "TCPDSACKUndo",
+        "TCPLossUndo",
+        "TCPLostRetransmit",
+        "TCPRenoFailures",
+        "TCPSackFailures",
+        "TCPLossFailures",
+        "TCPFastRetrans",
+        "TCPSlowStartRetrans",
+        "TCPTimeouts",
+        "TCPLossProbes",
+        "TCPLossProbeRecovery",
+        "TCPRenoRecoveryFail",
+        "TCPSackRecoveryFail",
+        "TCPRcvCollapsed",
+        "TCPBacklogCoalesce",
+        "TCPDSACKOldSent",
+        "TCPDSACKOfoSent",
+        "TCPDSACKRecv",
+        "TCPDSACKOfoRecv",
+        "TCPAbortOnData",
+        "TCPAbortOnClose",
+        "TCPAbortOnMemory",
+        "TCPAbortOnTimeout",
+        "TCPAbortOnLinger",
+        "TCPAbortFailed",
+        "TCPMemoryPressures",
+        "TCPMemoryPressuresChrono",
+        "TCPSACKDiscard",
+        "TCPDSACKIgnoredOld",
+        "TCPDSACKIgnoredNoUndo",
+        "TCPSpuriousRTOs",
+        "TCPMD5NotFound",
+        "TCPMD5Unexpected",
+        "TCPMD5Failure",
+        "TCPSackShifted",
+        "TCPSackMerged",
+        "TCPSackShiftFallback",
+        "TCPBacklogDrop",
+        "PFMemallocDrop",
+        "TCPMinTTLDrop",
+        "TCPDeferAcceptDrop",
+        "IPReversePathFilter",
+        "TCPTimeWaitOverflow",
+        "TCPReqQFullDoCookies",
+        "TCPReqQFullDrop",
+        "TCPRetransFail",
+        "TCPRcvCoalesce",
+        "TCPOFOQueue",
+        "TCPOFODrop",
+        "TCPOFOMerge",
+        "TCPChallengeACK",
+        "TCPSYNChallenge",
+        "TCPFastOpenActive",
+        "TCPFastOpenActiveFail",
+        "TCPFastOpenPassive",
+        "TCPFastOpenPassiveFail",
+        "TCPFastOpenListenOverflow",
+        "TCPFastOpenCookieReqd",
+        "TCPFastOpenBlackhole",
+        "TCPSpuriousRtxHostQueues",
+        "BusyPollRxPackets",
+        "TCPAutoCorking",
+        "TCPFromZeroWindowAdv",
+        "TCPToZeroWindowAdv",
+        "TCPWantZeroWindowAdv",
+        "TCPSynRetrans",
+        "TCPOrigDataSent",
+        "TCPHystartTrainDetect",
+        "TCPHystartTrainCwnd",
+        "TCPHystartDelayDetect",
+        "TCPHystartDelayCwnd",
+        "TCPACKSkippedSynRecv",
+        "TCPACKSkippedPAWS",
+        "TCPACKSkippedSeq",
+        "TCPACKSkippedFinWait2",
+        "TCPACKSkippedTimeWait",
+        "TCPACKSkippedChallenge",
+        "TCPWinProbe",
+        "TCPKeepAlive",
+        "TCPMTUPFail",
+        "TCPMTUPSuccess",
+        "TCPDelivered",
+        "TCPDeliveredCE",
+        "TCPAckCompressed",
+        "TCPZeroWindowDrop",
+        "TCPRcvQDrop",
+        "TCPWqueueTooBig",
+        "TCPFastOpenPassiveAltKey",
+        "TcpTimeoutRehash",
+        "TcpDuplicateDataRehash",
+        "TCPDSACKRecvSegs",
+        "TCPDSACKIgnoredDubious",
+        "TCPMigrateReqSuccess",
+        "TCPMigrateReqFailure",        
+    };
+    
+    static std::map<std::string,unsigned long> ProcNetDeviceStatNameIndexMap;
+    static std::map<unsigned long,std::string> ProcNetDeviceStatIndexNameMap;
+    
+    void discoverTCPStat() {
+      std::ifstream ifs( "/proc/net/netstat" );
+      if ( ! ifs.good() ) throw Oops( __FILE__, __LINE__, "unable to read /proc/net/netstat" );
+      bool first = true;        
+      while ( ifs.good() && ! ifs.eof() ) {
+        std::string s;
+        getline( ifs, s );        
+        if ( s.substr(0,7) == "TcpExt:" && first ) {
+          std::stringstream line(s);
+          std::string token;
+          size_t idx = 0;
+          while (getline(line, token, ' ')) {
+            if ( idx > 0 ) {
+              ProcNetDeviceStatNameIndexMap[token] = idx - 1;
+              ProcNetDeviceStatIndexNameMap[idx-1] = token;              
+            }
+            idx++;
+          }
+          first = false;
+        }
+      }    
+    }  
+    
+    void getTCPStatNetstat( TCPStat &stats ) {      
+      std::ifstream ifs( "/proc/net/netstat" );
+      if ( ! ifs.good() ) throw Oops( __FILE__, __LINE__, "unable to read /proc/net/netstat" );
+      bool first = true;        
+      while ( ifs.good() && ! ifs.eof() ) {
+        std::string s;
+        getline( ifs, s );        
+        if ( s.substr(0,7) == "TcpExt:" ) {
+          if ( !first ) {
+            std::stringstream line(s);
+            std::string value;
+            size_t idx = 0;
+            while (getline(line, value, ' ')) {
+              if ( idx > 0 ) {
+                std::string token = ProcNetDeviceStatIndexNameMap[idx-1];
+                if ( token == "SyncookiesSent" ) stats.SyncookiesSent = std::atol(value.c_str());
+                else if ( token == "SyncookiesRecv" ) stats.SyncookiesRecv = std::atol(value.c_str());
+                else if ( token == "SyncookiesFailed" ) stats.SyncookiesFailed = std::atol(value.c_str());
+                else if ( token == "EmbryonicRsts" ) stats.EmbryonicRsts = std::atol(value.c_str());
+                else if ( token == "PruneCalled" ) stats.PruneCalled = std::atol(value.c_str());
+                else if ( token == "RcvPruned" ) stats.RcvPruned = std::atol(value.c_str());
+                else if ( token == "OfoPruned" ) stats.OfoPruned = std::atol(value.c_str());
+                else if ( token == "OutOfWindowIcmps" ) stats.OutOfWindowIcmps = std::atol(value.c_str());
+                else if ( token == "LockDroppedIcmps" ) stats.LockDroppedIcmps = std::atol(value.c_str());
+                else if ( token == "ArpFilter" ) stats.ArpFilter = std::atol(value.c_str());
+                else if ( token == "TW" ) stats.TW = std::atol(value.c_str());
+                else if ( token == "TWRecycled" ) stats.TWRecycled = std::atol(value.c_str());
+                else if ( token == "TWKilled" ) stats.TWKilled = std::atol(value.c_str());
+                else if ( token == "PAWSActive" ) stats.PAWSActive = std::atol(value.c_str());
+                else if ( token == "PAWSEstab" ) stats.PAWSEstab = std::atol(value.c_str());
+                else if ( token == "DelayedACKs" ) stats.DelayedACKs = std::atol(value.c_str());
+                else if ( token == "DelayedACKLocked" ) stats.DelayedACKLocked = std::atol(value.c_str());
+                else if ( token == "DelayedACKLost" ) stats.DelayedACKLost = std::atol(value.c_str());
+                else if ( token == "ListenOverflows" ) stats.ListenOverflows = std::atol(value.c_str());
+                else if ( token == "ListenDrops" ) stats.ListenDrops = std::atol(value.c_str());
+                else if ( token == "TCPHPHits" ) stats.TCPHPHits = std::atol(value.c_str());
+                else if ( token == "TCPPureAcks" ) stats.TCPPureAcks = std::atol(value.c_str());
+                else if ( token == "TCPHPAcks" ) stats.TCPHPAcks = std::atol(value.c_str());
+                else if ( token == "TCPRenoRecovery" ) stats.TCPRenoRecovery = std::atol(value.c_str());
+                else if ( token == "TCPSackRecovery" ) stats.TCPSackRecovery = std::atol(value.c_str());
+                else if ( token == "TCPSACKReneging" ) stats.TCPSACKReneging = std::atol(value.c_str());
+                else if ( token == "TCPSACKReorder" ) stats.TCPSACKReorder = std::atol(value.c_str());
+                else if ( token == "TCPRenoReorder" ) stats.TCPRenoReorder = std::atol(value.c_str());
+                else if ( token == "TCPTSReorder" ) stats.TCPTSReorder = std::atol(value.c_str());
+                else if ( token == "TCPFullUndo" ) stats.TCPFullUndo = std::atol(value.c_str());
+                else if ( token == "TCPPartialUndo" ) stats.TCPPartialUndo = std::atol(value.c_str());
+                else if ( token == "TCPDSACKUndo" ) stats.TCPDSACKUndo = std::atol(value.c_str());
+                else if ( token == "TCPLossUndo" ) stats.TCPLossUndo = std::atol(value.c_str());
+                else if ( token == "TCPLostRetransmit" ) stats.TCPLostRetransmit = std::atol(value.c_str());
+                else if ( token == "TCPRenoFailures" ) stats.TCPRenoFailures = std::atol(value.c_str());
+                else if ( token == "TCPSackFailures" ) stats.TCPSackFailures = std::atol(value.c_str());
+                else if ( token == "TCPLossFailures" ) stats.TCPLossFailures = std::atol(value.c_str());
+                else if ( token == "TCPFastRetrans" ) stats.TCPFastRetrans = std::atol(value.c_str());
+                else if ( token == "TCPSlowStartRetrans" ) stats.TCPSlowStartRetrans = std::atol(value.c_str());
+                else if ( token == "TCPTimeouts" ) stats.TCPTimeouts = std::atol(value.c_str());
+                else if ( token == "TCPLossProbes" ) stats.TCPLossProbes = std::atol(value.c_str());
+                else if ( token == "TCPLossProbeRecovery" ) stats.TCPLossProbeRecovery = std::atol(value.c_str());
+                else if ( token == "TCPRenoRecoveryFail" ) stats.TCPRenoRecoveryFail = std::atol(value.c_str());
+                else if ( token == "TCPSackRecoveryFail" ) stats.TCPSackRecoveryFail = std::atol(value.c_str());
+                else if ( token == "TCPRcvCollapsed" ) stats.TCPRcvCollapsed = std::atol(value.c_str());
+                else if ( token == "TCPBacklogCoalesce" ) stats.TCPBacklogCoalesce = std::atol(value.c_str());
+                else if ( token == "TCPDSACKOldSent" ) stats.TCPDSACKOldSent = std::atol(value.c_str());
+                else if ( token == "TCPDSACKOfoSent" ) stats.TCPDSACKOfoSent = std::atol(value.c_str());
+                else if ( token == "TCPDSACKRecv" ) stats.TCPDSACKRecv = std::atol(value.c_str());
+                else if ( token == "TCPDSACKOfoRecv" ) stats.TCPDSACKOfoRecv = std::atol(value.c_str());
+                else if ( token == "TCPAbortOnData" ) stats.TCPAbortOnData = std::atol(value.c_str());
+                else if ( token == "TCPAbortOnClose" ) stats.TCPAbortOnClose = std::atol(value.c_str());
+                else if ( token == "TCPAbortOnMemory" ) stats.TCPAbortOnMemory = std::atol(value.c_str());
+                else if ( token == "TCPAbortOnTimeout" ) stats.TCPAbortOnTimeout = std::atol(value.c_str());
+                else if ( token == "TCPAbortOnLinger" ) stats.TCPAbortOnLinger = std::atol(value.c_str());
+                else if ( token == "TCPAbortFailed" ) stats.TCPAbortFailed = std::atol(value.c_str());
+                else if ( token == "TCPMemoryPressures" ) stats.TCPMemoryPressures = std::atol(value.c_str());
+                else if ( token == "TCPMemoryPressuresChrono" ) stats.TCPMemoryPressuresChrono = std::atol(value.c_str());
+                else if ( token == "TCPSACKDiscard" ) stats.TCPSACKDiscard = std::atol(value.c_str());
+                else if ( token == "TCPDSACKIgnoredOld" ) stats.TCPDSACKIgnoredOld = std::atol(value.c_str());
+                else if ( token == "TCPDSACKIgnoredNoUndo" ) stats.TCPDSACKIgnoredNoUndo = std::atol(value.c_str());
+                else if ( token == "TCPSpuriousRTOs" ) stats.TCPSpuriousRTOs = std::atol(value.c_str());
+                else if ( token == "TCPMD5NotFound" ) stats.TCPMD5NotFound = std::atol(value.c_str());
+                else if ( token == "TCPMD5Unexpected" ) stats.TCPMD5Unexpected = std::atol(value.c_str());
+                else if ( token == "TCPMD5Failure" ) stats.TCPMD5Failure = std::atol(value.c_str());
+                else if ( token == "TCPSackShifted" ) stats.TCPSackShifted = std::atol(value.c_str());
+                else if ( token == "TCPSackMerged" ) stats.TCPSackMerged = std::atol(value.c_str());
+                else if ( token == "TCPSackShiftFallback" ) stats.TCPSackShiftFallback = std::atol(value.c_str());
+                else if ( token == "TCPBacklogDrop" ) stats.TCPBacklogDrop = std::atol(value.c_str());
+                else if ( token == "PFMemallocDrop" ) stats.PFMemallocDrop = std::atol(value.c_str());
+                else if ( token == "TCPMinTTLDrop" ) stats.TCPMinTTLDrop = std::atol(value.c_str());
+                else if ( token == "TCPDeferAcceptDrop" ) stats.TCPDeferAcceptDrop = std::atol(value.c_str());
+                else if ( token == "IPReversePathFilter" ) stats.IPReversePathFilter = std::atol(value.c_str());
+                else if ( token == "TCPTimeWaitOverflow" ) stats.TCPTimeWaitOverflow = std::atol(value.c_str());
+                else if ( token == "TCPReqQFullDoCookies" ) stats.TCPReqQFullDoCookies = std::atol(value.c_str());
+                else if ( token == "TCPReqQFullDrop" ) stats.TCPReqQFullDrop = std::atol(value.c_str());
+                else if ( token == "TCPRetransFail" ) stats.TCPRetransFail = std::atol(value.c_str());
+                else if ( token == "TCPRcvCoalesce" ) stats.TCPRcvCoalesce = std::atol(value.c_str());
+                else if ( token == "TCPOFOQueue" ) stats.TCPOFOQueue = std::atol(value.c_str());
+                else if ( token == "TCPOFODrop" ) stats.TCPOFODrop = std::atol(value.c_str());
+                else if ( token == "TCPOFOMerge" ) stats.TCPOFOMerge = std::atol(value.c_str());
+                else if ( token == "TCPChallengeACK" ) stats.TCPChallengeACK = std::atol(value.c_str());
+                else if ( token == "TCPSYNChallenge" ) stats.TCPSYNChallenge = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenActive" ) stats.TCPFastOpenActive = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenActiveFail" ) stats.TCPFastOpenActiveFail = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenPassive" ) stats.TCPFastOpenPassive = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenPassiveFail" ) stats.TCPFastOpenPassiveFail = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenListenOverflow" ) stats.TCPFastOpenListenOverflow = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenCookieReqd" ) stats.TCPFastOpenCookieReqd = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenBlackhole" ) stats.TCPFastOpenBlackhole = std::atol(value.c_str());
+                else if ( token == "TCPSpuriousRtxHostQueues" ) stats.TCPSpuriousRtxHostQueues = std::atol(value.c_str());
+                else if ( token == "BusyPollRxPackets" ) stats.BusyPollRxPackets = std::atol(value.c_str());
+                else if ( token == "TCPAutoCorking" ) stats.TCPAutoCorking = std::atol(value.c_str());
+                else if ( token == "TCPFromZeroWindowAdv" ) stats.TCPFromZeroWindowAdv = std::atol(value.c_str());
+                else if ( token == "TCPToZeroWindowAdv" ) stats.TCPToZeroWindowAdv = std::atol(value.c_str());
+                else if ( token == "TCPWantZeroWindowAdv" ) stats.TCPWantZeroWindowAdv = std::atol(value.c_str());
+                else if ( token == "TCPSynRetrans" ) stats.TCPSynRetrans = std::atol(value.c_str());
+                else if ( token == "TCPOrigDataSent" ) stats.TCPOrigDataSent = std::atol(value.c_str());
+                else if ( token == "TCPHystartTrainDetect" ) stats.TCPHystartTrainDetect = std::atol(value.c_str());
+                else if ( token == "TCPHystartTrainCwnd" ) stats.TCPHystartTrainCwnd = std::atol(value.c_str());
+                else if ( token == "TCPHystartDelayDetect" ) stats.TCPHystartDelayDetect = std::atol(value.c_str());
+                else if ( token == "TCPHystartDelayCwnd" ) stats.TCPHystartDelayCwnd = std::atol(value.c_str());
+                else if ( token == "TCPACKSkippedSynRecv" ) stats.TCPACKSkippedSynRecv = std::atol(value.c_str());
+                else if ( token == "TCPACKSkippedPAWS" ) stats.TCPACKSkippedPAWS = std::atol(value.c_str());
+                else if ( token == "TCPACKSkippedSeq" ) stats.TCPACKSkippedSeq = std::atol(value.c_str());
+                else if ( token == "TCPACKSkippedFinWait2" ) stats.TCPACKSkippedFinWait2 = std::atol(value.c_str());
+                else if ( token == "TCPACKSkippedTimeWait" ) stats.TCPACKSkippedTimeWait = std::atol(value.c_str());
+                else if ( token == "TCPACKSkippedChallenge" ) stats.TCPACKSkippedChallenge = std::atol(value.c_str());
+                else if ( token == "TCPWinProbe" ) stats.TCPWinProbe = std::atol(value.c_str());
+                else if ( token == "TCPKeepAlive" ) stats.TCPKeepAlive = std::atol(value.c_str());
+                else if ( token == "TCPMTUPFail" ) stats.TCPMTUPFail = std::atol(value.c_str());
+                else if ( token == "TCPMTUPSuccess" ) stats.TCPMTUPSuccess = std::atol(value.c_str());
+                else if ( token == "TCPDelivered" ) stats.TCPDelivered = std::atol(value.c_str());
+                else if ( token == "TCPDeliveredCE" ) stats.TCPDeliveredCE = std::atol(value.c_str());
+                else if ( token == "TCPAckCompressed" ) stats.TCPAckCompressed = std::atol(value.c_str());
+                else if ( token == "TCPZeroWindowDrop" ) stats.TCPZeroWindowDrop = std::atol(value.c_str());
+                else if ( token == "TCPRcvQDrop" ) stats.TCPRcvQDrop = std::atol(value.c_str());
+                else if ( token == "TCPWqueueTooBig" ) stats.TCPWqueueTooBig = std::atol(value.c_str());
+                else if ( token == "TCPFastOpenPassiveAltKey" ) stats.TCPFastOpenPassiveAltKey = std::atol(value.c_str());
+                else if ( token == "TcpTimeoutRehash" ) stats.TcpTimeoutRehash = std::atol(value.c_str());
+                else if ( token == "TcpDuplicateDataRehash" ) stats.TcpDuplicateDataRehash = std::atol(value.c_str());
+                else if ( token == "TCPDSACKRecvSegs" ) stats.TCPDSACKRecvSegs = std::atol(value.c_str());
+                else if ( token == "TCPDSACKIgnoredDubious" ) stats.TCPDSACKIgnoredDubious = std::atol(value.c_str());
+                else if ( token == "TCPMigrateReqSuccess" ) stats.TCPMigrateReqSuccess = std::atol(value.c_str());
+                else if ( token == "TCPMigrateReqFailure" ) stats.TCPMigrateReqFailure = std::atol(value.c_str());
+                else throw Oops( __FILE__, __LINE__, "unknown entry '" + token + "' in /proc/net/netstat" );
+
+                //std::cout << "idx " << idx << " token " << token << " value " << value << std::endl;                
+              }
+              idx++;
+            }
+          }
+          first = false;
+        }
+      }       
+    }  
+    
+    void getTCPStatSnmp( TCPStat &stats ) {
+      std::ifstream ifs( "/proc/net/snmp" );
+      if ( ! ifs.good() ) throw Oops( __FILE__, __LINE__, "unable to read /proc/net/netstat" );
+      bool first = true;        
+      while ( ifs.good() && ! ifs.eof() ) {
+        std::string s;
+        getline( ifs, s );        
+        if ( s.substr(0,4) == "Tcp:" ) {
+          if ( !first ) {
+            std::stringstream line(s);
+            std::string value;
+            size_t idx = 0;
+            while (getline(line, value, ' ')) {
+              switch (idx) {
+                case 1: stats.RtoAlgorithm = atol(value.c_str()); break;
+                case 2: stats.RtoMin = atol(value.c_str()); break;
+                case 3: stats.RtoMax = atol(value.c_str()); break;
+                case 4: stats.MaxConn = atol(value.c_str()); break;
+                case 5: stats.ActiveOpens = atol(value.c_str()); break;
+                case 6: stats.PassiveOpens = atol(value.c_str()); break;
+                case 7: stats.AttemptFails = atol(value.c_str()); break;
+                case 8: stats.EstabResets = atol(value.c_str()); break;
+                case 9: stats.CurrEstab = atol(value.c_str()); break;
+                case 10: stats.InSegs = atol(value.c_str()); break;
+                case 11: stats.OutSegs = atol(value.c_str()); break;
+                case 12: stats.RetransSegs = atol(value.c_str()); break;
+                case 13: stats.InErrs = atol(value.c_str()); break;
+                case 14: stats.OutRsts = atol(value.c_str()); break;
+                case 15: stats.InCsumErrors = atol(value.c_str()); break;
+                default: break;
+                std::cout << "idx " << idx << " value " << atol(value.c_str()) << std::endl;
+              }
+              idx++;
+            }
+          }
+          first = false;
+        }
+      }       
     }
 
   }

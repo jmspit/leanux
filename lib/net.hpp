@@ -324,7 +324,7 @@ namespace leanux {
     /**
      * Network device statistics as in /proc/net/dev.
      */
-    struct NetStat {
+    struct NetDeviceStat {
       std::string device;               /**< the name of the device. */
       unsigned long rx_bytes;      /**< the number of bytes received. */
       unsigned long rx_packets;    /**< the number of packets received. */
@@ -346,41 +346,41 @@ namespace leanux {
     };
 
     /**
-     * Compare two NetStat structs.
+     * Compare two NetDeviceStat structs.
      * Criterium is bytes send+received, devicename.
-     * @param n1 the first NetStat.
-     * @param n2 the second NetStat.
+     * @param n1 the first NetDeviceStat.
+     * @param n2 the second NetDeviceStat.
      * @return 1 if n1 < n2.
      */
-    inline int operator<( const NetStat& n1, const NetStat &n2 ) {
+    inline int operator<( const NetDeviceStat& n1, const NetDeviceStat &n2 ) {
       return (n1.rx_bytes + n1.tx_bytes > n2.rx_bytes + n2.tx_bytes) ||
              (n1.rx_bytes + n1.tx_bytes == n2.rx_bytes + n2.tx_bytes && n1.device < n2.device );
     }
 
     /**
-     * A map of network device name to NetStat statistics.
+     * A map of network device name to NetDeviceStat statistics.
      */
-    typedef std::map<std::string,NetStat> NetStatDeviceMap;
+    typedef std::map<std::string,NetDeviceStat> NetDeviceStatDeviceMap;
 
     /**
-     * A vector of NetStat objects.
+     * A vector of NetDeviceStat objects.
      */
-    typedef std::vector<NetStat> NetStatDeviceVector;
+    typedef std::vector<NetDeviceStat> NetDeviceStatDeviceVector;
 
     /**
      * Get network device statistics from /proc/net/dev.
-     * @param stats the NetStatDeviceMap to fill with /proc/net/dev contents.
+     * @param stats the NetDeviceStatDeviceMap to fill with /proc/net/dev contents.
      */
-    void getNetStat( NetStatDeviceMap &stats );
+    void getNetDeviceStat( NetDeviceStatDeviceMap &stats );
 
     /**
-     * Get the delta of two NetStatDeviceMap objects, sorted
-     * by using int operator<( const NetStat& n1, const NetStat &n2 ).
-     * @param snap1 first NetStatDeviceMap.
-     * @param snap2 second NetStatDeviceMap.
-     * @param delta the NetStatDeviceVector to fill.
+     * Get the delta of two NetDeviceStatDeviceMap objects, sorted
+     * by using int operator<( const NetDeviceStat& n1, const NetDeviceStat &n2 ).
+     * @param snap1 first NetDeviceStatDeviceMap.
+     * @param snap2 second NetDeviceStatDeviceMap.
+     * @param delta the NetDeviceStatDeviceVector to fill.
      */
-    void getNetStatDelta( const NetStatDeviceMap& snap1, const NetStatDeviceMap& snap2, NetStatDeviceVector& delta );
+    void getNetDeviceStatDelta( const NetDeviceStatDeviceMap& snap1, const NetDeviceStatDeviceMap& snap2, NetDeviceStatDeviceVector& delta );
 
       /**
        * Utility structure to key TCP connections. by (ip,port,user).
@@ -463,6 +463,295 @@ namespace leanux {
        * @param clients receives the client (remote ip) TCPKeyCounter list.
        */
       void getTCPConnectionCounters( std::list<TCPKeyCounter> &servers, std::list<TCPKeyCounter> &clients );
+      
+      typedef enum {
+         SyncookiesSent = 0,
+         SyncookiesRecv,
+         SyncookiesFailed,
+         EmbryonicRsts,
+         PruneCalled,
+         RcvPruned,
+         OfoPruned,
+         OutOfWindowIcmps,
+         LockDroppedIcmps,
+         ArpFilter,
+         TW,
+         TWRecycled,
+         TWKilled,
+         PAWSActive,
+         PAWSEstab,
+         DelayedACKs,
+         DelayedACKLocked,
+         DelayedACKLost,
+         ListenOverflows,
+         ListenDrops,
+         TCPHPHits,
+         TCPPureAcks,
+         TCPHPAcks,
+         TCPRenoRecovery,
+         TCPSackRecovery,
+         TCPSACKReneging,
+         TCPSACKReorder,
+         TCPRenoReorder,
+         TCPTSReorder,
+         TCPFullUndo,
+         TCPPartialUndo,
+         TCPDSACKUndo,
+         TCPLossUndo,
+         TCPLostRetransmit,
+         TCPRenoFailures,
+         TCPSackFailures,
+         TCPLossFailures,
+         TCPFastRetrans,
+         TCPSlowStartRetrans,
+         TCPTimeouts,
+         TCPLossProbes,
+         TCPLossProbeRecovery,
+         TCPRenoRecoveryFail,
+         TCPSackRecoveryFail,
+         TCPRcvCollapsed,
+         TCPBacklogCoalesce,
+         TCPDSACKOldSent,
+         TCPDSACKOfoSent,
+         TCPDSACKRecv,
+         TCPDSACKOfoRecv,
+         TCPAbortOnData,
+         TCPAbortOnClose,
+         TCPAbortOnMemory,
+         TCPAbortOnTimeout,
+         TCPAbortOnLinger,
+         TCPAbortFailed,
+         TCPMemoryPressures,
+         TCPMemoryPressuresChrono,
+         TCPSACKDiscard,
+         TCPDSACKIgnoredOld,
+         TCPDSACKIgnoredNoUndo,
+         TCPSpuriousRTOs,
+         TCPMD5NotFound,
+         TCPMD5Unexpected,
+         TCPMD5Failure,
+         TCPSackShifted,
+         TCPSackMerged,
+         TCPSackShiftFallback,
+         TCPBacklogDrop,
+         PFMemallocDrop,
+         TCPMinTTLDrop,
+         TCPDeferAcceptDrop,
+         IPReversePathFilter,
+         TCPTimeWaitOverflow,
+         TCPReqQFullDoCookies,
+         TCPReqQFullDrop,
+         TCPRetransFail,
+         TCPRcvCoalesce,
+         TCPOFOQueue,
+         TCPOFODrop,
+         TCPOFOMerge,
+         TCPChallengeACK,
+         TCPSYNChallenge,
+         TCPFastOpenActive,
+         TCPFastOpenActiveFail,
+         TCPFastOpenPassive,
+         TCPFastOpenPassiveFail,
+         TCPFastOpenListenOverflow,
+         TCPFastOpenCookieReqd,
+         TCPFastOpenBlackhole,
+         TCPSpuriousRtxHostQueues,
+         BusyPollRxPackets,
+         TCPAutoCorking,
+         TCPFromZeroWindowAdv,
+         TCPToZeroWindowAdv,
+         TCPWantZeroWindowAdv,
+         TCPSynRetrans,
+         TCPOrigDataSent,
+         TCPHystartTrainDetect,
+         TCPHystartTrainCwnd,
+         TCPHystartDelayDetect,
+         TCPHystartDelayCwnd,
+         TCPACKSkippedSynRecv,
+         TCPACKSkippedPAWS,
+         TCPACKSkippedSeq,
+         TCPACKSkippedFinWait2,
+         TCPACKSkippedTimeWait,
+         TCPACKSkippedChallenge,
+         TCPWinProbe,
+         TCPKeepAlive,
+         TCPMTUPFail,
+         TCPMTUPSuccess,
+         TCPDelivered,
+         TCPDeliveredCE,
+         TCPAckCompressed,
+         TCPZeroWindowDrop,
+         TCPRcvQDrop,
+         TCPWqueueTooBig,
+         TCPFastOpenPassiveAltKey,
+         TcpTimeoutRehash,
+         TcpDuplicateDataRehash,
+         TCPDSACKRecvSegs,
+         TCPDSACKIgnoredDubious,
+         TCPMigrateReqSuccess,
+         TCPMigrateReqFailure,
+      } ProcNetDeviceStatEnums;
+      
+      extern std::vector<std::string> ProcNetDeviceStatNames;
+      
+      
+      
+      /**
+       * @brief Info from /proc/net/netstat and /proc/net/snmp
+       * 
+       */
+      struct TCPStat {
+        
+        // /proc/net/snmp
+        long RtoAlgorithm;
+        long RtoMin;
+        long RtoMax;
+        long MaxConn;
+        long ActiveOpens;
+        long PassiveOpens;
+        long AttemptFails;
+        long EstabResets;
+        long CurrEstab;
+        long InSegs;
+        long OutSegs;
+        long RetransSegs;
+        long InErrs;
+        long OutRsts;
+        long InCsumErrors;
+        
+        // /proc/net/netstat
+        long SyncookiesSent;
+        long SyncookiesRecv;
+        long SyncookiesFailed;
+        long EmbryonicRsts;
+        long PruneCalled;
+        long RcvPruned;
+        long OfoPruned;
+        long OutOfWindowIcmps;
+        long LockDroppedIcmps;
+        long ArpFilter;
+        long TW;
+        long TWRecycled;
+        long TWKilled;
+        long PAWSActive;
+        long PAWSEstab;
+        long DelayedACKs;
+        long DelayedACKLocked;
+        long DelayedACKLost;
+        long ListenOverflows;
+        long ListenDrops;
+        long TCPHPHits;
+        long TCPPureAcks;
+        long TCPHPAcks;
+        long TCPRenoRecovery;
+        long TCPSackRecovery;
+        long TCPSACKReneging;
+        long TCPSACKReorder;
+        long TCPRenoReorder;
+        long TCPTSReorder;
+        long TCPFullUndo;
+        long TCPPartialUndo;
+        long TCPDSACKUndo;
+        long TCPLossUndo;
+        long TCPLostRetransmit;
+        long TCPRenoFailures;
+        long TCPSackFailures;
+        long TCPLossFailures;
+        long TCPFastRetrans;
+        long TCPSlowStartRetrans;
+        long TCPTimeouts;
+        long TCPLossProbes;
+        long TCPLossProbeRecovery;
+        long TCPRenoRecoveryFail;
+        long TCPSackRecoveryFail;
+        long TCPRcvCollapsed;
+        long TCPBacklogCoalesce;
+        long TCPDSACKOldSent;
+        long TCPDSACKOfoSent;
+        long TCPDSACKRecv;
+        long TCPDSACKOfoRecv;
+        long TCPAbortOnData;
+        long TCPAbortOnClose;
+        long TCPAbortOnMemory;
+        long TCPAbortOnTimeout;
+        long TCPAbortOnLinger;
+        long TCPAbortFailed;
+        long TCPMemoryPressures;
+        long TCPMemoryPressuresChrono;
+        long TCPSACKDiscard;
+        long TCPDSACKIgnoredOld;
+        long TCPDSACKIgnoredNoUndo;
+        long TCPSpuriousRTOs;
+        long TCPMD5NotFound;
+        long TCPMD5Unexpected;
+        long TCPMD5Failure;
+        long TCPSackShifted;
+        long TCPSackMerged;
+        long TCPSackShiftFallback;
+        long TCPBacklogDrop;
+        long PFMemallocDrop;
+        long TCPMinTTLDrop;
+        long TCPDeferAcceptDrop;
+        long IPReversePathFilter;
+        long TCPTimeWaitOverflow;
+        long TCPReqQFullDoCookies;
+        long TCPReqQFullDrop;
+        long TCPRetransFail;
+        long TCPRcvCoalesce;
+        long TCPOFOQueue;
+        long TCPOFODrop;
+        long TCPOFOMerge;
+        long TCPChallengeACK;
+        long TCPSYNChallenge;
+        long TCPFastOpenActive;
+        long TCPFastOpenActiveFail;
+        long TCPFastOpenPassive;
+        long TCPFastOpenPassiveFail;
+        long TCPFastOpenListenOverflow;
+        long TCPFastOpenCookieReqd;
+        long TCPFastOpenBlackhole;
+        long TCPSpuriousRtxHostQueues;
+        long BusyPollRxPackets;
+        long TCPAutoCorking;
+        long TCPFromZeroWindowAdv;
+        long TCPToZeroWindowAdv;
+        long TCPWantZeroWindowAdv;
+        long TCPSynRetrans;
+        long TCPOrigDataSent;
+        long TCPHystartTrainDetect;
+        long TCPHystartTrainCwnd;
+        long TCPHystartDelayDetect;
+        long TCPHystartDelayCwnd;
+        long TCPACKSkippedSynRecv;
+        long TCPACKSkippedPAWS;
+        long TCPACKSkippedSeq;
+        long TCPACKSkippedFinWait2;
+        long TCPACKSkippedTimeWait;
+        long TCPACKSkippedChallenge;
+        long TCPWinProbe;
+        long TCPKeepAlive;
+        long TCPMTUPFail;
+        long TCPMTUPSuccess;
+        long TCPDelivered;
+        long TCPDeliveredCE;
+        long TCPAckCompressed;
+        long TCPZeroWindowDrop;
+        long TCPRcvQDrop;
+        long TCPWqueueTooBig;
+        long TCPFastOpenPassiveAltKey;
+        long TcpTimeoutRehash;
+        long TcpDuplicateDataRehash;
+        long TCPDSACKRecvSegs;
+        long TCPDSACKIgnoredDubious;
+        long TCPMigrateReqSuccess;
+        long TCPMigrateReqFailure;
+      };     
+      
+      void discoverTCPStat();
+      
+      void getTCPStatNetstat( TCPStat &stats );
+      
+      void getTCPStatSnmp( TCPStat &stats );
 
   }
 }

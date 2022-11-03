@@ -105,7 +105,7 @@ namespace leanux {
         unsigned long sample_count;
 
         /** net stat delta. */
-        net::NetStatDeviceVector delta;
+        net::NetDeviceStatDeviceVector delta;
 
         /** TCP server connections */
         std::list<net::TCPKeyCounter> tcpserver;

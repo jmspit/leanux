@@ -118,10 +118,10 @@ namespace leanux {
         xnetview_.t1 = xnetview_.t2;
         gettimeofday( &xnetview_.t2, 0 );
         netsnap1_ = netsnap2_;
-        net::getNetStat( netsnap2_ );
-        net::getNetStatDelta( netsnap1_, netsnap2_, xnetview_.delta );
+        net::getNetDeviceStat( netsnap2_ );
+        net::getNetDeviceStatDelta( netsnap1_, netsnap2_, xnetview_.delta );
         double dt = util::deltaTime( xnetview_.t1, xnetview_.t2 );
-        for ( net::NetStatDeviceVector::iterator i = xnetview_.delta.begin(); i != xnetview_.delta.end(); i++ ) {
+        for ( net::NetDeviceStatDeviceVector::iterator i = xnetview_.delta.begin(); i != xnetview_.delta.end(); i++ ) {
           (*i).rx_bytes /= dt;
           (*i).tx_bytes /= dt;
           (*i).rx_packets /= dt;

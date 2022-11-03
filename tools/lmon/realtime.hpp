@@ -122,10 +122,10 @@ namespace leanux {
           static std::map<std::string,block::MajorMinor> devicefilecache_;
 
           /** earlier snap. */
-          net::NetStatDeviceMap netsnap1_;
+          net::NetDeviceStatDeviceMap netsnap1_;
 
           /** later snap. */
-          net::NetStatDeviceMap netsnap2_;
+          net::NetDeviceStatDeviceMap netsnap2_;
 
           /** earlier snap. */
           process::ProcPidStatMap procsnap1_;

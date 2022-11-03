@@ -1,4 +1,4 @@
 # stop service before removing binaries
-test -f @LARD_SYSCONF_FILE@ && /usr/sbin/service lard stop > /dev/null 2>&1
+test -f @LARD_SYSCONF_FILE@ && service lard stop > /dev/null 2>&1
 
 exit 0

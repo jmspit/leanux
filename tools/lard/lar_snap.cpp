@@ -754,6 +754,7 @@ namespace leanux {
       #define DIFFDO(x) diff_.x = stat2_.x - stat1_.x
       
       void TCPSnap::diffSnap() {
+        memset(&diff_,0, sizeof(diff_));
         DIFFDO(RtoAlgorithm);
         DIFFDO(RtoMin);
         DIFFDO(RtoMax);

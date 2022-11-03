@@ -741,11 +741,13 @@ namespace leanux {
       }
       
       void TCPSnap::startSnap() {
+        memset(&stat1_,0, sizeof(stat1_));
         getTCPStatNetstat( stat1_ );
         getTCPStatSnmp( stat1_ );
       }
       
       void TCPSnap::stopSnap() {
+        memset(&stat2_,0, sizeof(stat2_));        
         getTCPStatNetstat( stat2_ );
         getTCPStatSnmp( stat2_ );
         diffSnap();

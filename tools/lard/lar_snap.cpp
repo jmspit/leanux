@@ -765,7 +765,7 @@ namespace leanux {
         DIFFDO(PassiveOpens);
         DIFFDO(AttemptFails);
         DIFFDO(EstabResets);
-        DIFFDO(CurrEstab);
+        diff_.CurrEstab = stat2_.CurrEstab; // as it is the running total number of connections
         DIFFDO(InSegs);
         DIFFDO(OutSegs);
         DIFFDO(RetransSegs);

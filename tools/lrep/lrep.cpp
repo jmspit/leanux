@@ -2616,6 +2616,190 @@ namespace leanux {
         }
       }
 
+      void chartTCPNetStatConnTimeLine( const persist::Database &db, const string &domao, const string &dompo, const string& domfa, const string& domer ) {
+        stringstream jsao;
+        stringstream jspo;
+        stringstream jsfa;
+        stringstream jser;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(ActiveOpens), avg(PassiveOpens), avg(AttemptFails), avg(EstabResets) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1;" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jsao << "var " << domao << "_data = google.visualization.arrayToDataTable([" << endl;
+            jsao << "['datetime', 'ActiveOpens' ]," << endl;
+
+            jspo << "var " << dompo << "_data = google.visualization.arrayToDataTable([" << endl;
+            jspo << "['datetime', 'PassiveOpens' ]," << endl;
+
+            jsfa << "var " << domfa << "_data = google.visualization.arrayToDataTable([" << endl;
+            jsfa << "['datetime', 'AttemptFails' ]," << endl;
+
+            jser << "var " << domer << "_data = google.visualization.arrayToDataTable([" << endl;
+            jser << "['datetime', 'EstabResets' ]," << endl;
+
+          } else {
+            jsao << ",";
+            jspo << ",";
+            jsfa << ",";
+            jser << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jsao << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jsao << qry.getDouble(1) << " ]" << endl;
+
+          jspo << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jspo << qry.getDouble(2) << " ]" << endl;
+
+          jsfa << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jsfa << qry.getDouble(3) << " ]" << endl;
+
+          jser << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jser << qry.getDouble(4) << " ]" << endl;
+          iter++;
+        }
+        jsao << "]);" << endl;
+        jsao << "var " << domao << "_options = {" << endl;
+        jsao << "title: 'ActiveOpens timeline'," << endl;
+        jsao << timeline_background_color << ", " << endl;
+        jsao << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jsao << "lineWidth: 1," << endl;
+        jsao << "legend: 'none'," << endl;
+        jsao << timeline_fontsize << "," << endl;
+        jsao << timeline_chartarea << ", " << endl;
+        jsao << "};" << endl;
+        jsao << "var " << domao << " = new google.visualization.LineChart(document.getElementById('" << domao << "'));" << endl;
+        jsao << domao << ".draw(" << domao << "_data, " << domao << "_options);" << endl;
+
+        jspo << "]);" << endl;
+        jspo << "var " << dompo << "_options = {" << endl;
+        jspo << "title: 'PassiveOpens timeline'," << endl;
+        jspo << timeline_background_color << ", " << endl;
+        jspo << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jspo << "lineWidth: 1," << endl;
+        jspo << "legend: 'none'," << endl;
+        jspo << timeline_fontsize << "," << endl;
+        jspo << timeline_chartarea << ", " << endl;
+        jspo << "};" << endl;
+        jspo << "var " << dompo << " = new google.visualization.LineChart(document.getElementById('" << dompo << "'));" << endl;
+        jspo << dompo << ".draw(" << dompo << "_data, " << dompo << "_options);" << endl;
+
+        jsfa << "]);" << endl;
+        jsfa << "var " << domfa << "_options = {" << endl;
+        jsfa << "title: 'AttemptFails timeline'," << endl;
+        jsfa << timeline_background_color << ", " << endl;
+        jsfa << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jsfa << "lineWidth: 1," << endl;
+        jsfa << "legend: 'none'," << endl;
+        jsfa << timeline_fontsize << "," << endl;
+        jsfa << timeline_chartarea << ", " << endl;
+        jsfa << "};" << endl;
+        jsfa << "var " << domfa << " = new google.visualization.LineChart(document.getElementById('" << domfa << "'));" << endl;
+        jsfa << domfa << ".draw(" << domfa << "_data, " << domfa << "_options);" << endl;
+
+        jser << "]);" << endl;
+        jser << "var " << domer << "_options = {" << endl;
+        jser << "title: 'EstabResets timeline'," << endl;
+        jser << timeline_background_color << ", " << endl;
+        jser << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jser << "lineWidth: 1," << endl;
+        jser << "legend: 'none'," << endl;
+        jser << timeline_fontsize << "," << endl;
+        jser << timeline_chartarea << ", " << endl;
+        jser << "};" << endl;
+        jser << "var " << domer << " = new google.visualization.LineChart(document.getElementById('" << domer << "'));" << endl;
+        jser << domer << ".draw(" << domer << "_data, " << domer << "_options);" << endl;
+
+        jschart << jsao.str();
+        jschart << jspo.str();
+        jschart << jsfa.str();
+        jschart << jser.str();
+      }
+      
+      void chartTCPNetStatSegLoad( const persist::Database &db, const string &domseginout ) {
+        stringstream jsseginout;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(InSegs), avg(OutSegs) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1;" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jsseginout << "var " << domseginout << "_data = google.visualization.arrayToDataTable([" << endl;
+            jsseginout << "['datetime', 'SegIn', 'SegOut' ]," << endl;
+          } else {
+            jsseginout << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jsseginout << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jsseginout << qry.getDouble(1) << ", " <<  qry.getDouble(2) << " ]" << endl;
+
+          iter++;
+        }
+        jsseginout << "]);" << endl;
+        jsseginout << "var " << domseginout << "_options = {" << endl;
+        jsseginout << "title: 'TCP Segments In/Out timeline'," << endl;
+        jsseginout << timeline_background_color << ", " << endl;
+        jsseginout << "lineWidth: 1," << endl;
+        jsseginout << timeline_legend << ", " << endl;
+        jsseginout << timeline_fontsize << "," << endl;
+        jsseginout << timeline_chartarea << ", " << endl;
+        jsseginout << "};" << endl;
+        jsseginout << "var " << domseginout << " = new google.visualization.LineChart(document.getElementById('" << domseginout << "'));" << endl;
+        jsseginout << domseginout << ".draw(" << domseginout << "_data, " << domseginout << "_options);" << endl;
+
+
+
+        jschart << jsseginout.str();
+      }
+      
+      void chartTCPNetStatSegErrors( const persist::Database &db, const string &domsegerror ) {
+        stringstream jssegerror;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(RetransSegs), avg(InErrs), avg(OutRsts), avg(InCsumErrors) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
+            jssegerror << "['datetime', 'RetransSegs', 'InErrs', 'OutRsts', 'InCsumErrors' ]," << endl;
+          } else {
+            jssegerror << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jssegerror << qry.getDouble(1) << ", " <<  qry.getDouble(2) << ", " << qry.getDouble(3) << ", " << qry.getDouble(4) << " ]" << endl;
+
+          iter++;
+        }
+        jssegerror << "]);" << endl;
+        jssegerror << "var " << domsegerror << "_options = {" << endl;
+        jssegerror << "title: 'TCP segment error timeline'," << endl;
+        jssegerror << timeline_background_color << ", " << endl;
+        jssegerror << "lineWidth: 1," << endl;
+        jssegerror << timeline_legend << ", " << endl;
+        jssegerror << timeline_fontsize << "," << endl;
+        jssegerror << timeline_chartarea << ", " << endl;
+        jssegerror << "};" << endl;
+        jssegerror << "var " << domsegerror << " = new google.visualization.LineChart(document.getElementById('" << domsegerror << "'));" << endl;
+        jssegerror << domsegerror << ".draw(" << domsegerror << "_data, " << domsegerror << "_options);" << endl;
+
+
+
+        jschart << jssegerror.str();
+      }                
+
+
+
       void chartTCPServerTimeLine( const persist::Database &db, const string &dom ) {
         stringstream js;
         stringstream jscolumns;
@@ -2841,6 +3025,20 @@ namespace leanux {
         chartNicBWTimeLine( db, "nicrxbwtimeline", "nictxbwtimeline" );
         htmlTimeLine( html, "nicrxbwtimeline", "NIC receive bandwidth timeline" );
         htmlTimeLine( html, "nictxbwtimeline", "NIC transmit bandwidth timeline" );
+
+        html << "<a class=\"anchor\" id=\"timeline_tcpnetstat\"></a><h2>TCP netstat connections</h2>" << endl;
+        chartTCPNetStatConnTimeLine( db, "tcpnetstatactiveopens", "tcpnetstatpassiveopnes", "tcpnetstatfailedattempts", "tcpnetstatestaresets" );
+        htmlTimeLine( html, "tcpnetstatactiveopens", "Netstat ActiveOpens" );
+        htmlTimeLine( html, "tcpnetstatpassiveopnes", "NetStat PassiveOpens" );
+        htmlTimeLine( html, "tcpnetstatfailedattempts", "NetStat FailedAttempts" );
+        htmlTimeLine( html, "tcpnetstatestaresets", "NetStat EstaResets" );
+        
+        html << "<a class=\"anchor\" id=\"timeline_tcpnetstatseginout\"></a><h2>TCP netstat segments</h2>" << endl;
+        chartTCPNetStatSegLoad( db, "tcpnetstatseginout" );
+        htmlTimeLine( html, "tcpnetstatseginout", "Netstat segments in/out" ); 
+        
+        chartTCPNetStatSegErrors( db, "tcpnetstatsegerrors");
+        htmlTimeLine( html, "tcpnetstatsegerrors", "Netstat segment errors" ); 
 
         html << "<a class=\"anchor\" id=\"timeline_tcpserver\"></a><h2>TCP server</h2>" << endl;
         chartTCPServerTimeLine( db, "tcpservertimeline" );
@@ -3375,6 +3573,8 @@ namespace leanux {
                 doc << "<a href=\"#timeline_disk\">Disks</a>" << endl;
                 doc << "<a href=\"#timeline_mount\">Mountpoints</a>" << endl;
                 doc << "<a href=\"#timeline_nic\">NICs</a>" << endl;
+                doc << "<a href=\"#timeline_tcpnetstat\">TCP netstat connections</a>" << endl;
+                doc << "<a href=\"#timeline_tcpnetstatseginout\">TCP netstat segments</a>" << endl;
                 doc << "<a href=\"#timeline_tcpserver\">TCP server</a>" << endl;
                 doc << "<a href=\"#timeline_tcpclient\">TCP client</a>" << endl;
                 doc << "</div>" << endl;

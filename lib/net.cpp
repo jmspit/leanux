@@ -955,7 +955,8 @@ namespace leanux {
                 else if ( token == "TCPMigrateReqFailure" ) stats.TCPMigrateReqFailure = std::atol(value.c_str());
                 else throw Oops( __FILE__, __LINE__, "unknown entry '" + token + "' in /proc/net/netstat" );
 
-                //std::cout << "idx " << idx << " token " << token << " value " << value << std::endl;                
+                // if ( value != "0" )
+                //   std::cout << "idx " << idx << " token " << token << " value " << value << std::endl;                
               }
               idx++;
             }

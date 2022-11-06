@@ -3305,6 +3305,17 @@ namespace leanux {
         }
         html << "</table>" << endl;
       }
+      
+      std::string IdFromCmd( const std::string& cmd ) {
+        std::stringstream ss;
+        for ( auto &c : cmd ) {
+          if ( std::isalpha(c) || std::isdigit(c) ) 
+            ss << c;
+          else
+            ss << '_';
+        }
+        return ss.str();
+      }
 
       void htmlCmdDetails( const persist::Database &db ) {
         html << "<a class=\"anchor\" id=\"cmddetails\"></a><h1>Command details</h1>" << endl;
@@ -3318,7 +3329,7 @@ namespace leanux {
         while ( qry.step() ) {
           stringstream ss_link;
           stringstream ss_menu;
-          ss_link << "cmddetail_" << qry.getText(1);
+          ss_link << "cmddetail_" << IdFromCmd(qry.getText(1));
           ss_menu << qry.getText(1);
           menu_cmds.push_back( std::pair<string,string>( ss_link.str(), ss_menu.str() ) );
           html << "<a class=\"anchor\" id=\"" << ss_link.str() << "\"></a><h2>" << qry.getText(1) << "</h2>" << endl;

@@ -2438,7 +2438,7 @@ namespace leanux {
         stringstream jstxcolumns;
         stringstream jstxdata;
         persist::Query qry(db);
-        qry.prepare( "select nic.device, avg(snapshot.istop), avg(rxpkts)/1000.0, avg(txpkts)/1000.0 from nic,netstat,snapshot "
+        qry.prepare( "select nic.device, avg(snapshot.istop), avg(rxpkts), avg(txpkts) from nic,netstat,snapshot "
                      "where nic.id=netstat.nic and netstat.snapshot=snapshot.id and snapshot>=:from and snapshot <=:to group by nic.device, snapshot.istop/:bucket" );
         qry.bind( 1, snaprange.snap_min );
         qry.bind( 2, snaprange.snap_max );
@@ -2494,7 +2494,7 @@ namespace leanux {
           }
           jsrx << jsrxdata.str();
           jsrx << "var " << domrx << "_options = {" << endl;
-          jsrx << "title: 'NIC receive packet rate (x1000/s)'," << endl;
+          jsrx << "title: 'NIC receive packet rate/s'," << endl;
           jsrx << timeline_background_color << ", " << endl;
           //jsrx << "isStacked: true," << endl;
           jsrx << "lineWidth: 1," << endl;
@@ -2508,7 +2508,7 @@ namespace leanux {
 
           jstx << jstxdata.str();
           jstx << "var " << domtx << "_options = {" << endl;
-          jstx << "title: 'NIC transmit packet rate (x1000/s)'," << endl;
+          jstx << "title: 'NIC transmit packet rate/s'," << endl;
           jstx << timeline_background_color << ", " << endl;
           //jstx << "isStacked: true," << endl;
           jstx << "lineWidth: 1," << endl;
@@ -2731,14 +2731,14 @@ namespace leanux {
         while ( qry.step() ) {
           if ( iter == 0 ) {
             jsseginout << "var " << domseginout << "_data = google.visualization.arrayToDataTable([" << endl;
-            jsseginout << "['datetime', 'SegIn', 'SegOut' ]," << endl;
+            jsseginout << "['datetime', 'SegIn/s', 'SegOut/s' ]," << endl;
           } else {
             jsseginout << ",";
           }
           time_t istop = qry.getDouble(0);
           struct tm *lt = localtime( &istop );
           jsseginout << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
-          jsseginout << qry.getDouble(1) << ", " <<  qry.getDouble(2) << " ]" << endl;
+          jsseginout << qry.getDouble(1)/snaprange.timeline_bucket << ", " <<  qry.getDouble(2)/snaprange.timeline_bucket << " ]" << endl;
 
           iter++;
         }
@@ -2770,14 +2770,15 @@ namespace leanux {
         while ( qry.step() ) {
           if ( iter == 0 ) {
             jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
-            jssegerror << "['datetime', 'RetransSegs', 'InErrs', 'OutRsts', 'InCsumErrors' ]," << endl;
+            jssegerror << "['datetime', 'RetransSegs/s', 'InErrs/s', 'OutRsts/s', 'InCsumErrors/s' ]," << endl;
           } else {
             jssegerror << ",";
           }
           time_t istop = qry.getDouble(0);
           struct tm *lt = localtime( &istop );
           jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
-          jssegerror << qry.getDouble(1) << ", " <<  qry.getDouble(2) << ", " << qry.getDouble(3) << ", " << qry.getDouble(4) << " ]" << endl;
+          jssegerror << qry.getDouble(1)/snaprange.timeline_bucket << ", " <<  qry.getDouble(2)/snaprange.timeline_bucket << ", " 
+                     << qry.getDouble(3)/snaprange.timeline_bucket << ", " << qry.getDouble(4)/snaprange.timeline_bucket << " ]" << endl;
 
           iter++;
         }

@@ -78,7 +78,7 @@ namespace leanux {
       const string timeline_legend = "legend: {position: 'top', maxLines: 3 }";
       const string timeline_background_color = "backgroundColor: '#E0E0E0'";
       const string timeline_fontsize = "fontSize: 10";
-      const long max_chart_pixels = 800;
+      const long max_chart_pixels = 1600;
 
       const double one_gib = 1024.0*1024.0*1024.0;
 

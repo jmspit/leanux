@@ -92,7 +92,7 @@ Succesfull atemmpts to work around infra problems.
 |TCPOFOQueue| ? | ? |
 |TCPOrigDataSent| ? | ? |
 |TCPPureAcks| latency | acknowledgments not containing data payload received |
-|TCPRcvCoalesce| latency | ? |
+|TCPRcvCoalesce| optimization | RSC allows NICs to identify packets that belong to same TCP/IP flow and coalesce them into a single large packet. As a result, TCP/IP stack has to process fewer packets reducing per packet processing costs. |
 |TCPSackFailures| error | ? |
 |TCPSackMerged| ? | ? |
 |TCPSackRecovery| ? | ? |

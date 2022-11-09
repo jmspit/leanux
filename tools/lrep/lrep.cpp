@@ -2797,8 +2797,85 @@ namespace leanux {
 
 
         jschart << jssegerror.str();
-      }                
+      } 
+      
+      void chartTCPNetStatRXPressure( const persist::Database &db, const string &domsegerror ) {
+        stringstream jssegerror;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(PruneCalled) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
+            jssegerror << "['datetime', 'PruneCalled/s' ]," << endl;
+          } else {
+            jssegerror << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jssegerror << qry.getDouble(1)/snaprange.timeline_bucket << " ]" << endl;
 
+          iter++;
+        }
+        jssegerror << "]);" << endl;
+        jssegerror << "var " << domsegerror << "_options = {" << endl;
+        jssegerror << "title: 'TCP RX pressure/s'," << endl;
+        jssegerror << timeline_background_color << ", " << endl;
+        jssegerror << "lineWidth: 1," << endl;
+        jssegerror << timeline_legend << ", " << endl;
+        jssegerror << timeline_fontsize << "," << endl;
+        jssegerror << timeline_chartarea << ", " << endl;
+        jssegerror << "};" << endl;
+        jssegerror << "var " << domsegerror << " = new google.visualization.LineChart(document.getElementById('" << domsegerror << "'));" << endl;
+        jssegerror << domsegerror << ".draw(" << domsegerror << "_data, " << domsegerror << "_options);" << endl;
+
+
+
+        jschart << jssegerror.str();
+      }                        
+
+      void chartTCPNetStatReorder( const persist::Database &db, const string &domsegerror ) {
+        stringstream jssegerror;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(TCPSACKReorder), avg(TCPTSReorder) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
+            jssegerror << "['datetime', 'TCPSACKReorder/s', 'TCPTSReorder/s' ]," << endl;
+          } else {
+            jssegerror << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jssegerror << qry.getDouble(1)/snaprange.timeline_bucket << ", " << qry.getDouble(2)/snaprange.timeline_bucket <<  " ]" << endl;
+
+          iter++;
+        }
+        jssegerror << "]);" << endl;
+        jssegerror << "var " << domsegerror << "_options = {" << endl;
+        jssegerror << "title: 'TCP reordering'," << endl;
+        jssegerror << timeline_background_color << ", " << endl;
+        jssegerror << "lineWidth: 1," << endl;
+        jssegerror << timeline_legend << ", " << endl;
+        jssegerror << timeline_fontsize << "," << endl;
+        jssegerror << timeline_chartarea << ", " << endl;
+        jssegerror << "};" << endl;
+        jssegerror << "var " << domsegerror << " = new google.visualization.LineChart(document.getElementById('" << domsegerror << "'));" << endl;
+        jssegerror << domsegerror << ".draw(" << domsegerror << "_data, " << domsegerror << "_options);" << endl;
+
+
+
+        jschart << jssegerror.str();
+      }                        
 
 
       void chartTCPServerTimeLine( const persist::Database &db, const string &dom ) {
@@ -3034,12 +3111,18 @@ namespace leanux {
         htmlTimeLine( html, "tcpnetstatfailedattempts", "NetStat FailedAttempts" );
         htmlTimeLine( html, "tcpnetstatestaresets", "NetStat EstaResets" );
         
-        html << "<a class=\"anchor\" id=\"timeline_tcpnetstatseginout\"></a><h2>TCP netstat segments</h2>" << endl;
+        html << "<a class=\"anchor\" id=\"timeline_tcpnetstatseginout\"></a><h2>TCP netstat</h2>" << endl;
         chartTCPNetStatSegLoad( db, "tcpnetstatseginout" );
         htmlTimeLine( html, "tcpnetstatseginout", "Netstat segments in/out" ); 
         
         chartTCPNetStatSegErrors( db, "tcpnetstatsegerrors");
-        htmlTimeLine( html, "tcpnetstatsegerrors", "Netstat segment errors" ); 
+        htmlTimeLine( html, "tcpnetstatsegerrors", "Netstat segment errors" );
+        
+        chartTCPNetStatRXPressure( db, "tcpnetstatrxpressure" );
+        htmlTimeLine( html, "tcpnetstatrxpressure", "TCP RX pressure" );
+        
+        chartTCPNetStatReorder( db, "tcpnetstatreorder" );
+        htmlTimeLine( html, "tcpnetstatreorder", "TCP re-ordering" );
 
         html << "<a class=\"anchor\" id=\"timeline_tcpserver\"></a><h2>TCP server</h2>" << endl;
         chartTCPServerTimeLine( db, "tcpservertimeline" );

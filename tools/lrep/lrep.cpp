@@ -2630,16 +2630,16 @@ namespace leanux {
         while ( qry.step() ) {
           if ( iter == 0 ) {
             jsao << "var " << domao << "_data = google.visualization.arrayToDataTable([" << endl;
-            jsao << "['datetime', 'ActiveOpens' ]," << endl;
+            jsao << "['datetime', 'ActiveOpens/s' ]," << endl;
 
             jspo << "var " << dompo << "_data = google.visualization.arrayToDataTable([" << endl;
-            jspo << "['datetime', 'PassiveOpens' ]," << endl;
+            jspo << "['datetime', 'PassiveOpens/s' ]," << endl;
 
             jsfa << "var " << domfa << "_data = google.visualization.arrayToDataTable([" << endl;
-            jsfa << "['datetime', 'AttemptFails' ]," << endl;
+            jsfa << "['datetime', 'AttemptFails/s' ]," << endl;
 
             jser << "var " << domer << "_data = google.visualization.arrayToDataTable([" << endl;
-            jser << "['datetime', 'EstabResets' ]," << endl;
+            jser << "['datetime', 'EstabResets/s' ]," << endl;
 
           } else {
             jsao << ",";
@@ -2650,21 +2650,21 @@ namespace leanux {
           time_t istop = qry.getDouble(0);
           struct tm *lt = localtime( &istop );
           jsao << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
-          jsao << qry.getDouble(1) << " ]" << endl;
+          jsao << qry.getDouble(1)/snaprange.timeline_bucket << " ]" << endl;
 
           jspo << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
-          jspo << qry.getDouble(2) << " ]" << endl;
+          jspo << qry.getDouble(2)/snaprange.timeline_bucket << " ]" << endl;
 
           jsfa << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
-          jsfa << qry.getDouble(3) << " ]" << endl;
+          jsfa << qry.getDouble(3)/snaprange.timeline_bucket << " ]" << endl;
 
           jser << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
-          jser << qry.getDouble(4) << " ]" << endl;
+          jser << qry.getDouble(4)/snaprange.timeline_bucket << " ]" << endl;
           iter++;
         }
         jsao << "]);" << endl;
         jsao << "var " << domao << "_options = {" << endl;
-        jsao << "title: 'ActiveOpens timeline'," << endl;
+        jsao << "title: 'ActiveOpens/s timeline'," << endl;
         jsao << timeline_background_color << ", " << endl;
         jsao << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
         jsao << "lineWidth: 1," << endl;
@@ -2677,7 +2677,7 @@ namespace leanux {
 
         jspo << "]);" << endl;
         jspo << "var " << dompo << "_options = {" << endl;
-        jspo << "title: 'PassiveOpens timeline'," << endl;
+        jspo << "title: 'PassiveOpens/s timeline'," << endl;
         jspo << timeline_background_color << ", " << endl;
         jspo << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
         jspo << "lineWidth: 1," << endl;
@@ -2690,7 +2690,7 @@ namespace leanux {
 
         jsfa << "]);" << endl;
         jsfa << "var " << domfa << "_options = {" << endl;
-        jsfa << "title: 'AttemptFails timeline'," << endl;
+        jsfa << "title: 'AttemptFails/s timeline'," << endl;
         jsfa << timeline_background_color << ", " << endl;
         jsfa << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
         jsfa << "lineWidth: 1," << endl;
@@ -2703,7 +2703,7 @@ namespace leanux {
 
         jser << "]);" << endl;
         jser << "var " << domer << "_options = {" << endl;
-        jser << "title: 'EstabResets timeline'," << endl;
+        jser << "title: 'EstabResets/s timeline'," << endl;
         jser << timeline_background_color << ", " << endl;
         jser << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
         jser << "lineWidth: 1," << endl;

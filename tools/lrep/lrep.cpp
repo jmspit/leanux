@@ -1401,6 +1401,178 @@ namespace leanux {
 
         return result;
       }
+      
+      std::string TCPNetstatTotal( const persist::Database &db, const string &dom ) {
+        persist::Query qry(db);
+        qry.prepare(  "select "
+                      "sum(SyncookiesSent), "
+                      "sum(SyncookiesRecv), "
+                      "sum(SyncookiesFailed), "
+                      "sum(EmbryonicRsts), "
+                      "sum(PruneCalled), "
+                      "sum(RcvPruned), "
+                      "sum(OfoPruned), "
+                      "sum(OutOfWindowIcmps), "
+                      "sum(LockDroppedIcmps), "
+                      "sum(ArpFilter), "
+                      "sum(TW), "
+                      "sum(TWRecycled), "
+                      "sum(TWKilled), "
+                      "sum(PAWSActive), "
+                      "sum(PAWSEstab), "
+                      "sum(DelayedACKs), "
+                      "sum(DelayedACKLocked), "
+                      "sum(DelayedACKLost), "
+                      "sum(ListenOverflows), "
+                      "sum(ListenDrops), "
+                      "sum(TCPHPHits), "
+                      "sum(TCPPureAcks), "
+                      "sum(TCPHPAcks), "
+                      "sum(TCPRenoRecovery), "
+                      "sum(TCPSackRecovery), "
+                      "sum(TCPSACKReneging), "
+                      "sum(TCPSACKReorder), "
+                      "sum(TCPRenoReorder), "
+                      "sum(TCPTSReorder), "
+                      "sum(TCPFullUndo), "
+                      "sum(TCPPartialUndo), "
+                      "sum(TCPDSACKUndo), "
+                      "sum(TCPLossUndo), "
+                      "sum(TCPLostRetransmit), "
+                      "sum(TCPRenoFailures), "
+                      "sum(TCPSackFailures), "
+                      "sum(TCPLossFailures), "
+                      "sum(TCPFastRetrans), "
+                      "sum(TCPSlowStartRetrans), "
+                      "sum(TCPTimeouts), "
+                      "sum(TCPLossProbes), "
+                      "sum(TCPLossProbeRecovery), "
+                      "sum(TCPRenoRecoveryFail), "
+                      "sum(TCPSackRecoveryFail), "
+                      "sum(TCPRcvCollapsed), "
+                      "sum(TCPBacklogCoalesce), "
+                      "sum(TCPDSACKOldSent), "
+                      "sum(TCPDSACKOfoSent), "
+                      "sum(TCPDSACKRecv), "
+                      "sum(TCPDSACKOfoRecv), "
+                      "sum(TCPAbortOnData), "
+                      "sum(TCPAbortOnClose), "
+                      "sum(TCPAbortOnMemory), "
+                      "sum(TCPAbortOnTimeout), "
+                      "sum(TCPAbortOnLinger), "
+                      "sum(TCPAbortFailed), "
+                      "sum(TCPMemoryPressures), "
+                      "sum(TCPMemoryPressuresChrono), "
+                      "sum(TCPSACKDiscard), "
+                      "sum(TCPDSACKIgnoredOld), "
+                      "sum(TCPDSACKIgnoredNoUndo), "
+                      "sum(TCPSpuriousRTOs), "
+                      "sum(TCPMD5NotFound), "
+                      "sum(TCPMD5Unexpected), "
+                      "sum(TCPMD5Failure), "
+                      "sum(TCPSackShifted), "
+                      "sum(TCPSackMerged), "
+                      "sum(TCPSackShiftFallback), "
+                      "sum(TCPBacklogDrop), "
+                      "sum(PFMemallocDrop), "
+                      "sum(TCPMinTTLDrop), "
+                      "sum(TCPDeferAcceptDrop), "
+                      "sum(IPReversePathFilter), "
+                      "sum(TCPTimeWaitOverflow), "
+                      "sum(TCPReqQFullDoCookies), "
+                      "sum(TCPReqQFullDrop), "
+                      "sum(TCPRetransFail), "
+                      "sum(TCPRcvCoalesce), "
+                      "sum(TCPOFOQueue), "
+                      "sum(TCPOFODrop), "
+                      "sum(TCPOFOMerge), "
+                      "sum(TCPChallengeACK), "
+                      "sum(TCPSYNChallenge), "
+                      "sum(TCPFastOpenActive), "
+                      "sum(TCPFastOpenActiveFail), "
+                      "sum(TCPFastOpenPassive), "
+                      "sum(TCPFastOpenPassiveFail), "
+                      "sum(TCPFastOpenListenOverflow), "
+                      "sum(TCPFastOpenCookieReqd), "
+                      "sum(TCPFastOpenBlackhole), "
+                      "sum(TCPSpuriousRtxHostQueues), "
+                      "sum(BusyPollRxPackets), "
+                      "sum(TCPAutoCorking), "
+                      "sum(TCPFromZeroWindowAdv), "
+                      "sum(TCPToZeroWindowAdv), "
+                      "sum(TCPWantZeroWindowAdv), "
+                      "sum(TCPSynRetrans), "
+                      "sum(TCPOrigDataSent), "
+                      "sum(TCPHystartTrainDetect), "
+                      "sum(TCPHystartTrainCwnd), "
+                      "sum(TCPHystartDelayDetect), "
+                      "sum(TCPHystartDelayCwnd), "
+                      "sum(TCPACKSkippedSynRecv), "
+                      "sum(TCPACKSkippedPAWS), "
+                      "sum(TCPACKSkippedSeq), "
+                      "sum(TCPACKSkippedFinWait2), "
+                      "sum(TCPACKSkippedTimeWait), "
+                      "sum(TCPACKSkippedChallenge), "
+                      "sum(TCPWinProbe), "
+                      "sum(TCPKeepAlive), "
+                      "sum(TCPMTUPFail), "
+                      "sum(TCPMTUPSuccess), "
+                      "sum(TCPDelivered), "
+                      "sum(TCPDeliveredCE), "
+                      "sum(TCPAckCompressed), "
+                      "sum(TCPZeroWindowDrop), "
+                      "sum(TCPRcvQDrop), "
+                      "sum(TCPWqueueTooBig), "
+                      "sum(TCPFastOpenPassiveAltKey), "
+                      "sum(TcpTimeoutRehash), "
+                      "sum(TcpDuplicateDataRehash), "
+                      "sum(TCPDSACKRecvSegs), "
+                      "sum(TCPDSACKIgnoredDubious), "
+                      "sum(TCPMigrateReqSuccess), "
+                      "sum(TCPMigrateReqFailure) "
+                      "from tcpstat, snapshot where tcpstat.snapshot=snapshot.id and "
+                      " snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to " );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        std::stringstream js;
+        size_t items = 0;
+        if ( qry.step() ) {
+          js << "var " << dom << "_data = google.visualization.arrayToDataTable([" << endl;
+          js << "['read size', 'count' ]" << endl;
+          for ( int i = 0; i < qry.getColumnCount(); i++ ) {       
+            if ( qry.getDouble(i) > 0.0 ) {
+              items++;
+              if ( i!= 0 ) js << ",";    
+              std::string column =  qry.getColumnName(i);
+              js << "[ '" << column.substr(4,column.length()-5) << "', " << qry.getDouble(i) << " ]";
+            }
+          }
+          js << "]);" << endl;
+          js << "var " << dom << "_options = {" << endl;
+          js << "title: 'TCP netstat totals'," << endl;
+          js << timeline_background_color << ", " << endl;
+          js << "legend: {position: 'none' }," << endl;
+          js << "fontSize: 10," << endl;
+          js << "hAxis: { title: 'count', baselineColor: 'transparent', scaleType: 'log' }," << endl;
+          int cleft = 180;
+          int ctop = 50;
+          int cbottom = 28;
+          int cwidth = 600;
+          int cheight = items * 22 + ctop + cbottom;
+          js << "chartArea: {left:" << cleft << ",top:" << ctop << ",width:" << cwidth << ",height:" << cheight << ",bottom:" << cbottom << " }," << endl;
+          js << "vAxis: { title: 'quantity' }" << endl;
+          js << "};" << endl;
+          js << "var " << dom << " = new google.visualization.BarChart(document.getElementById('" << dom << "'));" << endl;
+          js << dom << ".draw(" << dom << "_data, " << dom << "_options);" << endl;
+
+          jschart << js.str();      
+        }
+
+        stringstream ss;
+        ss << "<div class=\"chart\" id='" << dom << "' style='width: " << "680" << "px; height: " << "1000" << "px;'></div>" << endl;
+        return ss.str();
+
+      }        
 
       void htmlReportAverages( const persist::Database &db ) {
         html << "<a class=\"anchor\" id=\"reportaverage\"></a><h1>Report averages</h1>" << endl;
@@ -1438,6 +1610,9 @@ namespace leanux {
 
         html << "<a class=\"anchor\" id=\"reportaverage_user\"></a><h2>Users</h2>" << endl;
         html << chartUserAverage( db, "global_user" );
+        
+        html << "<a class=\"anchor\" id=\"reportaverage_tcpstat\"></a><h2>TCP statistics</h2>" << endl;
+        html << TCPNetstatTotal( db, "global_tcpstat") << endl;
 
         html << "<a class=\"anchor\" id=\"reportaverage_tcpserver\"></a><h2>TCP server</h2>" << endl;
         html << chartTCPServerAverage( db, "global_tcpserver" );
@@ -3251,8 +3426,8 @@ namespace leanux {
         }
 
         htmlHeatMap( html, netpktmap, "network rx+tx packet rate heatmap", "packets/s", min, max);
-      }
-
+      }        
+      
       void htmlHeatMaps( const persist::Database &db ) {
         html << "<a class=\"anchor\" id=\"heatmaps\"></a><h1>Heat maps</h1>" << endl;
         if ( snaprange.time_max - snaprange.time_min < 2*60*60 ) {
@@ -3653,6 +3828,7 @@ namespace leanux {
                 doc << "<a href=\"#reportaverage_nic\">NICs</a>" << endl;
                 doc << "<a href=\"#reportaverage_cmd\">Commands</a>" << endl;
                 doc << "<a href=\"#reportaverage_user\">Users</a>" << endl;
+                doc << "<a href=\"#reportaverage_tcpstat\">TCP statistics</a>" << endl;
                 doc << "<a href=\"#reportaverage_tcpserver\">TCP server</a>" << endl;
                 doc << "<a href=\"#reportaverage_tcpclient\">TCP client</a>" << endl;
                 doc << "</div>" << endl;

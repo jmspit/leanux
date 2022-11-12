@@ -469,6 +469,10 @@ namespace leanux {
     int Query::getColumnCount() const {
       return sqlite3_column_count( stmt_ );
     }
+    
+    const char* Query::getColumnName( int col ) const {
+      return sqlite3_column_name( stmt_, col );
+    }    
 
   }; // namespace persist
 

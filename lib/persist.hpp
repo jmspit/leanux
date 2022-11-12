@@ -348,6 +348,14 @@ namespace leanux {
          * @return the number of columns
          */
         int getColumnCount() const;
+        
+        /**
+         * @brief Get the name of a column
+         * 
+         * @param col the select list column (start with 0).
+         * @return const char* (eg do not free)
+         */
+        const char* getColumnName( int col ) const;
     };
 
 

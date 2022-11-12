@@ -1538,18 +1538,18 @@ namespace leanux {
         size_t items = 0;
         if ( qry.step() ) {
           js << "var " << dom << "_data = google.visualization.arrayToDataTable([" << endl;
-          js << "['read size', 'count' ]" << endl;
+          js << "['quantity', 'events/s' ]" << endl;
           for ( int i = 0; i < qry.getColumnCount(); i++ ) {       
             if ( qry.getDouble(i) > 0.0 ) {
               items++;
               if ( i!= 0 ) js << ",";    
               std::string column =  qry.getColumnName(i);
-              js << "[ '" << column.substr(4,column.length()-5) << "', " << qry.getDouble(i) << " ]";
+              js << "[ '" << column.substr(4,column.length()-5) << "', " << qry.getDouble(i)/(double)(snaprange.time_max-snaprange.time_min) << " ]";
             }
           }
           js << "]);" << endl;
           js << "var " << dom << "_options = {" << endl;
-          js << "title: 'TCP netstat totals'," << endl;
+          js << "title: 'TCP netstat events/s'," << endl;
           js << timeline_background_color << ", " << endl;
           js << "legend: {position: 'none' }," << endl;
           js << "fontSize: 10," << endl;

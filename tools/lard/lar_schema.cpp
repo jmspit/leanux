@@ -692,6 +692,11 @@ namespace leanux {
         dml.bind( 1, snapid );
         dml.execute();
         dml.reset();
+        
+        dml.prepare( "delete from tcpstat where snapshot<=:snapid" );
+        dml.bind( 1, snapid );
+        dml.execute();
+        dml.reset();                      
 
         dml.prepare( "delete from snapshot where id<=:snapid" );
         dml.bind( 1, snapid );

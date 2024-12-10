@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -61,11 +61,11 @@ namespace leanux {
 
     namespace lmon {
 
-      /** Alert message id for significant amount of unused hugepages. */
-      const unsigned int ALERT_HUGEPAGES_UNUSED = 1;
+      // /** Alert message id for significant amount of unused hugepages. */
+      // const unsigned int ALERT_HUGEPAGES_UNUSED = 1;
 
-      /** Alert message id for significant and sustained amount of major faults. */
-      const unsigned int ALERT_MAJORFAULTS = 2;
+      // /** Alert message id for significant and sustained amount of major faults. */
+      // const unsigned int ALERT_MAJORFAULTS = 2;
       const unsigned int MSG_DISTRO = 3;
       const unsigned int MSG_MACHINE = 4;
       const unsigned int MSG_CPUMODEL = 5;
@@ -1242,7 +1242,7 @@ namespace leanux {
         const int width_pgrp = 6;
         const int width_q = 2;
         const int width_user = 8;
-        const int width_comm = 16;
+        const int width_comm = CMD_NAME_MAX-1;
         const int width_time = 6;
         const int width_utime = 6;
         const int width_stime = 6;
@@ -1364,8 +1364,8 @@ namespace leanux {
       }
 
       int NetView::getOptimalHeight() {
-        net::NetStatDeviceMap stat;
-        net::getNetStat( stat );
+        net::NetDeviceStatDeviceMap stat;
+        net::getNetDeviceStat( stat );
         return std::max( (size_t)getMinHeight(), stat.size()+3 );
       }
 
@@ -1414,7 +1414,7 @@ namespace leanux {
           double s_tx_bytes = 0.0;
           double s_rx_packets = 0.0;
           double s_tx_packets = 0.0;
-          for ( net::NetStatDeviceVector::const_iterator i = data.delta.begin(); i != data.delta.end(); i++, y++ ) {
+          for ( net::NetDeviceStatDeviceVector::const_iterator i = data.delta.begin(); i != data.delta.end(); i++, y++ ) {
             if ( y < height_ ) {
               x = 0;
               textOutMoveXRA( x, y, device_width, attr_normal_text_, (*i).device );
@@ -1423,10 +1423,10 @@ namespace leanux {
               textOutMoveXRA( x, y, rxpkt_width, attr_normal_text_, util::NumStr( (*i).rx_packets ) );
               textOutMoveXRA( x, y, txpkt_width, attr_normal_text_, util::NumStr( (*i).tx_packets ) );
               if ( (*i).rx_packets > 0 )
-                textOutMoveXRA( x, y, rxsz_width, attr_normal_text_, util::ByteStr( (*i).rx_bytes/ (*i).rx_packets, 3 ) );
+                textOutMoveXRA( x, y, rxsz_width, attr_normal_text_, util::ByteStr( (double)(*i).rx_bytes/ (*i).rx_packets, 3 ) );
               else x += rxsz_width + 1;
               if ( (*i).tx_packets > 0 )
-                textOutMoveXRA( x, y, txsz_width, attr_normal_text_, util::ByteStr( (*i).tx_bytes/ (*i).tx_packets, 3 ) );
+                textOutMoveXRA( x, y, txsz_width, attr_normal_text_, util::ByteStr( (double)(*i).tx_bytes/ (*i).tx_packets, 3 ) );
               else x += txsz_width + 1;
               textOutMoveXRA( x, y, rxerr_width, attr_normal_text_, util::NumStr( (*i).rx_errors ) );
               textOutMoveXRA( x, y, txerr_width, attr_normal_text_, util::NumStr( (*i).tx_errors ) );

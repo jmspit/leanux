@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -78,7 +78,7 @@ namespace leanux {
       const string timeline_legend = "legend: {position: 'top', maxLines: 3 }";
       const string timeline_background_color = "backgroundColor: '#E0E0E0'";
       const string timeline_fontsize = "fontSize: 10";
-      const long max_chart_pixels = 800;
+      const long max_chart_pixels = 1600;
 
       const double one_gib = 1024.0*1024.0*1024.0;
 
@@ -1059,7 +1059,7 @@ namespace leanux {
         stringstream js;
         persist::Query qry(db);
         qry.prepare( "select tcpkey.ip, tcpkey.port, sum(esta)*1.0/cnt.num esta from tcpserverstat, tcpkey, (select count(1) num "
-                     " from snapshot where id>=:from and id <=:to) cnt where tcpserverstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 10;" );
+                     " from snapshot where id>=:from and id <=:to) cnt where tcpserverstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 20;" );
         qry.bind( 1, snaprange.snap_min );
         qry.bind( 2, snaprange.snap_max );
         int iter = 0;
@@ -1122,7 +1122,7 @@ namespace leanux {
         stringstream js;
         persist::Query qry(db);
         qry.prepare( "select tcpkey.ip, tcpkey.port, sum(esta)*1.0/cnt.num esta from tcpclientstat, tcpkey, (select count(1) num "
-                     " from snapshot where id>=:from and id <=:to) cnt where tcpclientstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 10;" );
+                     " from snapshot where id>=:from and id <=:to) cnt where tcpclientstat.tcpkey=tcpkey.id and snapshot>=:from and snapshot <=:to group by tcpkey.ip, tcpkey.port order by esta desc limit 20;" );
         qry.bind( 1, snaprange.snap_min );
         qry.bind( 2, snaprange.snap_max );
         int iter = 0;
@@ -1401,6 +1401,178 @@ namespace leanux {
 
         return result;
       }
+      
+      std::string TCPNetstatTotal( const persist::Database &db, const string &dom ) {
+        persist::Query qry(db);
+        qry.prepare(  "select "
+                      "sum(SyncookiesSent), "
+                      "sum(SyncookiesRecv), "
+                      "sum(SyncookiesFailed), "
+                      "sum(EmbryonicRsts), "
+                      "sum(PruneCalled), "
+                      "sum(RcvPruned), "
+                      "sum(OfoPruned), "
+                      "sum(OutOfWindowIcmps), "
+                      "sum(LockDroppedIcmps), "
+                      "sum(ArpFilter), "
+                      "sum(TW), "
+                      "sum(TWRecycled), "
+                      "sum(TWKilled), "
+                      "sum(PAWSActive), "
+                      "sum(PAWSEstab), "
+                      "sum(DelayedACKs), "
+                      "sum(DelayedACKLocked), "
+                      "sum(DelayedACKLost), "
+                      "sum(ListenOverflows), "
+                      "sum(ListenDrops), "
+                      "sum(TCPHPHits), "
+                      "sum(TCPPureAcks), "
+                      "sum(TCPHPAcks), "
+                      "sum(TCPRenoRecovery), "
+                      "sum(TCPSackRecovery), "
+                      "sum(TCPSACKReneging), "
+                      "sum(TCPSACKReorder), "
+                      "sum(TCPRenoReorder), "
+                      "sum(TCPTSReorder), "
+                      "sum(TCPFullUndo), "
+                      "sum(TCPPartialUndo), "
+                      "sum(TCPDSACKUndo), "
+                      "sum(TCPLossUndo), "
+                      "sum(TCPLostRetransmit), "
+                      "sum(TCPRenoFailures), "
+                      "sum(TCPSackFailures), "
+                      "sum(TCPLossFailures), "
+                      "sum(TCPFastRetrans), "
+                      "sum(TCPSlowStartRetrans), "
+                      "sum(TCPTimeouts), "
+                      "sum(TCPLossProbes), "
+                      "sum(TCPLossProbeRecovery), "
+                      "sum(TCPRenoRecoveryFail), "
+                      "sum(TCPSackRecoveryFail), "
+                      "sum(TCPRcvCollapsed), "
+                      "sum(TCPBacklogCoalesce), "
+                      "sum(TCPDSACKOldSent), "
+                      "sum(TCPDSACKOfoSent), "
+                      "sum(TCPDSACKRecv), "
+                      "sum(TCPDSACKOfoRecv), "
+                      "sum(TCPAbortOnData), "
+                      "sum(TCPAbortOnClose), "
+                      "sum(TCPAbortOnMemory), "
+                      "sum(TCPAbortOnTimeout), "
+                      "sum(TCPAbortOnLinger), "
+                      "sum(TCPAbortFailed), "
+                      "sum(TCPMemoryPressures), "
+                      "sum(TCPMemoryPressuresChrono), "
+                      "sum(TCPSACKDiscard), "
+                      "sum(TCPDSACKIgnoredOld), "
+                      "sum(TCPDSACKIgnoredNoUndo), "
+                      "sum(TCPSpuriousRTOs), "
+                      "sum(TCPMD5NotFound), "
+                      "sum(TCPMD5Unexpected), "
+                      "sum(TCPMD5Failure), "
+                      "sum(TCPSackShifted), "
+                      "sum(TCPSackMerged), "
+                      "sum(TCPSackShiftFallback), "
+                      "sum(TCPBacklogDrop), "
+                      "sum(PFMemallocDrop), "
+                      "sum(TCPMinTTLDrop), "
+                      "sum(TCPDeferAcceptDrop), "
+                      "sum(IPReversePathFilter), "
+                      "sum(TCPTimeWaitOverflow), "
+                      "sum(TCPReqQFullDoCookies), "
+                      "sum(TCPReqQFullDrop), "
+                      "sum(TCPRetransFail), "
+                      "sum(TCPRcvCoalesce), "
+                      "sum(TCPOFOQueue), "
+                      "sum(TCPOFODrop), "
+                      "sum(TCPOFOMerge), "
+                      "sum(TCPChallengeACK), "
+                      "sum(TCPSYNChallenge), "
+                      "sum(TCPFastOpenActive), "
+                      "sum(TCPFastOpenActiveFail), "
+                      "sum(TCPFastOpenPassive), "
+                      "sum(TCPFastOpenPassiveFail), "
+                      "sum(TCPFastOpenListenOverflow), "
+                      "sum(TCPFastOpenCookieReqd), "
+                      "sum(TCPFastOpenBlackhole), "
+                      "sum(TCPSpuriousRtxHostQueues), "
+                      "sum(BusyPollRxPackets), "
+                      "sum(TCPAutoCorking), "
+                      "sum(TCPFromZeroWindowAdv), "
+                      "sum(TCPToZeroWindowAdv), "
+                      "sum(TCPWantZeroWindowAdv), "
+                      "sum(TCPSynRetrans), "
+                      "sum(TCPOrigDataSent), "
+                      "sum(TCPHystartTrainDetect), "
+                      "sum(TCPHystartTrainCwnd), "
+                      "sum(TCPHystartDelayDetect), "
+                      "sum(TCPHystartDelayCwnd), "
+                      "sum(TCPACKSkippedSynRecv), "
+                      "sum(TCPACKSkippedPAWS), "
+                      "sum(TCPACKSkippedSeq), "
+                      "sum(TCPACKSkippedFinWait2), "
+                      "sum(TCPACKSkippedTimeWait), "
+                      "sum(TCPACKSkippedChallenge), "
+                      "sum(TCPWinProbe), "
+                      "sum(TCPKeepAlive), "
+                      "sum(TCPMTUPFail), "
+                      "sum(TCPMTUPSuccess), "
+                      "sum(TCPDelivered), "
+                      "sum(TCPDeliveredCE), "
+                      "sum(TCPAckCompressed), "
+                      "sum(TCPZeroWindowDrop), "
+                      "sum(TCPRcvQDrop), "
+                      "sum(TCPWqueueTooBig), "
+                      "sum(TCPFastOpenPassiveAltKey), "
+                      "sum(TcpTimeoutRehash), "
+                      "sum(TcpDuplicateDataRehash), "
+                      "sum(TCPDSACKRecvSegs), "
+                      "sum(TCPDSACKIgnoredDubious), "
+                      "sum(TCPMigrateReqSuccess), "
+                      "sum(TCPMigrateReqFailure) "
+                      "from tcpstat, snapshot where tcpstat.snapshot=snapshot.id and "
+                      " snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to " );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        std::stringstream js;
+        size_t items = 0;
+        if ( qry.step() ) {
+          js << "var " << dom << "_data = google.visualization.arrayToDataTable([" << endl;
+          js << "['quantity', 'events/s' ]" << endl;
+          for ( int i = 0; i < qry.getColumnCount(); i++ ) {       
+            if ( qry.getDouble(i) > 0.0 ) {
+              items++;
+              if ( i!= 0 ) js << ",";    
+              std::string column =  qry.getColumnName(i);
+              js << "[ '" << column.substr(4,column.length()-5) << "', " << qry.getDouble(i)/(double)(snaprange.time_max-snaprange.time_min) << " ]";
+            }
+          }
+          js << "]);" << endl;
+          js << "var " << dom << "_options = {" << endl;
+          js << "title: 'TCP netstat events/s'," << endl;
+          js << timeline_background_color << ", " << endl;
+          js << "legend: {position: 'none' }," << endl;
+          js << "fontSize: 10," << endl;
+          js << "hAxis: { title: 'count', baselineColor: 'transparent', scaleType: 'log' }," << endl;
+          int cleft = 180;
+          int ctop = 50;
+          int cbottom = 28;
+          int cwidth = 600;
+          int cheight = items * 22 + ctop + cbottom;
+          js << "chartArea: {left:" << cleft << ",top:" << ctop << ",width:" << cwidth << ",height:" << cheight << ",bottom:" << cbottom << " }," << endl;
+          js << "vAxis: { title: 'quantity' }" << endl;
+          js << "};" << endl;
+          js << "var " << dom << " = new google.visualization.BarChart(document.getElementById('" << dom << "'));" << endl;
+          js << dom << ".draw(" << dom << "_data, " << dom << "_options);" << endl;
+
+          jschart << js.str();      
+        }
+
+        stringstream ss;
+        ss << "<div class=\"chart\" id='" << dom << "' style='width: " << "680" << "px; height: " << "1000" << "px;'></div>" << endl;
+        return ss.str();
+
+      }        
 
       void htmlReportAverages( const persist::Database &db ) {
         html << "<a class=\"anchor\" id=\"reportaverage\"></a><h1>Report averages</h1>" << endl;
@@ -1438,6 +1610,9 @@ namespace leanux {
 
         html << "<a class=\"anchor\" id=\"reportaverage_user\"></a><h2>Users</h2>" << endl;
         html << chartUserAverage( db, "global_user" );
+        
+        html << "<a class=\"anchor\" id=\"reportaverage_tcpstat\"></a><h2>TCP statistics</h2>" << endl;
+        html << TCPNetstatTotal( db, "global_tcpstat") << endl;
 
         html << "<a class=\"anchor\" id=\"reportaverage_tcpserver\"></a><h2>TCP server</h2>" << endl;
         html << chartTCPServerAverage( db, "global_tcpserver" );
@@ -2438,7 +2613,7 @@ namespace leanux {
         stringstream jstxcolumns;
         stringstream jstxdata;
         persist::Query qry(db);
-        qry.prepare( "select nic.device, avg(snapshot.istop), avg(rxpkts)/1000.0, avg(txpkts)/1000.0 from nic,netstat,snapshot "
+        qry.prepare( "select nic.device, avg(snapshot.istop), avg(rxpkts), avg(txpkts) from nic,netstat,snapshot "
                      "where nic.id=netstat.nic and netstat.snapshot=snapshot.id and snapshot>=:from and snapshot <=:to group by nic.device, snapshot.istop/:bucket" );
         qry.bind( 1, snaprange.snap_min );
         qry.bind( 2, snaprange.snap_max );
@@ -2494,7 +2669,7 @@ namespace leanux {
           }
           jsrx << jsrxdata.str();
           jsrx << "var " << domrx << "_options = {" << endl;
-          jsrx << "title: 'NIC receive packet rate (x1000/s)'," << endl;
+          jsrx << "title: 'NIC receive packet rate/s'," << endl;
           jsrx << timeline_background_color << ", " << endl;
           //jsrx << "isStacked: true," << endl;
           jsrx << "lineWidth: 1," << endl;
@@ -2508,7 +2683,7 @@ namespace leanux {
 
           jstx << jstxdata.str();
           jstx << "var " << domtx << "_options = {" << endl;
-          jstx << "title: 'NIC transmit packet rate (x1000/s)'," << endl;
+          jstx << "title: 'NIC transmit packet rate/s'," << endl;
           jstx << timeline_background_color << ", " << endl;
           //jstx << "isStacked: true," << endl;
           jstx << "lineWidth: 1," << endl;
@@ -2615,6 +2790,268 @@ namespace leanux {
           jschart << jstx.str();
         }
       }
+
+      void chartTCPNetStatConnTimeLine( const persist::Database &db, const string &domao, const string &dompo, const string& domfa, const string& domer ) {
+        stringstream jsao;
+        stringstream jspo;
+        stringstream jsfa;
+        stringstream jser;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(ActiveOpens), avg(PassiveOpens), avg(AttemptFails), avg(EstabResets) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1;" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jsao << "var " << domao << "_data = google.visualization.arrayToDataTable([" << endl;
+            jsao << "['datetime', 'ActiveOpens/s' ]," << endl;
+
+            jspo << "var " << dompo << "_data = google.visualization.arrayToDataTable([" << endl;
+            jspo << "['datetime', 'PassiveOpens/s' ]," << endl;
+
+            jsfa << "var " << domfa << "_data = google.visualization.arrayToDataTable([" << endl;
+            jsfa << "['datetime', 'AttemptFails/s' ]," << endl;
+
+            jser << "var " << domer << "_data = google.visualization.arrayToDataTable([" << endl;
+            jser << "['datetime', 'EstabResets/s' ]," << endl;
+
+          } else {
+            jsao << ",";
+            jspo << ",";
+            jsfa << ",";
+            jser << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jsao << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jsao << qry.getDouble(1)/snaprange.timeline_bucket << " ]" << endl;
+
+          jspo << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jspo << qry.getDouble(2)/snaprange.timeline_bucket << " ]" << endl;
+
+          jsfa << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jsfa << qry.getDouble(3)/snaprange.timeline_bucket << " ]" << endl;
+
+          jser << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jser << qry.getDouble(4)/snaprange.timeline_bucket << " ]" << endl;
+          iter++;
+        }
+        jsao << "]);" << endl;
+        jsao << "var " << domao << "_options = {" << endl;
+        jsao << "title: 'ActiveOpens/s timeline'," << endl;
+        jsao << timeline_background_color << ", " << endl;
+        jsao << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jsao << "lineWidth: 1," << endl;
+        jsao << "legend: 'none'," << endl;
+        jsao << timeline_fontsize << "," << endl;
+        jsao << timeline_chartarea << ", " << endl;
+        jsao << "};" << endl;
+        jsao << "var " << domao << " = new google.visualization.LineChart(document.getElementById('" << domao << "'));" << endl;
+        jsao << domao << ".draw(" << domao << "_data, " << domao << "_options);" << endl;
+
+        jspo << "]);" << endl;
+        jspo << "var " << dompo << "_options = {" << endl;
+        jspo << "title: 'PassiveOpens/s timeline'," << endl;
+        jspo << timeline_background_color << ", " << endl;
+        jspo << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jspo << "lineWidth: 1," << endl;
+        jspo << "legend: 'none'," << endl;
+        jspo << timeline_fontsize << "," << endl;
+        jspo << timeline_chartarea << ", " << endl;
+        jspo << "};" << endl;
+        jspo << "var " << dompo << " = new google.visualization.LineChart(document.getElementById('" << dompo << "'));" << endl;
+        jspo << dompo << ".draw(" << dompo << "_data, " << dompo << "_options);" << endl;
+
+        jsfa << "]);" << endl;
+        jsfa << "var " << domfa << "_options = {" << endl;
+        jsfa << "title: 'AttemptFails/s timeline'," << endl;
+        jsfa << timeline_background_color << ", " << endl;
+        jsfa << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jsfa << "lineWidth: 1," << endl;
+        jsfa << "legend: 'none'," << endl;
+        jsfa << timeline_fontsize << "," << endl;
+        jsfa << timeline_chartarea << ", " << endl;
+        jsfa << "};" << endl;
+        jsfa << "var " << domfa << " = new google.visualization.LineChart(document.getElementById('" << domfa << "'));" << endl;
+        jsfa << domfa << ".draw(" << domfa << "_data, " << domfa << "_options);" << endl;
+
+        jser << "]);" << endl;
+        jser << "var " << domer << "_options = {" << endl;
+        jser << "title: 'EstabResets/s timeline'," << endl;
+        jser << timeline_background_color << ", " << endl;
+        jser << "colors: [color_user_cpu, color_system_cpu, color_iowait_cpu, color_nice_cpu, color_irq_cpu,color_softirq_cpu]," << endl;
+        jser << "lineWidth: 1," << endl;
+        jser << "legend: 'none'," << endl;
+        jser << timeline_fontsize << "," << endl;
+        jser << timeline_chartarea << ", " << endl;
+        jser << "};" << endl;
+        jser << "var " << domer << " = new google.visualization.LineChart(document.getElementById('" << domer << "'));" << endl;
+        jser << domer << ".draw(" << domer << "_data, " << domer << "_options);" << endl;
+
+        jschart << jsao.str();
+        jschart << jspo.str();
+        jschart << jsfa.str();
+        jschart << jser.str();
+      }
+      
+      void chartTCPNetStatSegLoad( const persist::Database &db, const string &domseginout ) {
+        stringstream jsseginout;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(InSegs), avg(OutSegs) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1;" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jsseginout << "var " << domseginout << "_data = google.visualization.arrayToDataTable([" << endl;
+            jsseginout << "['datetime', 'SegIn/s', 'SegOut/s' ]," << endl;
+          } else {
+            jsseginout << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jsseginout << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jsseginout << qry.getDouble(1)/snaprange.timeline_bucket << ", " <<  qry.getDouble(2)/snaprange.timeline_bucket << " ]" << endl;
+
+          iter++;
+        }
+        jsseginout << "]);" << endl;
+        jsseginout << "var " << domseginout << "_options = {" << endl;
+        jsseginout << "title: 'TCP Segments In/Out timeline'," << endl;
+        jsseginout << timeline_background_color << ", " << endl;
+        jsseginout << "lineWidth: 1," << endl;
+        jsseginout << timeline_legend << ", " << endl;
+        jsseginout << timeline_fontsize << "," << endl;
+        jsseginout << timeline_chartarea << ", " << endl;
+        jsseginout << "};" << endl;
+        jsseginout << "var " << domseginout << " = new google.visualization.LineChart(document.getElementById('" << domseginout << "'));" << endl;
+        jsseginout << domseginout << ".draw(" << domseginout << "_data, " << domseginout << "_options);" << endl;
+
+
+
+        jschart << jsseginout.str();
+      }
+      
+      void chartTCPNetStatSegErrors( const persist::Database &db, const string &domsegerror ) {
+        stringstream jssegerror;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(RetransSegs), avg(InErrs), avg(OutRsts), avg(InCsumErrors) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
+            jssegerror << "['datetime', 'RetransSegs/s', 'InErrs/s', 'OutRsts/s', 'InCsumErrors/s' ]," << endl;
+          } else {
+            jssegerror << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jssegerror << qry.getDouble(1)/snaprange.timeline_bucket << ", " <<  qry.getDouble(2)/snaprange.timeline_bucket << ", " 
+                     << qry.getDouble(3)/snaprange.timeline_bucket << ", " << qry.getDouble(4)/snaprange.timeline_bucket << " ]" << endl;
+
+          iter++;
+        }
+        jssegerror << "]);" << endl;
+        jssegerror << "var " << domsegerror << "_options = {" << endl;
+        jssegerror << "title: 'TCP segment error timeline'," << endl;
+        jssegerror << timeline_background_color << ", " << endl;
+        jssegerror << "lineWidth: 1," << endl;
+        jssegerror << timeline_legend << ", " << endl;
+        jssegerror << timeline_fontsize << "," << endl;
+        jssegerror << timeline_chartarea << ", " << endl;
+        jssegerror << "};" << endl;
+        jssegerror << "var " << domsegerror << " = new google.visualization.LineChart(document.getElementById('" << domsegerror << "'));" << endl;
+        jssegerror << domsegerror << ".draw(" << domsegerror << "_data, " << domsegerror << "_options);" << endl;
+
+
+
+        jschart << jssegerror.str();
+      } 
+      
+      void chartTCPNetStatRXPressure( const persist::Database &db, const string &domsegerror ) {
+        stringstream jssegerror;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(PruneCalled) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
+            jssegerror << "['datetime', 'PruneCalled/s' ]," << endl;
+          } else {
+            jssegerror << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jssegerror << qry.getDouble(1)/snaprange.timeline_bucket << " ]" << endl;
+
+          iter++;
+        }
+        jssegerror << "]);" << endl;
+        jssegerror << "var " << domsegerror << "_options = {" << endl;
+        jssegerror << "title: 'TCP RX pressure/s'," << endl;
+        jssegerror << timeline_background_color << ", " << endl;
+        jssegerror << "lineWidth: 1," << endl;
+        jssegerror << timeline_legend << ", " << endl;
+        jssegerror << timeline_fontsize << "," << endl;
+        jssegerror << timeline_chartarea << ", " << endl;
+        jssegerror << "};" << endl;
+        jssegerror << "var " << domsegerror << " = new google.visualization.LineChart(document.getElementById('" << domsegerror << "'));" << endl;
+        jssegerror << domsegerror << ".draw(" << domsegerror << "_data, " << domsegerror << "_options);" << endl;
+
+
+
+        jschart << jssegerror.str();
+      }                        
+
+      void chartTCPNetStatReorder( const persist::Database &db, const string &domsegerror ) {
+        stringstream jssegerror;
+        persist::Query qry(db);
+        qry.prepare( "select avg(snapshot.istop), avg(TCPSACKReorder), avg(TCPTSReorder) from snapshot, tcpstat where snapshot.id=tcpstat.snapshot and snapshot.id>=:from and snapshot.id <=:to group by snapshot.istop/:bucket order by 1" );
+        qry.bind( 1, snaprange.snap_min );
+        qry.bind( 2, snaprange.snap_max );
+        qry.bind( 3, snaprange.timeline_bucket );
+        int iter = 0;
+        while ( qry.step() ) {
+          if ( iter == 0 ) {
+            jssegerror << "var " << domsegerror << "_data = google.visualization.arrayToDataTable([" << endl;
+            jssegerror << "['datetime', 'TCPSACKReorder/s', 'TCPTSReorder/s' ]," << endl;
+          } else {
+            jssegerror << ",";
+          }
+          time_t istop = qry.getDouble(0);
+          struct tm *lt = localtime( &istop );
+          jssegerror << "[ new Date( " << lt->tm_year + 1900 << ", " << lt->tm_mon << ", " << lt->tm_mday << ", " << lt->tm_hour << ", " << lt->tm_min << ", " << lt->tm_sec << ", 0.0 ), ";
+          jssegerror << qry.getDouble(1)/snaprange.timeline_bucket << ", " << qry.getDouble(2)/snaprange.timeline_bucket <<  " ]" << endl;
+
+          iter++;
+        }
+        jssegerror << "]);" << endl;
+        jssegerror << "var " << domsegerror << "_options = {" << endl;
+        jssegerror << "title: 'TCP reordering'," << endl;
+        jssegerror << timeline_background_color << ", " << endl;
+        jssegerror << "lineWidth: 1," << endl;
+        jssegerror << timeline_legend << ", " << endl;
+        jssegerror << timeline_fontsize << "," << endl;
+        jssegerror << timeline_chartarea << ", " << endl;
+        jssegerror << "};" << endl;
+        jssegerror << "var " << domsegerror << " = new google.visualization.LineChart(document.getElementById('" << domsegerror << "'));" << endl;
+        jssegerror << domsegerror << ".draw(" << domsegerror << "_data, " << domsegerror << "_options);" << endl;
+
+
+
+        jschart << jssegerror.str();
+      }                        
+
 
       void chartTCPServerTimeLine( const persist::Database &db, const string &dom ) {
         stringstream js;
@@ -2842,6 +3279,26 @@ namespace leanux {
         htmlTimeLine( html, "nicrxbwtimeline", "NIC receive bandwidth timeline" );
         htmlTimeLine( html, "nictxbwtimeline", "NIC transmit bandwidth timeline" );
 
+        html << "<a class=\"anchor\" id=\"timeline_tcpnetstat\"></a><h2>TCP netstat connections</h2>" << endl;
+        chartTCPNetStatConnTimeLine( db, "tcpnetstatactiveopens", "tcpnetstatpassiveopnes", "tcpnetstatfailedattempts", "tcpnetstatestaresets" );
+        htmlTimeLine( html, "tcpnetstatactiveopens", "Netstat ActiveOpens" );
+        htmlTimeLine( html, "tcpnetstatpassiveopnes", "NetStat PassiveOpens" );
+        htmlTimeLine( html, "tcpnetstatfailedattempts", "NetStat FailedAttempts" );
+        htmlTimeLine( html, "tcpnetstatestaresets", "NetStat EstaResets" );
+        
+        html << "<a class=\"anchor\" id=\"timeline_tcpnetstatseginout\"></a><h2>TCP netstat</h2>" << endl;
+        chartTCPNetStatSegLoad( db, "tcpnetstatseginout" );
+        htmlTimeLine( html, "tcpnetstatseginout", "Netstat segments in/out" ); 
+        
+        chartTCPNetStatSegErrors( db, "tcpnetstatsegerrors");
+        htmlTimeLine( html, "tcpnetstatsegerrors", "Netstat segment errors" );
+        
+        chartTCPNetStatRXPressure( db, "tcpnetstatrxpressure" );
+        htmlTimeLine( html, "tcpnetstatrxpressure", "TCP RX pressure" );
+        
+        chartTCPNetStatReorder( db, "tcpnetstatreorder" );
+        htmlTimeLine( html, "tcpnetstatreorder", "TCP re-ordering" );
+
         html << "<a class=\"anchor\" id=\"timeline_tcpserver\"></a><h2>TCP server</h2>" << endl;
         chartTCPServerTimeLine( db, "tcpservertimeline" );
         htmlTimeLine( html, "tcpservertimeline", "TCP server timeline" );
@@ -2969,8 +3426,8 @@ namespace leanux {
         }
 
         htmlHeatMap( html, netpktmap, "network rx+tx packet rate heatmap", "packets/s", min, max);
-      }
-
+      }        
+      
       void htmlHeatMaps( const persist::Database &db ) {
         html << "<a class=\"anchor\" id=\"heatmaps\"></a><h1>Heat maps</h1>" << endl;
         if ( snaprange.time_max - snaprange.time_min < 2*60*60 ) {
@@ -3106,6 +3563,17 @@ namespace leanux {
         }
         html << "</table>" << endl;
       }
+      
+      std::string IdFromCmd( const std::string& cmd ) {
+        std::stringstream ss;
+        for ( auto &c : cmd ) {
+          if ( std::isalpha(c) || std::isdigit(c) ) 
+            ss << c;
+          else
+            ss << '_';
+        }
+        return ss.str();
+      }
 
       void htmlCmdDetails( const persist::Database &db ) {
         html << "<a class=\"anchor\" id=\"cmddetails\"></a><h1>Command details</h1>" << endl;
@@ -3119,7 +3587,7 @@ namespace leanux {
         while ( qry.step() ) {
           stringstream ss_link;
           stringstream ss_menu;
-          ss_link << "cmddetail_" << qry.getText(1);
+          ss_link << "cmddetail_" << IdFromCmd(qry.getText(1));
           ss_menu << qry.getText(1);
           menu_cmds.push_back( std::pair<string,string>( ss_link.str(), ss_menu.str() ) );
           html << "<a class=\"anchor\" id=\"" << ss_link.str() << "\"></a><h2>" << qry.getText(1) << "</h2>" << endl;
@@ -3320,7 +3788,7 @@ namespace leanux {
                 sw2.stop();
                 cout <<  setprecision(3) << sw2.getElapsedSeconds() << "s" << endl << flush;
 
-                html << "<p class=\"foot\">This report is generated with lrep, part of the <a href=\"https://www.o-rho.com/leanux\">leanux</a> toolkit.</p>" << endl;
+                html << "<p class=\"foot\">This report is generated with lrep, part of the <a href=\"https://github.com/jmspit/leanux/leanux\">leanux</a> toolkit.</p>" << endl;
 
                 // write the html document
                 cout << "writing doc ..." << flush;
@@ -3360,6 +3828,7 @@ namespace leanux {
                 doc << "<a href=\"#reportaverage_nic\">NICs</a>" << endl;
                 doc << "<a href=\"#reportaverage_cmd\">Commands</a>" << endl;
                 doc << "<a href=\"#reportaverage_user\">Users</a>" << endl;
+                doc << "<a href=\"#reportaverage_tcpstat\">TCP statistics</a>" << endl;
                 doc << "<a href=\"#reportaverage_tcpserver\">TCP server</a>" << endl;
                 doc << "<a href=\"#reportaverage_tcpclient\">TCP client</a>" << endl;
                 doc << "</div>" << endl;
@@ -3375,6 +3844,8 @@ namespace leanux {
                 doc << "<a href=\"#timeline_disk\">Disks</a>" << endl;
                 doc << "<a href=\"#timeline_mount\">Mountpoints</a>" << endl;
                 doc << "<a href=\"#timeline_nic\">NICs</a>" << endl;
+                doc << "<a href=\"#timeline_tcpnetstat\">TCP netstat connections</a>" << endl;
+                doc << "<a href=\"#timeline_tcpnetstatseginout\">TCP netstat segments</a>" << endl;
                 doc << "<a href=\"#timeline_tcpserver\">TCP server</a>" << endl;
                 doc << "<a href=\"#timeline_tcpclient\">TCP client</a>" << endl;
                 doc << "</div>" << endl;

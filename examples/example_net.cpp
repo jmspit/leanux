@@ -1,7 +1,7 @@
 //========================================================================
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -136,15 +136,15 @@ int main( int argc, char *argv[] ) {
     }
     cout << endl;
 
-    leanux::net::NetStatDeviceMap snap1,snap2;
-    leanux::net::NetStatDeviceVector delta;
+    leanux::net::NetDeviceStatDeviceMap snap1,snap2;
+    leanux::net::NetDeviceStatDeviceVector delta;
     struct timeval t1,t2;
-    leanux::net::getNetStat( snap1 );
+    leanux::net::getNetDeviceStat( snap1 );
     gettimeofday( &t1, 0 );
     leanux::util::Sleep( 2, 0 );
-    leanux::net::getNetStat( snap2 );
+    leanux::net::getNetDeviceStat( snap2 );
     gettimeofday( &t2, 0 );
-    leanux::net::getNetStatDelta( snap1, snap2, delta );
+    leanux::net::getNetDeviceStatDelta( snap1, snap2, delta );
     double dt = leanux::util::deltaTime( t1, t2 );
 
     cout << setw(20) << "receive";
@@ -159,7 +159,7 @@ int main( int argc, char *argv[] ) {
     cout << setw(10) << "pcktsz";
     cout << endl;
 
-    for ( leanux::net::NetStatDeviceVector::const_iterator i = delta.begin(); i != delta.end(); i++ ) {
+    for ( leanux::net::NetDeviceStatDeviceVector::const_iterator i = delta.begin(); i != delta.end(); i++ ) {
       cout << setw(10) << (*i).device;
       cout << setw(10) << leanux::util::ByteStr( (*i).rx_bytes / dt, 3 );
       cout << setw(10) << fixed << setprecision(2) << (*i).rx_packets / dt;

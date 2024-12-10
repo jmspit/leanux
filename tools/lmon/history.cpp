@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -376,7 +376,7 @@ namespace leanux {
         qnetstat.bind( 2, snap_end_ );
         netview.delta.clear();
         while ( qnetstat.step() ) {
-          net::NetStat stat;
+          net::NetDeviceStat stat;
           stat.device = qnetstat.getText(0);
           stat.rx_bytes = qnetstat.getDouble(1);
           stat.tx_bytes = qnetstat.getDouble(2);

@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -195,6 +195,7 @@ namespace leanux {
         db.enableForeignKeys();
         createSchema( db );
         updateSchema( db );
+        net::discoverTCPStat();
         std::stringstream ss;
         ss << "sampling to " << options.database << " version " << db.getUserVersion();
         sysLog( LOG_STAT, util::ConfigFile::getConfig()->getIntValue("LOG_LEVEL"), ss.str() );
@@ -217,6 +218,7 @@ namespace leanux {
         ResSnap ressnap;
         MountSnap mountsnap;
         TCPEstaSnap tcpestasnap;
+        TCPSnap tcpsnap;
         timesnap.startSnap();
         cpusnap.startSnap();
         iosnap.startSnap();
@@ -227,6 +229,7 @@ namespace leanux {
         ressnap.startSnap();
         mountsnap.startSnap();
         tcpestasnap.startSnap();
+        tcpsnap.startSnap();
 
         while ( !stopped ) {
 
@@ -283,6 +286,10 @@ namespace leanux {
             tcpestasnap.stopSnap();
             tcpestasnap.storeSnap( db, snapid, timesnap_seconds );
             tcpestasnap.startSnap();
+            
+            tcpsnap.stopSnap();
+            tcpsnap.storeSnap( db, snapid, timesnap_seconds );
+            tcpsnap.startSnap();            
 
             procsnap.stopSnap();
             procsnap.storeSnap( db, snapid, timesnap_seconds );
@@ -370,6 +377,9 @@ namespace leanux {
                 return 2;
               }
             }
+            #ifdef LEANUX_DEBUG
+            util::Tracer::setTracer( "/tmp/lard.trc" );
+            #endif            
             leanux::init();
 
             util::ConfigFile::declareParameter( "DATABASE_PAGE_SIZE", LARD_CONF_DATABASE_PAGE_SIZE_DEFAULT, LARD_CONF_DATABASE_PAGE_SIZE_DESCR, LARD_CONF_DATABASE_PAGE_SIZE_COMMENT );

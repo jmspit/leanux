@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -469,6 +469,10 @@ namespace leanux {
     int Query::getColumnCount() const {
       return sqlite3_column_count( stmt_ );
     }
+    
+    const char* Query::getColumnName( int col ) const {
+      return sqlite3_column_name( stmt_, col );
+    }    
 
   }; // namespace persist
 

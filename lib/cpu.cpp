@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -84,13 +84,19 @@ namespace leanux {
       if ( d ) {
         while ( (dir = readdir(d)) != NULL ) {
           unsigned int cpunum = 0;
+          int online = 1;
           if ( sscanf( dir->d_name, "cpu%u", &cpunum ) == 1 ) {
+            if ( cpunum > 0 ) {
+              online = util::fileReadInt((std::string)sysdevice::sysdevice_root + "/system/cpu/" + dir->d_name + "/online");
+            }
             topology.logical++;
-            CoreId cid;
-            cid.phy_id = util::fileReadUL( (std::string)sysdevice::sysdevice_root + "/system/cpu/" + dir->d_name + "/topology/physical_package_id" );
-            cid.core_id = util::fileReadUL( (std::string)sysdevice::sysdevice_root + "/system/cpu/" + dir->d_name + "/topology/core_id" );
-            cores.insert( cid );
-            physical.insert( cid.phy_id);
+            if ( online ) {
+              CoreId cid;
+              cid.phy_id = util::fileReadUL( (std::string)sysdevice::sysdevice_root + "/system/cpu/" + dir->d_name + "/topology/physical_package_id" );
+              cid.core_id = util::fileReadUL( (std::string)sysdevice::sysdevice_root + "/system/cpu/" + dir->d_name + "/topology/core_id" );
+              cores.insert( cid );
+              physical.insert( cid.phy_id);
+            }
           }
         }
         closedir( d );

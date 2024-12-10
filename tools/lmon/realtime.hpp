@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -122,10 +122,10 @@ namespace leanux {
           static std::map<std::string,block::MajorMinor> devicefilecache_;
 
           /** earlier snap. */
-          net::NetStatDeviceMap netsnap1_;
+          net::NetDeviceStatDeviceMap netsnap1_;
 
           /** later snap. */
-          net::NetStatDeviceMap netsnap2_;
+          net::NetDeviceStatDeviceMap netsnap2_;
 
           /** earlier snap. */
           process::ProcPidStatMap procsnap1_;

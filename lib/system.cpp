@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -150,14 +150,34 @@ namespace leanux {
       std::stringstream ss;
       switch ( t ) {
         case ChassisTypeOther : ss << "virtual machine"; break;
-        case ChassisTypeDesktop : ss << "desktop"; break;
         case ChassisTypeUnknown : ss << "unknown"; break;
+        case ChassisTypeDesktop : ss << "desktop"; break;
+        case ChassisTypeLowProfileDesktop : ss << "low profile desktop"; break;
+        case ChassisTypePizzaBox : ss << "pizza box"; break;
+        case ChassisTypeMiniTower : ss << "mini tower"; break;
+        case ChassisTypeTower : ss << "tower"; break;
         case ChassisTypePortable : ss << "portable"; break;
         case ChassisTypeLaptop : ss << "laptop"; break;
         case ChassisTypeNotebook : ss << "notebook"; break;
         case ChassisTypeHandHeld : ss << "hand held"; break;
+        case ChassisTypeDockingStation : ss << "docking station"; break;
+        case ChassisTypeAllInOne : ss << "all in one"; break;
+        case ChassisTypeSubNotebook : ss << "sub notebook"; break;
+        case ChassisTypeSpaceSaving : ss << "space saving"; break;
+        case ChassisTypeLunchBox : ss << "lunch box"; break;
+        case ChassisTypeMainServerChassis : ss << "main server chassis"; break;
         case ChassisTypeExpansionChassis : ss << "expansion chassis"; break;
+        case ChassisTypeSubChassis : ss << "sub chassis"; break;
+        case ChassisTypeBusExpansionChassis : ss << "bus expansion chassis"; break;
+        case ChassisTypePeripheralChassis : ss << "peripheral chassis"; break;
+        case ChassisTypeRAIDChassis : ss << "raid chassis"; break;
+        case ChassisTypeRackMountChassis : ss << "rack mounted"; break;
         case ChassisTypeSealedCasePC : ss << "sealed case PC"; break;
+        case ChassisTypeMultiSystemChassis : ss << "multisystem chassis"; break;
+        case ChassisTypeCompactPCI : ss << "compact PCI"; break;
+        case ChassisTypeAdvancedTCA : ss << "advanced TCA"; break;
+        case ChassisTypeBlade : ss << "blade"; break;
+        case ChassisTypeBladeEnclosure : ss << "blade enclosure"; break;
         default : ss << "unhandled! (0x" << std::hex << t << ")"; break;
       }
       return ss.str();

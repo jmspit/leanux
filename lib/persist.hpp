@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -348,6 +348,14 @@ namespace leanux {
          * @return the number of columns
          */
         int getColumnCount() const;
+        
+        /**
+         * @brief Get the name of a column
+         * 
+         * @param col the select list column (start with 0).
+         * @return const char* (eg do not free)
+         */
+        const char* getColumnName( int col ) const;
     };
 
 

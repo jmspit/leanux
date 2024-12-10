@@ -8,6 +8,7 @@ project( ${PROJECT} )
 
 execute_process(
     COMMAND git describe --tags --always
+    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     OUTPUT_VARIABLE GIT_TAG
     OUTPUT_STRIP_TRAILING_WHITESPACE
   )

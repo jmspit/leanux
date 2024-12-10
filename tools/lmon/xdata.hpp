@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -105,7 +105,7 @@ namespace leanux {
         unsigned long sample_count;
 
         /** net stat delta. */
-        net::NetStatDeviceVector delta;
+        net::NetDeviceStatDeviceVector delta;
 
         /** TCP server connections */
         std::list<net::TCPKeyCounter> tcpserver;

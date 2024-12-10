@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -69,14 +69,28 @@
           if ( !(isdigit( s[p] ) || s[p] == ' ' ) ) {
             if ( s[p] != '(' ) throw Oops( __FILE__, __LINE__, "parse failure on " + path.str() ); else {
               //here begins the 'cmd' field
-              for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ')')); q++ ) {
-                stat.comm += s[q];
+              q = p+1;
+              int b = 1;
+              while (q<p+129) {
+                if ( s[q] == '(' ) b++;
+                else if ( s[q] == ')' ) b--;
+                if ( b != 0 && stat.comm.length() < 15 ) stat.comm += s[q];
+                if ( b == 0 && s[q] == ' ') break;
+                q++;
               }
-              p = q+2;
+              // for ( q = p+1; q < s.length() && (s[q] != ')' || (q<s.length()-1 && s[q+1] == ' ')); q++ ) {
+              //   stat.comm += s[q];
+              // }
+              p = q+1;
               break;
             }
           }
         }
+        #ifdef TRACEON
+        std::stringstream ss;
+        ss << "parsed cmd name >" << stat.comm << "< continue at >" << s.substr(p) << "<";
+        TRACE( ss );
+        #endif
         unsigned long utime;
         unsigned long stime;
         unsigned long cutime;

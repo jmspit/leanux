@@ -2,7 +2,7 @@
 //
 // This file is part of the leanux toolkit.
 //
-// Copyright (C) 2015-2016 Jan-Marten Spit http://www.o-rho.com/leanux
+// Copyright (C) 2015-2016 Jan-Marten Spit https://github.com/jmspit/leanux
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
 // copy of this software and associated documentation files (the
@@ -118,10 +118,10 @@ namespace leanux {
         xnetview_.t1 = xnetview_.t2;
         gettimeofday( &xnetview_.t2, 0 );
         netsnap1_ = netsnap2_;
-        net::getNetStat( netsnap2_ );
-        net::getNetStatDelta( netsnap1_, netsnap2_, xnetview_.delta );
+        net::getNetDeviceStat( netsnap2_ );
+        net::getNetDeviceStatDelta( netsnap1_, netsnap2_, xnetview_.delta );
         double dt = util::deltaTime( xnetview_.t1, xnetview_.t2 );
-        for ( net::NetStatDeviceVector::iterator i = xnetview_.delta.begin(); i != xnetview_.delta.end(); i++ ) {
+        for ( net::NetDeviceStatDeviceVector::iterator i = xnetview_.delta.begin(); i != xnetview_.delta.end(); i++ ) {
           (*i).rx_bytes /= dt;
           (*i).tx_bytes /= dt;
           (*i).rx_packets /= dt;
